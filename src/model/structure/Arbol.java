@@ -15,4 +15,17 @@ public class Arbol {
     public void add(Object info) {
         root.add(info);
     }
+    
+//    
+//    public void addToArbol(NodoArbol na){
+//        if (root == null){
+//            return;
+//        } else {
+//            if(na.getChildren().getSize() == root.getChildren().getMAX_SIZE()){
+//                addToArbol (na.getChildren().)
+//            }
+//        }
+//        
+//    }
+    
 }

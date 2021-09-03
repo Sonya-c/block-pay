@@ -5,7 +5,7 @@ public class NodoArbol {
     private Lista children;
 
     public NodoArbol() {
-        this.children = new Lista();    
+        this.children = new Lista();
     }
 
     public NodoArbol(int MAX_CHILDREN) {
@@ -19,4 +19,9 @@ public class NodoArbol {
     public void add(Object info) {
         this.children.add(info);
     }
+
+    public Lista getChildren() {
+        return this.children;
+    }
+
 }

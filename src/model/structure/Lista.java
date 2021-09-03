@@ -14,6 +14,14 @@ public class Lista {
         this.MAX_SIZE = MAX_SIZE;
     }
 
+    public int getSize(){
+        return this.size;
+    }
+    
+    public int getMAX_SIZE(){
+        return this.MAX_SIZE;
+    }
+    
     /**
      * 
      * Buscar un nodo
@@ -53,6 +61,8 @@ public class Lista {
             }
         }
     }
+    
+    
 
     /**
      * Dado un elemento lo inserta
