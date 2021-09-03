@@ -1,14 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model.structure;
 
-/**
- *
- * @author 57301
- */
 public class Arbol {
+    private NodoArbol root;
+
+    public Arbol() {
+        this.root = new NodoArbol();
+    }
+
+    public Arbol(int N) {
+        this.root = new NodoArbol(N);
+    }
     
+    public void add(Object info) {
+        root.add(info);
+    }
 }
