@@ -1,4 +1,4 @@
-package view;
+package view.main;
 
 import view.arbolGrafico.ArbolGrafico;
 import model.structure.Arbol;
@@ -47,7 +47,6 @@ public class MainView extends javax.swing.JFrame {
         perfilPanel.setLayout(new java.awt.BorderLayout());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 400));
 
         mainPanel.setLayout(new java.awt.BorderLayout());
         getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);

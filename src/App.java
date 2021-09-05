@@ -1,20 +1,17 @@
 
-import view.MainView;
 import model.structure.Arbol;
-import model.system.Persona;
+import controller.FileController;
+import controller.JoinController;
 
 public class App {
 
     public static void main(String[] args) {
-        Arbol arbol = new Arbol(2);
-  
-        MainView mainView = new MainView(arbol);
+        Arbol arbol = new Arbol();
 
-        // Crear personas random
-        Persona rochi = new Persona("Rochi000", "Rochi", "Coins", 000, 1000000000);
-        
-    
-        mainView.setVisible(true);
+        FileController fileCtrl = new FileController(arbol);
+        JoinController joinCtrl = new JoinController(arbol);
+
+        fileCtrl.load();
+        joinCtrl.join();   
     }
-
 }
