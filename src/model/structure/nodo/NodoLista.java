@@ -1,23 +1,15 @@
-package model.structure;
+package model.structure.nodo;
 
-public class NodoLista {
-    private Object info;
+public class NodoLista extends Nodo {
     private NodoLista next;
     private NodoLista prev;
 
-    public NodoLista() {}
+    public NodoLista() {
+        super();
+    }
 
     public NodoLista(Object info) {
-        this.info = info;
-    }
-
-    // ==== Getters and setters
-    public void setInfo(Object info) {
-       this.info = info; 
-    }
-
-    public Object getInfo() {
-        return this.info;
+        super(info);
     }
 
     public void setNext(NodoLista next) {

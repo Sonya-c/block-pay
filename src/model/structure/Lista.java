@@ -1,6 +1,8 @@
 
 package model.structure;
 
+import model.structure.nodo.NodoLista;
+
 public class Lista {
     private int size = 0;
     private final int MAX_SIZE;
@@ -15,6 +17,24 @@ public class Lista {
     }
 
     /**
+     * Dado un indice (indiciando en 0) lo busca en la lista
+     * @param index
+     * @return 
+     */
+    public NodoLista search(int index) {
+        NodoLista nodo = this.head;
+        int i = 0;
+        
+        while (nodo != null & i!= index) {
+            nodo = nodo.getNext();
+            i++;
+        }
+        
+        if (i == index) return nodo;
+        
+        return null;
+    }
+    /**
      * 
      * Buscar un nodo
      * 
@@ -28,9 +48,11 @@ public class Lista {
             while(nodo.getNext() != null & !nodo.equals(info)) {
                 nodo = nodo.getNext();
             }
+            
+            if (nodo.equals(info)) return nodo;
         }
 
-        return nodo;
+        return null;
     }
 
     /**
@@ -76,5 +98,9 @@ public class Lista {
             }
         }
         size++;
+    }
+
+    public void add() {
+        add(null);
     }
 }

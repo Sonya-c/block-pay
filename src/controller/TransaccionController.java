@@ -9,5 +9,9 @@ public class TransaccionController {
         this.arbol = arbol;
     }
 
-    
+    public void transaccion(int remitenteID, int emisarioID, float monto) {
+
+    }
+
+        
 }

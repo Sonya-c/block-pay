@@ -1,6 +1,8 @@
-package model.structure;
+package model.structure.nodo;
 
-public class NodoArbol {
+import model.structure.Lista;
+
+public class NodoArbol extends Nodo {
 
     private Lista children;
 
@@ -16,7 +18,11 @@ public class NodoArbol {
         this.children.remove(info);
     }
 
-    public void add(Object info) {
+    public void addChild(Object info) {
         this.children.add(info);
+    }
+
+    public void addChild() {
+        this.children.add();
     }
 }

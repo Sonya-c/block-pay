@@ -1,5 +1,6 @@
 package view;
 
+import view.arbolGrafico.ArbolGrafico;
 import model.structure.Arbol;
 import controller.TransaccionController;
 
