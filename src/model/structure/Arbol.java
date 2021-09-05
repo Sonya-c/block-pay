@@ -25,4 +25,17 @@ public class Arbol {
     public NodoArbol getRoot() {
         return this.root;
     }
+    
+//    
+//    public void addToArbol(NodoArbol na){
+//        if (root == null){
+//            return;
+//        } else {
+//            if(na.getChildren().getSize() == root.getChildren().getMAX_SIZE()){
+//                addToArbol (na.getChildren().)
+//            }
+//        }
+//        
+//    }
+    
 }

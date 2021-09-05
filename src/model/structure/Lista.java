@@ -16,6 +16,14 @@ public class Lista {
         this.MAX_SIZE = MAX_SIZE;
     }
 
+    public int getSize(){
+        return this.size;
+    }
+    
+    public int getMAX_SIZE(){
+        return this.MAX_SIZE;
+    }
+    
     /**
      * Dado un indice (indiciando en 0) lo busca en la lista
      * @param index
@@ -75,6 +83,8 @@ public class Lista {
             }
         }
     }
+    
+    
 
     /**
      * Dado un elemento lo inserta
