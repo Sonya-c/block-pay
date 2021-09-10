@@ -1,6 +1,7 @@
 package controller;
 
 import model.structure.Arbol;
+import view.JoinView;
 
 public class JoinController {
     private Arbol arbol;
@@ -10,9 +11,15 @@ public class JoinController {
         this.arbol = arbol;
     }
 
-    public void join() {
+    public void join() {        
+        JoinView joinView = new JoinView();
+        joinView.setVisible(true);
         
-        while (!joined) { }
+        while (!joined) {
+        
+        }
+        
+        joinView.setVisible(false);
     }
 
 }

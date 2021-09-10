@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
 /**
  *
  * @author sonya
@@ -11,6 +13,12 @@ public class WelcomeView extends javax.swing.JFrame {
      */
     public WelcomeView() {
         initComponents();
+        
+        // (new ImageIcon(getClass().getResource("/resources/img/logo.png"))).getImage()
+        Image image = (new ImageIcon(getClass().getResource("/resources/img/logo.png"))).getImage();
+        Image newImage = image.getScaledInstance(200, 200,  java.awt.Image.SCALE_SMOOTH); 
+        iconLabel.setIcon(new ImageIcon(newImage));
+        System.out.println(iconLabel.getIcon());
     }
 
     public void setMaxValue(int max) {
@@ -29,27 +37,29 @@ public class WelcomeView extends javax.swing.JFrame {
     private void initComponents() {
 
         mainPael = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        iconLabel = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
         footerPanel = new javax.swing.JPanel();
         progressBar = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Rohi Coins | Werlcome");
         setAlwaysOnTop(true);
+        setIconImage((new ImageIcon(getClass().getResource("/resources/img/logo.png"))).getImage());
         setUndecorated(true);
         setResizable(false);
 
-        mainPael.setBackground(new java.awt.Color(17, 32, 49));
+        mainPael.setBackground(new java.awt.Color(27, 20, 100));
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 179, 68));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("ROCHI-COINS");
+        iconLabel.setBackground(new java.awt.Color(255, 51, 102));
+        iconLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        iconLabel.setMaximumSize(new java.awt.Dimension(200, 200));
+        iconLabel.setMinimumSize(new java.awt.Dimension(200, 200));
 
-        jLabel2.setBackground(new java.awt.Color(255, 51, 102));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("LOGO");
+        titleLabel.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(255, 255, 255));
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setText("BLOCK PAY");
 
         javax.swing.GroupLayout mainPaelLayout = new javax.swing.GroupLayout(mainPael);
         mainPael.setLayout(mainPaelLayout);
@@ -58,31 +68,34 @@ public class WelcomeView extends javax.swing.JFrame {
             .addGroup(mainPaelLayout.createSequentialGroup()
                 .addGap(91, 91, 91)
                 .addGroup(mainPaelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                    .addComponent(iconLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                 .addGap(109, 109, 109))
         );
         mainPaelLayout.setVerticalGroup(
             mainPaelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPaelLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(iconLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(titleLabel)
                 .addGap(24, 24, 24))
         );
 
         getContentPane().add(mainPael, java.awt.BorderLayout.CENTER);
 
-        footerPanel.setBackground(new java.awt.Color(17, 32, 49));
+        footerPanel.setBackground(new java.awt.Color(27, 20, 100));
 
-        progressBar.setBackground(new java.awt.Color(212, 236, 221));
-        progressBar.setForeground(new java.awt.Color(224, 93, 93));
+        progressBar.setBackground(new java.awt.Color(0, 255, 197));
+        progressBar.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        progressBar.setForeground(new java.awt.Color(236, 0, 140));
         progressBar.setValue(50);
+        progressBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         progressBar.setBorderPainted(false);
         progressBar.setOpaque(true);
-        progressBar.setPreferredSize(new java.awt.Dimension(300, 14));
+        progressBar.setPreferredSize(new java.awt.Dimension(300, 15));
         progressBar.setStringPainted(true);
+        progressBar.setVerifyInputWhenFocusTarget(false);
         footerPanel.add(progressBar);
 
         getContentPane().add(footerPanel, java.awt.BorderLayout.PAGE_END);
@@ -93,9 +106,9 @@ public class WelcomeView extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel footerPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel iconLabel;
     private javax.swing.JPanel mainPael;
     private javax.swing.JProgressBar progressBar;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

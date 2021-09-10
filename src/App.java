@@ -10,7 +10,7 @@ public class App {
 
         FileController fileCtrl = new FileController(arbol);
         JoinController joinCtrl = new JoinController(arbol);
-
+        
         fileCtrl.load();
         joinCtrl.join();   
     }
