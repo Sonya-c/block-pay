@@ -4,10 +4,10 @@ import model.structure.Lista;
 
 public class NodoArbol extends Nodo {
 
-    private Lista children;
-    private NodoArbol prev;
-    private NodoArbol next;
-    private NodoArbol dad;
+    protected Lista children;
+    protected NodoArbol prev;
+    protected NodoArbol next;
+    protected NodoArbol dad;
     
 
     public NodoArbol() {
@@ -36,7 +36,7 @@ public class NodoArbol extends Nodo {
         this.info  = info;
     }
     
-    public static int getN() {
+   public static int getN() {
         return N;
     }
 
