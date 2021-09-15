@@ -5,9 +5,11 @@
  */
 package model.structure;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -27,9 +29,25 @@ public class Files {
         try (Scanner sc = new Scanner(file)) {
             while (sc.hasNextLine()) {
                 String linea = sc.nextLine();
-                String data[] = linea.split(",");
+                String data[] = linea.split("#");
                 String iD = data[3];
                 if (iD.equals(id)) {
+                    return false;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("El archivo no se encontró");
+        }
+        return true;
+    }
+    
+    public boolean searchInFile(File file, String user){
+        try (Scanner sc = new Scanner(file)) {
+            while (sc.hasNextLine()) {
+                String linea = sc.nextLine();
+                String data[] = linea.split("#");
+                String userDataB = data[0];
+                if (userDataB.equals(user)) {
                     return false;
                 }
             }
@@ -50,8 +68,8 @@ public class Files {
                  String iD = String.valueOf(id);
                  String cash_ = String.valueOf(cash);
                 
-                 bw.write(user + "," + name + "," + lastName + "," + iD + "," + cash_);
-                 System.out.println(user + "," + name + "," + lastName + "," + iD + "," + cash_);
+                 bw.write(user + "#" + name + "#" + lastName + "#" + iD + "#" + cash_);
+                 System.out.println(user + "#" + name + "#" + lastName + "#" + iD + "#" + cash_);
                  bw.newLine();
                  
                  bw.flush();
@@ -76,5 +94,28 @@ public class Files {
             }
         }
     }
+//    
+//        public void readFileId(String name, int Id) {
+//
+//        File file = new File("C:\\Block-Pay\\"+name);
+//
+//        try {
+//            BufferedReader reader = new BufferedReader(new FileReader(file));
+//
+//            String currentLine;
+//
+//            while ((currentLine = reader.readLine()) != null) {
+//                if (currentLine.trim().equals(lineToRemove)) {
+//                    continue;
+//                }
+//                writer.write(currentLine + System.getProperty("line.separator"));
+//            }
+//
+//            reader.close();
+//
+//        } catch (IOException e) {
+//            //e.printStackTrace();
+//        }
+//    }
 
 }

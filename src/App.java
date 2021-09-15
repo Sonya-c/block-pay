@@ -17,9 +17,10 @@ public class App {
         
         Files registro = new Files();
         File f = new File("C:\\Block-Pay\\registros.txt");
-        registro.searchOrCreateFile(f, "registro.txt");
-        registro.writeFile(f, "userFijo", "First", "User", 00000, 1000000000);
-        
+        registro.searchOrCreateFile(f, "registros.txt");
+        if (registro.searchInFile(f, "userFijo")){
+            registro.writeFile(f, "userFijo", "First", "User", 0, 1000000000);
+        }
         FileController fileCtrl = new FileController(arbol);
         JoinController joinCtrl = new JoinController(arbol);
 

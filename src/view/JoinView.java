@@ -18,6 +18,7 @@ public class JoinView extends javax.swing.JFrame {
      */
     public JoinView() {
         initComponents();
+        sos.setVisible(false);
     }
 
     /**
@@ -50,6 +51,7 @@ public class JoinView extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         passSU = new javax.swing.JPasswordField();
+        sos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Block Pain | Login");
@@ -130,9 +132,12 @@ public class JoinView extends javax.swing.JFrame {
         signUpPanel.setBackground(new java.awt.Color(255, 255, 255));
         signUpPanel.setFocusable(false);
         signUpPanel.setRequestFocusEnabled(false);
+        signUpPanel.setLayout(null);
 
         userSU.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         userSU.setToolTipText("Usuario");
+        signUpPanel.add(userSU);
+        userSU.setBounds(209, 121, 177, 23);
 
         moneySU.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         moneySU.setToolTipText("Usuario");
@@ -141,20 +146,32 @@ public class JoinView extends javax.swing.JFrame {
                 moneySUActionPerformed(evt);
             }
         });
+        signUpPanel.add(moneySU);
+        moneySU.setBounds(209, 221, 177, 23);
+        moneySU.getAccessibleContext().setAccessibleDescription("Monto Inicial");
 
         lastNameSU.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         lastNameSU.setToolTipText("Usuario");
+        signUpPanel.add(lastNameSU);
+        lastNameSU.setBounds(209, 69, 177, 23);
+        lastNameSU.getAccessibleContext().setAccessibleDescription("Apellidos");
 
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Nombres");
+        signUpPanel.add(jLabel3);
+        jLabel3.setBounds(53, 20, 74, 23);
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Apellidos");
+        signUpPanel.add(jLabel4);
+        jLabel4.setBounds(53, 72, 74, 17);
 
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel5.setText("Monto Inicial");
+        signUpPanel.add(jLabel5);
+        jLabel5.setBounds(53, 221, 74, 23);
 
         signUpBtn.setBackground(new java.awt.Color(0, 255, 197));
         signUpBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -168,76 +185,42 @@ public class JoinView extends javax.swing.JFrame {
                 signUpBtnActionPerformed(evt);
             }
         });
+        signUpPanel.add(signUpBtn);
+        signUpBtn.setBounds(242, 278, 83, 21);
 
         nameSU.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         nameSU.setToolTipText("Usuario");
+        signUpPanel.add(nameSU);
+        nameSU.setBounds(209, 20, 177, 23);
+        nameSU.getAccessibleContext().setAccessibleName("");
+        nameSU.getAccessibleContext().setAccessibleDescription("Nombres");
 
         jLabel6.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Usuario");
+        signUpPanel.add(jLabel6);
+        jLabel6.setBounds(53, 124, 74, 17);
 
         jLabel7.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Contraseña");
+        signUpPanel.add(jLabel7);
+        jLabel7.setBounds(53, 175, 74, 17);
 
         passSU.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         passSU.setToolTipText("Contraseña");
+        signUpPanel.add(passSU);
+        passSU.setBounds(209, 172, 177, 23);
 
-        javax.swing.GroupLayout signUpPanelLayout = new javax.swing.GroupLayout(signUpPanel);
-        signUpPanel.setLayout(signUpPanelLayout);
-        signUpPanelLayout.setHorizontalGroup(
-            signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(signUpPanelLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(82, 82, 82)
-                .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(userSU)
-                    .addComponent(lastNameSU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                    .addComponent(moneySU)
-                    .addComponent(nameSU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                    .addComponent(passSU, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
-                .addGap(136, 136, 136))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, signUpPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(signUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(174, 174, 174))
-        );
-        signUpPanelLayout.setVerticalGroup(
-            signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(signUpPanelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameSU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lastNameSU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userSU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(signUpPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(signUpPanelLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(passSU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(26, 26, 26)
-                        .addComponent(moneySU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(34, 34, 34)
-                .addComponent(signUpBtn)
-                .addGap(25, 25, 25))
-        );
+        sos.setBackground(new java.awt.Color(255, 51, 51));
+        sos.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        sos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sos.setText("INVÁLIDO");
+        sos.setAutoscrolls(true);
+        sos.setEnabled(false);
+        sos.setOpaque(true);
+        signUpPanel.add(sos);
+        sos.setBounds(390, 111, 99, 42);
 
         tabbedPanel.addTab("Sign Up", signUpPanel);
 
@@ -265,9 +248,12 @@ public class JoinView extends javax.swing.JFrame {
         }
         
         Persona p = new Persona(this.userSU.getText(), this.nameSU.getText(), this.lastNameSU.getText(), id, Float.parseFloat(this.moneySU.getText()));
-
-        f.writeFile(registro, p.getUserName(), p.getNames(), p.getLastNames(),
+        if (f.searchInFile(registro, p.getUserName())){
+            f.writeFile(registro, p.getUserName(), p.getNames(), p.getLastNames(),
                 p.getId(), p.getDinero());
+        } else {
+            sos.setVisible(true);
+        }
     }//GEN-LAST:event_signUpBtnActionPerformed
 
     private void moneySUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moneySUActionPerformed
@@ -328,6 +314,7 @@ public class JoinView extends javax.swing.JFrame {
     private javax.swing.JPasswordField passSU;
     private javax.swing.JButton signUpBtn;
     private javax.swing.JPanel signUpPanel;
+    private javax.swing.JLabel sos;
     private javax.swing.JTabbedPane tabbedPanel;
     private javax.swing.JTextField userLogin;
     private javax.swing.JTextField userSU;
