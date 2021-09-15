@@ -3,18 +3,24 @@ package view.main;
 import view.arbolGrafico.ArbolGrafico;
 import model.structure.Arbol;
 import controller.TransaccionController;
+import javax.swing.ImageIcon;
+import model.system.Persona;
 
 public class MainView extends javax.swing.JFrame {
     private final Arbol arbol;
     private final ArbolGrafico arbolGrafico;
     private final TransaccionController transaccionController;
-
-    public MainView(Arbol arbol) {
-        this.transaccionController = new TransaccionController(arbol);
+    private final Persona user;
+    
+    public MainView(Arbol arbol, Persona user) {
         this.arbol = arbol;
+        this.user = user;
+        this.transaccionController = new TransaccionController(arbol);
         this.arbolGrafico = new ArbolGrafico(arbol);
 
         initComponents();
+        
+        // Añadir los paneles externos
         this.arbolPanel.add(this.arbolGrafico);
         this.mainPanel.add(this.inicioPanel);
         
@@ -32,6 +38,24 @@ public class MainView extends javax.swing.JFrame {
     private void initComponents() {
 
         inicioPanel = new javax.swing.JPanel();
+        fistPanel = new javax.swing.JPanel();
+        moneyPanel = new javax.swing.JPanel();
+        avilableLabel = new javax.swing.JLabel();
+        moneyLabel = new javax.swing.JLabel();
+        idLabel = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        scrollPanel = new javax.swing.JScrollPane();
+        sendCenterPanel = new javax.swing.JPanel();
+        sendFormPanel = new javax.swing.JPanel();
+        sendUserNameLabel = new javax.swing.JLabel();
+        sendUserNameTxt = new javax.swing.JTextField();
+        sendMoneyLabel = new javax.swing.JLabel();
+        sendMoneyTxt = new javax.swing.JSpinner();
+        sendMessangeLabel = new javax.swing.JLabel();
+        scrollMessangePanel = new javax.swing.JScrollPane();
+        sendMenssangeTxt = new javax.swing.JTextArea();
+        sendTitleLabel = new javax.swing.JLabel();
+        sendBtn = new javax.swing.JButton();
         arbolPanel = new javax.swing.JPanel();
         perfilPanel = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
@@ -40,18 +64,174 @@ public class MainView extends javax.swing.JFrame {
         showInicioBtn = new javax.swing.JButton();
         showPerfilBtn = new javax.swing.JButton();
 
+        inicioPanel.setBackground(new java.awt.Color(27, 20, 100));
+        inicioPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         inicioPanel.setLayout(new java.awt.BorderLayout());
 
+        fistPanel.setBackground(new java.awt.Color(27, 20, 100));
+        fistPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 30, 30, 30));
+
+        moneyPanel.setBackground(new java.awt.Color(236, 0, 140));
+        moneyPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        moneyPanel.setMaximumSize(new java.awt.Dimension(100, 120));
+        moneyPanel.setMinimumSize(new java.awt.Dimension(300, 120));
+        moneyPanel.setPreferredSize(new java.awt.Dimension(330, 130));
+        moneyPanel.setLayout(new javax.swing.BoxLayout(moneyPanel, javax.swing.BoxLayout.Y_AXIS));
+
+        avilableLabel.setBackground(new java.awt.Color(255, 255, 255));
+        avilableLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        avilableLabel.setForeground(new java.awt.Color(255, 255, 255));
+        avilableLabel.setText("Disponible");
+        avilableLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        moneyPanel.add(avilableLabel);
+
+        moneyLabel.setBackground(new java.awt.Color(255, 255, 255));
+        moneyLabel.setFont(new java.awt.Font("Calibri", 1, 48)); // NOI18N
+        moneyLabel.setForeground(new java.awt.Color(255, 255, 255));
+        moneyLabel.setText("$ ");
+        moneyPanel.add(moneyLabel);
+
+        idLabel.setBackground(new java.awt.Color(255, 255, 255));
+        idLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        idLabel.setForeground(new java.awt.Color(255, 255, 255));
+        idLabel.setText("ID");
+        moneyPanel.add(idLabel);
+
+        nameLabel.setBackground(new java.awt.Color(255, 255, 255));
+        nameLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        nameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        nameLabel.setText("Nombre");
+        moneyPanel.add(nameLabel);
+
+        fistPanel.add(moneyPanel);
+
+        inicioPanel.add(fistPanel, java.awt.BorderLayout.PAGE_START);
+
+        scrollPanel.setBackground(new java.awt.Color(255, 255, 255));
+        scrollPanel.setBorder(null);
+        scrollPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        sendCenterPanel.setBackground(new java.awt.Color(27, 20, 100));
+        sendCenterPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        sendCenterPanel.setPreferredSize(new java.awt.Dimension(380, 230));
+
+        sendFormPanel.setBackground(new java.awt.Color(255, 255, 255));
+        sendFormPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
+        sendFormPanel.setPreferredSize(new java.awt.Dimension(330, 320));
+
+        sendUserNameLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        sendUserNameLabel.setText("Usuario");
+
+        sendUserNameTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        sendMoneyLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        sendMoneyLabel.setText("Cantidad");
+
+        sendMoneyTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        sendMessangeLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        sendMessangeLabel.setText("Mensaje");
+
+        sendMenssangeTxt.setColumns(20);
+        sendMenssangeTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        sendMenssangeTxt.setRows(5);
+        scrollMessangePanel.setViewportView(sendMenssangeTxt);
+
+        sendTitleLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        sendTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sendTitleLabel.setText("Enviar Dinero");
+
+        sendBtn.setBackground(new java.awt.Color(0, 255, 197));
+        sendBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        sendBtn.setText("Enviar");
+        sendBtn.setBorderPainted(false);
+        sendBtn.setFocusPainted(false);
+
+        javax.swing.GroupLayout sendFormPanelLayout = new javax.swing.GroupLayout(sendFormPanel);
+        sendFormPanel.setLayout(sendFormPanelLayout);
+        sendFormPanelLayout.setHorizontalGroup(
+            sendFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sendFormPanelLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addGroup(sendFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(sendMessangeLabel)
+                    .addComponent(sendTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(sendFormPanelLayout.createSequentialGroup()
+                        .addComponent(sendMoneyLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(sendMoneyTxt))
+                    .addGroup(sendFormPanelLayout.createSequentialGroup()
+                        .addComponent(sendUserNameLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(sendUserNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(67, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sendFormPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(scrollMessangePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sendFormPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(sendBtn)
+                .addGap(124, 124, 124))
+        );
+        sendFormPanelLayout.setVerticalGroup(
+            sendFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sendFormPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(sendTitleLabel)
+                .addGap(18, 18, 18)
+                .addGroup(sendFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sendUserNameLabel)
+                    .addComponent(sendUserNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(sendFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sendMoneyLabel)
+                    .addComponent(sendMoneyTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(sendMessangeLabel)
+                .addGap(18, 18, 18)
+                .addComponent(scrollMessangePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(sendBtn)
+                .addContainerGap())
+        );
+
+        sendCenterPanel.add(sendFormPanel);
+
+        scrollPanel.setViewportView(sendCenterPanel);
+
+        inicioPanel.add(scrollPanel, java.awt.BorderLayout.CENTER);
+
+        arbolPanel.setBackground(new java.awt.Color(255, 255, 255));
         arbolPanel.setLayout(new java.awt.BorderLayout());
 
-        perfilPanel.setLayout(new java.awt.BorderLayout());
+        perfilPanel.setBackground(new java.awt.Color(255, 255, 255));
+        perfilPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Block Pay");
+        setIconImage((new ImageIcon(getClass().getResource("/resources/img/logo.png"))).getImage());
+        setMinimumSize(new java.awt.Dimension(600, 650));
+        setPreferredSize(new java.awt.Dimension(600, 650));
 
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        mainPanel.setForeground(new java.awt.Color(255, 255, 255));
+        mainPanel.setMinimumSize(new java.awt.Dimension(600, 356));
+        mainPanel.setPreferredSize(new java.awt.Dimension(600, 356));
         mainPanel.setLayout(new java.awt.BorderLayout());
         getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
 
+        ActivityPanel.setBackground(new java.awt.Color(27, 20, 100));
+        ActivityPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 5));
+
+        showArbolBtn.setBackground(new java.awt.Color(42, 35, 115));
+        showArbolBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        showArbolBtn.setForeground(new java.awt.Color(255, 255, 255));
         showArbolBtn.setText("Arbol");
+        showArbolBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        showArbolBtn.setBorderPainted(false);
+        showArbolBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        showArbolBtn.setFocusPainted(false);
         showArbolBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showArbolBtnActionPerformed(evt);
@@ -59,7 +239,14 @@ public class MainView extends javax.swing.JFrame {
         });
         ActivityPanel.add(showArbolBtn);
 
+        showInicioBtn.setBackground(new java.awt.Color(42, 35, 115));
+        showInicioBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        showInicioBtn.setForeground(new java.awt.Color(255, 255, 255));
         showInicioBtn.setText("Inicio");
+        showInicioBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        showInicioBtn.setBorderPainted(false);
+        showInicioBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        showInicioBtn.setFocusPainted(false);
         showInicioBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showInicioBtnActionPerformed(evt);
@@ -67,7 +254,14 @@ public class MainView extends javax.swing.JFrame {
         });
         ActivityPanel.add(showInicioBtn);
 
+        showPerfilBtn.setBackground(new java.awt.Color(42, 35, 115));
+        showPerfilBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        showPerfilBtn.setForeground(new java.awt.Color(255, 255, 255));
         showPerfilBtn.setText("Perfil");
+        showPerfilBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        showPerfilBtn.setBorderPainted(false);
+        showPerfilBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        showPerfilBtn.setFocusPainted(false);
         showPerfilBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showPerfilBtnActionPerformed(evt);
@@ -78,11 +272,13 @@ public class MainView extends javax.swing.JFrame {
         getContentPane().add(ActivityPanel, java.awt.BorderLayout.PAGE_END);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void showArbolBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showArbolBtnActionPerformed
         this.mainPanel.removeAll();
         this.mainPanel.add(this.arbolPanel);
+        this.setTitle("Block Pay | Árbol");
         this.revalidate();
         this.repaint();
     }//GEN-LAST:event_showArbolBtnActionPerformed
@@ -90,6 +286,7 @@ public class MainView extends javax.swing.JFrame {
     private void showInicioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showInicioBtnActionPerformed
         this.mainPanel.removeAll();
         this.mainPanel.add(this.inicioPanel);
+        this.setTitle("Block Pay | Inicio");
         this.revalidate();
         this.repaint();
     }//GEN-LAST:event_showInicioBtnActionPerformed
@@ -97,6 +294,7 @@ public class MainView extends javax.swing.JFrame {
     private void showPerfilBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPerfilBtnActionPerformed
         this.mainPanel.removeAll();
         this.mainPanel.add(this.perfilPanel);
+        this.setTitle("Block Pay | Perfil");
         this.revalidate();
         this.repaint();
     }//GEN-LAST:event_showPerfilBtnActionPerformed
@@ -104,9 +302,27 @@ public class MainView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ActivityPanel;
     private javax.swing.JPanel arbolPanel;
+    private javax.swing.JLabel avilableLabel;
+    private javax.swing.JPanel fistPanel;
+    private javax.swing.JLabel idLabel;
     private javax.swing.JPanel inicioPanel;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JLabel moneyLabel;
+    private javax.swing.JPanel moneyPanel;
+    private javax.swing.JLabel nameLabel;
     private javax.swing.JPanel perfilPanel;
+    private javax.swing.JScrollPane scrollMessangePanel;
+    private javax.swing.JScrollPane scrollPanel;
+    private javax.swing.JButton sendBtn;
+    private javax.swing.JPanel sendCenterPanel;
+    private javax.swing.JPanel sendFormPanel;
+    private javax.swing.JTextArea sendMenssangeTxt;
+    private javax.swing.JLabel sendMessangeLabel;
+    private javax.swing.JLabel sendMoneyLabel;
+    private javax.swing.JSpinner sendMoneyTxt;
+    private javax.swing.JLabel sendTitleLabel;
+    private javax.swing.JLabel sendUserNameLabel;
+    private javax.swing.JTextField sendUserNameTxt;
     private javax.swing.JButton showArbolBtn;
     private javax.swing.JButton showInicioBtn;
     private javax.swing.JButton showPerfilBtn;

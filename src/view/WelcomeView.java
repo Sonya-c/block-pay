@@ -18,7 +18,6 @@ public class WelcomeView extends javax.swing.JFrame {
         Image image = (new ImageIcon(getClass().getResource("/resources/img/logo.png"))).getImage();
         Image newImage = image.getScaledInstance(200, 200,  java.awt.Image.SCALE_SMOOTH); 
         iconLabel.setIcon(new ImageIcon(newImage));
-        System.out.println(iconLabel.getIcon());
     }
 
     public void setMaxValue(int max) {
