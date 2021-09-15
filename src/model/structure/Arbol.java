@@ -1,8 +1,6 @@
 package model.structure;
 
-import model.structure.nodo.Nodo;
 import model.structure.nodo.NodoArbol;
-import model.structure.nodo.NodoLista;
 import model.system.Bloque;
 import model.system.Persona;
 import model.system.Transaccion;
@@ -41,7 +39,7 @@ public class Arbol {
             root = p;
             System.out.println("root: " + root.getInfo());
             root.addChild(root, new Persona("userFijo", "First", "User", 00000, 100000000), 4);
-            root.addChild(root, new Bloque(1), 4);
+            root.addChild(root, new Bloque(1), 3);
         } else {
             if (info instanceof Persona) {
                 NodoArbol p = root.getChildren().search(0);
@@ -61,7 +59,48 @@ public class Arbol {
                         p.addChild(p, info);
                     }
                 }
-//                if (root.getChildren().search(0) == null) {
+//                
+            } else if (info instanceof Transaccion) {
+                NodoArbol p;
+                if (root.getInfo() == "BLOCK-PAY") {
+                    System.out.println("A");
+                    p = root.getChildren().search(1);
+                } else {
+                    System.out.println("B");
+                    p = root;
+                }
+                    if (p.getChildren().search(0) == null) {
+                        p.addChild(p, info);
+                        System.out.println("completado");
+                    } else {
+                        NodoArbol q = p;
+                        while (q.getNext() != null) {
+                            q = q.getNext();
+                        }
+                        if (p.getChildren().getSize() == p.getChildren().getMAX_SIZE() && p.getNext() == null) {
+                            System.out.println("en el if");
+                            Bloque b = (Bloque) p.getInfo();
+                            int j = (Integer) b.getInfo();
+                            p.setNext(new NodoArbol(p, 3, new Bloque(j++)));
+                            p = p.getNext();
+                            insert(p, info);
+                        } else if (p.getChildren().getSize() == p.getChildren().getMAX_SIZE() && p.getNext() != null) {
+                            System.out.println("if 2");
+                            insert(p.getNext(), info);
+                        } else {
+                            System.out.println("va por el else");
+                            p.addChild(p, info);
+                        }
+                    }
+
+                }
+            }
+        return root;
+    }
+}
+
+/**
+if (root.getChildren().search(0) == null) {
 //                    root.addChild(root, info, 6);
 //                    System.out.println("1");
 //                } else if (root.getChildren().search(0) != null && root.getChildren().getSize() <= root.getChildren().getMAX_SIZE()) {
@@ -82,42 +121,7 @@ public class Arbol {
 //                    }
 ////                        root.getChildren().search(0).addChild(p.getDad(),info);
 //                }
-            } else if (info instanceof Transaccion) {
-                NodoArbol p;
-                if (root.getInfo() == "BLOCK-PAY") {
-                    System.out.println("A");
-                    p = root.getChildren().search(1);
-                } else {
-                    System.out.println("B");
-                    p = root;
-                }
-                if (p.getChildren().search(0) == null) {
-                    p.addChild(p, info);
-                    System.out.println("completado");
-                } else {
-                    NodoArbol q = p;
-                    while (q.getNext() != null) {
-                        q = q.getNext();
-                    }
-                    if (p.getChildren().getSize() == p.getChildren().getMAX_SIZE()) {
-                        System.out.println("en el if");
-                        Bloque b = (Bloque) p.getInfo();
-                        int j = (Integer) b.getInfo();
-                        p.setNext(new NodoArbol(p,3,new Bloque(j++)));
-                        p = p.getNext();
-                        insert(p, info);
-                    } else {
-                        System.out.println("va por el else");
-                        p.addChild(p, info);
-                    }
-                }
-
-            }
-        }
-        return root;
-    }
-
-}
+**/
 //
 //    public void printArbol(NodoLista l) {
 //        if (l != null) {

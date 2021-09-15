@@ -2,6 +2,8 @@
 import model.structure.Arbol;
 import controller.FileController;
 import controller.JoinController;
+import java.io.File;
+import model.structure.Files;
 import model.structure.nodo.NodoArbol;
 import model.system.Bloque;
 import model.system.Persona;
@@ -12,7 +14,27 @@ public class App {
     public static void main(String[] args) {
         Arbol arbol = new Arbol(2);
         NodoArbol root = arbol.getRoot();
-        root = arbol.insert(root, 0);
+        
+        Files registro = new Files();
+        File f = new File("C:\\Block-Pay\\registros.txt");
+        registro.searchOrCreateFile(f, "registro.txt");
+        registro.writeFile(f, "userFijo", "First", "User", 00000, 1000000000);
+        
+        FileController fileCtrl = new FileController(arbol);
+        JoinController joinCtrl = new JoinController(arbol);
+
+        fileCtrl.load();
+        joinCtrl.join();
+        
+    }
+}
+
+
+
+
+
+/*
+root = arbol.insert(root, 0);
         root = arbol.insert(root, new Persona("kelly", "kelly", "reales", 4, 1234));
 //        root = arbol.insert(root, new Persona("ger", "we", "reales", 4, 1234));
         root = arbol.insert(root, new Persona("wete", "we", "reales", 4, 1234));
@@ -27,11 +49,15 @@ public class App {
         root = arbol.insert(root, new Persona("eafs", "we", "reales", 4, 1234));
         root = arbol.insert(root, new Transaccion(12, new Persona("kelly", "kelly", "reales", 4, 1234), new Persona("eafas", "we", "reales", 4, 1234), 13000));
         root = arbol.insert(root, new Transaccion(11, new Persona("kelly", "kelly", "reales", 4, 1234), new Persona("eafas", "we", "reales", 4, 1234), 13000));
+        root = arbol.insert(root, new Transaccion(11, new Persona("kelly", "kelly", "reales", 4, 1234), new Persona("eafas", "we", "reales", 4, 1234), 13000));
+        root = arbol.insert(root, new Transaccion(11, new Persona("kelly", "kelly", "reales", 4, 1234), new Persona("eafas", "we", "reales", 4, 1234), 13000));
         root = arbol.insert(root, new Transaccion(10, new Persona("kelly", "kelly", "reales", 4, 1234), new Persona("eafas", "we", "reales", 4, 1234), 13000));
         root = arbol.insert(root, new Transaccion(9, new Persona("kelly", "kelly", "reales", 4, 1234), new Persona("eafas", "we", "reales", 4, 1234), 13000));
         root = arbol.insert(root, new Transaccion(2, new Persona("kelly", "kelly", "reales", 4, 1234), new Persona("eafas", "we", "reales", 4, 1234), 13000));
         root = arbol.insert(root, new Transaccion(122, new Persona("kelly", "kelly", "reales", 4, 1234), new Persona("eafas", "we", "reales", 4, 1234), 13000));
         root = arbol.insert(root, new Transaccion(1, new Persona("kelly", "kelly", "reales", 4, 1234), new Persona("eafas", "we", "reales", 4, 1234), 13000));
+//        Bloque b = (Bloque) root.getChildren().search(1).getNext().getInfo();
+//        System.out.println(b.getPrev().getInfo());
 //        Transaccion t = (Transaccion) root.getChildren().search(1).getNext().getChildren().search(0).getInfo();
 
 //        System.out.println(t.getId());
@@ -54,10 +80,4 @@ public class App {
 ////        System.out.println(b.getChildren().search(0).getInfo());
 //        
 //        arbol.printArbol(root);
-//        FileController fileCtrl = new FileController(arbol);
-//        JoinController joinCtrl = new JoinController(arbol);
-//        
-//        fileCtrl.load();
-//        joinCtrl.join();   
-    }
-}
+*/

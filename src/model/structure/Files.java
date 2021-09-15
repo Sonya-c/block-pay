@@ -5,23 +5,67 @@
  */
 package model.structure;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author 57301
  */
 public class Files {
-    
-    public Files(){
-        
+
+    public Files() {
+
+    }
+
+    public boolean searchInFile(File file, int id){
+        try (Scanner sc = new Scanner(file)) {
+            while (sc.hasNextLine()) {
+                String linea = sc.nextLine();
+                String data[] = linea.split(",");
+                String iD = data[3];
+                if (iD.equals(id)) {
+                    return false;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("El archivo no se encontró");
+        }
+        return true;
     }
     
-     public void buscar_crearArchivo(File file, String fileName) {
-        String sDir = "C:\\Block-Pay-registros";
+    public void writeFile(File file, String userName, String names, String lastNames, int id, float cash){
+         try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
+             //casting
+             try (BufferedWriter bw = new BufferedWriter(fw)) {
+                 //casting
+                 String user = userName;
+                 String name = names;
+                 String lastName = lastNames;
+                 String iD = String.valueOf(id);
+                 String cash_ = String.valueOf(cash);
+                
+                 bw.write(user + "," + name + "," + lastName + "," + iD + "," + cash_);
+                 System.out.println(user + "," + name + "," + lastName + "," + iD + "," + cash_);
+                 bw.newLine();
+                 
+                 bw.flush();
+             }
+                    fw.close();
+            } catch (IOException e) {
+                System.out.println("Error al crear archivo");
+            }
+    }
+
+    public void searchOrCreateFile(File file, String fileName) {
+        String sDir = "C:\\Block-Pay";
         File f = new File(sDir);
-        String ruta = "C:\\rochi-coins"; //Carpeta ruta
+        String ruta = "C:\\Block-Pay"; //Carpeta ruta
         file = new File(ruta, fileName);
         if (!file.exists()) { //No existe el archivo
             f.mkdir();
@@ -32,5 +76,5 @@ public class Files {
             }
         }
     }
-    
+
 }
