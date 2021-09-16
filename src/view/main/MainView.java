@@ -24,6 +24,10 @@ public class MainView extends javax.swing.JFrame {
         this.arbolPanel.add(this.arbolGrafico);
         this.mainPanel.add(this.inicioPanel);
         
+        this.idTxt.setText(String.valueOf(user.getId()));
+        this.namesTxt.setText(user.getNames() + " " + user.getLastNames());
+        this.idTxt3.setText(String.valueOf(user.getDinero()));
+        
         this.revalidate();
         this.repaint();
     }
@@ -44,6 +48,9 @@ public class MainView extends javax.swing.JFrame {
         moneyLabel = new javax.swing.JLabel();
         idLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
+        idTxt = new javax.swing.JLabel();
+        namesTxt = new javax.swing.JLabel();
+        idTxt3 = new javax.swing.JLabel();
         scrollPanel = new javax.swing.JScrollPane();
         sendCenterPanel = new javax.swing.JPanel();
         sendFormPanel = new javax.swing.JPanel();
@@ -58,6 +65,7 @@ public class MainView extends javax.swing.JFrame {
         sendBtn = new javax.swing.JButton();
         arbolPanel = new javax.swing.JPanel();
         perfilPanel = new javax.swing.JPanel();
+        idTxt2 = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
         ActivityPanel = new javax.swing.JPanel();
         showArbolBtn = new javax.swing.JButton();
@@ -76,7 +84,7 @@ public class MainView extends javax.swing.JFrame {
         moneyPanel.setMaximumSize(new java.awt.Dimension(100, 120));
         moneyPanel.setMinimumSize(new java.awt.Dimension(300, 120));
         moneyPanel.setPreferredSize(new java.awt.Dimension(330, 130));
-        moneyPanel.setLayout(new javax.swing.BoxLayout(moneyPanel, javax.swing.BoxLayout.Y_AXIS));
+        moneyPanel.setLayout(null);
 
         avilableLabel.setBackground(new java.awt.Color(255, 255, 255));
         avilableLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -84,24 +92,44 @@ public class MainView extends javax.swing.JFrame {
         avilableLabel.setText("Disponible");
         avilableLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         moneyPanel.add(avilableLabel);
+        avilableLabel.setBounds(10, 10, 58, 17);
 
         moneyLabel.setBackground(new java.awt.Color(255, 255, 255));
         moneyLabel.setFont(new java.awt.Font("Calibri", 1, 48)); // NOI18N
         moneyLabel.setForeground(new java.awt.Color(255, 255, 255));
         moneyLabel.setText("$ ");
         moneyPanel.add(moneyLabel);
+        moneyLabel.setBounds(10, 27, 35, 60);
 
         idLabel.setBackground(new java.awt.Color(255, 255, 255));
         idLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         idLabel.setForeground(new java.awt.Color(255, 255, 255));
         idLabel.setText("ID");
         moneyPanel.add(idLabel);
+        idLabel.setBounds(10, 87, 13, 17);
 
         nameLabel.setBackground(new java.awt.Color(255, 255, 255));
         nameLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         nameLabel.setForeground(new java.awt.Color(255, 255, 255));
         nameLabel.setText("Nombre");
         moneyPanel.add(nameLabel);
+        nameLabel.setBounds(10, 110, 46, 17);
+
+        idTxt.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        idTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        moneyPanel.add(idTxt);
+        idTxt.setBounds(149, 88, 161, 16);
+
+        namesTxt.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        namesTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        moneyPanel.add(namesTxt);
+        namesTxt.setBounds(149, 110, 161, 17);
+
+        idTxt3.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        idTxt3.setForeground(new java.awt.Color(255, 255, 255));
+        idTxt3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        moneyPanel.add(idTxt3);
+        idTxt3.setBounds(142, 30, 170, 40);
 
         fistPanel.add(moneyPanel);
 
@@ -208,11 +236,13 @@ public class MainView extends javax.swing.JFrame {
         perfilPanel.setBackground(new java.awt.Color(255, 255, 255));
         perfilPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        idTxt2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        idTxt2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Block Pay");
         setIconImage((new ImageIcon(getClass().getResource("/resources/img/logo.png"))).getImage());
         setMinimumSize(new java.awt.Dimension(600, 650));
-        setPreferredSize(new java.awt.Dimension(600, 650));
 
         mainPanel.setBackground(new java.awt.Color(255, 255, 255));
         mainPanel.setForeground(new java.awt.Color(255, 255, 255));
@@ -305,11 +335,15 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JLabel avilableLabel;
     private javax.swing.JPanel fistPanel;
     private javax.swing.JLabel idLabel;
+    private javax.swing.JLabel idTxt;
+    private javax.swing.JLabel idTxt2;
+    private javax.swing.JLabel idTxt3;
     private javax.swing.JPanel inicioPanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel moneyLabel;
     private javax.swing.JPanel moneyPanel;
     private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel namesTxt;
     private javax.swing.JPanel perfilPanel;
     private javax.swing.JScrollPane scrollMessangePanel;
     private javax.swing.JScrollPane scrollPanel;

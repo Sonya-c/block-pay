@@ -3,7 +3,6 @@ import model.structure.Arbol;
 import controller.FileController;
 import controller.JoinController;
 import java.io.File;
-import model.structure.Files;
 import model.structure.nodo.NodoArbol;
 import model.system.Bloque;
 import model.system.Persona;
@@ -15,11 +14,11 @@ public class App {
         Arbol arbol = new Arbol(2);
         NodoArbol root = arbol.getRoot();
         
-        Files registro = new Files();
+        FileController registro = new FileController(arbol);
         File f = new File("C:\\Block-Pay\\registros.txt");
         registro.searchOrCreateFile(f, "registros.txt");
-        if (registro.searchInFile(f, "userFijo")){
-            registro.writeFile(f, "userFijo", "First", "User", 0, 1000000000);
+        if (!registro.searchInFile(f, "userFijo")){
+            registro.writeFile(f, "userFijo", "First", "User", "***", 0, 1000000000);
         }
         FileController fileCtrl = new FileController(arbol);
         JoinController joinCtrl = new JoinController(arbol);
