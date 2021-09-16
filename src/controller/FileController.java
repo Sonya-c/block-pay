@@ -7,32 +7,33 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import model.structure.Arbol;
+import model.system.Persona;
 import view.WelcomeView;
 
 public class FileController {
 
     private final Arbol arbol;
-    
+
     public FileController(Arbol arbol) {
         this.arbol = arbol;
     }
 
     public void load() {
         WelcomeView welcomeView = new WelcomeView();
-        
+
         welcomeView.setMaxValue(6);
         welcomeView.setVisible(true);
-        
+
         int i = 0; // Esto es solo temporal!!!!!
         while (i <= 6) {
             welcomeView.progress();
             i++;
         }
-        
+
         welcomeView.setVisible(false);
     }
 
-        public boolean searchInFile(File file, int id){
+    public boolean searchInFile(File file, int id) {
         try (Scanner sc = new Scanner(file)) {
             while (sc.hasNextLine()) {
                 String linea = sc.nextLine();
@@ -47,8 +48,24 @@ public class FileController {
         }
         return false;
     }
-    
-    public boolean searchInFile(File file, String user){
+
+    public boolean searchInFilePassword(File file, String password) {
+        try (Scanner sc = new Scanner(file)) {
+            while (sc.hasNextLine()) {
+                String linea = sc.nextLine();
+                String data[] = linea.split("#");
+                String pw = data[3];
+                if (pw.equals(password)) {
+                    return true;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("El archivo no se encontró");
+        }
+        return false;
+    }
+
+    public boolean searchInFile(File file, String user) {
         try (Scanner sc = new Scanner(file)) {
             while (sc.hasNextLine()) {
                 String linea = sc.nextLine();
@@ -63,29 +80,29 @@ public class FileController {
         }
         return false;
     }
-    
-    public void writeFile(File file, String userName, String names, String lastNames, String password, int id, float cash){
-         try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
-             //casting
-             try (BufferedWriter bw = new BufferedWriter(fw)) {
-                 //casting
-                 String user = userName;
-                 String name = names;
-                 String lastName = lastNames;
-                 String pw = password;
-                 String iD = String.valueOf(id);
-                 String cash_ = String.valueOf(cash);
-                
-                 bw.write(user + "#" + name + "#" + lastName + "#" + pw + "#" + iD + "#" + cash_);
-                 System.out.println(user + "#" + name + "#" + lastName +"#"  + pw + "#" + iD + "#" + cash_);
-                 bw.newLine();
-                 
-                 bw.flush();
-             }
-                    fw.close();
-            } catch (IOException e) {
-                System.out.println("Error al crear archivo");
+
+    public void writeFile(File file, String userName, String names, String lastNames, String password, int id, float cash) {
+        try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
+            //casting
+            try (BufferedWriter bw = new BufferedWriter(fw)) {
+                //casting
+                String user = userName;
+                String name = names;
+                String lastName = lastNames;
+                String pw = password;
+                String iD = String.valueOf(id);
+                String cash_ = String.valueOf(cash);
+
+                bw.write(user + "#" + name + "#" + lastName + "#" + pw + "#" + iD + "#" + cash_);
+                System.out.println(user + "#" + name + "#" + lastName + "#" + pw + "#" + iD + "#" + cash_);
+                bw.newLine();
+
+                bw.flush();
             }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Error al crear archivo");
+        }
     }
 
     public void searchOrCreateFile(File file, String fileName) {
@@ -101,6 +118,24 @@ public class FileController {
                 System.out.println("Error");
             }
         }
+    }
+
+    public Persona searchInFilePersona(File file, String userName) {
+        Persona p;
+         try (Scanner sc = new Scanner(file)) {
+            while (sc.hasNextLine()) {
+                String linea = sc.nextLine();
+                String data[] = linea.split("#");
+                String userDataB = data[0];
+                if (userDataB.equals(userName)) {
+                     p = new Persona(userName,data[1],data[2],Integer.parseInt(data[4]),Float.parseFloat(data[5]));
+                     return p;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("El archivo no se encontró");
+        }
+       return null;
     }
 
 }
@@ -129,4 +164,4 @@ public class FileController {
 //        }
 //    }
 
-*/
+ */

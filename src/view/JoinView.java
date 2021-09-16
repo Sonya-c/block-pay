@@ -44,7 +44,7 @@ public class JoinView extends javax.swing.JFrame {
         userLabel = new javax.swing.JLabel();
         PasswordLabel = new javax.swing.JLabel();
         userTxt = new javax.swing.JTextField();
-        PasswordTxt = new javax.swing.JPasswordField();
+        passwordTxt = new javax.swing.JPasswordField();
         loginBtn = new javax.swing.JButton();
         signUpBtn = new javax.swing.JButton();
 
@@ -162,7 +162,6 @@ public class JoinView extends javax.swing.JFrame {
         setTitle("Block Pain | Login");
         setIconImage((new ImageIcon(getClass().getResource("/resources/img/logo.png"))).getImage());
         setMinimumSize(new java.awt.Dimension(600, 650));
-        setPreferredSize(new java.awt.Dimension(600, 650));
 
         mainPanel.setBackground(new java.awt.Color(27, 20, 100));
         mainPanel.setLayout(new java.awt.GridBagLayout());
@@ -304,6 +303,11 @@ public class JoinView extends javax.swing.JFrame {
 
         userTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         userTxt.setToolTipText("Usuario");
+        userTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userTxtActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -314,11 +318,11 @@ public class JoinView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(48, 4, 0, 41);
         loginPanel.add(userTxt, gridBagConstraints);
 
-        PasswordTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        PasswordTxt.setToolTipText("Contraseña");
-        PasswordTxt.addActionListener(new java.awt.event.ActionListener() {
+        passwordTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        passwordTxt.setToolTipText("Contraseña");
+        passwordTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordTxtActionPerformed(evt);
+                passwordTxtActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -329,7 +333,7 @@ public class JoinView extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 148;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(24, 4, 0, 41);
-        loginPanel.add(PasswordTxt, gridBagConstraints);
+        loginPanel.add(passwordTxt, gridBagConstraints);
 
         loginBtn.setBackground(new java.awt.Color(0, 255, 197));
         loginBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -382,23 +386,11 @@ public class JoinView extends javax.swing.JFrame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         String user = userTxt.getText();
-        String password = PasswordTxt.getText();
+        String password = passwordTxt.getText();
         
-        int result = joinController.login(user, password);
-        Dialog dialog = new Dialog();
         
-        if (result  == 0) {
-            joinController.setJoined(true, null);
-        } else {
-            
-            if (result == 1) {
-                // Usuario no exite
-                dialog.setMessage("Usuario no encontrado");
-            } else {
-                // Contraseña incorrecta
-                dialog.setMessage("Contraseña incorrecta");
-            }
-        }
+       joinController.login(user, password);
+       
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
@@ -408,9 +400,9 @@ public class JoinView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_signUpBtnActionPerformed
 
-    private void PasswordTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordTxtActionPerformed
+    private void passwordTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordTxtActionPerformed
+    }//GEN-LAST:event_passwordTxtActionPerformed
 
     private void signUpBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtn1ActionPerformed
 
@@ -431,12 +423,15 @@ public class JoinView extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_signUpBtn2ActionPerformed
 
+    private void userTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userTxtActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel PasswordLabel;
     private javax.swing.JLabel PasswordLabel1;
     private javax.swing.JLabel PasswordLabel2;
-    private javax.swing.JPasswordField PasswordTxt;
     private javax.swing.JTextField lastName;
     private javax.swing.JTextField lastNames1;
     private javax.swing.JButton loginBtn;
@@ -444,6 +439,7 @@ public class JoinView extends javax.swing.JFrame {
     private javax.swing.JPanel mainPanel;
     private javax.swing.JTextField names;
     private javax.swing.JTextField names1;
+    private javax.swing.JPasswordField passwordTxt;
     private javax.swing.JPasswordField pw;
     private javax.swing.JPasswordField pw1;
     private javax.swing.JButton signUpBtn;
