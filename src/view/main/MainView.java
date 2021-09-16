@@ -241,6 +241,7 @@ public class MainView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Block Pay");
+        setExtendedState(6);
         setIconImage((new ImageIcon(getClass().getResource("/resources/img/logo.png"))).getImage());
         setMinimumSize(new java.awt.Dimension(600, 650));
 

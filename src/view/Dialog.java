@@ -39,24 +39,30 @@ public class Dialog extends javax.swing.JFrame {
     private void initComponents() {
 
         popUpMessange = new javax.swing.JPanel();
-        messageTxt = new javax.swing.JLabel();
+        panel = new javax.swing.JPanel();
         okBtn = new javax.swing.JButton();
+        scrollPane = new javax.swing.JScrollPane();
+        messageTxt = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Mensaje");
         setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
+        popUpMessange.setBackground(java.awt.Color.white);
         popUpMessange.setOpaque(false);
-        popUpMessange.setPreferredSize(new java.awt.Dimension(300, 100));
+        popUpMessange.setPreferredSize(new java.awt.Dimension(300, 163));
+        popUpMessange.setLayout(new java.awt.BorderLayout());
 
-        messageTxt.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
-        messageTxt.setPreferredSize(new java.awt.Dimension(250, 16));
+        panel.setBackground(new java.awt.Color(255, 255, 255));
 
         okBtn.setBackground(new java.awt.Color(236, 0, 140));
         okBtn.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         okBtn.setText("Ok");
         okBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         okBtn.setBorderPainted(false);
+        okBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         okBtn.setFocusPainted(false);
         okBtn.setPreferredSize(new java.awt.Dimension(30, 30));
         okBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -65,26 +71,44 @@ public class Dialog extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout popUpMessangeLayout = new javax.swing.GroupLayout(popUpMessange);
-        popUpMessange.setLayout(popUpMessangeLayout);
-        popUpMessangeLayout.setHorizontalGroup(
-            popUpMessangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(popUpMessangeLayout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
-                .addComponent(messageTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(okBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+        scrollPane.setBackground(new java.awt.Color(255, 255, 255));
+        scrollPane.setBorder(null);
+
+        messageTxt.setEditable(false);
+        messageTxt.setColumns(20);
+        messageTxt.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        messageTxt.setRows(5);
+        messageTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        scrollPane.setViewportView(messageTxt);
+
+        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(panelLayout);
+        panelLayout.setHorizontalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                .addContainerGap(222, Short.MAX_VALUE)
+                .addComponent(okBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
-        popUpMessangeLayout.setVerticalGroup(
-            popUpMessangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(popUpMessangeLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(popUpMessangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(messageTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(okBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+        panelLayout.setVerticalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                .addContainerGap(122, Short.MAX_VALUE)
+                .addComponent(okBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
+
+        popUpMessange.add(panel, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(popUpMessange, java.awt.BorderLayout.CENTER);
 
@@ -98,8 +122,10 @@ public class Dialog extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel messageTxt;
+    private javax.swing.JTextArea messageTxt;
     private javax.swing.JButton okBtn;
+    private javax.swing.JPanel panel;
     private javax.swing.JPanel popUpMessange;
+    private javax.swing.JScrollPane scrollPane;
     // End of variables declaration//GEN-END:variables
 }

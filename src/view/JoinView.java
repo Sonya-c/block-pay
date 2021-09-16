@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.ImageIcon;
 import controller.JoinController;
+import sun.print.DialogOwner;
 
 public class JoinView extends javax.swing.JFrame {
     JoinController joinController;
@@ -19,144 +20,25 @@ public class JoinView extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        signUpPanel1 = new javax.swing.JPanel();
-        userLabel1 = new javax.swing.JLabel();
-        PasswordLabel1 = new javax.swing.JLabel();
-        userName = new javax.swing.JTextField();
-        pw = new javax.swing.JPasswordField();
-        signUpBtn1 = new javax.swing.JButton();
-        userLabel2 = new javax.swing.JLabel();
-        lastName = new javax.swing.JTextField();
-        names = new javax.swing.JTextField();
-        userLabel3 = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
-        signUpPanel2 = new javax.swing.JPanel();
-        userLabel4 = new javax.swing.JLabel();
-        PasswordLabel2 = new javax.swing.JLabel();
-        userName1 = new javax.swing.JTextField();
-        pw1 = new javax.swing.JPasswordField();
-        signUpBtn2 = new javax.swing.JButton();
-        userLabel5 = new javax.swing.JLabel();
-        lastNames1 = new javax.swing.JTextField();
-        names1 = new javax.swing.JTextField();
-        userLabel6 = new javax.swing.JLabel();
-        loginPanel = new javax.swing.JPanel();
-        userLabel = new javax.swing.JLabel();
-        PasswordLabel = new javax.swing.JLabel();
-        userTxt = new javax.swing.JTextField();
-        passwordTxt = new javax.swing.JPasswordField();
-        loginBtn = new javax.swing.JButton();
+        signUpPanel = new javax.swing.JPanel();
+        signUpUserLabel = new javax.swing.JLabel();
+        signUpPasswordLabel = new javax.swing.JLabel();
+        signUpUserNameTxt = new javax.swing.JTextField();
+        signUpPasswordTxt = new javax.swing.JPasswordField();
         signUpBtn = new javax.swing.JButton();
-
-        signUpPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        signUpPanel1.setFocusable(false);
-        signUpPanel1.setRequestFocusEnabled(false);
-        signUpPanel1.setLayout(new java.awt.GridBagLayout());
-
-        userLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        userLabel1.setText("Usuario");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(14, 89, 0, 0);
-        signUpPanel1.add(userLabel1, gridBagConstraints);
-
-        PasswordLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        PasswordLabel1.setText("Contraseña");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 68, 0, 0);
-        signUpPanel1.add(PasswordLabel1, gridBagConstraints);
-
-        userName.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        userName.setToolTipText("Usuario");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 148;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 18, 0, 35);
-        signUpPanel1.add(userName, gridBagConstraints);
-
-        pw.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        pw.setToolTipText("Contraseña");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 148;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 35);
-        signUpPanel1.add(pw, gridBagConstraints);
-
-        signUpBtn1.setBackground(new java.awt.Color(236, 0, 140));
-        signUpBtn1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        signUpBtn1.setText("Registrarse");
-        signUpBtn1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        signUpBtn1.setBorderPainted(false);
-        signUpBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        signUpBtn1.setFocusPainted(false);
-        signUpBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signUpBtn1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 23;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 106, 22, 0);
-        signUpPanel1.add(signUpBtn1, gridBagConstraints);
-
-        userLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        userLabel2.setText("Nombres");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(25, 81, 0, 0);
-        signUpPanel1.add(userLabel2, gridBagConstraints);
-
-        lastName.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        lastName.setToolTipText("Usuario");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 148;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 18, 0, 35);
-        signUpPanel1.add(lastName, gridBagConstraints);
-
-        names.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        names.setToolTipText("Usuario");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 148;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 18, 0, 35);
-        signUpPanel1.add(names, gridBagConstraints);
-
-        userLabel3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        userLabel3.setText("Apellidos");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 82, 0, 0);
-        signUpPanel1.add(userLabel3, gridBagConstraints);
+        signUpNameTxt = new javax.swing.JLabel();
+        signUpLastNameTxt = new javax.swing.JTextField();
+        singUpNameTxt = new javax.swing.JTextField();
+        singUpLastNameLabel = new javax.swing.JLabel();
+        goToLoginBtn = new javax.swing.JButton();
+        loginPanel = new javax.swing.JPanel();
+        LoginuserLabel = new javax.swing.JLabel();
+        LoginPasswordLabel = new javax.swing.JLabel();
+        LoginuserTxt = new javax.swing.JTextField();
+        LoginpasswordTxt = new javax.swing.JPasswordField();
+        loginBtn = new javax.swing.JButton();
+        goSignUpBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Block Pain | Login");
@@ -166,31 +48,32 @@ public class JoinView extends javax.swing.JFrame {
         mainPanel.setBackground(new java.awt.Color(27, 20, 100));
         mainPanel.setLayout(new java.awt.GridBagLayout());
 
-        signUpPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        signUpPanel2.setFocusable(false);
-        signUpPanel2.setRequestFocusEnabled(false);
-        signUpPanel2.setLayout(new java.awt.GridBagLayout());
+        signUpPanel.setBackground(new java.awt.Color(255, 255, 255));
+        signUpPanel.setFocusable(false);
+        signUpPanel.setPreferredSize(new java.awt.Dimension(353, 240));
+        signUpPanel.setRequestFocusEnabled(false);
+        signUpPanel.setLayout(new java.awt.GridBagLayout());
 
-        userLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        userLabel4.setText("Usuario");
+        signUpUserLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        signUpUserLabel.setText("Usuario");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(14, 89, 0, 0);
-        signUpPanel2.add(userLabel4, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 68, 10, 0);
+        signUpPanel.add(signUpUserLabel, gridBagConstraints);
 
-        PasswordLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        PasswordLabel2.setText("Contraseña");
+        signUpPasswordLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        signUpPasswordLabel.setText("Contraseña");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 68, 0, 0);
-        signUpPanel2.add(PasswordLabel2, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 68, 10, 0);
+        signUpPanel.add(signUpPasswordLabel, gridBagConstraints);
 
-        userName1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        userName1.setToolTipText("Usuario");
+        signUpUserNameTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        signUpUserNameTxt.setToolTipText("Usuario");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -198,11 +81,11 @@ public class JoinView extends javax.swing.JFrame {
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 148;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 18, 0, 35);
-        signUpPanel2.add(userName1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 18, 10, 35);
+        signUpPanel.add(signUpUserNameTxt, gridBagConstraints);
 
-        pw1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        pw1.setToolTipText("Contraseña");
+        signUpPasswordTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        signUpPasswordTxt.setToolTipText("Contraseña");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
@@ -210,41 +93,41 @@ public class JoinView extends javax.swing.JFrame {
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 148;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 35);
-        signUpPanel2.add(pw1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 18, 10, 35);
+        signUpPanel.add(signUpPasswordTxt, gridBagConstraints);
 
-        signUpBtn2.setBackground(new java.awt.Color(236, 0, 140));
-        signUpBtn2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        signUpBtn2.setText("Registrarse");
-        signUpBtn2.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        signUpBtn2.setBorderPainted(false);
-        signUpBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        signUpBtn2.setFocusPainted(false);
-        signUpBtn2.addActionListener(new java.awt.event.ActionListener() {
+        signUpBtn.setBackground(new java.awt.Color(236, 0, 140));
+        signUpBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        signUpBtn.setForeground(new java.awt.Color(255, 255, 255));
+        signUpBtn.setText("Registrarse");
+        signUpBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        signUpBtn.setBorderPainted(false);
+        signUpBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        signUpBtn.setFocusPainted(false);
+        signUpBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signUpBtn2ActionPerformed(evt);
+                signUpBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 23;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 106, 22, 0);
-        signUpPanel2.add(signUpBtn2, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 68, 10, 0);
+        signUpPanel.add(signUpBtn, gridBagConstraints);
 
-        userLabel5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        userLabel5.setText("Nombres");
+        signUpNameTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        signUpNameTxt.setText("Nombres");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(25, 81, 0, 0);
-        signUpPanel2.add(userLabel5, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(30, 68, 10, 0);
+        signUpPanel.add(signUpNameTxt, gridBagConstraints);
 
-        lastNames1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        lastNames1.setToolTipText("Usuario");
+        signUpLastNameTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        signUpLastNameTxt.setToolTipText("Usuario");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -252,11 +135,11 @@ public class JoinView extends javax.swing.JFrame {
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 148;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 18, 0, 35);
-        signUpPanel2.add(lastNames1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 18, 10, 35);
+        signUpPanel.add(signUpLastNameTxt, gridBagConstraints);
 
-        names1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        names1.setToolTipText("Usuario");
+        singUpNameTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        singUpNameTxt.setToolTipText("Usuario");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -264,50 +147,66 @@ public class JoinView extends javax.swing.JFrame {
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 148;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 18, 0, 35);
-        signUpPanel2.add(names1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(30, 18, 10, 35);
+        signUpPanel.add(singUpNameTxt, gridBagConstraints);
 
-        userLabel6.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        userLabel6.setText("Apellidos");
+        singUpLastNameLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        singUpLastNameLabel.setText("Apellidos");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 82, 0, 0);
-        signUpPanel2.add(userLabel6, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 68, 10, 0);
+        signUpPanel.add(singUpLastNameLabel, gridBagConstraints);
 
-        mainPanel.add(signUpPanel2, new java.awt.GridBagConstraints());
+        goToLoginBtn.setBackground(new java.awt.Color(255, 255, 255));
+        goToLoginBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        goToLoginBtn.setForeground(new java.awt.Color(0, 255, 197));
+        goToLoginBtn.setText("Tengo Cuenta");
+        goToLoginBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        goToLoginBtn.setBorderPainted(false);
+        goToLoginBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        goToLoginBtn.setFocusPainted(false);
+        goToLoginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                goToLoginBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.ipadx = 17;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 18, 10, 35);
+        signUpPanel.add(goToLoginBtn, gridBagConstraints);
+
+        mainPanel.add(signUpPanel, new java.awt.GridBagConstraints());
 
         loginPanel.setBackground(new java.awt.Color(255, 255, 255));
         loginPanel.setFocusable(false);
         loginPanel.setRequestFocusEnabled(false);
         loginPanel.setLayout(new java.awt.GridBagLayout());
 
-        userLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        userLabel.setText("Usuario");
+        LoginuserLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        LoginuserLabel.setText("Usuario");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(51, 89, 0, 0);
-        loginPanel.add(userLabel, gridBagConstraints);
+        loginPanel.add(LoginuserLabel, gridBagConstraints);
 
-        PasswordLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        PasswordLabel.setText("Contraseña");
+        LoginPasswordLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        LoginPasswordLabel.setText("Contraseña");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(27, 68, 0, 0);
-        loginPanel.add(PasswordLabel, gridBagConstraints);
+        loginPanel.add(LoginPasswordLabel, gridBagConstraints);
 
-        userTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        userTxt.setToolTipText("Usuario");
-        userTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxtActionPerformed(evt);
-            }
-        });
+        LoginuserTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        LoginuserTxt.setToolTipText("Usuario");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -316,15 +215,10 @@ public class JoinView extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 148;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(48, 4, 0, 41);
-        loginPanel.add(userTxt, gridBagConstraints);
+        loginPanel.add(LoginuserTxt, gridBagConstraints);
 
-        passwordTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        passwordTxt.setToolTipText("Contraseña");
-        passwordTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTxtActionPerformed(evt);
-            }
-        });
+        LoginpasswordTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        LoginpasswordTxt.setToolTipText("Contraseña");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -333,7 +227,7 @@ public class JoinView extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 148;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(24, 4, 0, 41);
-        loginPanel.add(passwordTxt, gridBagConstraints);
+        loginPanel.add(LoginpasswordTxt, gridBagConstraints);
 
         loginBtn.setBackground(new java.awt.Color(0, 255, 197));
         loginBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -356,16 +250,17 @@ public class JoinView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(49, 68, 11, 0);
         loginPanel.add(loginBtn, gridBagConstraints);
 
-        signUpBtn.setBackground(new java.awt.Color(236, 0, 140));
-        signUpBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        signUpBtn.setText("Registrarse");
-        signUpBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        signUpBtn.setBorderPainted(false);
-        signUpBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        signUpBtn.setFocusPainted(false);
-        signUpBtn.addActionListener(new java.awt.event.ActionListener() {
+        goSignUpBtn.setBackground(new java.awt.Color(255, 255, 255));
+        goSignUpBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        goSignUpBtn.setForeground(new java.awt.Color(236, 0, 140));
+        goSignUpBtn.setText("No tengo cuenta");
+        goSignUpBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        goSignUpBtn.setBorderPainted(false);
+        goSignUpBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        goSignUpBtn.setFocusPainted(false);
+        goSignUpBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signUpBtnActionPerformed(evt);
+                goSignUpBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -374,7 +269,7 @@ public class JoinView extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 17;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(49, 18, 11, 41);
-        loginPanel.add(signUpBtn, gridBagConstraints);
+        loginPanel.add(goSignUpBtn, gridBagConstraints);
 
         mainPanel.add(loginPanel, new java.awt.GridBagConstraints());
 
@@ -384,78 +279,77 @@ public class JoinView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void goSignUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goSignUpBtnActionPerformed
+        this.loginPanel.setVisible(false);
+        this.signUpPanel.setVisible(true);        
+    }//GEN-LAST:event_goSignUpBtnActionPerformed
+
+    private void goToLoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToLoginBtnActionPerformed
+        this.loginPanel.setVisible(true);
+        this.signUpPanel.setVisible(false); 
+    }//GEN-LAST:event_goToLoginBtnActionPerformed
+
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        String user = userTxt.getText();
-        String password = passwordTxt.getText();
-        
-        
-       joinController.login(user, password);
-       
+        String user = LoginuserTxt.getText();
+        String password = LoginpasswordTxt.getText();
+      
+        joinController.login(user, password);
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
+        String names = signUpNameTxt.getText().trim();
+        String lastNames = signUpLastNameTxt.getText().trim();
+        String user = signUpUserNameTxt.getText().trim();
+        String password = signUpPasswordTxt.getText().trim();
         
-        this.loginPanel.setVisible(false);
-        this.signUpPanel2.setVisible(true);
+        // Enviamos con los espacios en blanco removidos
+        signUpNameTxt.setText(names);
+        signUpLastNameTxt.setText(lastNames);
+        signUpUserNameTxt.setText(user);
+        signUpPasswordTxt.setText(password);
         
-    }//GEN-LAST:event_signUpBtnActionPerformed
-
-    private void passwordTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTxtActionPerformed
-
-    private void signUpBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtn1ActionPerformed
-
-    }//GEN-LAST:event_signUpBtn1ActionPerformed
-
-    private void signUpBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtn2ActionPerformed
-    String names = names1.getText();
-        String lastNames = lastNames1.getText();
-        String user = userName1.getText();
-        String password = pw1.getText();
-        
-        int result = joinController.signUp(user,names,lastNames, password);
         Dialog dialog = new Dialog();
         
-        if (result == 1) {
-            // Este nombre de usuario ya eexiste       
-            dialog.setMessage("Este usuario ya existe");
-        } 
-    }//GEN-LAST:event_signUpBtn2ActionPerformed
+        if (names.isEmpty() || lastNames.isEmpty() || user.isEmpty() || password.isEmpty()) {
+            dialog.setMessage("No puede haber campos vacios");
+            
+        } else {
+            
+            if (user.contains(" ")) {
+                dialog.setMessage("El nombre de usuario no puede contener espacio en blanco.");
+          
+            } else {
+                int result = joinController.signUp(user,names,lastNames, password);
 
-    private void userTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxtActionPerformed
+                if (result == 1) {
+                    // Este nombre de usuario ya eexiste       
+                    dialog.setMessage("Este usuario ya existe");
+                }
+            }
+        }
+    }//GEN-LAST:event_signUpBtnActionPerformed
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel PasswordLabel;
-    private javax.swing.JLabel PasswordLabel1;
-    private javax.swing.JLabel PasswordLabel2;
-    private javax.swing.JTextField lastName;
-    private javax.swing.JTextField lastNames1;
+    private javax.swing.JLabel LoginPasswordLabel;
+    private javax.swing.JPasswordField LoginpasswordTxt;
+    private javax.swing.JLabel LoginuserLabel;
+    private javax.swing.JTextField LoginuserTxt;
+    private javax.swing.JButton goSignUpBtn;
+    private javax.swing.JButton goToLoginBtn;
     private javax.swing.JButton loginBtn;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JPanel mainPanel;
-    private javax.swing.JTextField names;
-    private javax.swing.JTextField names1;
-    private javax.swing.JPasswordField passwordTxt;
-    private javax.swing.JPasswordField pw;
-    private javax.swing.JPasswordField pw1;
     private javax.swing.JButton signUpBtn;
-    private javax.swing.JButton signUpBtn1;
-    private javax.swing.JButton signUpBtn2;
-    public javax.swing.JPanel signUpPanel1;
-    public javax.swing.JPanel signUpPanel2;
-    private javax.swing.JLabel userLabel;
-    private javax.swing.JLabel userLabel1;
-    private javax.swing.JLabel userLabel2;
-    private javax.swing.JLabel userLabel3;
-    private javax.swing.JLabel userLabel4;
-    private javax.swing.JLabel userLabel5;
-    private javax.swing.JLabel userLabel6;
-    private javax.swing.JTextField userName;
-    private javax.swing.JTextField userName1;
-    private javax.swing.JTextField userTxt;
+    private javax.swing.JTextField signUpLastNameTxt;
+    private javax.swing.JLabel signUpNameTxt;
+    public javax.swing.JPanel signUpPanel;
+    private javax.swing.JLabel signUpPasswordLabel;
+    private javax.swing.JPasswordField signUpPasswordTxt;
+    private javax.swing.JLabel signUpUserLabel;
+    private javax.swing.JTextField signUpUserNameTxt;
+    private javax.swing.JLabel singUpLastNameLabel;
+    private javax.swing.JTextField singUpNameTxt;
     // End of variables declaration//GEN-END:variables
 }

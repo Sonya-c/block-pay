@@ -25,7 +25,7 @@ public class JoinController {
 
     public void join() {
         joinView.setVisible(true);
-        joinView.signUpPanel2.setVisible(false);
+        joinView.signUpPanel.setVisible(false);
     }
 
     public Arbol getArbol() {
@@ -81,19 +81,24 @@ public class JoinController {
      */
     public int signUp(String userName, String names, String lastNames, String password) {
         File f = new File("C:\\Block-Pay\\registros.txt");
+        
         registro.searchOrCreateFile(f, "registros.txt");
+        
         if (registro.searchInFile(f, userName)) {
-            System.out.println("1");
             return 1;
         } else {
-            System.out.println("0");
             int iD = (int) (Math.random() * (54321 - 1 + 1) + 1);
+        
             while (registro.searchInFile(f, iD)) {
                 iD = (int) (Math.random() * (54321 - 1 + 1) + 1);
             }
+            
             Persona p = new Persona(userName, names, lastNames, iD, 0f);
+            
             registro.writeFile(f, userName, names, lastNames, password, iD, 0);
+            
             this.setJoined(true, p);
+            
             return 0;
         }
     }
