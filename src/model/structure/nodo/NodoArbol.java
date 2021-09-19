@@ -44,6 +44,7 @@ public class NodoArbol extends Nodo {
         this.children.remove(info);
     }
 
+    
     public void addChild(NodoArbol dad, Object info, int futureSize) {
         this.children.add(info, futureSize, dad);
     }

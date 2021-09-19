@@ -11,21 +11,31 @@ import model.system.Transaccion;
 public class App {
 
     public static void main(String[] args) {
-        Arbol arbol = new Arbol(2);
+         Arbol arbol = new Arbol(2);
         NodoArbol root = arbol.getRoot();
-        
+
         FileController registro = new FileController(arbol);
-        File f = new File("C:\\Block-Pay\\registros.txt");
-        registro.searchOrCreateFile(f, "registros.txt");
-        if (!registro.searchInFile(f, "userFijo")){
+        File f = new File("C:\\Block-Pay\\registrosUsuarios.txt");
+        registro.searchOrCreateFile(f, "registrosUsuarios.txt");
+        if (!registro.searchInFile(f, "userFijo")) {
             registro.writeFile(f, "userFijo", "First", "User", "***", 0, 1000000000);
         }
+
+        root = registro.uploadUsers(f, root);
+//        
+        Persona p = (Persona) root.getChildren().search(0).getChildren().search(0).getChildren().search(0).getChildren().search(2).getInfo();
+        System.out.println(p.getUserName());
+        NodoArbol a = arbol.searchUser(root.getChildren().search(0), p,-10000, 0);
+        Persona z = (Persona) a.getInfo();
+        System.out.println(z.getDinero());
+        
+        
         FileController fileCtrl = new FileController(arbol);
         JoinController joinCtrl = new JoinController(arbol);
 
         fileCtrl.load();
         joinCtrl.join();
-        
+
     }
 }
 

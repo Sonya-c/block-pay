@@ -15,7 +15,6 @@ public class Bloque extends NodoArbol{
 
     private final int TRANSACCIONES_MAXIMAS;
     private int transaccionesAct;
-    
     public Bloque(int numBloque) {
         super();
         this.TRANSACCIONES_MAXIMAS = 3;

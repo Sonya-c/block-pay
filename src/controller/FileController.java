@@ -1,21 +1,40 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import model.structure.Arbol;
+import model.structure.nodo.NodoArbol;
 import model.system.Persona;
 import view.WelcomeView;
 
 public class FileController {
 
-    private final Arbol arbol;
+     private final Arbol arbol;
 
     public FileController(Arbol arbol) {
         this.arbol = arbol;
+    }
+
+    public NodoArbol uploadUsers(File file, NodoArbol root) {
+        try (Scanner sc = new Scanner(file)) {
+            while (sc.hasNextLine()) {
+                String linea = sc.nextLine();
+                String data[] = linea.split("#");
+                Persona p = new Persona(data[0], data[1], data[2], Integer.parseInt(data[4]), Float.parseFloat(data[5]));
+                root = arbol.insert(root, p);
+                System.out.println("logrado");
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("El archivo no se encontró");
+        }
+        
+        return root;
     }
 
     public void load() {
@@ -81,6 +100,69 @@ public class FileController {
         return false;
     }
 
+    public void deleteFile(File file) {
+        try {
+            if (file.exists()) {
+                file.delete();
+            }
+        } catch (Exception ex) {
+            System.out.println("Archivo no encontrado");
+        }
+    }
+
+    public void writeFile(File file, String line) {
+        try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
+            //casting
+            try (BufferedWriter bw = new BufferedWriter(fw)) {
+                //casting
+                bw.write(line);
+                System.out.println(line);
+                bw.newLine();
+
+                bw.flush();
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Error al cargar archivo");
+        }
+    }
+
+    public void updateCash(File file, float cash, String user) {
+//        int n = (int) (Math.random() * 583913 + 1);
+//        String f = file.getPath() + String.valueOf(n) + ".txt";
+        File newFile = new File(file.getAbsolutePath() + ".tmp");
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            System.out.println("entró");
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String data[] = linea.split("#");
+                String cash_ = data[5];
+                String dataUser = data[0];
+                if (dataUser.equals(user)) {
+                    String userName = user;
+                    String name = data[1];
+                    String lastName = data[2];
+                    String pw = data[3];
+                    String iD = data[4];
+                    float cashData = Float.parseFloat(cash_) + cash;
+                    String line = userName + "#" + name + "#" + lastName + "#" + pw + "#" + iD + "#" + String.valueOf(cashData);
+                    this.writeFile(newFile, line);
+                } else {
+                    this.writeFile(newFile, linea);
+                }
+            }
+            br.close();
+            if (!file.delete()) {
+                System.out.println("No se pudo borrar el archivo antiguo");
+            }
+            if (!newFile.renameTo(file)) {
+                System.out.println("No se pudo renombrar el archivo");
+            }
+        } catch (IOException ex) {
+            System.out.println("Archivo no encontrado");
+        }
+    }
+
     public void writeFile(File file, String userName, String names, String lastNames, String password, int id, float cash) {
         try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
             //casting
@@ -101,7 +183,7 @@ public class FileController {
             }
             fw.close();
         } catch (IOException e) {
-            System.out.println("Error al crear archivo");
+            System.out.println("Error al cargar archivo");
         }
     }
 
@@ -122,22 +204,21 @@ public class FileController {
 
     public Persona searchInFilePersona(File file, String userName) {
         Persona p;
-         try (Scanner sc = new Scanner(file)) {
+        try (Scanner sc = new Scanner(file)) {
             while (sc.hasNextLine()) {
                 String linea = sc.nextLine();
                 String data[] = linea.split("#");
                 String userDataB = data[0];
                 if (userDataB.equals(userName)) {
-                     p = new Persona(userName,data[1],data[2],Integer.parseInt(data[4]),Float.parseFloat(data[5]));
-                     return p;
+                    p = new Persona(userName, data[1], data[2], Integer.parseInt(data[4]), Float.parseFloat(data[5]));
+                    return p;
                 }
             }
         } catch (FileNotFoundException e) {
             System.out.println("El archivo no se encontró");
         }
-       return null;
+        return null;
     }
-
 }
 
 /*

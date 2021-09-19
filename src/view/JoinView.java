@@ -27,7 +27,7 @@ public class JoinView extends javax.swing.JFrame {
         signUpUserNameTxt = new javax.swing.JTextField();
         signUpPasswordTxt = new javax.swing.JPasswordField();
         signUpBtn = new javax.swing.JButton();
-        signUpNameTxt = new javax.swing.JLabel();
+        labelName = new javax.swing.JLabel();
         signUpLastNameTxt = new javax.swing.JTextField();
         singUpNameTxt = new javax.swing.JTextField();
         singUpLastNameLabel = new javax.swing.JLabel();
@@ -117,14 +117,14 @@ public class JoinView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 68, 10, 0);
         signUpPanel.add(signUpBtn, gridBagConstraints);
 
-        signUpNameTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        signUpNameTxt.setText("Nombres");
+        labelName.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        labelName.setText("Nombres");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(30, 68, 10, 0);
-        signUpPanel.add(signUpNameTxt, gridBagConstraints);
+        signUpPanel.add(labelName, gridBagConstraints);
 
         signUpLastNameTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         signUpLastNameTxt.setToolTipText("Usuario");
@@ -159,7 +159,7 @@ public class JoinView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 68, 10, 0);
         signUpPanel.add(singUpLastNameLabel, gridBagConstraints);
 
-        goToLoginBtn.setBackground(new java.awt.Color(255, 255, 255));
+        goToLoginBtn.setBackground(new java.awt.Color(0, 0, 0));
         goToLoginBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         goToLoginBtn.setForeground(new java.awt.Color(0, 255, 197));
         goToLoginBtn.setText("Tengo Cuenta");
@@ -250,7 +250,7 @@ public class JoinView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(49, 68, 11, 0);
         loginPanel.add(loginBtn, gridBagConstraints);
 
-        goSignUpBtn.setBackground(new java.awt.Color(255, 255, 255));
+        goSignUpBtn.setBackground(new java.awt.Color(0, 0, 0));
         goSignUpBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         goSignUpBtn.setForeground(new java.awt.Color(236, 0, 140));
         goSignUpBtn.setText("No tengo cuenta");
@@ -297,13 +297,13 @@ public class JoinView extends javax.swing.JFrame {
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
-        String names = signUpNameTxt.getText().trim();
+        String names = singUpNameTxt.getText().trim();
         String lastNames = signUpLastNameTxt.getText().trim();
         String user = signUpUserNameTxt.getText().trim();
         String password = signUpPasswordTxt.getText().trim();
         
         // Enviamos con los espacios en blanco removidos
-        signUpNameTxt.setText(names);
+        singUpNameTxt.setText(names);
         signUpLastNameTxt.setText(lastNames);
         signUpUserNameTxt.setText(user);
         signUpPasswordTxt.setText(password);
@@ -338,12 +338,12 @@ public class JoinView extends javax.swing.JFrame {
     private javax.swing.JTextField LoginuserTxt;
     private javax.swing.JButton goSignUpBtn;
     private javax.swing.JButton goToLoginBtn;
+    private javax.swing.JLabel labelName;
     private javax.swing.JButton loginBtn;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton signUpBtn;
     private javax.swing.JTextField signUpLastNameTxt;
-    private javax.swing.JLabel signUpNameTxt;
     public javax.swing.JPanel signUpPanel;
     private javax.swing.JLabel signUpPasswordLabel;
     private javax.swing.JPasswordField signUpPasswordTxt;
