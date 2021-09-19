@@ -2,7 +2,6 @@ package view;
 
 import javax.swing.ImageIcon;
 import controller.JoinController;
-import sun.print.DialogOwner;
 
 public class JoinView extends javax.swing.JFrame {
     JoinController joinController;
@@ -331,6 +330,14 @@ public class JoinView extends javax.swing.JFrame {
 
     
 
+    
+    
+    
+    
+    
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LoginPasswordLabel;
     private javax.swing.JPasswordField LoginpasswordTxt;

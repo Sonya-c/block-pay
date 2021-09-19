@@ -11,6 +11,7 @@ import java.util.Scanner;
 import model.structure.Arbol;
 import model.structure.nodo.NodoArbol;
 import model.system.Persona;
+import model.system.Transaccion;
 import view.WelcomeView;
 
 public class FileController {
@@ -21,7 +22,7 @@ public class FileController {
         this.arbol = arbol;
     }
 
-    public NodoArbol uploadUsers(File file, NodoArbol root) {
+    public NodoArbol uploadUsers(File file, File file2, NodoArbol root) {
         try (Scanner sc = new Scanner(file)) {
             while (sc.hasNextLine()) {
                 String linea = sc.nextLine();
@@ -31,9 +32,13 @@ public class FileController {
                 System.out.println("logrado");
             }
         } catch (FileNotFoundException e) {
-            System.out.println("El archivo no se encontró");
+            System.out.println("El archivo de Usuarios no se encontró");
         }
-        
+        try(Scanner sc=new Scanner(file2)){
+            
+        }catch(FileNotFoundException e){
+            System.out.println("El archivo de Transacciones no se encontró");
+        }
         return root;
     }
 
@@ -128,8 +133,6 @@ public class FileController {
     }
 
     public void updateCash(File file, float cash, String user) {
-//        int n = (int) (Math.random() * 583913 + 1);
-//        String f = file.getPath() + String.valueOf(n) + ".txt";
         File newFile = new File(file.getAbsolutePath() + ".tmp");
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             System.out.println("entró");
@@ -163,17 +166,39 @@ public class FileController {
         }
     }
 
-    public void writeFile(File file, String userName, String names, String lastNames, String password, int id, float cash) {
+    public void wirteFile(File file,Transaccion t){
+         try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
+            //casting
+            try (BufferedWriter bw = new BufferedWriter(fw)) {
+                //casting
+                String identificador = String.valueOf(t.getId());
+                String userRemitente = t.getRemitente().getUserName() + "_" + String.valueOf(t.getRemitente().getId());
+                String userDestinatario = t.getDestinatario().getUserName() + "_" + String.valueOf(t.getDestinatario().getId());
+                String monto_ = String.valueOf(t.getMonto());
+
+                bw.write(identificador + "#" + userRemitente + "#" + userDestinatario + "#" + monto_);
+                System.out.println(identificador + "#" + userRemitente + "#" + userDestinatario + "#" + monto_ );
+                bw.newLine();
+
+                bw.flush();
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Error al cargar archivo");
+        }
+    }
+    
+    public void writeFile(File file, Persona p, String password) {
         try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
             //casting
             try (BufferedWriter bw = new BufferedWriter(fw)) {
                 //casting
-                String user = userName;
-                String name = names;
-                String lastName = lastNames;
+                String user = p.getUserName();
+                String name = p.getNames();
+                String lastName = p.getLastNames();
                 String pw = password;
-                String iD = String.valueOf(id);
-                String cash_ = String.valueOf(cash);
+                String iD = String.valueOf(p.getId());
+                String cash_ = String.valueOf(p.getDinero());
 
                 bw.write(user + "#" + name + "#" + lastName + "#" + pw + "#" + iD + "#" + cash_);
                 System.out.println(user + "#" + name + "#" + lastName + "#" + pw + "#" + iD + "#" + cash_);

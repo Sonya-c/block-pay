@@ -16,18 +16,20 @@ public class App {
 
         FileController registro = new FileController(arbol);
         File f = new File("C:\\Block-Pay\\registrosUsuarios.txt");
+        File f2 = new File("C:\\Block-Pay\\registrosTransacciones.txt");
         registro.searchOrCreateFile(f, "registrosUsuarios.txt");
+        registro.searchOrCreateFile(f2, "registrosTransacciones.txt");
         if (!registro.searchInFile(f, "userFijo")) {
-            registro.writeFile(f, "userFijo", "First", "User", "***", 0, 1000000000);
+            registro.writeFile(f, new Persona("userFijo", "First", "User", 0, 1000000000), "***");
         }
-
-        root = registro.uploadUsers(f, root);
+        root = registro.uploadUsers(f, f2,root);
+        arbol.setRoot(root);
+        System.out.println("ACÁ LA TRANS" + root.getChildren().search(1).getChildren().search(0));
 //        
         Persona p = (Persona) root.getChildren().search(0).getChildren().search(0).getChildren().search(0).getChildren().search(2).getInfo();
         System.out.println(p.getUserName());
-        NodoArbol a = arbol.searchUser(root.getChildren().search(0), p,-10000, 0);
-        Persona z = (Persona) a.getInfo();
-        System.out.println(z.getDinero());
+        Persona z = arbol.searchUser(root.getChildren().search(0), "jmendoza",0);
+        System.out.println(z.getId());
         
         
         FileController fileCtrl = new FileController(arbol);

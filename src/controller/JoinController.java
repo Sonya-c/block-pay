@@ -45,7 +45,7 @@ public class JoinController {
     public void setJoined(boolean joined, Persona p) {
         this.joined = joined;
         this.mainView = new MainView(arbol, p);
-
+        System.out.println(arbol.getRoot());
         joinView.setVisible(false);
         mainView.setVisible(true);
 
@@ -64,6 +64,7 @@ public class JoinController {
         if (registro.searchInFile(f, userName)) {
             if (registro.searchInFilePassword(f, password)) {
                 Persona p = registro.searchInFilePersona(f, userName);
+                System.out.println(arbol.getRoot().getInfo());
                 this.setJoined(true, p);
             } else {
                 dialog.setMessage("Contraseña incorrecta");
@@ -98,13 +99,11 @@ public class JoinController {
 //            NodoArbol q = arbol.searchInfoP(arbol.getRoot(), "userFijo");
             Persona p = new Persona(userName, names, lastNames, iD, 50000);
 
-            registro.writeFile(f, userName, names, lastNames, password, iD, 50000);
+            registro.writeFile(f, p, password);
             arbol.insert(arbol.getRoot(), p);
             registro.updateCash(f, -500000, "userFijo");
+            arbol.searchUser(arbol.getRoot().getChildren().search(0), arbol.searchUser(arbol.getRoot().getChildren().search(0), "userFijo", 0), -50000, 0);
             
-           
-
-//            arbol.updateInfo(arbol.getRoot());
             registro.load();
             this.setJoined(true, p);
 
