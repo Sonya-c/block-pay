@@ -33,24 +33,6 @@ public class Arbol {
     public void setRoot(NodoArbol root) {
         this.root = root;
     }
-//
-//    public NodoArbol searchInfoP(NodoArbol root, String user, int i) {
-//        Persona p;
-//        NodoArbol q = root.getChildren().search(0);
-//        while (q != null) {
-//            p = (Persona) q.getInfo();
-//            if (p.getUserName().equals(user)) {
-//                return q;
-//            } else if (q.getChildren().search(i) != null) {
-//                i++;
-//                if (i >= NodoArbol.getN()) {
-//                    i = 0;
-//                }
-//
-//            }
-//        }
-//        return null;
-//    }
 
     public boolean compareInfoInArbol(NodoArbol nodo, Object info) {
         if (nodo.getInfo() == null) {
@@ -97,12 +79,12 @@ public class Arbol {
         Persona p = this.searchUser(root.getChildren().search(0), id, 0);
         float saldo = 0f;
         NodoArbol q = root.getChildren().search(1);
-        saldo += this.verificarMonto(q, id, monto);
+        saldo += this.verificarMonto(q, id, 0);
         while (q.getNext() != null) {
-            saldo += this.verificarMonto(q, id, monto);
+            saldo += this.verificarMonto(q, id, 0);
             q = q.getNext();
         }
-        return saldo == monto;
+        return saldo <= p.getDinero();
     }
 
     public Persona modifyInfo(NodoArbol nodo, float info) {
@@ -195,8 +177,7 @@ public class Arbol {
         return root;
     }
 
-    public NodoArbol insert(NodoArbol root, Object info) {
-        int i = 0;
+    public NodoArbol insertRoot(NodoArbol root, Object info) {
         if (root.getInfo() == null) {
             System.out.println("raíz");
             NodoArbol p = new NodoArbol(2);
@@ -205,54 +186,58 @@ public class Arbol {
             System.out.println("root: " + root.getInfo());
             root.addChild(root, new Persona("userFijo", "First", "User", 00000, 100000000), 4);
             root.addChild(root, new Bloque(1), 3);
-        } else {
-            if (info instanceof Persona) {
-                NodoArbol p = root.getChildren().search(0);
-                if (p.getChildren().search(0) == null) {
-                    p.addChild(p, info);
-                    System.out.println("por aca");
-                } else {
+        }
+        return root;
+    }
+
+    public NodoArbol insert(NodoArbol root, Object info) {
+        if (info instanceof Persona) {
+            NodoArbol p = root.getChildren().search(0);
+            if (p.getChildren().search(0) == null) {
+                p.addChild(p, info);
+                System.out.println("por aca");
+            } else {
 //                    NodoArbol q = p;
 //                    while (q.getNext() != null) {
 //                        q = q.getNext();
 //                        System.out.println("1");
 //                    }
-                    if (p.getChildren().getSize() == p.getChildren().getMAX_SIZE()) {
-                        System.out.println("entró");
-                        insert(p, info);
-                    } else {
-                        System.out.println("sí");
-                        p.addChild(p, info);
-                    }
-                }
-//                
-            } else if (info instanceof Transaccion) {
-                NodoArbol p = root.getChildren().search(1);
-                if (p.getChildren().search(0) == null) {
-                    p.addChild(p, info);
-                    System.out.println("completado");
+                if (p.getChildren().getSize() == p.getChildren().getMAX_SIZE()) {
+                    System.out.println("entró");
+                    insert(p, info);
                 } else {
+                    System.out.println("sí");
+                    p.addChild(p, info);
+                }
+            }
+//                
+        } else if (info instanceof Transaccion) {
+            NodoArbol p = root.getChildren().search(1);
+            if (p.getChildren().search(0) == null) {
+                p.addChild(p, info);
+                System.out.println("completado");
+            } else {
 //                    NodoArbol q = p;
 //                    while (q.getNext() != null) {
 //                        q = q.getNext();
 //                    }
-                    if (p.getChildren().getSize() == p.getChildren().getMAX_SIZE() && p.getNext() == null) {
-                        System.out.println("en el if");
-                        Bloque b = (Bloque) p.getInfo();
-                        int j = (Integer) b.getInfo();
-                        p.setNext(new NodoArbol(p, 3, new Bloque(j++)));
-                        p = p.getNext();
-                        insert(p, info);
-                    } else if (p.getChildren().getSize() == p.getChildren().getMAX_SIZE() && p.getNext() != null) {
-                        System.out.println("if 2");
-                        insert(p.getNext(), info);
-                    } else {
-                        System.out.println("va por el else");
-                        p.addChild(p, info);
-                    }
+                if (p.getChildren().getSize() == p.getChildren().getMAX_SIZE() && p.getNext() == null) {
+                    System.out.println("en el if");
+                    Bloque b = (Bloque) p.getInfo();
+                    int j = (Integer) b.getInfo();
+                    p.setNext(new NodoArbol(p, 3, new Bloque(j++)));
+                    p = p.getNext();
+                    insert(root, info);
+                    System.out.println(j);
+                } else if (p.getChildren().getSize() == p.getChildren().getMAX_SIZE() && p.getNext() != null) {
+                    System.out.println("if 2");
+                    insert(p, info);
+                } else {
+                    System.out.println("va por el else");
+                    p.addChild(p, info);
                 }
-
             }
+
         }
         return root;
     }

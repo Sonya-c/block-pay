@@ -36,7 +36,9 @@ public class TransaccionController {
             if (remitente.getDinero() >= monto) {
                 Transaccion t = new Transaccion(iD, remitente, destinatario, monto);
                 registro.wirteFile(f, t);
-                arbol.insert(arbol.getRoot(), t);
+                arbol.insert(arbol.getRoot().getChildren().search(1), t);
+                remitente.setDinero(remitente.getDinero() - monto);
+                destinatario.setDinero(destinatario.getDinero() + monto);
                 arbol.searchUser(arbol.getRoot().getChildren().search(0), remitente, remitente.getDinero() - monto, 0);
                 arbol.searchUser(arbol.getRoot().getChildren().search(0), destinatario, destinatario.getDinero() + monto, 0);
                 registro.updateCash(f2, destinatario.getDinero() + monto, destinatario.getUserName());

@@ -16,7 +16,7 @@ import view.WelcomeView;
 
 public class FileController {
 
-     private final Arbol arbol;
+    private final Arbol arbol;
 
     public FileController(Arbol arbol) {
         this.arbol = arbol;
@@ -28,15 +28,30 @@ public class FileController {
                 String linea = sc.nextLine();
                 String data[] = linea.split("#");
                 Persona p = new Persona(data[0], data[1], data[2], Integer.parseInt(data[4]), Float.parseFloat(data[5]));
-                root = arbol.insert(root, p);
-                System.out.println("logrado");
+                if (data[0].equals("userFijo")) {
+                    root = arbol.insertRoot(root, p);
+                    System.out.println("RAÍZ DENTRO");
+                } else {
+                    root = arbol.insert(root, p);
+                     System.out.println("logrado");
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println("El archivo de Usuarios no se encontró");
         }
-        try(Scanner sc=new Scanner(file2)){
-            
-        }catch(FileNotFoundException e){
+        try (Scanner sc = new Scanner(file2)) {
+            while (sc.hasNextLine()) {
+                String linea = sc.nextLine();
+                String data[] = linea.split("#");
+                String dataUserRemit[] = data[1].split("_");
+                String dataUserDest[] = data[2].split("_");
+                Persona userRemit = this.searchInFilePersona(file, dataUserRemit[0]);
+                Persona userDest = this.searchInFilePersona(file, dataUserDest[0]);
+                Transaccion t = new Transaccion(Integer.parseInt(data[0]), userRemit, userDest, Float.parseFloat(data[3]));
+                root = arbol.insert(root, t);
+                System.out.println("TRANSACCION EN EL ÁRBOL");
+            }
+        } catch (FileNotFoundException e) {
             System.out.println("El archivo de Transacciones no se encontró");
         }
         return root;
@@ -166,8 +181,8 @@ public class FileController {
         }
     }
 
-    public void wirteFile(File file,Transaccion t){
-         try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
+    public void wirteFile(File file, Transaccion t) {
+        try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
             //casting
             try (BufferedWriter bw = new BufferedWriter(fw)) {
                 //casting
@@ -177,7 +192,7 @@ public class FileController {
                 String monto_ = String.valueOf(t.getMonto());
 
                 bw.write(identificador + "#" + userRemitente + "#" + userDestinatario + "#" + monto_);
-                System.out.println(identificador + "#" + userRemitente + "#" + userDestinatario + "#" + monto_ );
+                System.out.println(identificador + "#" + userRemitente + "#" + userDestinatario + "#" + monto_);
                 bw.newLine();
 
                 bw.flush();
@@ -187,7 +202,7 @@ public class FileController {
             System.out.println("Error al cargar archivo");
         }
     }
-    
+
     public void writeFile(File file, Persona p, String password) {
         try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
             //casting

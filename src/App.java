@@ -24,7 +24,7 @@ public class App {
         }
         root = registro.uploadUsers(f, f2,root);
         arbol.setRoot(root);
-        System.out.println("ACÁ LA TRANS" + root.getChildren().search(1).getChildren().search(0));
+        System.out.println("ACÁ LA TRANS" + root.getChildren().search(1).getChildren().search(1).getInfo());
 //        
         Persona p = (Persona) root.getChildren().search(0).getChildren().search(0).getChildren().search(0).getChildren().search(2).getInfo();
         System.out.println(p.getUserName());
