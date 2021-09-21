@@ -42,25 +42,23 @@ public class TransaccionController {
             if (remitente != null && destinatario != null) {    
                 if (remitente.getDinero() >= monto) {
                     
-                    
-                    remitente.setDinero(remitente.getDinero() - monto);
-                    destinatario.setDinero(destinatario.getDinero() + monto);
-                    
                     // ALERTA: ESTAFA PIRAMIDAL!!!
                     // arbol.searchUser(arbol.getRoot().getChildren().search(0), remitente, remitente.getDinero() - monto, 0);
                     // arbol.searchUser(arbol.getRoot().getChildren().search(0), destinatario, destinatario.getDinero() + monto, 0);
                     
                     float remitenteAntes = remitente.getDinero();
-                    float remitenteDespues = remitente.getDinero() - monto;
+                    remitente.setDinero(remitente.getDinero() - monto);
+                    float remitenteDespues = remitente.getDinero();
                     float destinatarioAntes = destinatario.getDinero();
-                    float destinatarioDespues = destinatario.getDinero() + monto;
+                    destinatario.setDinero(destinatario.getDinero() + monto);
+                    float destinatarioDespues = destinatario.getDinero();
                     
                     registro.updateCash(f2, destinatarioDespues, destinatario.getUserName());
                     registro.updateCash(f2, remitenteDespues, remitente.getUserName());
                     
                     Transaccion t = new Transaccion(ID, remitenteID, destinatarioID, monto, remitenteAntes, remitenteDespues, destinatarioAntes, destinatarioDespues);
-                    registro.wirteFile(f, t);
-                    arbol.insert(arbol.getRoot().getChildren().search(1), t);
+                    registro.writeFile(f, t);
+                    arbol.insert(arbol.getRoot(), t);
                     
                 } else {
                     Dialog dialog = new Dialog();

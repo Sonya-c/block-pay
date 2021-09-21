@@ -74,7 +74,7 @@ public class FileController {
         
         // Confirmar que el usuario 0 exista
         if (!this.searchInFile(userFile, "userFijo")) {
-            this.writeFile(userFile, new Persona("userFijo", "First", "User", 0, 1000000000), "***");
+            this.writeFile(userFile, new Persona("userFijo", "First", "User", 0, 1000000000,"***"));
         }
         
         welcomeView.setVisible(false);
@@ -114,7 +114,7 @@ public class FileController {
                 String linea = sc.nextLine();
                 String data[] = linea.split("#");
                 
-                Persona p = new Persona(data[0], data[1], data[2], Integer.parseInt(data[4]), Float.parseFloat(data[5]));
+                Persona p = new Persona(data[0], data[1], data[2], Integer.parseInt(data[4]), Float.parseFloat(data[5]),data[3]);
                 
                 System.out.println(Arrays.toString(data));
                 
@@ -258,7 +258,6 @@ public class FileController {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String data[] = linea.split("#");
-                String cash_ = data[5];
                 String dataUser = data[0];
                 if (dataUser.equals(user)) {
                     String userName = user;
@@ -266,8 +265,8 @@ public class FileController {
                     String lastName = data[2];
                     String pw = data[3];
                     String iD = data[4];
-                    float cashData = Float.parseFloat(cash_) + cash;
-                    String line = userName + "#" + name + "#" + lastName + "#" + pw + "#" + iD + "#" + String.valueOf(cashData);
+                    String cash_ = String.valueOf(cash);
+                    String line = userName + "#" + name + "#" + lastName + "#" + pw + "#" + iD + "#" + cash_;
                     this.writeFile(newFile, line);
                 } else {
                     this.writeFile(newFile, linea);
@@ -290,7 +289,7 @@ public class FileController {
      * @param file
      * @param t 
      */
-    public void wirteFile(File file, Transaccion t) {
+    public void writeFile(File file, Transaccion t) {
         Persona remitente = arbol.searchUser(arbol.getRoot().getChildren().search(0), t.getRemitenteId(), 0);
         Persona destinatario = arbol.searchUser(arbol.getRoot().getChildren().search(0), t.getDestinatarioId(), 0);
                 
@@ -322,7 +321,7 @@ public class FileController {
         }
     }
 
-    public void writeFile(File file, Persona p, String password) {
+    public void writeFile(File file, Persona p) {
         try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
             //casting
             try (BufferedWriter bw = new BufferedWriter(fw)) {
@@ -330,7 +329,7 @@ public class FileController {
                 String user = p.getUserName();
                 String name = p.getNames();
                 String lastName = p.getLastNames();
-                String pw = password;
+                String pw = p.getPassword();
                 String iD = String.valueOf(p.getId());
                 String cash_ = String.valueOf(p.getDinero());
 
@@ -354,7 +353,7 @@ public class FileController {
                 String data[] = linea.split("#");
                 String userDataB = data[0];
                 if (userDataB.equals(userName)) {
-                    p = new Persona(userName, data[1], data[2], Integer.parseInt(data[4]), Float.parseFloat(data[5]));
+                    p = new Persona(userName, data[1], data[2], Integer.parseInt(data[4]), Float.parseFloat(data[5]),data[3]);
                     return p;
                 }
             }

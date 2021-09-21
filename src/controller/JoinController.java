@@ -66,6 +66,8 @@ public class JoinController {
         System.out.println("controller.JoinCotronller.login user : " + user);
         
         if (user != null) {
+            System.out.println(user.getPassword());
+            System.out.println(password);
             if (user.getPassword().equals(password)) {
                 this.setJoined(true, user);
             } else {
@@ -105,8 +107,8 @@ public class JoinController {
                 iD = (int) (Math.random() * (54321 - 1 + 1) + 1);
             }
 
-            Persona p = new Persona(userName, names, lastNames, iD, 50000);
-            registro.writeFile(f, p, password);
+            Persona p = new Persona(userName, names, lastNames, iD, 50000,password);
+            registro.writeFile(f, p);
             arbol.insert(arbol.getRoot(), p);
             registro.updateCash(f, -500000, "userFijo");
             arbol.searchUser(arbol.getRoot().getChildren().search(0), arbol.searchUser(arbol.getRoot().getChildren().search(0), "userFijo", 0), -50000, 0);

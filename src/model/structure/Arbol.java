@@ -204,7 +204,7 @@ public class Arbol {
             p.setInfo("BLOCK-PAY");
             root = p;
             System.out.println("root: " + root.getInfo());
-            root.addChild(root, new Persona("userFijo", "First", "User", 00000, 100000000), 4);
+            root.addChild(root, new Persona("userFijo", "First", "User", 00000, 100000000,"***"));
             root.addChild(root, new Bloque(1), 3);
         }
         return root;

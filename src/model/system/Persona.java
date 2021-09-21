@@ -9,14 +9,14 @@ public class Persona {
     private final int id;
     private float dinero;
     
-    public Persona(String userName, String names, String lastNames, int id, float dinero) {
-        this.userName = userName;
-        this.names = names;
-        this.lastNames = lastNames;
-        this.id = id;
-        this.dinero = dinero;
-        this.password = "";
-    }
+//    public Persona(String userName, String names, String lastNames, int id, float dinero) {
+//        this.userName = userName;
+//        this.names = names;
+//        this.lastNames = lastNames;
+//        this.id = id;
+//        this.dinero = dinero;
+//        this.password = "";
+//    }
 
     public Persona(String userName, String names, String lastNames, int id, float dinero, String password) {
         this.userName = userName;

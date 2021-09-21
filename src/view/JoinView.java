@@ -318,7 +318,7 @@ public class JoinView extends javax.swing.JFrame {
             if (user.contains(" ") || user.contains("#")) {
                 dialog.setMessage("El nombre de usuario no puede contener espacio en blanco o #.");
           
-            } else if (password.length() < 10) {            
+            } else if (password.length() < 7) {            
                 dialog.setMessage("La contraseña debe tener más de 10 o más caracteres");
 
             }else {
