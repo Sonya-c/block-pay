@@ -42,6 +42,7 @@ public class MainView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         inicioPanel = new javax.swing.JPanel();
         fistPanel = new javax.swing.JPanel();
@@ -67,7 +68,15 @@ public class MainView extends javax.swing.JFrame {
         sendBtn = new javax.swing.JButton();
         arbolPanel = new javax.swing.JPanel();
         perfilPanel = new javax.swing.JPanel();
-        idTxt2 = new javax.swing.JLabel();
+        signUpUserLabel = new javax.swing.JLabel();
+        signUpPasswordLabel = new javax.swing.JLabel();
+        signUpUserNameTxt = new javax.swing.JTextField();
+        signUpPasswordTxt = new javax.swing.JPasswordField();
+        changeDataBtn = new javax.swing.JButton();
+        labelName = new javax.swing.JLabel();
+        signUpLastNameTxt = new javax.swing.JTextField();
+        singUpNameTxt = new javax.swing.JTextField();
+        singUpLastNameLabel = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
         ActivityPanel = new javax.swing.JPanel();
         showArbolBtn = new javax.swing.JButton();
@@ -241,10 +250,112 @@ public class MainView extends javax.swing.JFrame {
         arbolPanel.setLayout(new java.awt.BorderLayout());
 
         perfilPanel.setBackground(new java.awt.Color(255, 255, 255));
-        perfilPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        perfilPanel.setFocusable(false);
+        perfilPanel.setPreferredSize(new java.awt.Dimension(353, 240));
+        perfilPanel.setRequestFocusEnabled(false);
+        perfilPanel.setLayout(new java.awt.GridBagLayout());
 
-        idTxt2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        idTxt2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        signUpUserLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        signUpUserLabel.setText("Usuario");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 68, 10, 0);
+        perfilPanel.add(signUpUserLabel, gridBagConstraints);
+
+        signUpPasswordLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        signUpPasswordLabel.setText("Contraseña");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 68, 10, 0);
+        perfilPanel.add(signUpPasswordLabel, gridBagConstraints);
+
+        signUpUserNameTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        signUpUserNameTxt.setToolTipText("Usuario");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 148;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 18, 10, 35);
+        perfilPanel.add(signUpUserNameTxt, gridBagConstraints);
+
+        signUpPasswordTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        signUpPasswordTxt.setToolTipText("Contraseña");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 148;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 18, 10, 35);
+        perfilPanel.add(signUpPasswordTxt, gridBagConstraints);
+
+        changeDataBtn.setBackground(new java.awt.Color(236, 0, 140));
+        changeDataBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        changeDataBtn.setForeground(new java.awt.Color(255, 255, 255));
+        changeDataBtn.setText("Cambiar");
+        changeDataBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        changeDataBtn.setBorderPainted(false);
+        changeDataBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        changeDataBtn.setFocusPainted(false);
+        changeDataBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeDataBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 23;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 68, 10, 0);
+        perfilPanel.add(changeDataBtn, gridBagConstraints);
+
+        labelName.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        labelName.setText("Nombres");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(30, 68, 10, 0);
+        perfilPanel.add(labelName, gridBagConstraints);
+
+        signUpLastNameTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        signUpLastNameTxt.setToolTipText("Usuario");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 148;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 18, 10, 35);
+        perfilPanel.add(signUpLastNameTxt, gridBagConstraints);
+
+        singUpNameTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        singUpNameTxt.setToolTipText("Usuario");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 148;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(30, 18, 10, 35);
+        perfilPanel.add(singUpNameTxt, gridBagConstraints);
+
+        singUpLastNameLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        singUpLastNameLabel.setText("Apellidos");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 68, 10, 0);
+        perfilPanel.add(singUpLastNameLabel, gridBagConstraints);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Block Pay");
@@ -338,40 +449,83 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_showPerfilBtnActionPerformed
 
     private void sendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBtnActionPerformed
-//        this.arbol = this.transaccionController.getArbol();
-        System.out.println(this.arbol.getRoot().getInfo());
+        System.out.println("view.main.MainView.sendBtn root " + this.arbol.getRoot().getInfo());
         Dialog dialog = new Dialog();
+        
         float monto = Float.parseFloat(String.valueOf(this.sendMoneyTxt.getValue()));
+        
         if (!sendUserNameTxt.getText().isEmpty()) {
+            
             if (monto >= 50) {
-                System.out.println(this.arbol.getRoot().getInfo());
-                Persona p = this.arbol.searchUser(this.arbol.getRoot().getChildren().search(0), sendUserNameTxt.getText(), 0);
-                int id = p.getId();
-                this.transaccionController.transaccion(Integer.parseInt(this.idTxt.getText()), id, monto);
+                System.out.println("view.main.MainView.sendBtn root " + this.arbol.getRoot().getInfo());
+            
+                Persona persona = this.arbol.searchUser(this.arbol.getRoot().getChildren().search(0), sendUserNameTxt.getText(), 0);
+                
+                if (persona != null) {
+                    int id = persona.getId();
+                    this.transaccionController.transaccion(Integer.parseInt(this.idTxt.getText()), id, monto);
+                    
+                } else {
+                    dialog.setMessage("No se encontro a este usuario");
+                }
+            
             } else {
                 dialog.setMessage("Debe envíar una cantidad de dinero mayor a $50");
             }
+            
         } else {
             dialog.setMessage("Campo usuario no puede estar vacío");
         }
     }//GEN-LAST:event_sendBtnActionPerformed
 
+    private void changeDataBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeDataBtnActionPerformed
+        String names = singUpNameTxt.getText().trim();
+        String lastNames = signUpLastNameTxt.getText().trim();
+        String user = signUpUserNameTxt.getText().trim();
+        String password = signUpPasswordTxt.getText().trim();
+
+        // Enviamos con los espacios en blanco removidos
+        singUpNameTxt.setText(names);
+        signUpLastNameTxt.setText(lastNames);
+        signUpUserNameTxt.setText(user);
+        signUpPasswordTxt.setText(password);
+
+        Dialog dialog = new Dialog();
+
+        if (names.isEmpty() || lastNames.isEmpty() || user.isEmpty() || password.isEmpty()) {
+            dialog.setMessage("No puede haber campos vacios");
+
+        } else {
+
+            if (user.contains(" ") || user.contains("#")) {
+                dialog.setMessage("El nombre de usuario no puede contener espacio en blanco o #.");
+
+            } else if (password.length() < 10) {
+                dialog.setMessage("La contraseña debe tener más de 10 o más caracteres");
+
+            }else {
+                // joinController.signUp(user,names,lastNames, password);
+            }
+        }
+    }//GEN-LAST:event_changeDataBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ActivityPanel;
     private javax.swing.JPanel arbolPanel;
     private javax.swing.JLabel avilableLabel;
+    private javax.swing.JButton changeDataBtn;
     private javax.swing.JPanel fistPanel;
     private javax.swing.JLabel idLabel;
     private javax.swing.JLabel idTxt;
-    private javax.swing.JLabel idTxt2;
     private javax.swing.JLabel idTxt3;
     private javax.swing.JPanel inicioPanel;
+    private javax.swing.JLabel labelName;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel moneyLabel;
     private javax.swing.JPanel moneyPanel;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel namesTxt;
-    private javax.swing.JPanel perfilPanel;
+    public javax.swing.JPanel perfilPanel;
     private javax.swing.JScrollPane scrollMessangePanel;
     private javax.swing.JScrollPane scrollPanel;
     private javax.swing.JButton sendBtn;
@@ -387,5 +541,12 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton showArbolBtn;
     private javax.swing.JButton showInicioBtn;
     private javax.swing.JButton showPerfilBtn;
+    private javax.swing.JTextField signUpLastNameTxt;
+    private javax.swing.JLabel signUpPasswordLabel;
+    private javax.swing.JPasswordField signUpPasswordTxt;
+    private javax.swing.JLabel signUpUserLabel;
+    private javax.swing.JTextField signUpUserNameTxt;
+    private javax.swing.JLabel singUpLastNameLabel;
+    private javax.swing.JTextField singUpNameTxt;
     // End of variables declaration//GEN-END:variables
 }

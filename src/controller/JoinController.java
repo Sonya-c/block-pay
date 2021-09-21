@@ -9,7 +9,6 @@ import view.JoinView;
 import view.main.MainView;
 
 public class JoinController {
-
  
     private Arbol arbol;
 
@@ -27,7 +26,6 @@ public class JoinController {
 
     public void join() {
         joinView.setVisible(true);
-        joinView.signUpPanel.setVisible(false);
     }
 
     public Arbol getArbol() {
@@ -45,27 +43,31 @@ public class JoinController {
     public void setJoined(boolean joined, Persona p) {
         this.joined = joined;
         this.mainView = new MainView(arbol, p);
-        System.out.println(arbol.getRoot());
+        
+        System.out.println("controller.JoinController.setJoined arbol" + arbol.getRoot());
+        
         joinView.setVisible(false);
         mainView.setVisible(true);
-
     }
 
     /**
      *
      * @param userName
-     * @param password //* @return 0: Login exitoso 1: usuario no existe 2:
-     * contraseña incorrecta
+     * @param password 
      */
     public void login(String userName, String password) {
         Dialog dialog = new Dialog();
-        File f = new File("C:\\Block-Pay\\registrosUsuarios.txt");
-        registro.searchOrCreateFile(f, "registrosUsuarios.txt");
-        if (registro.searchInFile(f, userName)) {
-            if (registro.searchInFilePassword(f, password)) {
-                Persona p = registro.searchInFilePersona(f, userName);
-                System.out.println(arbol.getRoot().getInfo());
-                this.setJoined(true, p);
+        NodoArbol root = arbol.getRoot();
+        
+        NodoArbol rootUser = root.getChildren().search(0);
+        System.out.println("controller.JoinCotronller.login root usuarios" + root != null? root.getInfo() : "null");
+        
+        Persona user = arbol.searchUser(rootUser, userName,0);
+        System.out.println("controller.JoinCotronller.login user : " + user);
+        
+        if (user != null) {
+            if (user.getPassword().equals(password)) {
+                this.setJoined(true, user);
             } else {
                 dialog.setMessage("Contraseña incorrecta");
             }
@@ -80,34 +82,36 @@ public class JoinController {
      * @param names
      * @param lastNames
      * @param password
-     * @return 0: SignUp Exitoso 1: nombre de usuario exite
      */
-    public int signUp(String userName, String names, String lastNames, String password) {
-        File f = new File("C:\\Block-Pay\\registrosUsuarios.txt");
-
-        registro.searchOrCreateFile(f, "registrosUsuarios.txt");
-
-        if (registro.searchInFile(f, userName)) {
-            return 1;
+    public void signUp(String userName, String names, String lastNames, String password) {
+        Dialog dialog = new Dialog();
+        NodoArbol root = arbol.getRoot();
+        
+        NodoArbol rootUser = root.getChildren().search(0);
+        System.out.println("controller.JoinCotronller.login root usuarios" + root != null? root.getInfo() : "null");
+        
+        Persona user = arbol.searchUser(rootUser, userName,0);
+        System.out.println("controller.JoinCotronller.login user : " + user);
+        
+        if (user != null) {
+            dialog.setMessage("Este usuario ya existe."); 
         } else {
-            int iD = (int) (Math.random() * (54321 - 1 + 1) + 1);
+            File f = new File("C:\\Block-Pay\\registrosUsuarios.txt");
+            registro.searchOrCreateFile(f, "registrosUsuarios.txt");
 
+            System.out.println("controller.FileController.signUp: corregir busqueda de archivos!!");
+            int iD = (int) (Math.random() * (54321 - 1 + 1) + 1);
             while (registro.searchInFile(f, iD)) {
                 iD = (int) (Math.random() * (54321 - 1 + 1) + 1);
             }
 
-//            NodoArbol q = arbol.searchInfoP(arbol.getRoot(), "userFijo");
             Persona p = new Persona(userName, names, lastNames, iD, 50000);
-
             registro.writeFile(f, p, password);
             arbol.insert(arbol.getRoot(), p);
             registro.updateCash(f, -500000, "userFijo");
             arbol.searchUser(arbol.getRoot().getChildren().search(0), arbol.searchUser(arbol.getRoot().getChildren().search(0), "userFijo", 0), -50000, 0);
             
-            registro.load();
             this.setJoined(true, p);
-
-            return 0;
         }
     }
 }

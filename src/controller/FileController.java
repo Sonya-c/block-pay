@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 import model.structure.Arbol;
 import model.structure.nodo.NodoArbol;
@@ -17,90 +18,176 @@ import view.WelcomeView;
 public class FileController {
 
     private final Arbol arbol;
-
+    private static String dir;
+    private static String userFileName;
+    private static String blockFileName;
+    
+    private File userFile;
+    private File blockFile;
+    
+    /**
+     * 
+     * @param arbol 
+     */
     public FileController(Arbol arbol) {
         this.arbol = arbol;
     }
+    
+    /**
+     * 
+     * @param arbol
+     * @param dir
+     * @param userFileName
+     * @param blockFileName 
+     */
+    public FileController(Arbol arbol, String dir, String userFileName, String blockFileName) {
+        this.arbol = arbol;
+        FileController.dir = dir;
+        FileController.userFileName = userFileName;
+        FileController.blockFileName = blockFileName;
+    }
 
-    public NodoArbol uploadUsers(File file, File file2, NodoArbol root) {
-        try (Scanner sc = new Scanner(file)) {
+    /**
+     * Carga los archivos y con ello crea el arbol
+     */
+    public void init() {
+        WelcomeView welcomeView = new WelcomeView();
+        welcomeView.setMaxValue(6);
+        welcomeView.setVisible(true);
+        
+        // Crea los archivos
+        this.userFile = new File(FileController.dir + FileController.userFileName);
+        this.blockFile = new File(FileController.dir + FileController.blockFileName);
+        welcomeView.progress();
+        
+        // Confirmar que los archivos existan
+        searchOrCreateFile(this.userFile, FileController.userFileName);
+        searchOrCreateFile(this.blockFile, FileController.blockFileName);
+        welcomeView.progress();
+        
+        // Carga los usuarios al arbol
+        NodoArbol root = this.arbol.getRoot();
+        root = uploadUsers(root);
+        root = uploadBlock(root);
+        this.arbol.setRoot(root);
+        welcomeView.progress();
+        
+        // Confirmar que el usuario 0 exista
+        if (!this.searchInFile(userFile, "userFijo")) {
+            this.writeFile(userFile, new Persona("userFijo", "First", "User", 0, 1000000000), "***");
+        }
+        
+        welcomeView.setVisible(false);
+    }
+    
+    /**
+     * Dado un archivo y el nombre del mismo, si no lo encunetre lo crea
+     * 
+     * @param file archivo
+     * @param fileName nombre del archivo
+     */
+    public void searchOrCreateFile(File file, String fileName) {
+        File f = new File(dir);
+        file = new File(FileController.dir, fileName);
+        
+        if (!file.exists()) {
+            //No existe el archivo
+            f.mkdir();
+            
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Controller.FileControoler.searchOrCreteFile Error: " + e.toString());
+            }
+        }
+    }
+    
+    /**
+     * Carga en el arbol la información de los usuarios
+     * @param root raíz del arbol
+     * @return 
+     */
+    public NodoArbol uploadUsers(NodoArbol root) {
+        try (Scanner sc = new Scanner(userFile)) {
+            
             while (sc.hasNextLine()) {
                 String linea = sc.nextLine();
                 String data[] = linea.split("#");
+                
                 Persona p = new Persona(data[0], data[1], data[2], Integer.parseInt(data[4]), Float.parseFloat(data[5]));
+                
+                System.out.println(Arrays.toString(data));
+                
                 if (data[0].equals("userFijo")) {
                     root = arbol.insertRoot(root, p);
-                    System.out.println("RAÍZ DENTRO");
+                    System.out.println("controller.FileController.uploadUser Raíz dentro");
                 } else {
                     root = arbol.insert(root, p);
-                     System.out.println("logrado");
+                    System.out.println("controller.FileController.uploadUser logrado");
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("El archivo de Usuarios no se encontró");
-        }
-        try (Scanner sc = new Scanner(file2)) {
-            while (sc.hasNextLine()) {
-                String linea = sc.nextLine();
-                String data[] = linea.split("#");
-                String dataUserRemit[] = data[1].split("_");
-                String dataUserDest[] = data[2].split("_");
-                Persona userRemit = this.searchInFilePersona(file, dataUserRemit[0]);
-                Persona userDest = this.searchInFilePersona(file, dataUserDest[0]);
-                Transaccion t = new Transaccion(Integer.parseInt(data[0]), userRemit, userDest, Float.parseFloat(data[3]));
-                root = arbol.insert(root, t);
-                System.out.println("TRANSACCION EN EL ÁRBOL");
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("El archivo de Transacciones no se encontró");
+            System.out.println("controller.FileController.uploadUser El archivo de Usuarios no se encontró");
         }
         return root;
     }
 
-    public void load() {
-        WelcomeView welcomeView = new WelcomeView();
-
-        welcomeView.setMaxValue(6);
-        welcomeView.setVisible(true);
-
-        int i = 0; // Esto es solo temporal!!!!!
-        while (i <= 6) {
-            welcomeView.progress();
-            i++;
+    /**
+     * Carga en el arbol la información de las transacciones
+     * @param root
+     * @return 
+     */
+    public NodoArbol uploadBlock(NodoArbol root) {
+        try (Scanner sc = new Scanner(blockFile)) {
+            
+            while (sc.hasNextLine()) {
+                String linea = sc.nextLine();
+                String data[] = linea.split("#");
+                
+                Transaccion t = new Transaccion(
+                        Integer.parseInt(data[0]),
+                        Integer.parseInt(data[1]),
+                        Integer.parseInt(data[2]),
+                        Float.parseFloat(data[3]),
+                        Float.parseFloat(data[4]),
+                        Float.parseFloat(data[5]),
+                        Float.parseFloat(data[6]),
+                        Float.parseFloat(data[7])
+                );
+                
+                root = arbol.insert(root, t);
+                System.out.println("controller.FileController.uploadBlock transacción en el arbol");
+            }
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("controller.FileController.uploadBlock El archivo de Transacciones no se encontró");
         }
-
-        welcomeView.setVisible(false);
+        
+        return root;
     }
-
+    
+    /**
+     * Dado un archivo y un identificador, busca en el archivo si esa linea existe
+     * @param file
+     * @param id
+     * @return 
+     */
     public boolean searchInFile(File file, int id) {
         try (Scanner sc = new Scanner(file)) {
+            
             while (sc.hasNextLine()) {
+                
                 String linea = sc.nextLine();
                 String data[] = linea.split("#");
                 String iD = data[3];
-                if (iD.equals(id)) {
-                    return true;
-                }
+                
+                if (iD.equals(id)) { return true; }
             }
         } catch (FileNotFoundException e) {
+            
             System.out.println("El archivo no se encontró");
         }
-        return false;
-    }
-
-    public boolean searchInFilePassword(File file, String password) {
-        try (Scanner sc = new Scanner(file)) {
-            while (sc.hasNextLine()) {
-                String linea = sc.nextLine();
-                String data[] = linea.split("#");
-                String pw = data[3];
-                if (pw.equals(password)) {
-                    return true;
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("El archivo no se encontró");
-        }
+        
         return false;
     }
 
@@ -111,6 +198,23 @@ public class FileController {
                 String data[] = linea.split("#");
                 String userDataB = data[0];
                 if (userDataB.equals(user)) {
+                    return true;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("controller.FileController.searchInFile El archivo no se encontró");
+        }
+        return false;
+    }
+    
+    // MARK
+    public boolean searchInFilePassword(File file, String password) {
+        try (Scanner sc = new Scanner(file)) {
+            while (sc.hasNextLine()) {
+                String linea = sc.nextLine();
+                String data[] = linea.split("#");
+                String pw = data[3];
+                if (pw.equals(password)) {
                     return true;
                 }
             }
@@ -181,25 +285,40 @@ public class FileController {
         }
     }
 
+    /**
+     * Escribelas trasacciones
+     * @param file
+     * @param t 
+     */
     public void wirteFile(File file, Transaccion t) {
-        try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
-            //casting
-            try (BufferedWriter bw = new BufferedWriter(fw)) {
-                //casting
-                String identificador = String.valueOf(t.getId());
-                String userRemitente = t.getRemitente().getUserName() + "_" + String.valueOf(t.getRemitente().getId());
-                String userDestinatario = t.getDestinatario().getUserName() + "_" + String.valueOf(t.getDestinatario().getId());
-                String monto_ = String.valueOf(t.getMonto());
+        Persona remitente = arbol.searchUser(arbol.getRoot().getChildren().search(0), t.getRemitenteId(), 0);
+        Persona destinatario = arbol.searchUser(arbol.getRoot().getChildren().search(0), t.getDestinatarioId(), 0);
+                
+        if (remitente != null && destinatario != null) {
+            try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
+                try (BufferedWriter bw = new BufferedWriter(fw)) {
 
-                bw.write(identificador + "#" + userRemitente + "#" + userDestinatario + "#" + monto_);
-                System.out.println(identificador + "#" + userRemitente + "#" + userDestinatario + "#" + monto_);
-                bw.newLine();
-
-                bw.flush();
+                    String line = t.getId() + 
+                            "#" + t.getRemitenteId() + 
+                            "#" + t.getDestinatarioId() + 
+                            "#" + t.getMonto() +
+                            "#" + t.getRemitenteAntes() +
+                            "#" + t.getRemitenteDespues() + 
+                            "#" + t.getDestinatarioAntes() + 
+                            "#" + t.getDestinatarioDespues();
+                    
+                    System.out.println("controller.FileController.writeFile: " + line);   
+                    bw.write(line);
+                    
+                    bw.newLine();
+                    bw.flush();
+                }
+                
+                fw.close();
+                
+            } catch (IOException e) {
+                System.out.println("controller.FilleController.writeFile Error al cargar archivo: " + e.toString());
             }
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("Error al cargar archivo");
         }
     }
 
@@ -216,29 +335,14 @@ public class FileController {
                 String cash_ = String.valueOf(p.getDinero());
 
                 bw.write(user + "#" + name + "#" + lastName + "#" + pw + "#" + iD + "#" + cash_);
-                System.out.println(user + "#" + name + "#" + lastName + "#" + pw + "#" + iD + "#" + cash_);
+                System.out.println("controller.FileController.writeFile " + user + "#" + name + "#" + lastName + "#" + pw + "#" + iD + "#" + cash_);
                 bw.newLine();
 
                 bw.flush();
             }
             fw.close();
         } catch (IOException e) {
-            System.out.println("Error al cargar archivo");
-        }
-    }
-
-    public void searchOrCreateFile(File file, String fileName) {
-        String sDir = "C:\\Block-Pay";
-        File f = new File(sDir);
-        String ruta = "C:\\Block-Pay"; //Carpeta ruta
-        file = new File(ruta, fileName);
-        if (!file.exists()) { //No existe el archivo
-            f.mkdir();
-            try {
-                file.createNewFile();
-            } catch (IOException ex) {
-                System.out.println("Error");
-            }
+            System.out.println("controller.FileController.writeFile Error al cargar archivo");
         }
     }
 
@@ -260,29 +364,3 @@ public class FileController {
         return null;
     }
 }
-
-/*
-    public void readFileId(String name, int Id) {
-//
-//        File file = new File("C:\\Block-Pay\\"+name);
-//
-//        try {
-//            BufferedReader reader = new BufferedReader(new FileReader(file));
-//
-//            String currentLine;
-//
-//            while ((currentLine = reader.readLine()) != null) {
-//                if (currentLine.trim().equals(lineToRemove)) {
-//                    continue;
-//                }
-//                writer.write(currentLine + System.getProperty("line.separator"));
-//            }
-//
-//            reader.close();
-//
-//        } catch (IOException e) {
-//            //e.printStackTrace();
-//        }
-//    }
-
- */

@@ -1,43 +1,53 @@
 package model.system;
 
 public class Transaccion {
-    private final int id;
-    private final Persona remitente;
-    private final Persona destinatario;
-    private final float monto;
-
+    private int id;
+    
+    private float monto;
     private float remitenteAntes;
     private float remitenteDespues;
     private float destinatarioAntes;
     private float destinatarioDespues;
+    
+    private int remitenteId;
+    private int destinatarioId;
 
-    public Transaccion(int id, Persona remitente, Persona destinatario, float monto) {
+    public Transaccion(int id, int remitenteId, int destinatarioId, float monto, float remitenteAntes, float remitenteDespues, float destinatarioAntes, float destinatarioDespues) {
         this.id = id;
-        this.remitente = remitente;
-        this.destinatario = destinatario;
         this.monto = monto;
+        this.remitenteId = remitenteId;
+        this.destinatarioId = destinatarioId;
+        
+        this.remitenteAntes = remitenteAntes;
+        this.remitenteDespues = remitenteDespues;
+        this.destinatarioAntes = destinatarioAntes;
+        this.destinatarioDespues = destinatarioDespues;
     }
 
+    public int getRemitenteId() {
+        return remitenteId;
+    }
 
+    public void setRemitenteId(int remitenteId) {
+        this.remitenteId = remitenteId;
+    }
+
+    public int getDestinatarioId() {
+        return destinatarioId;
+    }
+
+    public void setDestinatarioId(int destinatarioId) {
+        this.destinatarioId = destinatarioId;
+    }
+
+    
     public int getId() {
         return this.id;
     }
 
-
-    public Persona getRemitente() {
-        return this.remitente;
-    }
-
-
-    public Persona getDestinatario() {
-        return this.destinatario;
-    }
-
-
     public float getMonto() {
         return this.monto;
     }
-
 
     public float getRemitenteAntes() {
         return this.remitenteAntes;

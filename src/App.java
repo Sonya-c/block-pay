@@ -2,47 +2,22 @@
 import model.structure.Arbol;
 import controller.FileController;
 import controller.JoinController;
-import java.io.File;
-import model.structure.nodo.NodoArbol;
-import model.system.Bloque;
-import model.system.Persona;
-import model.system.Transaccion;
 
 public class App {
 
     public static void main(String[] args) {
-         Arbol arbol = new Arbol(2);
-        NodoArbol root = arbol.getRoot();
-
-        FileController registro = new FileController(arbol);
-        File f = new File("C:\\Block-Pay\\registrosUsuarios.txt");
-        File f2 = new File("C:\\Block-Pay\\registrosTransacciones.txt");
-        registro.searchOrCreateFile(f, "registrosUsuarios.txt");
-        registro.searchOrCreateFile(f2, "registrosTransacciones.txt");
-        if (!registro.searchInFile(f, "userFijo")) {
-            registro.writeFile(f, new Persona("userFijo", "First", "User", 0, 1000000000), "***");
-        }
-        root = registro.uploadUsers(f, f2,root);
-        arbol.setRoot(root);
-        System.out.println("ACÁ LA TRANS" + root.getChildren().search(1).getChildren().search(1).getInfo());
-//        
-        Persona p = (Persona) root.getChildren().search(0).getChildren().search(0).getChildren().search(0).getChildren().search(2).getInfo();
-        System.out.println(p.getUserName());
-        Persona z = arbol.searchUser(root.getChildren().search(0), "jmendoza",0);
-        System.out.println(z.getId());
+        // Creación del arbol que creara las personas 
+        Arbol arbol = new Arbol(2);
         
+        // Crear y leer los achivos
+        FileController fileCtrl = new FileController(arbol, "C:\\Block-Pay\\", "registrosUsuarios.txt", "registrosTransacciones.txt");
+        fileCtrl.init();
         
-        FileController fileCtrl = new FileController(arbol);
+        // Abrir la pestaña de Join para que el usuario entre
         JoinController joinCtrl = new JoinController(arbol);
-
-        fileCtrl.load();
         joinCtrl.join();
-
     }
 }
-
-
-
 
 
 /*

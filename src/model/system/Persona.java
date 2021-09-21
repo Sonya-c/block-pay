@@ -4,6 +4,8 @@ public class Persona {
     private String userName;
     private String names;
     private String lastNames;
+    private String password;
+    
     private final int id;
     private float dinero;
     
@@ -13,8 +15,18 @@ public class Persona {
         this.lastNames = lastNames;
         this.id = id;
         this.dinero = dinero;
+        this.password = "";
     }
 
+    public Persona(String userName, String names, String lastNames, int id, float dinero, String password) {
+        this.userName = userName;
+        this.names = names;
+        this.lastNames = lastNames;
+        this.id = id;
+        this.dinero = dinero;
+        this.password = password;
+    }
+    
     // === GETTER AND SETTERS
     public String getUserName() {
         return this.userName;
@@ -52,5 +64,12 @@ public class Persona {
     public void setDinero(float dinero) {
         this.dinero = dinero;
     }
+    
+    public String getPassword() {
+        return this.password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
