@@ -72,24 +72,29 @@ public class Arbol {
     
     public Persona searchUser(NodoArbol root, int id, int i) {
         Persona info = null;
+        
         if (root.getInfo() != null) {
-            System.out.println("hola");
+            System.out.println("mode.structure.Arbol.searchUser(NodoArbol, int, int) Información no vacia");
             info = (Persona) root.getInfo();
+            
             if (confirmation(info.getId(), id)) {
-                System.out.println("ya");
+                System.out.println("mode.structure.Arbol.searchUser(NodoArbol, int, int) confirmación true");
                 return info;
             } else {
                 if (root.getChildren() != null) {
                     NodoArbol q = root.getChildren().search(0);
                     info = (Persona) q.getInfo();
+                    
                     while (i <= 3) {
-                        System.out.println(i);
+                        System.out.println("mode.structure.Arbol.searchUser(NodoArbol, int, int) bucle i = " + i);
                         q = root.getChildren().search(i++);
+                        
                         info = (Persona) q.getInfo();
                         if (confirmation(info.getId(), id)) {
                             return info;
                         }
                     }
+                    
                     info = searchUser(root.getChildren().search(0), id, 0);
                 }
             }
