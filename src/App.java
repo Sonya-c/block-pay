@@ -2,20 +2,32 @@
 import model.structure.Arbol;
 import controller.FileController;
 import controller.JoinController;
+import model.structure.nodo.NodoArbol;
+import model.system.Bloque;
+import model.system.Persona;
+import model.system.Transaccion;
 
 public class App {
 
     public static void main(String[] args) {
         // Creación del arbol que creara las personas 
         Arbol arbol = new Arbol(2);
-        
+
         // Crear y leer los achivos
         FileController fileCtrl = new FileController(arbol, "C:\\Block-Pay\\", "registrosUsuarios.txt", "registrosTransacciones.txt");
         fileCtrl.init();
-        
+        Persona p = (Persona) arbol.getRoot().getChildren().search(0).getInfo();
+        System.out.println(p.getUserName());
         // Abrir la pestaña de Join para que el usuario entre
         JoinController joinCtrl = new JoinController(arbol);
         joinCtrl.join();
+//        
+        NodoArbol p1 = arbol.getRoot().getChildren().search(1);
+        while (p1.getNext() != null) {
+            Transaccion t = (Transaccion)p1.getChildren().search(0).getInfo();
+            System.out.println(t.getId());
+            p1 = p1.getNext();
+        }
     }
 }
 
@@ -67,4 +79,4 @@ root = arbol.insert(root, 0);
 ////        System.out.println(b.getChildren().search(0).getInfo());
 //        
 //        arbol.printArbol(root);
-*/
+ */

@@ -4,6 +4,7 @@ import view.arbolGrafico.ArbolGrafico;
 import model.structure.Arbol;
 import controller.TransaccionController;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import model.system.Persona;
 import view.Dialog;
 
@@ -27,7 +28,7 @@ public class MainView extends javax.swing.JFrame {
 
         this.idTxt.setText(String.valueOf(user.getId()));
         this.namesTxt.setText(user.getNames() + " " + user.getLastNames());
-        this.idTxt3.setText(String.valueOf(user.getDinero()));
+        this.moneyVisual.setText(String.valueOf(user.getDinero()));
 
         this.revalidate();
         this.repaint();
@@ -53,7 +54,7 @@ public class MainView extends javax.swing.JFrame {
         nameLabel = new javax.swing.JLabel();
         idTxt = new javax.swing.JLabel();
         namesTxt = new javax.swing.JLabel();
-        idTxt3 = new javax.swing.JLabel();
+        moneyVisual = new javax.swing.JLabel();
         scrollPanel = new javax.swing.JScrollPane();
         sendCenterPanel = new javax.swing.JPanel();
         sendFormPanel = new javax.swing.JPanel();
@@ -136,11 +137,11 @@ public class MainView extends javax.swing.JFrame {
         moneyPanel.add(namesTxt);
         namesTxt.setBounds(149, 110, 161, 17);
 
-        idTxt3.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        idTxt3.setForeground(new java.awt.Color(255, 255, 255));
-        idTxt3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        moneyPanel.add(idTxt3);
-        idTxt3.setBounds(142, 30, 170, 40);
+        moneyVisual.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        moneyVisual.setForeground(new java.awt.Color(255, 255, 255));
+        moneyVisual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        moneyPanel.add(moneyVisual);
+        moneyVisual.setBounds(142, 30, 170, 40);
 
         fistPanel.add(moneyPanel);
 
@@ -275,6 +276,11 @@ public class MainView extends javax.swing.JFrame {
 
         signUpUserNameTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         signUpUserNameTxt.setToolTipText("Usuario");
+        signUpUserNameTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpUserNameTxtActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -455,7 +461,7 @@ public class MainView extends javax.swing.JFrame {
         float monto = Float.parseFloat(String.valueOf(this.sendMoneyTxt.getValue()));
         
         if (!sendUserNameTxt.getText().isEmpty()) {
-            
+                    
             if (monto >= 50) {
                 System.out.println("view.main.MainView.sendBtn root " + this.arbol.getRoot().getInfo());
             
@@ -463,8 +469,9 @@ public class MainView extends javax.swing.JFrame {
                 
                 if (persona != null) {
                     int id = persona.getId();
-                    this.transaccionController.transaccion(Integer.parseInt(this.idTxt.getText()), id, monto);
-                    
+                    this.transaccionController.transaccion(Integer.parseInt(this.idTxt.getText()), id, monto, this.moneyVisual);
+                    this.sendUserNameTxt.setText("");
+                    this.sendMoneyTxt.setValue(0);
                 } else {
                     dialog.setMessage("No se encontro a este usuario");
                 }
@@ -509,6 +516,10 @@ public class MainView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_changeDataBtnActionPerformed
 
+    private void signUpUserNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpUserNameTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_signUpUserNameTxtActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ActivityPanel;
     private javax.swing.JPanel arbolPanel;
@@ -517,12 +528,12 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JPanel fistPanel;
     private javax.swing.JLabel idLabel;
     private javax.swing.JLabel idTxt;
-    private javax.swing.JLabel idTxt3;
     private javax.swing.JPanel inicioPanel;
     private javax.swing.JLabel labelName;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel moneyLabel;
     private javax.swing.JPanel moneyPanel;
+    private javax.swing.JLabel moneyVisual;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel namesTxt;
     public javax.swing.JPanel perfilPanel;

@@ -5,6 +5,7 @@
  */
 package model.system;
 
+import model.structure.Lista;
 import model.structure.nodo.NodoArbol;
 
 /**
@@ -15,11 +16,12 @@ public class Bloque extends NodoArbol{
 
     private final int TRANSACCIONES_MAXIMAS;
     private int transaccionesAct;
-    public Bloque(int numBloque) {
-        super();
+    public Bloque(int numBloque, int maxChild) {
+        super(maxChild);
         this.TRANSACCIONES_MAXIMAS = 3;
         this.transaccionesAct = 0;
         this.info = numBloque;
+        
     }
 
     @Override
