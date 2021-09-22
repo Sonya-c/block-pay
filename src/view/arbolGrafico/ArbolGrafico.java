@@ -3,12 +3,27 @@
  */
 package view.arbolGrafico;
 
+import java.awt.Graphics;
 import model.structure.Arbol;
 import model.structure.nodo.*;
 import model.system.Persona;
+import model.structure.Lista;
+import java.util.ArrayList;
 
 public class ArbolGrafico extends javax.swing.JPanel {
     private Arbol arbol;
+    private ArrayList<Line> listaLineas;
+    
+    private class Line {
+        int x1, y1, x2, y2;
+        
+        Line (int x1, int y1, int x2, int y2) {
+            this.x1 = x1;
+            this.x2 = x2;
+            this.y1 = y1;
+            this.y2 = y2;
+        }
+    }
     
     public ArbolGrafico(Arbol arbol) {
         this.arbol = arbol;
@@ -17,8 +32,31 @@ public class ArbolGrafico extends javax.swing.JPanel {
     
     public void draw() {
         this.mainPanel.removeAll();
-        int middleX = (int) this.mainPanel.getWidth() / 2;
-        drawUsers(arbol.getRoot().getChildren().search(0), middleX, 0);
+        int middle = (int) this.mainPanel.getWidth() / 2;
+        
+        this.mainPanel.add(rootPanel);
+        rootPanel.setLocation(middle - 25, 25);
+        rootPanel.setSize(50, 50);
+        
+        this.mainPanel.add(userRootPanel);
+        userRootPanel.setLocation(middle - 130 - 75 - 50/2 - 150/2, 150);
+        userRootPanel.setSize(150, 50);
+        
+        listaLineas = new ArrayList<>();
+        listaLineas.add(new Line(middle - 25, 25 + 50, middle - 130 - 50/2 - 150/2, 150));
+        
+        /*this.mainPanel.add(blockRootPanel);
+        blockRootPanel.setLocation(middle + 25, 100);
+        blockRootPanel.setSize(50, 50);
+        */
+        
+        drawUsers(arbol.getRoot().getChildren().search(0), middle - 75 - 130, 230);
+        
+        /*
+        Graphics drawingArea = this.mainPanel.getGraphics();
+        drawingArea.setColor(new java.awt.Color(236,0,140));
+        drawingArea.drawLine(middle - 25, 25 + 50, middle - 130 - 50/2 - 150/2, 150);
+        */
     }
     
     /**
@@ -56,11 +94,9 @@ public class ArbolGrafico extends javax.swing.JPanel {
                    
                     i++;
                 }
-                /*
-                System.out.println("view.arbol.ArbolGrafico.drawUser altura antes: " +  this.mainPanel.getHeight());
+                
                 this.mainPanel.setSize(this.mainPanel.getWidth(), this.mainPanel.getHeight() + height + padding);
-                System.out.println("view.arbol.ArbolGrafico.drawUser altura despues: " +  this.mainPanel.getHeight());
-                */
+                System.out.println("view.arbol.ArbolGrafico.drawUser main panel height: " + this.mainPanel.getHeight());
                 drawUsers(rootUser.getChildren().search(0), x, y +  height + padding);
                 
             } else {
@@ -73,6 +109,10 @@ public class ArbolGrafico extends javax.swing.JPanel {
         }
         this.validate();
         this.repaint();
+    }
+    
+    public void drawLines(Graphics canvas) {
+        
     }
     /*
     if (info instanceof Persona) {
@@ -124,9 +164,34 @@ public class ArbolGrafico extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        rootPanel = new javax.swing.JPanel();
+        rootPanelLabel = new javax.swing.JLabel();
+        userRootPanel = new javax.swing.JPanel();
+        userRootPanelLabel = new javax.swing.JLabel();
+        blockRootPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         scrollPanel = new javax.swing.JScrollPane();
+        parentPanel = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
+
+        rootPanel.setBackground(new java.awt.Color(0, 0, 0));
+        rootPanel.setLayout(new java.awt.BorderLayout());
+
+        rootPanelLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        rootPanelLabel.setForeground(new java.awt.Color(255, 255, 255));
+        rootPanelLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rootPanelLabel.setText("Root");
+        rootPanel.add(rootPanelLabel, java.awt.BorderLayout.CENTER);
+
+        userRootPanel.setBackground(new java.awt.Color(0, 255, 197));
+        userRootPanel.setLayout(new java.awt.BorderLayout());
+
+        userRootPanelLabel.setBackground(new java.awt.Color(0, 255, 197));
+        userRootPanelLabel.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        userRootPanelLabel.setForeground(new java.awt.Color(236, 0, 140));
+        userRootPanelLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        userRootPanelLabel.setText("Usuarios");
+        userRootPanel.add(userRootPanelLabel, java.awt.BorderLayout.CENTER);
 
         setBackground(new java.awt.Color(27, 20, 100));
         setLayout(new java.awt.BorderLayout());
@@ -141,17 +206,31 @@ public class ArbolGrafico extends javax.swing.JPanel {
 
         scrollPanel.setBackground(new java.awt.Color(27, 20, 100));
         scrollPanel.setBorder(null);
-        scrollPanel.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPanel.setViewportBorder(javax.swing.BorderFactory.createEtchedBorder());
         scrollPanel.setAutoscrolls(true);
 
-        mainPanel.setBackground(new java.awt.Color(204, 204, 204));
-        mainPanel.setMaximumSize(new java.awt.Dimension(1245, 320));
-        mainPanel.setMinimumSize(new java.awt.Dimension(1245, 320));
+        parentPanel.setLayout(new java.awt.BorderLayout());
+
+        mainPanel.setBackground(new java.awt.Color(27, 20, 100));
+        mainPanel.setAutoscrolls(true);
+        mainPanel.setMinimumSize(new java.awt.Dimension(1255, 32767));
         mainPanel.setName(""); // NOI18N
-        mainPanel.setPreferredSize(new java.awt.Dimension(1245, 320));
-        mainPanel.setLayout(null);
-        scrollPanel.setViewportView(mainPanel);
+        mainPanel.setRequestFocusEnabled(false);
+
+        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1255, Short.MAX_VALUE)
+        );
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, Short.MAX_VALUE, Short.MAX_VALUE)
+        );
+
+        parentPanel.add(mainPanel, java.awt.BorderLayout.CENTER);
+
+        scrollPanel.setViewportView(parentPanel);
 
         add(scrollPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -162,8 +241,14 @@ public class ArbolGrafico extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel blockRootPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel parentPanel;
+    private javax.swing.JPanel rootPanel;
+    private javax.swing.JLabel rootPanelLabel;
     private javax.swing.JScrollPane scrollPanel;
+    private javax.swing.JPanel userRootPanel;
+    private javax.swing.JLabel userRootPanelLabel;
     // End of variables declaration//GEN-END:variables
 }

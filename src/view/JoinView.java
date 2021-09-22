@@ -159,7 +159,7 @@ public class JoinView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 68, 10, 0);
         signUpPanel.add(singUpLastNameLabel, gridBagConstraints);
 
-        goToLoginBtn.setBackground(new java.awt.Color(0, 0, 0));
+        goToLoginBtn.setBackground(new java.awt.Color(255, 255, 255));
         goToLoginBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         goToLoginBtn.setForeground(new java.awt.Color(0, 255, 197));
         goToLoginBtn.setText("Tengo Cuenta");
@@ -250,7 +250,7 @@ public class JoinView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(49, 68, 11, 0);
         loginPanel.add(loginBtn, gridBagConstraints);
 
-        goSignUpBtn.setBackground(new java.awt.Color(0, 0, 0));
+        goSignUpBtn.setBackground(new java.awt.Color(255, 255, 255));
         goSignUpBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         goSignUpBtn.setForeground(new java.awt.Color(236, 0, 140));
         goSignUpBtn.setText("No tengo cuenta");
