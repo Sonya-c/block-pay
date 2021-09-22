@@ -16,35 +16,63 @@ public class ArbolGrafico extends javax.swing.JPanel {
     }
     
     public void draw() {
-        drawUser(arbol.getRoot().getChildren().search(0), 0);
-        
+        this.mainPanel.removeAll();
+        int middleX = (int) this.mainPanel.getWidth() / 2;
+        drawUsers(arbol.getRoot().getChildren().search(0), middleX, 0);
     }
     
-    public void drawUser(NodoArbol rootUser, int i) {
-        Persona user = null;
+    /**
+     * Dibuja las personas
+     * @param rootUser 
+     */
+    public void drawUsers(NodoArbol rootUser, int x, int y) {
+        Persona user;
+        int with = 190;
+        int height = 130;
+        int padding = 50;
         
         if (rootUser != null && rootUser.getInfo() != null) {
             System.out.println("view.arbol.arbolGrafico.drawUser info no vacia");
             
             user = (Persona) rootUser.getInfo();
-            testTxt.setText(testTxt.getText() + user.getNames());
             
             if (rootUser.getChildren() != null) {
                 NodoArbol userNodo = rootUser.getChildren().search(0);
+                System.out.println("view.arbol.arbolGrafico.drawUser user:" + user.getNames() +"tiene hijos");
                 
-                while (i < 3 && userNodo != null) {
+                int i = 0;
+                while (rootUser.getChildren() != null && i < rootUser.getChildren().getSize()) {
+                    userNodo = rootUser.getChildren().search(i);
                     user = (Persona) userNodo.getInfo(); 
-                    testTxt.setText(testTxt.getText() + user.getNames() +  "\n");
                     
-                    System.out.println("mode.structure.Arbol.searchUser(NodoArbol, int, int) bucle i = " + i);
-                    userNodo = rootUser.getChildren().search(i++);
-                    
+                    // testTxt.setText(testTxt.getText() + user.getNames() +  "\n");
+                    PersonaNodo personaNodo = new PersonaNodo(user);
+                    this.mainPanel.add(personaNodo);
+                    // personaNodo.setBounds(x - i * (with + padding), y + padding, with, height);
+                    personaNodo.setLocation(x - i * (with + padding), y + padding);
+                    personaNodo.setSize(with, height);
+                    System.out.println("view.arbol.ArbolGrafico.drawUser bound: x = " + (x - i * (with + padding)) + " y = " + y + padding);
+                    System.out.println("view.arbol.ArbolGrafico.drawUser location: " + personaNodo.getLocation().toString());
+                   
+                    i++;
                 }
+                /*
+                System.out.println("view.arbol.ArbolGrafico.drawUser altura antes: " +  this.mainPanel.getHeight());
+                this.mainPanel.setSize(this.mainPanel.getWidth(), this.mainPanel.getHeight() + height + padding);
+                System.out.println("view.arbol.ArbolGrafico.drawUser altura despues: " +  this.mainPanel.getHeight());
+                */
+                drawUsers(rootUser.getChildren().search(0), x, y +  height + padding);
                 
-                drawUser(rootUser.getChildren().search(0), 0);
+            } else {
+                // testTxt.setText(testTxt.getText() + user.getNames() + "\n");
+                PersonaNodo personaNodo = new PersonaNodo(user);
+                this.mainPanel.add(personaNodo);
+                // personaNodo.setBounds(x, y + height + padding, with, height);
+                personaNodo.setLocation(x, y + height + padding);
             }
-            
         }
+        this.validate();
+        this.repaint();
     }
     /*
     if (info instanceof Persona) {
@@ -96,15 +124,12 @@ public class ArbolGrafico extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        testTxt = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        scrollPanel = new javax.swing.JScrollPane();
+        mainPanel = new javax.swing.JPanel();
 
-        testTxt.setColumns(20);
-        testTxt.setRows(5);
-        jScrollPane1.setViewportView(testTxt);
-
-        add(jScrollPane1);
+        setBackground(new java.awt.Color(27, 20, 100));
+        setLayout(new java.awt.BorderLayout());
 
         jButton1.setText("Test");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -112,7 +137,23 @@ public class ArbolGrafico extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1);
+        add(jButton1, java.awt.BorderLayout.PAGE_START);
+
+        scrollPanel.setBackground(new java.awt.Color(27, 20, 100));
+        scrollPanel.setBorder(null);
+        scrollPanel.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPanel.setViewportBorder(javax.swing.BorderFactory.createEtchedBorder());
+        scrollPanel.setAutoscrolls(true);
+
+        mainPanel.setBackground(new java.awt.Color(204, 204, 204));
+        mainPanel.setMaximumSize(new java.awt.Dimension(1245, 320));
+        mainPanel.setMinimumSize(new java.awt.Dimension(1245, 320));
+        mainPanel.setName(""); // NOI18N
+        mainPanel.setPreferredSize(new java.awt.Dimension(1245, 320));
+        mainPanel.setLayout(null);
+        scrollPanel.setViewportView(mainPanel);
+
+        add(scrollPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -122,7 +163,7 @@ public class ArbolGrafico extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea testTxt;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JScrollPane scrollPanel;
     // End of variables declaration//GEN-END:variables
 }
