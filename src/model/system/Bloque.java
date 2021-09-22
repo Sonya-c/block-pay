@@ -16,6 +16,7 @@ public class Bloque extends NodoArbol{
 
     private final int TRANSACCIONES_MAXIMAS;
     private int transaccionesAct;
+    private final int info;
     public Bloque(int numBloque, int maxChild) {
         super(maxChild);
         this.TRANSACCIONES_MAXIMAS = 3;
@@ -26,6 +27,10 @@ public class Bloque extends NodoArbol{
 
     @Override
     public Object getInfo() {
+        return info;
+    }
+    
+    public int getInfoBloque(){
         return info;
     }
     

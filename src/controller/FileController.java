@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import model.structure.Arbol;
 import model.structure.nodo.NodoArbol;
+import model.system.Bloque;
 import model.system.Persona;
 import model.system.Transaccion;
 import view.WelcomeView;
@@ -156,9 +157,9 @@ public class FileController {
                         Float.parseFloat(data[6]),
                         Float.parseFloat(data[7])
                 );
-                root = arbol.insert(root, t);
+//                root = arbol.insert(root, t);
 //                System.out.println(root.getChildren().search(1));
-//                root = arbol.insert(root.getChildren().search(1), t);
+                root = arbol.insert(root, t);
                 System.out.println("controller.FileController.uploadBlock transacción en el arbol");
             }
 
