@@ -16,18 +16,15 @@ public class App {
         // Crear y leer los achivos
         FileController fileCtrl = new FileController(arbol, "C:\\Block-Pay\\", "registrosUsuarios.txt", "registrosTransacciones.txt");
         fileCtrl.init();
-        Persona p = (Persona) arbol.getRoot().getChildren().search(0).getInfo();
+        Persona p = (Persona) arbol.getRoot().getChildren().search(0).getChildren().search(0).getChildren().search(1).getInfo();
         System.out.println(p.getUserName());
         // Abrir la pestaña de Join para que el usuario entre
         JoinController joinCtrl = new JoinController(arbol);
         joinCtrl.join();
 //        
-        NodoArbol p1 = arbol.getRoot().getChildren().search(1);
-        while (p1.getNext() != null) {
-            Transaccion t = (Transaccion)p1.getChildren().search(0).getInfo();
-            System.out.println(t.getId());
-            p1 = p1.getNext();
-        }
+    NodoArbol b = arbol.getRoot().getChildren().search(1).getNext().getNext().getNext().getNext();
+        System.out.println(((Bloque)b.getInfo()).getInfoBloque() + "  -  " + b.getChildren().getSize() + "  -  " + ((Bloque)b.getInfo()).getTransaccionesAct());
+        
     }
 }
 

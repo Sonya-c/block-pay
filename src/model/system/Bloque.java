@@ -24,6 +24,11 @@ public class Bloque extends NodoArbol{
     }
 
     @Override
+    public Lista getChildren() {
+        return children;
+    }
+    
+    @Override
     public Object getInfo() {
         return info;
     }
