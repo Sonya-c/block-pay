@@ -34,28 +34,28 @@ public class Arbol {
         this.root = root;
     }
 
-    /**
-     * Compara si la información de una persona es la misma
-     *
-     * @param nodo
-     * @param info
-     * @return
-     */
-    public boolean compareInfoInArbol(NodoArbol nodo, Object info) {
-        if (nodo.getInfo() == null) {
-            return true;
-        } else if (info instanceof Persona) {
-
-            Persona infoNodo = (Persona) nodo.getInfo();
-            infoNodo = (Persona) infoNodo;
-            Persona infoObj = (Persona) info;
-
-            return infoNodo.getUserName().equals(infoObj.getUserName()) && infoNodo.getNames().equals(infoObj.getUserName())
-                    && infoNodo.getLastNames().equals(infoObj.getLastNames()) && infoNodo.getId() == infoObj.getId()
-                    && infoNodo.getDinero() == infoObj.getDinero();
-        }
-        return false;
-    }
+//    /**
+//     * Compara si la información de una persona es la misma
+//     *
+//     * @param nodo
+//     * @param info
+//     * @return
+//     */
+//    public boolean compareInfoInArbol(NodoArbol nodo, Object info) {
+//        if (nodo.getInfo() == null) {
+//            return true;
+//        } else if (info instanceof Persona) {
+//
+//            Persona infoNodo = (Persona) nodo.getInfo();
+//            infoNodo = (Persona) infoNodo;
+//            Persona infoObj = (Persona) info;
+//
+//            return infoNodo.getUserName().equals(infoObj.getUserName()) && infoNodo.getNames().equals(infoObj.getUserName())
+//                    && infoNodo.getLastNames().equals(infoObj.getLastNames()) && infoNodo.getId() == infoObj.getId()
+//                    && infoNodo.getDinero() == infoObj.getDinero();
+//        }
+//        return false;
+//    }
 
     public boolean confirmation(Persona info1, Persona info2) {
         return info1.getUserName().equals(info2.getUserName());
@@ -168,40 +168,40 @@ public class Arbol {
         return root;
     }
 
-    public float verificarMonto(NodoArbol bloque, int id, float montoAcum) {
+    public float verificarMonto(NodoArbol bloque, Persona user, float montoAcum) {
         Transaccion t;
-        Persona remitente = this.searchUser(getRoot().getChildren().search(0), id, 0);
         int i = 0;
-        while (i <= 2) {
-            if (bloque.getChildren().search(i) != null) {
-                t = (Transaccion) bloque.getChildren().search(i).getInfo();
-
-                if (remitente != null && id == remitente.getId()) {
+        while (i <= ((Bloque)bloque.getInfo()).getTransaccionesAct()) {
+            NodoArbol p = bloque.getChildren().search(i);
+            if (p != null) {
+                t = (Transaccion) p.getInfo();
+                System.out.println(t);
+                if (user.getId() == t.getRemitenteId()) {
                     montoAcum -= t.getMonto();
-                } else if (remitente != null && id == t.getDestinatarioId()) {
+                } else if (user.getId() == t.getDestinatarioId()) {
                     montoAcum += t.getMonto();
                 }
 
-                System.out.println(montoAcum);
-
-            } else {
-                return montoAcum;
-            }
+                System.out.println("Monto acumulado: " + montoAcum);
+                System.out.println("Número del bloque actual: " + ((Bloque)bloque.getInfo()).getInfoBloque());
+            } 
             i++;
+            System.out.println("la iteración número: " + i);
         }
         return montoAcum;
     }
 
     public boolean verificarMontoRemitente(NodoArbol root, int id, float monto) {
         Persona p = this.searchUser(root.getChildren().search(0), id, 0);
-        float saldo = 0f;
+        float saldo = 50000;
         NodoArbol q = root.getChildren().search(1);
-        saldo += this.verificarMonto(q, id, 50000);
-        while (q.getNext() != null) {
-            saldo += this.verificarMonto(q, id, 50000);
+        saldo = this.verificarMonto(q, p, saldo);
+        q = q.getNext();
+        while (q != null) {
+            saldo = this.verificarMonto(q, p, saldo);
             q = q.getNext();
         }
-        return saldo <= p.getDinero();
+        return saldo == p.getDinero();
     }
 
     public Persona modifyInfo(NodoArbol nodo, float info) {
@@ -279,13 +279,14 @@ public class Arbol {
 
                 Bloque b = new Bloque(((Bloque) p.getInfo()).getInfoBloque() + 1, 3);
 
-                p.setNext(new NodoArbol());
+                p.setNext(new NodoArbol(3));
                 p.getNext().setInfo(b);
                 p = p.getNext();
 
                 p.addChild(p, info);
                 ((Bloque) p.getInfo()).setTransaccionesAct();
                 System.out.println("transacciones actuales en el bloque: " + ((Bloque) p.getInfo()).getTransaccionesAct());
+                System.out.println("Info almacenada en hijo " + p.getChildren().search(0).getInfo());
                 System.out.println("Se agregó en el bloque " + ((Bloque) p.getInfo()).getInfoBloque());
 
             } else if (p.getNext() == null && p.getChildren().getSize() < 3) {
@@ -294,6 +295,8 @@ public class Arbol {
                 p.addChild(p, info);
                 ((Bloque) p.getInfo()).setTransaccionesAct();
                 System.out.println("transacciones actuales en el bloque: " + ((Bloque) p.getInfo()).getTransaccionesAct());
+//                System.out.println("Info almacenada en hijo " + p.getChildren().search(0).getInfo());
+//                System.out.println("Info almacenada en hijo " + p.getChildren().search(1).getInfo());
                 System.out.println("Se agregó en el bloque " + ((Bloque) p.getInfo()).getInfoBloque());
             }
         }

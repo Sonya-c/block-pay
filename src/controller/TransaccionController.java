@@ -26,6 +26,8 @@ public class TransaccionController {
         File f = new File("C:\\Block-Pay\\registrosTransacciones.txt");
         File f2 = new File("C:\\Block-Pay\\registrosUsuarios.txt");
 
+        Dialog dialog = new Dialog();
+        
         registro.searchOrCreateFile(f, "registrosTransacciones.txt");
         registro.searchOrCreateFile(f2, "registrosUsuarios.txt");
 
@@ -58,12 +60,11 @@ public class TransaccionController {
 
                     Transaccion t = new Transaccion(ID, remitenteID, destinatarioID, monto, remitenteAntes, remitenteDespues, destinatarioAntes, destinatarioDespues);
                     registro.writeFile(f, t);
-                    arbol.insertTrans(arbol.getRoot(), t,0);
+                    arbol.insertTrans(arbol.getRoot(), t, 0);
 //                    arbol.insert(arbol.getRoot().getChildren().search(1), t);
                     moneyVisual.setText(String.valueOf(remitenteDespues));
-
+                    dialog.setMessage("Transacción exitosa");
                 } else {
-                    Dialog dialog = new Dialog();
                     dialog.setMessage("No tiene dinero en su cuenta disponible para la transacción");
                 }
             }
