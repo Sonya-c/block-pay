@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class ArbolGrafico extends javax.swing.JPanel {
     private Arbol arbol;
     private ArrayList<Line> listaLineas;
+    private Graphics lineasGraficas;
     
     private class Line {
         int x1, y1, x2, y2;
@@ -45,23 +46,21 @@ public class ArbolGrafico extends javax.swing.JPanel {
         listaLineas = new ArrayList<>();
         listaLineas.add(new Line(middle - 25, 25 + 50, middle - 130 - 50/2 - 150/2, 150));
         
-        /*this.mainPanel.add(blockRootPanel);
+        this.mainPanel.add(blockRootPanel);
         blockRootPanel.setLocation(middle + 25, 100);
         blockRootPanel.setSize(50, 50);
-        */
-        
+                
         drawUsers(arbol.getRoot().getChildren().search(0), middle - 75 - 130, 230);
-        
-        /*
-        Graphics drawingArea = this.mainPanel.getGraphics();
-        drawingArea.setColor(new java.awt.Color(236,0,140));
-        drawingArea.drawLine(middle - 25, 25 + 50, middle - 130 - 50/2 - 150/2, 150);
-        */
+        // this.validate();
+        // this.repaint();
+        drawLines();
     }
     
     /**
      * Dibuja las personas
      * @param rootUser 
+     * @param x 
+     * @param y 
      */
     public void drawUsers(NodoArbol rootUser, int x, int y) {
         Persona user;
@@ -79,41 +78,53 @@ public class ArbolGrafico extends javax.swing.JPanel {
                 System.out.println("view.arbol.arbolGrafico.drawUser user:" + user.getNames() +"tiene hijos");
                 
                 int i = 0;
-                while (rootUser.getChildren() != null && i < rootUser.getChildren().getSize()) {
+                while (rootUser.getChildren().search(i) != null) {
                     userNodo = rootUser.getChildren().search(i);
                     user = (Persona) userNodo.getInfo(); 
                     
-                    // testTxt.setText(testTxt.getText() + user.getNames() +  "\n");
+                    System.out.println("view.arbol.ArbolGrafico.drawUser i =  " + i);
+
                     PersonaNodo personaNodo = new PersonaNodo(user);
                     this.mainPanel.add(personaNodo);
-                    // personaNodo.setBounds(x - i * (with + padding), y + padding, with, height);
-                    personaNodo.setLocation(x - i * (with + padding), y + padding);
+                    
+                    int x2 = x - i * (with + padding);
+                    
+                    personaNodo.setLocation(x2, y);
                     personaNodo.setSize(with, height);
+                    
+                    if (rootUser.getChildren().search(i) != null) {
+                        listaLineas.add(new Line(x + with/2, y + height, x2 + with/2, y + 2*height));
+                    }
                     System.out.println("view.arbol.ArbolGrafico.drawUser bound: x = " + (x - i * (with + padding)) + " y = " + y + padding);
                     System.out.println("view.arbol.ArbolGrafico.drawUser location: " + personaNodo.getLocation().toString());
                    
                     i++;
                 }
                 
-                this.mainPanel.setSize(this.mainPanel.getWidth(), this.mainPanel.getHeight() + height + padding);
                 System.out.println("view.arbol.ArbolGrafico.drawUser main panel height: " + this.mainPanel.getHeight());
-                drawUsers(rootUser.getChildren().search(0), x, y +  height + padding);
+                
+                drawUsers(rootUser.getChildren().search(0), x, y +  2* height);
                 
             } else {
-                // testTxt.setText(testTxt.getText() + user.getNames() + "\n");
                 PersonaNodo personaNodo = new PersonaNodo(user);
                 this.mainPanel.add(personaNodo);
-                // personaNodo.setBounds(x, y + height + padding, with, height);
-                personaNodo.setLocation(x, y + height + padding);
+                personaNodo.setLocation(x, y + 2*height);
             }
         }
-        this.validate();
-        this.repaint();
     }
     
-    public void drawLines(Graphics canvas) {
+    public void drawLines() {
+        Graphics canvas = this.mainPanel.getGraphics();
         
+        if (canvas != null) {
+            canvas.setColor(new java.awt.Color(236,0,140));
+
+            listaLineas.forEach((line) -> {
+                canvas.drawLine(line.x1, line.y1, line.x2, line.y2);
+            });
+        }
     }
+    
     /*
     if (info instanceof Persona) {
             NodoArbol p = root.getChildren().search(0);
@@ -169,7 +180,8 @@ public class ArbolGrafico extends javax.swing.JPanel {
         userRootPanel = new javax.swing.JPanel();
         userRootPanelLabel = new javax.swing.JLabel();
         blockRootPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        headerPanel = new javax.swing.JPanel();
+        updateBtn = new javax.swing.JButton();
         scrollPanel = new javax.swing.JScrollPane();
         parentPanel = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
@@ -194,20 +206,68 @@ public class ArbolGrafico extends javax.swing.JPanel {
         userRootPanel.add(userRootPanelLabel, java.awt.BorderLayout.CENTER);
 
         setBackground(new java.awt.Color(27, 20, 100));
-        setLayout(new java.awt.BorderLayout());
-
-        jButton1.setText("Test");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
+            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
+            }
+            public void ancestorResized(java.awt.event.HierarchyEvent evt) {
+                formAncestorResized(evt);
             }
         });
-        add(jButton1, java.awt.BorderLayout.PAGE_START);
+        addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                formPropertyChange(evt);
+            }
+        });
+        setLayout(new java.awt.BorderLayout());
+
+        headerPanel.setBackground(new java.awt.Color(27, 20, 100));
+        headerPanel.setPreferredSize(new java.awt.Dimension(1255, 50));
+
+        updateBtn.setBackground(new java.awt.Color(236, 0, 140));
+        updateBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        updateBtn.setForeground(new java.awt.Color(255, 255, 255));
+        updateBtn.setText("Actualizar");
+        updateBtn.setBorderPainted(false);
+        updateBtn.setFocusable(false);
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
+        headerPanel.setLayout(headerPanelLayout);
+        headerPanelLayout.setHorizontalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(updateBtn)
+                .addContainerGap(685, Short.MAX_VALUE))
+        );
+        headerPanelLayout.setVerticalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(updateBtn)
+                .addContainerGap())
+        );
+
+        add(headerPanel, java.awt.BorderLayout.PAGE_START);
 
         scrollPanel.setBackground(new java.awt.Color(27, 20, 100));
         scrollPanel.setBorder(null);
         scrollPanel.setViewportBorder(javax.swing.BorderFactory.createEtchedBorder());
         scrollPanel.setAutoscrolls(true);
+        scrollPanel.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                scrollPanelMouseWheelMoved(evt);
+            }
+        });
+        scrollPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                scrollPanelMouseClicked(evt);
+            }
+        });
 
         parentPanel.setLayout(new java.awt.BorderLayout());
 
@@ -235,19 +295,41 @@ public class ArbolGrafico extends javax.swing.JPanel {
         add(scrollPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         draw();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if (listaLineas != null)drawLines();
+    }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void formPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_formPropertyChange
+        draw();
+        if (listaLineas != null)drawLines();
+    }//GEN-LAST:event_formPropertyChange
+
+    private void formAncestorResized(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_formAncestorResized
+        draw();
+        if (listaLineas != null)drawLines();
+    }//GEN-LAST:event_formAncestorResized
+
+    private void scrollPanelMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_scrollPanelMouseWheelMoved
+        draw();
+        // if (listaLineas != null)drawLines();
+    }//GEN-LAST:event_scrollPanelMouseWheelMoved
+
+    private void scrollPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scrollPanelMouseClicked
+        draw();
+        if (listaLineas != null)drawLines();
+    }//GEN-LAST:event_scrollPanelMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel blockRootPanel;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel parentPanel;
     private javax.swing.JPanel rootPanel;
     private javax.swing.JLabel rootPanelLabel;
     private javax.swing.JScrollPane scrollPanel;
+    private javax.swing.JButton updateBtn;
     private javax.swing.JPanel userRootPanel;
     private javax.swing.JLabel userRootPanelLabel;
     // End of variables declaration//GEN-END:variables

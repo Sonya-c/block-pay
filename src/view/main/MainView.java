@@ -276,11 +276,6 @@ public class MainView extends javax.swing.JFrame {
 
         signUpUserNameTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         signUpUserNameTxt.setToolTipText("Usuario");
-        signUpUserNameTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signUpUserNameTxtActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -436,6 +431,7 @@ public class MainView extends javax.swing.JFrame {
         this.setTitle("Block Pay | Árbol");
         this.revalidate();
         this.repaint();
+        this.arbolGrafico.draw();
     }//GEN-LAST:event_showArbolBtnActionPerformed
 
     private void showInicioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showInicioBtnActionPerformed
@@ -515,10 +511,6 @@ public class MainView extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_changeDataBtnActionPerformed
-
-    private void signUpUserNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpUserNameTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_signUpUserNameTxtActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ActivityPanel;
