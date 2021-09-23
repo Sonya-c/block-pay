@@ -124,7 +124,7 @@ public class FileController {
                     root = arbol.insertRoot(root, p);
                     System.out.println("controller.FileController.uploadUser Raíz dentro");
                 } else {
-                    root = arbol.insert(root, p);
+                    root = arbol.insertPersona(root, p);
                     System.out.println("controller.FileController.uploadUser logrado");
                 }
             }
@@ -159,8 +159,12 @@ public class FileController {
                 );
 //                root = arbol.insert(root, t);
 //                System.out.println(root.getChildren().search(1));
-                root = arbol.insert(root, t);
-                System.out.println("controller.FileController.uploadBlock transacción en el arbol");
+                       
+                    System.out.println("root.getChildren().search(1) = " + root.getChildren().search(1));
+                    root = arbol.insertTrans(root, t,0);
+                    System.out.println(root);
+                    System.out.println("controller.FileController.uploadBlock transacción en el arbol");
+                
             }
 
         } catch (FileNotFoundException e) {

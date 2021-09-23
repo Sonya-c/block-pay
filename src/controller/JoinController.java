@@ -109,7 +109,7 @@ public class JoinController {
 
             Persona p = new Persona(userName, names, lastNames, iD, 50000, password);
             registro.writeFile(f, p);
-            arbol.insert(arbol.getRoot(), p);
+            arbol.insertPersona(arbol.getRoot(), p);
             Persona userFijo = arbol.searchUser(arbol.getRoot().getChildren().search(0), 0, 0);
             userFijo.setDinero(userFijo.getDinero() - 50000);
             registro.updateCash(f,userFijo.getDinero(), "userFijo");

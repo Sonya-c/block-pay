@@ -18,11 +18,9 @@ public class Bloque extends NodoArbol{
     private int transaccionesAct;
     private final int info;
     public Bloque(int numBloque, int maxChild) {
-        super(maxChild);
         this.TRANSACCIONES_MAXIMAS = 3;
         this.transaccionesAct = 0;
         this.info = numBloque;
-        
     }
 
     @Override

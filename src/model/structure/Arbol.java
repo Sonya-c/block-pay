@@ -220,7 +220,7 @@ public class Arbol {
             root = p;
             System.out.println("root: " + root.getInfo());
             root.addChild(root, new Persona("userFijo", "First", "User", 00000, 100000000, "***"));
-            root.addChild(root, new Bloque(1, 3), 3);
+            root.addChild(root, new Bloque(1, 3));
         }
         return root;
     }
@@ -232,61 +232,100 @@ public class Arbol {
      * @param info
      * @return
      */
-    public NodoArbol insert(NodoArbol root, Object info) {
+    public NodoArbol insertPersona(NodoArbol root, Persona info) {
 
-        if (info instanceof Persona) {
-            NodoArbol p = root.getChildren().search(0);
-            System.out.println("model.struture.Arbol.insert > insertando persona p " + p);
-            if (p.getChildren().search(0) == null) {
+        NodoArbol p = root.getChildren().search(0);
+        System.out.println("model.struture.Arbol.insert > insertando persona p " + p);
+        if (p.getChildren().search(0) == null) {
 
-                p.addChild(p, info);
-                System.out.println("model.strucure.Arbol.insert > insertando persona, no hay hijo");
+            p.addChild(p, info);
+            System.out.println("model.strucure.Arbol.insert > insertando persona, no hay hijo");
+
+        } else {
+
+            if (p.getChildren().getSize() == p.getChildren().getMAX_SIZE()) {
+                System.out.println("model.strucure.Arbol.insert > insertando persona insertar nuevo nodo");
+                insertPersona(p, info);
 
             } else {
-
-                if (p.getChildren().getSize() == p.getChildren().getMAX_SIZE()) {
-                    System.out.println("model.strucure.Arbol.insert > insertando persona insertar nuevo nodo");
-                    insert(p, info);
-
-                } else {
-                    System.out.println("model.strucure.Arbol.insert > insertando persona añadir hijo");
-                    p.addChild(p, info);
-                }
-            }
-        } else if (info instanceof Transaccion) {
-            NodoArbol p = root.getChildren().search(1);
-            if (p.getInfo() instanceof Bloque) {
-                NodoArbol q = p.getChildren().search(0);
-                int i = 0;
-                while (q != null && i <= ((Bloque) p.getInfo()).getTRANSACCIONES_MAXIMAS()
-                        && ((Bloque) p.getInfo()).getTransaccionesAct() <= ((Bloque) p.getInfo()).getTRANSACCIONES_MAXIMAS()) {
-                    System.out.println("valor de i = " + i);
-                    q = p.getChildren().search(i++);
-                }
-                if (q == null && ((Bloque) p.getInfo()).getTransaccionesAct() < ((Bloque) p.getInfo()).getTRANSACCIONES_MAXIMAS()) {
-                    p.addChild(p, info);
-                    ((Bloque) p.getInfo()).setTransaccionesAct();
-                    System.out.println("transacciones actuales en el bloque: " + ((Bloque) p.getInfo()).getTransaccionesAct());
-                    System.out.println("Se agregó en el bloque " + ((Bloque) p.getInfo()).getInfoBloque());
-                } else if (i >= ((Bloque) p.getInfo()).getTRANSACCIONES_MAXIMAS() && p.getNext() != null) {
-                    p = p.getNext();
-                    System.out.println("Se va al otro bloque");
-                    p.addChild(p, info);
-//                    root = insertTrans(p, info);
-                    ((Bloque) p.getInfo()).setTransaccionesAct();
-                    System.out.println("transacciones actuales en el bloque: " + ((Bloque) p.getInfo()).getTransaccionesAct());
-                    System.out.println("Se agregó en el bloque " + ((Bloque) p.getInfo()).getInfoBloque());
-                } else if (i >= ((Bloque) p.getInfo()).getTRANSACCIONES_MAXIMAS() && p.getNext() == null) {
-                    Bloque b = new Bloque(((Bloque) p.getInfo()).getInfoBloque() + 1, 3);
-                    p.setNext(new NodoArbol());
-                    p.getNext().setInfo(b);
-                    p = p.getNext();
-                    System.out.println("Se creó el bloque " + ((Bloque) p.getInfo()).getInfoBloque());
-                    insert(root, info);
-                }
+                System.out.println("model.strucure.Arbol.insert > insertando persona añadir hijo");
+                p.addChild(p, info);
             }
 
-//            if (p.getChildren().search(0) == null) {
+        }
+        return root;
+    }
+
+//    public NodoArbol insertBloque(NodoArbol root) {
+//        NodoArbol p = root;
+//        while (p.getNext() != null) {
+//            p = p.getNext();
+//        }
+//        if (p.getNext() == null) {
+//            Bloque b = new Bloque(((Bloque) p.getInfo()).getInfoBloque() + 1, 3);
+//            p.setNext(b);
+//            p = p.getNext();
+//        }
+//        return p;
+//    }
+//
+//    public NodoArbol insertTransBloques(NodoArbol root, Transaccion info) {
+//        NodoArbol p = root;
+//        if (((Bloque) root.getInfo()).getTransaccionesAct() == ((Bloque) root.getInfo()).getTRANSACCIONES_MAXIMAS() && p.getNext()==null) {
+//            p = insertBloque(p);
+//            p.addChild(p, info);
+//            ((Bloque)p.getInfo()).setTransaccionesAct();
+//        } else if (((Bloque) root.getInfo()).getTransaccionesAct() == ((Bloque) root.getInfo()).getTRANSACCIONES_MAXIMAS() && p.getNext()!=null) {
+//            System.out.println("model.strucure.Arbol.insert > moviendose al otro bloque");
+//            insertTransBloques(p.getNext(),info);
+//        } else {
+//            p.addChild(p,info);
+//            ((Bloque)p.getInfo()).setTransaccionesAct();
+//        }
+//        return root;
+//
+//    }
+    public NodoArbol insertTrans(NodoArbol root, Transaccion info, int j) {
+        NodoArbol p;
+        if (j == 0){
+            p = root.getChildren().search(1);
+        } else {
+            p = root;
+        }
+        System.out.println(p.getInfo() instanceof Bloque);
+        if (p.getInfo() instanceof Bloque) {
+            System.out.println("entró");
+            System.out.println(((Bloque) p.getInfo()).getTransaccionesAct() <= ((Bloque) p.getInfo()).getTRANSACCIONES_MAXIMAS());
+            NodoArbol q = p.getChildren().search(0);
+            System.out.println("¿q!=null? = " + q);
+            int i = 0;
+            while (q != null && i <= 3) {
+                System.out.println("valor de i = " + i);
+                q = p.getChildren().search(i++);
+            }
+            if (q == null && ((Bloque) p.getInfo()).getTransaccionesAct() < ((Bloque) p.getInfo()).getTRANSACCIONES_MAXIMAS()) {
+                p.addChild(p, info);
+                ((Bloque) p.getInfo()).setTransaccionesAct();
+                System.out.println("transacciones actuales en el bloque: " + ((Bloque) p.getInfo()).getTransaccionesAct());
+                System.out.println("Se agregó en el bloque " + ((Bloque) p.getInfo()).getInfoBloque());
+            } else if (i >= ((Bloque) p.getInfo()).getTRANSACCIONES_MAXIMAS() && p.getNext() == null) {
+                Bloque b = new Bloque(((Bloque) p.getInfo()).getInfoBloque() + 1, 3);
+                p.setNext(new NodoArbol());
+                p.getNext().setInfo(b);
+                p = p.getNext();
+                p.addChild(root, info);
+                System.out.println("Se creó el bloque " + ((Bloque) p.getInfo()).getInfoBloque());
+                ((Bloque) p.getInfo()).setTransaccionesAct();
+                System.out.println("transacciones actuales en el bloque: " + ((Bloque) p.getInfo()).getTransaccionesAct());
+                System.out.println("Se agregó en el bloque " + ((Bloque) p.getInfo()).getInfoBloque());
+            } else if (i >= ((Bloque) p.getInfo()).getTRANSACCIONES_MAXIMAS() && p.getNext() != null) {
+                p = p.getNext();
+                System.out.println("Se va al otro bloque");
+                System.out.println(p.getInfo());
+                insertTrans(p, info,1);
+            }
+        }
+//           if (p.getChildren().search(0) == null) {
 //                p.addChild(p, info);
 //                System.out.println("model.struture.Arbol.insert > insertada transacción primera de bloque " + p);
 //            } else {
@@ -325,9 +364,10 @@ public class Arbol {
 //                    p = (Bloque) p.getNext();
 //                    this.insert(p, info);
 //                }
-        }
+
         return root;
     }
+
 //    
 //    public boolean verifyChild(NodoArbol nodo){
 //        int i = 0;
@@ -369,6 +409,29 @@ public class Arbol {
 //                p = p.getNext();
 //                System.out.println("Se va al otro bloque");
 //                insertTrans(p, info);
+//            }
+//        }
+//        return root;
+//    }
+//        NodoArbol q = root.getChildren().search(1);
+//        int i = 0;
+//        if (q.getChildren().search(0) == null) {
+//            q.addChild(q, info);
+//            ((Bloque) q.getInfo()).setTransaccionesAct();
+//            System.out.println("model.strucure.Arbol.insert > primera transacción añadida");
+//        } else {
+//            NodoArbol p = q;
+//            while (p != null && i <= 3 &&
+//                    ((Bloque) q.getInfo()).getTransaccionesAct() <= ((Bloque) q.getInfo()).getTRANSACCIONES_MAXIMAS()) {
+//                System.out.println("model.strucure.Arbol.insert > i = " + i);
+//                p = q.getChildren().search(i++);
+//            }
+//            if (p == null && ((Bloque) q.getInfo()).getTransaccionesAct() < ((Bloque) q.getInfo()).getTRANSACCIONES_MAXIMAS()) {
+//                q.addChild(q, info);
+//                System.out.println("model.strucure.Arbol.insert > transacción añadida");
+//            } else if (((Bloque) q.getInfo()).getTransaccionesAct() == ((Bloque) q.getInfo()).getTRANSACCIONES_MAXIMAS()) {
+//                root = insertTransBloques(root, info);
+//                System.out.println("model.strucure.Arbol.insert > bloque añadido");
 //            }
 //        }
 //        return root;
