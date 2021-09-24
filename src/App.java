@@ -12,19 +12,20 @@ public class App {
     public static void main(String[] args) {
         // Creación del arbol que creara las personas 
         Arbol arbol = new Arbol(2);
-//
+        
         // Crear y leer los achivos
         FileController fileCtrl = new FileController(arbol, "C:\\Block-Pay\\", "registrosUsuarios.txt", "registrosTransacciones.txt");
         fileCtrl.init();
-        Persona p = (Persona) arbol.getRoot().getChildren().search(0).getChildren().search(0).getChildren().search(1).getInfo();
-        System.out.println(p.getUserName());
+        // Persona p = (Persona) arbol.getRoot().getChildren().search(0).getChildren().search(0).getChildren().search(1).getInfo();
+        // System.out.println(p.getUserName());
         // Abrir la pestaña de Join para que el usuario entre
         JoinController joinCtrl = new JoinController(arbol);
         joinCtrl.join();
-        NodoArbol b = arbol.getRoot().getChildren().search(1).getNext().getNext().getNext().getNext();
-//        NodoArbol b = arbol.getRoot().getChildren().search(1);
-        System.out.println(b.getChildren().search(1).getInfo() instanceof Transaccion);
-        System.out.println(((Bloque)b.getInfo()).getInfoBloque() + "  -  " + b.getChildren().getSize() + "  -  " + ((Bloque)b.getInfo()).getTransaccionesAct());
+        
+        // NodoArbol b = arbol.getRoot().getChildren().search(1).getNext().getNext().getNext().getNext();
+        //        NodoArbol b = arbol.getRoot().getChildren().search(1);
+        // System.out.println(b.getChildren().search(1).getInfo() instanceof Transaccion);
+        // System.out.println(((Bloque)b.getInfo()).getInfoBloque() + "  -  " + b.getChildren().getSize() + "  -  " + ((Bloque)b.getInfo()).getTransaccionesAct());
         
     }
 }

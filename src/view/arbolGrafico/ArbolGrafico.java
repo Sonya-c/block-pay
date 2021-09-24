@@ -9,6 +9,7 @@ import model.structure.nodo.*;
 import model.system.Persona;
 import model.structure.Lista;
 import java.util.ArrayList;
+import model.system.Bloque;
 
 public class ArbolGrafico extends javax.swing.JPanel {
     private Arbol arbol;
@@ -35,22 +36,33 @@ public class ArbolGrafico extends javax.swing.JPanel {
         this.mainPanel.removeAll();
         int middle = (int) this.mainPanel.getWidth() / 2;
         
+        listaLineas = new ArrayList<>();
+        
+        // Raíz de todo el árbol
         this.mainPanel.add(rootPanel);
         rootPanel.setLocation(middle - 25, 25);
         rootPanel.setSize(50, 50);
         
+        // Añadir sub arbol (raíz) de personas
         this.mainPanel.add(userRootPanel);
         userRootPanel.setLocation(middle - 130 - 75 - 50/2 - 150/2, 150);
         userRootPanel.setSize(150, 50);
-        
-        listaLineas = new ArrayList<>();
         listaLineas.add(new Line(middle - 25, 25 + 50, middle - 130 - 50/2 - 150/2, 150));
         
+        // Añadir sub árbol (raíz) de bloques
         this.mainPanel.add(blockRootPanel);
-        blockRootPanel.setLocation(middle + 25, 100);
-        blockRootPanel.setSize(50, 50);
-                
+        blockRootPanel.setLocation(middle + 130 + 50/2 + 150/2, 150);
+        blockRootPanel.setSize(150, 50);
+        listaLineas.add(new Line(middle + 25, 25 + 50, middle + 130 + 50/2 + 150, 150));
+        
+        // Dibujar arbol de usuarios
+        listaLineas.add(new Line(middle - 130 - 75 - 50/2, 200, middle - 75 - 130 + 190 / 2, 230));
+        listaLineas.add(new Line(middle - 130 - 75 - 50/2, 200, middle - 75 - 130 - 50 - 190/2, 230));
         drawUsers(arbol.getRoot().getChildren().search(0), middle - 75 - 130, 230);
+        
+
+        // Dibujar arbol de bloques
+        drawBlocks(arbol.getRoot().getChildren().search(1), middle + 130 + 50/2 + 150,230);
         // this.validate();
         // this.repaint();
         drawLines();
@@ -113,6 +125,36 @@ public class ArbolGrafico extends javax.swing.JPanel {
         }
     }
     
+    /**
+     * 
+     * @param rootBlock
+     * @param x
+     * @param y 
+     */
+    public void drawBlocks(NodoArbol rootBlock, int x, int y) {
+        int with = 2 * 190;
+        int height = 130;
+        int padding = 50;
+        NodoArbol p = rootBlock;
+        
+        x = x - 190;
+        
+        if (rootBlock != null) {
+            System.out.println("view.arbolGrafico.ArbolGrafico.drawBlocks No es nulo");
+            
+            while (p != null) {
+                BloqueNodo bloqueNodo = new BloqueNodo((Bloque) p.getInfo());
+                this.mainPanel.add(bloqueNodo);
+                
+                bloqueNodo.setLocation(x, y);
+                bloqueNodo.setSize(with, height);
+                
+                y += 2 * height;
+                p = p.getNext();
+            }
+        }
+        
+    }
     public void drawLines() {
         Graphics canvas = this.mainPanel.getGraphics();
         
@@ -126,49 +168,29 @@ public class ArbolGrafico extends javax.swing.JPanel {
     }
     
     /*
-    if (info instanceof Persona) {
-            NodoArbol p = root.getChildren().search(0);
-            System.out.println("model.struture.Arbol.insert > insertando persona p " + p);
-            if (p.getChildren().search(0) == null) {
-                
-                p.addChild(p, info);
-                System.out.println("model.strucure.Arbol.insert > insertando persona, no hay hijo");
-                
+    
+    NodoArbol p = root.getChildren().search(1);
+        if (p.getChildren().search(0) == null) {
+            p.addChild(p, info);
+            System.out.println("completado");
+        } else {
+            if (p.getChildren().getSize() == p.getChildren().getMAX_SIZE() && p.getNext() == null) {
+                System.out.println("en el if");
+                Bloque b = (Bloque) p.getInfo();
+                int j = (Integer) b.getInfo();
+                p.setNext(new NodoArbol(p, 3, new Bloque(j++)));
+                p = p.getNext();
+                insert(root, info);
+                System.out.println(j);
+            } else if (p.getChildren().getSize() == p.getChildren().getMAX_SIZE() && p.getNext() != null) {
+                System.out.println("if 2");
+                insert(p, info);
             } else {
-                
-                if (p.getChildren().getSize() == p.getChildren().getMAX_SIZE()) {
-                    System.out.println("model.strucure.Arbol.insert > insertando persona insertar nuevo nodo");
-                    insert(p, info);
-                    
-                } else {
-                    System.out.println("model.strucure.Arbol.insert > insertando persona añadir hijo");
-                    p.addChild(p, info);
-                }
-            }        
-        } else if (info instanceof Transaccion) {
-            NodoArbol p = root.getChildren().search(1);
-            if (p.getChildren().search(0) == null) {
+                System.out.println("va por el else");
                 p.addChild(p, info);
-                System.out.println("completado");
-            } else {
-                if (p.getChildren().getSize() == p.getChildren().getMAX_SIZE() && p.getNext() == null) {
-                    System.out.println("en el if");
-                    Bloque b = (Bloque) p.getInfo();
-                    int j = (Integer) b.getInfo();
-                    p.setNext(new NodoArbol(p, 3, new Bloque(j++)));
-                    p = p.getNext();
-                    insert(root, info);
-                    System.out.println(j);
-                } else if (p.getChildren().getSize() == p.getChildren().getMAX_SIZE() && p.getNext() != null) {
-                    System.out.println("if 2");
-                    insert(p, info);
-                } else {
-                    System.out.println("va por el else");
-                    p.addChild(p, info);
-                }
             }
-
         }
+
     */
     
     @SuppressWarnings("unchecked")
@@ -180,6 +202,7 @@ public class ArbolGrafico extends javax.swing.JPanel {
         userRootPanel = new javax.swing.JPanel();
         userRootPanelLabel = new javax.swing.JLabel();
         blockRootPanel = new javax.swing.JPanel();
+        userRootPanelLabel1 = new javax.swing.JLabel();
         headerPanel = new javax.swing.JPanel();
         updateBtn = new javax.swing.JButton();
         scrollPanel = new javax.swing.JScrollPane();
@@ -200,10 +223,20 @@ public class ArbolGrafico extends javax.swing.JPanel {
 
         userRootPanelLabel.setBackground(new java.awt.Color(0, 255, 197));
         userRootPanelLabel.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        userRootPanelLabel.setForeground(new java.awt.Color(236, 0, 140));
+        userRootPanelLabel.setForeground(new java.awt.Color(27, 20, 100));
         userRootPanelLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         userRootPanelLabel.setText("Usuarios");
         userRootPanel.add(userRootPanelLabel, java.awt.BorderLayout.CENTER);
+
+        blockRootPanel.setBackground(new java.awt.Color(0, 255, 197));
+        blockRootPanel.setLayout(new java.awt.BorderLayout());
+
+        userRootPanelLabel1.setBackground(new java.awt.Color(0, 255, 197));
+        userRootPanelLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        userRootPanelLabel1.setForeground(new java.awt.Color(27, 20, 100));
+        userRootPanelLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        userRootPanelLabel1.setText("Transacciones");
+        blockRootPanel.add(userRootPanelLabel1, java.awt.BorderLayout.CENTER);
 
         setBackground(new java.awt.Color(27, 20, 100));
         addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
@@ -332,5 +365,6 @@ public class ArbolGrafico extends javax.swing.JPanel {
     private javax.swing.JButton updateBtn;
     private javax.swing.JPanel userRootPanel;
     private javax.swing.JLabel userRootPanelLabel;
+    private javax.swing.JLabel userRootPanelLabel1;
     // End of variables declaration//GEN-END:variables
 }
