@@ -148,12 +148,12 @@ public class ArbolGrafico extends javax.swing.JPanel {
                 BloqueNodo bloqueNodo = new BloqueNodo(p);
                 this.mainPanel.add(bloqueNodo);
                 
-                listaLineas.add(new Line(x + with / 2, y, x + with / 2, y + 2*height));
+                listaLineas.add(new Line(x + with / 2, y +  height, x + with / 2, (int) (y + height * 1.5)));
                 
                 bloqueNodo.setLocation(x, y);
                 bloqueNodo.setSize(with, height);
                 
-                y += 2 * height;
+                y += (int) (height * 1.5);
                 p = p.getNext();
             }
         }
