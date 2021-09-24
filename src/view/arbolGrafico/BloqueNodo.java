@@ -1,6 +1,7 @@
 
 package view.arbolGrafico;
 
+import model.structure.nodo.NodoArbol;
 import model.system.Bloque;
 import model.system.Transaccion;
 
@@ -9,14 +10,21 @@ public class BloqueNodo extends javax.swing.JPanel {
     /**
      * Creates new form BloqueNodo
      */
-    public BloqueNodo(Bloque bloque) {
+    public BloqueNodo(NodoArbol bloque) {
         initComponents();
         
+        System.out.println("view.arbolGrafico.BloqueNodo nuevo");
+        Transaccion t;
         int i = 0;
-        while (bloque != null & i < 3 && bloque.getChildren().search(i) != null) {
-            TransaccionNodo transaccionNodo = new TransaccionNodo((Transaccion) bloque.getChildren().search(i).getInfo());
-            this.add(transaccionNodo);
-            System.out.println("view.arbolGrafico.BloqueNodo pos = " + transaccionNodo.getLocation().toString());
+        while (i <= ((Bloque) bloque.getInfo()).getTransaccionesAct()) {
+            NodoArbol p = bloque.getChildren().search(i);
+            
+            if (p != null) {
+                t = (Transaccion) p.getInfo();
+                this.add(new TransaccionNodo(t));
+            }
+            i++;
+            System.out.println("view.arbolGrafico.BloqueNodo " + i);
         }
     }
 
@@ -28,6 +36,7 @@ public class BloqueNodo extends javax.swing.JPanel {
     private void initComponents() {
 
         setBackground(new java.awt.Color(236, 0, 140));
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
     }// </editor-fold>//GEN-END:initComponents
 
 

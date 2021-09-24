@@ -8,8 +8,9 @@ public class TransaccionNodo extends javax.swing.JPanel {
     
     public TransaccionNodo(Transaccion transaccion) {
         this.transaccion = transaccion;
-        dineroTxt.setText(transaccion.getMonto() + "");
-        initComponents();       
+        
+        initComponents();
+        if (transaccion != null) dineroTxt.setText(transaccion.getMonto() + "");
     }
 
     
@@ -22,8 +23,8 @@ public class TransaccionNodo extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        setMaximumSize(new java.awt.Dimension(290, 180));
-        setMinimumSize(new java.awt.Dimension(290, 180));
+        setMaximumSize(new java.awt.Dimension(200, 60));
+        setMinimumSize(new java.awt.Dimension(200, 60));
         setPreferredSize(new java.awt.Dimension(290, 180));
         setLayout(new java.awt.GridLayout(1, 2, 5, 10));
 

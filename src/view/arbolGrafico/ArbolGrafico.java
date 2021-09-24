@@ -63,6 +63,7 @@ public class ArbolGrafico extends javax.swing.JPanel {
 
         // Dibujar arbol de bloques
         drawBlocks(arbol.getRoot().getChildren().search(1), middle + 130 + 50/2 + 150,230);
+        listaLineas.add(new Line(middle + 130 + 50/2 + 150, 200, middle + 130 + 50/2 + 150, 230));        
         // this.validate();
         // this.repaint();
         drawLines();
@@ -105,8 +106,9 @@ public class ArbolGrafico extends javax.swing.JPanel {
                     personaNodo.setSize(with, height);
                     
                     if (rootUser.getChildren().search(i) != null) {
-                        listaLineas.add(new Line(x + with/2, y + height, x2 + with/2, y + 2*height));
+                        listaLineas.add(new Line(x + with / 2, y + height, x2 + with/2, y + 2*height));
                     }
+
                     System.out.println("view.arbol.ArbolGrafico.drawUser bound: x = " + (x - i * (with + padding)) + " y = " + y + padding);
                     System.out.println("view.arbol.ArbolGrafico.drawUser location: " + personaNodo.getLocation().toString());
                    
@@ -142,11 +144,11 @@ public class ArbolGrafico extends javax.swing.JPanel {
         if (rootBlock != null) {
             System.out.println("view.arbolGrafico.ArbolGrafico.drawBlocks No es nulo");
             
-            while (p != null) {
-                BloqueNodo bloqueNodo = new BloqueNodo((Bloque) p.getInfo());
+            while (p != null) {;
+                BloqueNodo bloqueNodo = new BloqueNodo(p);
                 this.mainPanel.add(bloqueNodo);
                 
-                listaLineas.add(new Line(x + with / 2, y, x, y + 2*height));
+                listaLineas.add(new Line(x + with / 2, y, x + with / 2, y + 2*height));
                 
                 bloqueNodo.setLocation(x, y);
                 bloqueNodo.setSize(with, height);
