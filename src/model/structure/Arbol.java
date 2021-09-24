@@ -169,40 +169,61 @@ public class Arbol {
         return root;
     }
 
+    /**
+     * 
+     * @param bloque
+     * @param user
+     * @param montoAcum
+     * @return 
+     */
     public float verificarMonto(NodoArbol bloque, Persona user, float montoAcum) {
         Transaccion t;
         int i = 0;
-        while (i <= ((Bloque)bloque.getInfo()).getTransaccionesAct()) {
+        
+        while (i <= ((Bloque) bloque.getInfo()).getTransaccionesAct()) {
             NodoArbol p = bloque.getChildren().search(i);
-            System.out.println(p);
+            
             if (p != null) {
                 t = (Transaccion) p.getInfo();
-                System.out.println(t);
+                System.out.println("model.structure.Arbol.verificarMonto transacción del nodo p: " + t);
+                
                 if (user.getId() == t.getRemitenteId()) {
                     montoAcum -= t.getMonto();
                 } else if (user.getId() == t.getDestinatarioId()) {
                     montoAcum += t.getMonto();
                 }
 
-                System.out.println("Monto acumulado: " + montoAcum);
-                System.out.println("Número del bloque actual: " + ((Bloque)bloque.getInfo()).getInfoBloque());
-            } 
+                System.out.println("model.structure.Arbol.verificarMonto Monto acumulado: " + montoAcum);
+                System.out.println("model.structure.Arbol.verificarMonto Número del bloque actual: " + ((Bloque)bloque.getInfo()).getInfoBloque());
+            }
             i++;
-            System.out.println("la iteración número: " + i);
+            System.out.println("lmodel.structure.Arbol.verificarMonto a iteración número: " + i);
         }
         return montoAcum;
     }
-
+    
+    /**
+     * 
+     * @param root
+     * @param id
+     * @param monto
+     * @return 
+     */
     public boolean verificarMontoRemitente(NodoArbol root, int id, float monto) {
         Persona p = this.searchUser(root.getChildren().search(0), id, 0);
         float saldo = 50000;
-        NodoArbol q = root.getChildren().search(1);
+       
+        NodoArbol q = root.getChildren().search(1); // Raíz del subarbol de personas
+        
         saldo = this.verificarMonto(q, p, saldo);
         q = q.getNext();
+    
         while (q != null) {
             saldo = this.verificarMonto(q, p, saldo);
             q = q.getNext();
         }
+        
+        System.out.println("Saldo en papel " + p.getDinero() + " vs Saldo calculado :" + saldo);
         return saldo == p.getDinero();
     }
 
@@ -259,9 +280,7 @@ public class Arbol {
         }
         return root;
     }
-
-    
-     
+ 
     public NodoArbol insertTrans(NodoArbol root, Transaccion info, int j) {
         NodoArbol p = root.getChildren().search(1);
 
@@ -269,29 +288,35 @@ public class Arbol {
             // Buscar un bloque que este disponible o llegar hasta el último
             while (p.getNext() != null && p.getChildren().getSize() == 3) {
                 p = p.getNext();
-                System.out.println("Bajando de bloque");
+                System.out.println("model.system.Bloque.insertTrans Bajando de bloque");
             }
 
             if (p.getNext() == null && p.getChildren().getSize() == 3) {
                 // No hay bloques vacios, toca crear uno
 
                 Bloque b = new Bloque(((Bloque) p.getInfo()).getInfoBloque() + 1, 3);
-
-                p.setNext(new NodoArbol(3));
-                p.getNext().setInfo(b);
-                p = p.getNext();
-
-                p.addChild(p, info);
+                                
+                // Al ultimo bloque añadirle el nuevo bloque
+                NodoArbol nodoArbol = new NodoArbol(3);
+                nodoArbol.setInfo(b);
+                p.setNext(nodoArbol);
+                
+                // Añadir esta nueva transacción al bloque
+                nodoArbol.addChild(p, info);
+                b.addChild(p, info);
                 ((Bloque) p.getInfo()).setTransaccionesAct();
-                System.out.println("transacciones actuales en el bloque: " + ((Bloque) p.getInfo()).getTransaccionesAct());
-                System.out.println("Se agregó en el bloque " + ((Bloque) p.getInfo()).getInfoBloque());
+                
+                
+                System.out.println("model.system.Bloque.insertTrans transacciones actuales en el bloque: " + ((Bloque) p.getInfo()).getTransaccionesAct());
+                System.out.println("model.system.Bloque.insertTrans Se agregó en el bloque " + ((Bloque) p.getInfo()).getInfoBloque());
 
             } else if (p.getNext() == null && p.getChildren().getSize() < 3) {
                 // Hay un bloque disponible
                 p.addChild(p, info);
+                
                 ((Bloque) p.getInfo()).setTransaccionesAct();
-                System.out.println("transacciones actuales en el bloque: " + ((Bloque) p.getInfo()).getTransaccionesAct());
-                System.out.println("Se agregó en el bloque " + ((Bloque) p.getInfo()).getInfoBloque());
+                System.out.println("model.system.Bloque.insertTrans transacciones actuales en el bloque: " + ((Bloque) p.getInfo()).getTransaccionesAct());
+                System.out.println("model.system.Bloque.insertTrans Se agregó en el bloque " + ((Bloque) p.getInfo()).getInfoBloque());
                 
                 for (int z = 0; z <= p.getChildren().getSize(); z++) {
                     System.out.println(p.getChildren().search(z));

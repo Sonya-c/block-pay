@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 import model.structure.Arbol;
 import model.structure.nodo.NodoArbol;
-import model.system.Bloque;
 import model.system.Persona;
 import model.system.Transaccion;
 import view.WelcomeView;
@@ -157,8 +156,6 @@ public class FileController {
                         Float.parseFloat(data[6]),
                         Float.parseFloat(data[7])
                 );
-//                root = arbol.insert(root, t);
-//                System.out.println(root.getChildren().search(1));
                        
                     System.out.println("root.getChildren().search(1) = " + root.getChildren().search(1));
                     root = arbol.insertTrans(root, t,0);
@@ -197,55 +194,79 @@ public class FileController {
             }
         } catch (FileNotFoundException e) {
 
-            System.out.println("El archivo no se encontró");
+            System.out.println("controller.FileController.searchInFile(File, int) El archivo no se encontró");
         }
 
         return false;
     }
 
+    /**
+     * Dado un archivo y un usuario, busca el usuario en el arvhivo
+     * @param file
+     * @param user
+     * @return 
+     */
     public boolean searchInFile(File file, String user) {
         try (Scanner sc = new Scanner(file)) {
+            
             while (sc.hasNextLine()) {
                 String linea = sc.nextLine();
                 String data[] = linea.split("#");
                 String userDataB = data[0];
+            
                 if (userDataB.equals(user)) {
                     return true;
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("controller.FileController.searchInFile El archivo no se encontró");
+            System.out.println("controller.FileController.searchInFile(File, String) El archivo no se encontró");
         }
         return false;
     }
 
-    // MARK
+    /**
+     * 
+     * @param file
+     * @param password
+     * @return 
+     */
     public boolean searchInFilePassword(File file, String password) {
         try (Scanner sc = new Scanner(file)) {
             while (sc.hasNextLine()) {
+                
                 String linea = sc.nextLine();
                 String data[] = linea.split("#");
                 String pw = data[3];
+                
                 if (pw.equals(password)) {
                     return true;
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("El archivo no se encontró");
+            System.out.println("controller.FileController.searchInFilePassword El archivo no se encontró");
         }
         return false;
     }
 
+    /**
+     * 
+     * @param file 
+     */
     public void deleteFile(File file) {
         try {
             if (file.exists()) {
                 file.delete();
             }
         } catch (Exception ex) {
-            System.out.println("Archivo no encontrado");
+            System.out.println("controller.FileController.deleteFile Archivo no encontrado");
         }
     }
 
+    /**
+     * 
+     * @param file
+     * @param line 
+     */
     public void writeFile(File file, String line) {
         try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
             //casting
@@ -259,17 +280,25 @@ public class FileController {
             }
             fw.close();
         } catch (IOException e) {
-            System.out.println("Error al cargar archivo");
+            System.out.println("controller.FileController.writeFile Error al cargar archivo");
         }
     }
     
+    /**
+     * 
+     * @param file
+     * @param user 
+     */
     public void updateDataUser(File file, Persona user){
         File newFile = new File(file.getAbsolutePath() + ".tmp");
+        
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String linea;
+        
             while ((linea = br.readLine()) != null) {
                 String data[] = linea.split("#");
                 String idUser = data[4];
+            
                 if (user.getId() == Integer.parseInt(idUser)) {
                     String userName = user.getUserName();
                     String name = user.getNames();
@@ -284,22 +313,32 @@ public class FileController {
                 }
             }
             br.close();
+            
             if (!file.delete()) {
-                System.out.println("No se pudo borrar el archivo antiguo");
+                System.out.println("controller.FileController.updateDataUser No se pudo borrar el archivo antiguo");
             }
             if (!newFile.renameTo(file)) {
-                System.out.println("No se pudo renombrar el archivo");
+                System.out.println("controller.FileController.updateDataUser No se pudo renombrar el archivo");
             }
         } catch (IOException ex) {
-            System.out.println("Archivo no encontrado");
+            System.out.println("controller.FileController.updateDataUser Archivo no encontrado");
         }
     }
 
+    /**
+     * 
+     * @param file
+     * @param cash
+     * @param user 
+     */
     public void updateCash(File file, float cash, String user) {
         File newFile = new File(file.getAbsolutePath() + ".tmp");
+        
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            System.out.println("entró");
+        
+            System.out.println("controller.FileController.updateChash entró");
             String linea;
+            
             while ((linea = br.readLine()) != null) {
                 String data[] = linea.split("#");
                 String dataUser = data[0];
@@ -318,13 +357,13 @@ public class FileController {
             }
             br.close();
             if (!file.delete()) {
-                System.out.println("No se pudo borrar el archivo antiguo");
+                System.out.println("controller.FileController.updateChash No se pudo borrar el archivo antiguo");
             }
             if (!newFile.renameTo(file)) {
-                System.out.println("No se pudo renombrar el archivo");
+                System.out.println("controller.FileController.updateChash No se pudo renombrar el archivo");
             }
         } catch (IOException ex) {
-            System.out.println("Archivo no encontrado");
+            System.out.println("controller.FileController.updateChash Archivo no encontrado");
         }
     }
 
@@ -366,6 +405,11 @@ public class FileController {
         }
     }
 
+    /**
+     * 
+     * @param file
+     * @param p 
+     */
     public void writeFile(File file, Persona p) {
         try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
             //casting
@@ -390,6 +434,12 @@ public class FileController {
         }
     }
 
+    /**
+     * 
+     * @param file
+     * @param userName
+     * @return 
+     */
     public Persona searchInFilePersona(File file, String userName) {
         Persona p;
         try (Scanner sc = new Scanner(file)) {
@@ -403,7 +453,7 @@ public class FileController {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("El archivo no se encontró");
+            System.out.println("controller.FileController.searcchInFilePersona El archivo no se encontró");
         }
         return null;
     }

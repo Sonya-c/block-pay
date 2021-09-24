@@ -5,7 +5,6 @@ import view.arbolGrafico.ArbolGrafico;
 import model.structure.Arbol;
 import controller.TransaccionController;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import model.system.Persona;
 import view.Dialog;
 
@@ -17,6 +16,11 @@ public class MainView extends javax.swing.JFrame {
     private final Persona user;
     private final JoinController joinController;
 
+    /**
+     * 
+     * @param arbol
+     * @param user 
+     */
     public MainView(Arbol arbol, Persona user) {
         initComponents();
         this.arbol = arbol;
@@ -65,27 +69,13 @@ public class MainView extends javax.swing.JFrame {
         sendUserNameTxt = new javax.swing.JTextField();
         sendMoneyLabel = new javax.swing.JLabel();
         sendMoneyTxt = new javax.swing.JSpinner();
-        sendMessangeLabel = new javax.swing.JLabel();
-        scrollMessangePanel = new javax.swing.JScrollPane();
-        sendMenssangeTxt = new javax.swing.JTextArea();
         sendTitleLabel = new javax.swing.JLabel();
         sendBtn = new javax.swing.JButton();
         arbolPanel = new javax.swing.JPanel();
-        perfilPanel = new javax.swing.JPanel();
-        signUpUserLabel = new javax.swing.JLabel();
-        signUpPasswordLabel = new javax.swing.JLabel();
-        signUpUserNameTxt = new javax.swing.JTextField();
-        signUpPasswordTxt = new javax.swing.JPasswordField();
-        changeDataBtn = new javax.swing.JButton();
-        labelName = new javax.swing.JLabel();
-        signUpLastNameTxt = new javax.swing.JTextField();
-        singUpNameTxt = new javax.swing.JTextField();
-        singUpLastNameLabel = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
         ActivityPanel = new javax.swing.JPanel();
         showArbolBtn = new javax.swing.JButton();
         showInicioBtn = new javax.swing.JButton();
-        showPerfilBtn = new javax.swing.JButton();
 
         inicioPanel.setBackground(new java.awt.Color(27, 20, 100));
         inicioPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -172,14 +162,6 @@ public class MainView extends javax.swing.JFrame {
 
         sendMoneyTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
-        sendMessangeLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        sendMessangeLabel.setText("Mensaje");
-
-        sendMenssangeTxt.setColumns(20);
-        sendMenssangeTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        sendMenssangeTxt.setRows(5);
-        scrollMessangePanel.setViewportView(sendMenssangeTxt);
-
         sendTitleLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         sendTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         sendTitleLabel.setText("Enviar Dinero");
@@ -202,25 +184,18 @@ public class MainView extends javax.swing.JFrame {
             .addGroup(sendFormPanelLayout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addGroup(sendFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(sendMessangeLabel)
                     .addComponent(sendTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(sendFormPanelLayout.createSequentialGroup()
-                        .addComponent(sendMoneyLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(sendMoneyTxt))
                     .addGroup(sendFormPanelLayout.createSequentialGroup()
                         .addComponent(sendUserNameLabel)
                         .addGap(18, 18, 18)
-                        .addComponent(sendUserNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(sendUserNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(sendFormPanelLayout.createSequentialGroup()
+                        .addComponent(sendMoneyLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(sendFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sendBtn)
+                            .addComponent(sendMoneyTxt))))
                 .addContainerGap(67, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sendFormPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(scrollMessangePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sendFormPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(sendBtn)
-                .addGap(124, 124, 124))
         );
         sendFormPanelLayout.setVerticalGroup(
             sendFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,12 +211,8 @@ public class MainView extends javax.swing.JFrame {
                     .addComponent(sendMoneyLabel)
                     .addComponent(sendMoneyTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(sendMessangeLabel)
-                .addGap(18, 18, 18)
-                .addComponent(scrollMessangePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(sendBtn)
-                .addContainerGap())
+                .addGap(155, 155, 155))
         );
 
         sendCenterPanel.add(sendFormPanel);
@@ -252,114 +223,6 @@ public class MainView extends javax.swing.JFrame {
 
         arbolPanel.setBackground(new java.awt.Color(255, 255, 255));
         arbolPanel.setLayout(new java.awt.BorderLayout());
-
-        perfilPanel.setBackground(new java.awt.Color(255, 255, 255));
-        perfilPanel.setFocusable(false);
-        perfilPanel.setPreferredSize(new java.awt.Dimension(353, 240));
-        perfilPanel.setRequestFocusEnabled(false);
-        perfilPanel.setLayout(new java.awt.GridBagLayout());
-
-        signUpUserLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        signUpUserLabel.setText("Usuario");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 68, 10, 0);
-        perfilPanel.add(signUpUserLabel, gridBagConstraints);
-
-        signUpPasswordLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        signUpPasswordLabel.setText("Contraseña");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 68, 10, 0);
-        perfilPanel.add(signUpPasswordLabel, gridBagConstraints);
-
-        signUpUserNameTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        signUpUserNameTxt.setToolTipText("Usuario");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 148;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 18, 10, 35);
-        perfilPanel.add(signUpUserNameTxt, gridBagConstraints);
-
-        signUpPasswordTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        signUpPasswordTxt.setToolTipText("Contraseña");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 148;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 18, 10, 35);
-        perfilPanel.add(signUpPasswordTxt, gridBagConstraints);
-
-        changeDataBtn.setBackground(new java.awt.Color(236, 0, 140));
-        changeDataBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        changeDataBtn.setForeground(new java.awt.Color(255, 255, 255));
-        changeDataBtn.setText("Cambiar");
-        changeDataBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        changeDataBtn.setBorderPainted(false);
-        changeDataBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        changeDataBtn.setFocusPainted(false);
-        changeDataBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changeDataBtnActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 23;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 68, 10, 0);
-        perfilPanel.add(changeDataBtn, gridBagConstraints);
-
-        labelName.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        labelName.setText("Nombres");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 68, 10, 0);
-        perfilPanel.add(labelName, gridBagConstraints);
-
-        signUpLastNameTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        signUpLastNameTxt.setToolTipText("Usuario");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 148;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 18, 10, 35);
-        perfilPanel.add(signUpLastNameTxt, gridBagConstraints);
-
-        singUpNameTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        singUpNameTxt.setToolTipText("Usuario");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 148;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 18, 10, 35);
-        perfilPanel.add(singUpNameTxt, gridBagConstraints);
-
-        singUpLastNameLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        singUpLastNameLabel.setText("Apellidos");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 68, 10, 0);
-        perfilPanel.add(singUpLastNameLabel, gridBagConstraints);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Block Pay");
@@ -407,21 +270,6 @@ public class MainView extends javax.swing.JFrame {
         });
         ActivityPanel.add(showInicioBtn);
 
-        showPerfilBtn.setBackground(new java.awt.Color(42, 35, 115));
-        showPerfilBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        showPerfilBtn.setForeground(new java.awt.Color(255, 255, 255));
-        showPerfilBtn.setText("Perfil");
-        showPerfilBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        showPerfilBtn.setBorderPainted(false);
-        showPerfilBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        showPerfilBtn.setFocusPainted(false);
-        showPerfilBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showPerfilBtnActionPerformed(evt);
-            }
-        });
-        ActivityPanel.add(showPerfilBtn);
-
         getContentPane().add(ActivityPanel, java.awt.BorderLayout.PAGE_END);
 
         pack();
@@ -445,27 +293,19 @@ public class MainView extends javax.swing.JFrame {
         this.repaint();
     }//GEN-LAST:event_showInicioBtnActionPerformed
 
-    private void showPerfilBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPerfilBtnActionPerformed
-        this.mainPanel.removeAll();
-        this.mainPanel.add(this.perfilPanel);
-        this.setTitle("Block Pay | Perfil");
-        this.revalidate();
-        this.repaint();
-    }//GEN-LAST:event_showPerfilBtnActionPerformed
-
     private void sendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBtnActionPerformed
         System.out.println("view.main.MainView.sendBtn root " + this.arbol.getRoot().getInfo());
         Dialog dialog = new Dialog();
-        
+
         float monto = Float.parseFloat(String.valueOf(this.sendMoneyTxt.getValue()));
-        
+
         if (!sendUserNameTxt.getText().isEmpty()) {
-                    
+
             if (monto >= 50) {
                 System.out.println("view.main.MainView.sendBtn root " + this.arbol.getRoot().getInfo());
-            
+
                 Persona persona = this.arbol.searchUser(this.arbol.getRoot().getChildren().search(0), sendUserNameTxt.getText(), 0);
-                
+
                 if (persona != null) {
                     int id = persona.getId();
                     this.transaccionController.transaccion(Integer.parseInt(this.idTxt.getText()), id, monto, this.moneyVisual);
@@ -474,72 +314,34 @@ public class MainView extends javax.swing.JFrame {
                 } else {
                     dialog.setMessage("No se encontro a este usuario");
                 }
-            
+
             } else {
                 dialog.setMessage("Debe envíar una cantidad de dinero mayor a $50");
             }
-            
+
         } else {
             dialog.setMessage("Campo usuario no puede estar vacío");
         }
     }//GEN-LAST:event_sendBtnActionPerformed
 
-    private void changeDataBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeDataBtnActionPerformed
-        String names = singUpNameTxt.getText().trim();
-        String lastNames = signUpLastNameTxt.getText().trim();
-        String user = signUpUserNameTxt.getText().trim();
-        String password = signUpPasswordTxt.getText().trim();
-
-        // Enviamos con los espacios en blanco removidos
-        singUpNameTxt.setText(names);
-        signUpLastNameTxt.setText(lastNames);
-        signUpUserNameTxt.setText(user);
-        signUpPasswordTxt.setText(password);
-
-        Dialog dialog = new Dialog();
-
-        if (names.isEmpty() || lastNames.isEmpty() || user.isEmpty() || password.isEmpty()) {
-            dialog.setMessage("No puede haber campos vacios");
-
-        } else {
-
-            if (user.contains(" ") || user.contains("#")) {
-                dialog.setMessage("El nombre de usuario no puede contener espacio en blanco o #.");
-
-            } else if (password.length() < 7) {
-                dialog.setMessage("La contraseña debe tener más de 7 o más caracteres");
-
-            }else {
-                
-                // joinController.signUp(user,names,lastNames, password);
-            }
-        }
-    }//GEN-LAST:event_changeDataBtnActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ActivityPanel;
     private javax.swing.JPanel arbolPanel;
     private javax.swing.JLabel avilableLabel;
-    private javax.swing.JButton changeDataBtn;
     private javax.swing.JPanel fistPanel;
     private javax.swing.JLabel idLabel;
     private javax.swing.JLabel idTxt;
     private javax.swing.JPanel inicioPanel;
-    private javax.swing.JLabel labelName;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel moneyLabel;
     private javax.swing.JPanel moneyPanel;
     private javax.swing.JLabel moneyVisual;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel namesTxt;
-    public javax.swing.JPanel perfilPanel;
-    private javax.swing.JScrollPane scrollMessangePanel;
     private javax.swing.JScrollPane scrollPanel;
     private javax.swing.JButton sendBtn;
     private javax.swing.JPanel sendCenterPanel;
     private javax.swing.JPanel sendFormPanel;
-    private javax.swing.JTextArea sendMenssangeTxt;
-    private javax.swing.JLabel sendMessangeLabel;
     private javax.swing.JLabel sendMoneyLabel;
     private javax.swing.JSpinner sendMoneyTxt;
     private javax.swing.JLabel sendTitleLabel;
@@ -547,13 +349,5 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JTextField sendUserNameTxt;
     private javax.swing.JButton showArbolBtn;
     private javax.swing.JButton showInicioBtn;
-    private javax.swing.JButton showPerfilBtn;
-    private javax.swing.JTextField signUpLastNameTxt;
-    private javax.swing.JLabel signUpPasswordLabel;
-    private javax.swing.JPasswordField signUpPasswordTxt;
-    private javax.swing.JLabel signUpUserLabel;
-    private javax.swing.JTextField signUpUserNameTxt;
-    private javax.swing.JLabel singUpLastNameLabel;
-    private javax.swing.JTextField singUpNameTxt;
     // End of variables declaration//GEN-END:variables
 }

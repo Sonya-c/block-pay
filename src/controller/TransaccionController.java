@@ -68,7 +68,7 @@ public class TransaccionController {
                 }
             }
         } else {
-            System.out.println("Su dinero actual no concuerda con las transacciones realizadas");
+            dialog.setMessage("Su dinero actual no concuerda con las transacciones realizadas");
         }
         return -1;
     }

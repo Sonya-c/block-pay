@@ -11,13 +11,15 @@ import view.main.MainView;
 public class JoinController {
 
     private Arbol arbol;
-
     private boolean joined = false;
-
     private JoinView joinView;
     private MainView mainView;
     private FileController registro;
 
+    /**
+     * 
+     * @param arbol 
+     */
     public JoinController(Arbol arbol) {
         this.arbol = arbol;
         this.joinView = new JoinView(this);
@@ -113,8 +115,6 @@ public class JoinController {
             Persona userFijo = arbol.searchUser(arbol.getRoot().getChildren().search(0), 0, 0);
             userFijo.setDinero(userFijo.getDinero() - 50000);
             registro.updateCash(f, userFijo.getDinero(), "userFijo");
-//            arbol.searchUser(arbol.getRoot().getChildren().search(0), arbol.searchUser(arbol.getRoot().getChildren().search(0), "userFijo", 0), -50000, 0);
-
             this.setJoined(true, p);
         }
     }
