@@ -61,7 +61,6 @@ public class TransaccionController {
                     Transaccion t = new Transaccion(ID, remitenteID, destinatarioID, monto, remitenteAntes, remitenteDespues, destinatarioAntes, destinatarioDespues);
                     registro.writeFile(f, t);
                     arbol.insertTrans(arbol.getRoot(), t, 0);
-//                    arbol.insert(arbol.getRoot().getChildren().search(1), t);
                     moneyVisual.setText(String.valueOf(remitenteDespues));
                     dialog.setMessage("Transacción exitosa");
                 } else {

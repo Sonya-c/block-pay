@@ -12,31 +12,34 @@ import model.structure.nodo.NodoArbol;
  *
  * @author 57301
  */
-public class Bloque extends NodoArbol{
+public class Bloque extends NodoArbol {
 
     private final int TRANSACCIONES_MAXIMAS;
     private int transaccionesAct;
     private final int info;
+
     public Bloque(int numBloque, int maxChild) {
+        super(maxChild);
         this.TRANSACCIONES_MAXIMAS = 3;
         this.transaccionesAct = 0;
         this.info = numBloque;
+
     }
 
     @Override
     public Lista getChildren() {
         return children;
     }
-    
+
     @Override
     public Object getInfo() {
         return info;
     }
-    
-    public int getInfoBloque(){
+
+    public int getInfoBloque() {
         return info;
     }
-    
+
     public int getTRANSACCIONES_MAXIMAS() {
         return TRANSACCIONES_MAXIMAS;
     }
@@ -46,7 +49,7 @@ public class Bloque extends NodoArbol{
     }
 
     public void setTransaccionesAct() {
-        this.transaccionesAct ++;
+        this.transaccionesAct++;
     }
 
     @Override
@@ -69,21 +72,19 @@ public class Bloque extends NodoArbol{
         this.next = next;
     }
 
-    
-    
     /**
      *
      * @param b
      * @param info
      */
     @Override
-    public void addChild(NodoArbol b, Object info){
-        if (this.confAvaibleTrans(b)){
-            this.children.add(info,b);
+    public void addChild(NodoArbol b, Object info) {
+        if (this.confAvaibleTrans(b)) {
+            this.children.add(info, b);
             this.setTransaccionesAct();
-        } 
+        }
     }
-    
+
     public boolean confAvaibleTrans(NodoArbol b) {
         return this.transaccionesAct != 3;
     }

@@ -112,10 +112,39 @@ public class JoinController {
             arbol.insertPersona(arbol.getRoot(), p);
             Persona userFijo = arbol.searchUser(arbol.getRoot().getChildren().search(0), 0, 0);
             userFijo.setDinero(userFijo.getDinero() - 50000);
-            registro.updateCash(f,userFijo.getDinero(), "userFijo");
+            registro.updateCash(f, userFijo.getDinero(), "userFijo");
 //            arbol.searchUser(arbol.getRoot().getChildren().search(0), arbol.searchUser(arbol.getRoot().getChildren().search(0), "userFijo", 0), -50000, 0);
 
             this.setJoined(true, p);
         }
     }
+
+    public void modifyDataUser(String userName, String names, String lastNames, String password, Persona userAct) {
+//        Dialog dialog = new Dialog();
+//        NodoArbol root = arbol.getRoot();
+//
+//        NodoArbol rootUser = root.getChildren().search(0);
+//        System.out.println("controller.JoinCotronller.login root usuarios" + root != null ? root.getInfo() : "null");
+//
+//        if (userAct.getUserName().equals(userName) && names.equals(userAct.getNames()) && password.equals(userAct.getPassword())
+//                && lastNames.equals(userAct.getLastNames())) {
+//            dialog.setMessage("Los datos suministrados son iguales a los datos actuales. \n No hubo cambio en la información.");
+//        } else {
+//            Persona user = arbol.searchUser(rootUser, userName, 0);
+//            System.out.println("controller.JoinCotronller.login user : " + user);
+//            if (user != null) {
+//                dialog.setMessage("Este usuario ya existe.");
+//            } else {
+//                File f = new File("C:\\Block-Pay\\registrosUsuarios.txt");
+//                registro.searchOrCreateFile(f, "registrosUsuarios.txt");
+//                userAct = new Persona (userName, names, lastNames, userAct.getId(), userAct.getDinero(), password);
+//                arbol.searchUser(root.getChildren().search(0),userAct);
+//                registro.writeFile(f, userAct);
+////            arbol.searchUser(arbol.getRoot().getChildren().search(0), arbol.searchUser(arbol.getRoot().getChildren().search(0), "userFijo", 0), -50000, 0);
+//
+//            }
+//        }
+//    }
 }
+}
+

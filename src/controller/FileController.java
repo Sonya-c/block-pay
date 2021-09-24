@@ -262,6 +262,38 @@ public class FileController {
             System.out.println("Error al cargar archivo");
         }
     }
+    
+    public void updateDataUser(File file, Persona user){
+        File newFile = new File(file.getAbsolutePath() + ".tmp");
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String data[] = linea.split("#");
+                String idUser = data[4];
+                if (user.getId() == Integer.parseInt(idUser)) {
+                    String userName = user.getUserName();
+                    String name = user.getNames();
+                    String lastName = user.getLastNames();
+                    String pw = user.getPassword();
+                    String iD = idUser;
+                    String cash_ = String.valueOf(user.getDinero());
+                    String line = userName + "#" + name + "#" + lastName + "#" + pw + "#" + iD + "#" + cash_;
+                    this.writeFile(newFile, line);
+                } else {
+                    this.writeFile(newFile, linea);
+                }
+            }
+            br.close();
+            if (!file.delete()) {
+                System.out.println("No se pudo borrar el archivo antiguo");
+            }
+            if (!newFile.renameTo(file)) {
+                System.out.println("No se pudo renombrar el archivo");
+            }
+        } catch (IOException ex) {
+            System.out.println("Archivo no encontrado");
+        }
+    }
 
     public void updateCash(File file, float cash, String user) {
         File newFile = new File(file.getAbsolutePath() + ".tmp");

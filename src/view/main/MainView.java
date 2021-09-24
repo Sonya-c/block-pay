@@ -1,5 +1,6 @@
 package view.main;
 
+import controller.JoinController;
 import view.arbolGrafico.ArbolGrafico;
 import model.structure.Arbol;
 import controller.TransaccionController;
@@ -14,6 +15,7 @@ public class MainView extends javax.swing.JFrame {
     private final ArbolGrafico arbolGrafico;
     private final TransaccionController transaccionController;
     private final Persona user;
+    private final JoinController joinController;
 
     public MainView(Arbol arbol, Persona user) {
         initComponents();
@@ -21,7 +23,8 @@ public class MainView extends javax.swing.JFrame {
         this.user = user;
         this.transaccionController = new TransaccionController(arbol);
         this.arbolGrafico = new ArbolGrafico(arbol);
-
+        this.joinController = new JoinController(arbol);
+        
         // Añadir los paneles externos
         this.arbolPanel.add(this.arbolGrafico);
         this.mainPanel.add(this.inicioPanel);
@@ -503,10 +506,11 @@ public class MainView extends javax.swing.JFrame {
             if (user.contains(" ") || user.contains("#")) {
                 dialog.setMessage("El nombre de usuario no puede contener espacio en blanco o #.");
 
-            } else if (password.length() < 10) {
-                dialog.setMessage("La contraseña debe tener más de 10 o más caracteres");
+            } else if (password.length() < 7) {
+                dialog.setMessage("La contraseña debe tener más de 7 o más caracteres");
 
             }else {
+                
                 // joinController.signUp(user,names,lastNames, password);
             }
         }

@@ -140,28 +140,29 @@ public class Arbol {
         return info;
     }
 
-    public NodoArbol searchUser(NodoArbol root, Persona user, float newInfo, int i) {
-        if (root.getInfo() != null) {
-            System.out.println("hola");
-            Persona info = (Persona) root.getInfo();
-            if (confirmation(info, user)) {
-                System.out.println("ya");
-                modifyInfo(root, newInfo);
-                return root;
+    public NodoArbol searchUser(NodoArbol root, Persona user, Persona newInfo, int i) {
+        Persona info;
+        if (root != null && root.getInfo() != null) {
+            info = (Persona) root.getInfo();
+            System.out.println("model.structure.Arbol.searchUser: root info <> null; info (user name) = " + info.getUserName());
+
+            if (confirmation(info.getUserName(), user.getUserName())) {
+                System.out.println("model.structure.Arbol.searchUser: es el usuario");
+                root.setInfo(newInfo);
             } else {
-                if (root.getChildren() != null) {
-                    NodoArbol q = root.getChildren().search(0);
-                    info = (Persona) q.getInfo();
-                    while (i <= 3) {
-                        System.out.println(i);
-                        q = root.getChildren().search(i++);
-                        info = (Persona) q.getInfo();
-                        if (confirmation(info, user)) {
-                            modifyInfo(q, newInfo);
-                            return q;
+
+                while (root.getChildren() != null && i <= root.getChildren().getSize()) {
+                    System.out.println("model.structure.Arbol.searchUser: i = " + i);
+                    NodoArbol nodo = root.getChildren().search(i);
+
+                    if (nodo != null) {
+                        info = (Persona) nodo.getInfo();
+
+                        if (confirmation(info.getUserName(), user.getUserName())) {
+                            nodo.setInfo(newInfo);
                         }
                     }
-                    root = searchUser(root.getChildren().search(0), user, newInfo, 0);
+                    i++;
                 }
             }
         }
@@ -173,6 +174,7 @@ public class Arbol {
         int i = 0;
         while (i <= ((Bloque)bloque.getInfo()).getTransaccionesAct()) {
             NodoArbol p = bloque.getChildren().search(i);
+            System.out.println(p);
             if (p != null) {
                 t = (Transaccion) p.getInfo();
                 System.out.println(t);
@@ -220,7 +222,7 @@ public class Arbol {
             root = p;
             System.out.println("root: " + root.getInfo());
             root.addChild(root, new Persona("userFijo", "First", "User", 00000, 100000000, "***"));
-            root.addChild(root, new Bloque(1, 3));
+            root.addChild(root, new Bloque(1,3));
         }
         return root;
     }
@@ -258,14 +260,10 @@ public class Arbol {
         return root;
     }
 
+    
+     
     public NodoArbol insertTrans(NodoArbol root, Transaccion info, int j) {
-        NodoArbol p;
-
-        if (j == 0) {
-            p = root.getChildren().search(1);
-        } else {
-            p = root;
-        }
+        NodoArbol p = root.getChildren().search(1);
 
         if (p.getInfo() instanceof Bloque) {
             // Buscar un bloque que este disponible o llegar hasta el último
@@ -286,18 +284,19 @@ public class Arbol {
                 p.addChild(p, info);
                 ((Bloque) p.getInfo()).setTransaccionesAct();
                 System.out.println("transacciones actuales en el bloque: " + ((Bloque) p.getInfo()).getTransaccionesAct());
-                System.out.println("Info almacenada en hijo " + p.getChildren().search(0).getInfo());
                 System.out.println("Se agregó en el bloque " + ((Bloque) p.getInfo()).getInfoBloque());
 
             } else if (p.getNext() == null && p.getChildren().getSize() < 3) {
                 // Hay un bloque disponible
-
                 p.addChild(p, info);
                 ((Bloque) p.getInfo()).setTransaccionesAct();
                 System.out.println("transacciones actuales en el bloque: " + ((Bloque) p.getInfo()).getTransaccionesAct());
-//                System.out.println("Info almacenada en hijo " + p.getChildren().search(0).getInfo());
-//                System.out.println("Info almacenada en hijo " + p.getChildren().search(1).getInfo());
                 System.out.println("Se agregó en el bloque " + ((Bloque) p.getInfo()).getInfoBloque());
+                
+                for (int z = 0; z <= p.getChildren().getSize(); z++) {
+                    System.out.println(p.getChildren().search(z));
+                }
+                
             }
         }
 
