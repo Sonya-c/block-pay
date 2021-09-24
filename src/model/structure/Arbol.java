@@ -33,30 +33,7 @@ public class Arbol {
     public void setRoot(NodoArbol root) {
         this.root = root;
     }
-
-//    /**
-//     * Compara si la información de una persona es la misma
-//     *
-//     * @param nodo
-//     * @param info
-//     * @return
-//     */
-//    public boolean compareInfoInArbol(NodoArbol nodo, Object info) {
-//        if (nodo.getInfo() == null) {
-//            return true;
-//        } else if (info instanceof Persona) {
-//
-//            Persona infoNodo = (Persona) nodo.getInfo();
-//            infoNodo = (Persona) infoNodo;
-//            Persona infoObj = (Persona) info;
-//
-//            return infoNodo.getUserName().equals(infoObj.getUserName()) && infoNodo.getNames().equals(infoObj.getUserName())
-//                    && infoNodo.getLastNames().equals(infoObj.getLastNames()) && infoNodo.getId() == infoObj.getId()
-//                    && infoNodo.getDinero() == infoObj.getDinero();
-//        }
-//        return false;
-//    }
-
+    
     public boolean confirmation(Persona info1, Persona info2) {
         return info1.getUserName().equals(info2.getUserName());
     }
@@ -249,7 +226,7 @@ public class Arbol {
     }
 
     /**
-     * Inserta un nodo
+     * Inserta un nodo en el sub árbol de personas
      *
      * @param root
      * @param info
@@ -281,17 +258,26 @@ public class Arbol {
         return root;
     }
  
+    
+     /**
+     * Inserta un nodo en el sub árbol de bloques 
+     *
+     * @param root
+     * @param info
+     * @param j
+     * @return
+     */
     public NodoArbol insertTrans(NodoArbol root, Transaccion info, int j) {
         NodoArbol p = root.getChildren().search(1);
 
         if (p.getInfo() instanceof Bloque) {
             // Buscar un bloque que este disponible o llegar hasta el último
-            while (p.getNext() != null && p.getChildren().getSize() == 3) {
+            while (p.getNext() != null && p.getChildren().getSize() == p.getChildren().getMAX_SIZE()) {
                 p = p.getNext();
                 System.out.println("model.system.Bloque.insertTrans Bajando de bloque");
             }
 
-            if (p.getNext() == null && p.getChildren().getSize() == 3) {
+            if (p.getNext() == null && p.getChildren().getSize() == p.getChildren().getMAX_SIZE()) {
                 // No hay bloques vacios, toca crear uno
 
                 Bloque b = new Bloque(((Bloque) p.getInfo()).getInfoBloque() + 1, 3);
@@ -302,23 +288,24 @@ public class Arbol {
                 p.setNext(nodoArbol);
                 
                 // Añadir esta nueva transacción al bloque
-                nodoArbol.addChild(p, info);
-                b.addChild(p, info);
+                nodoArbol.addChild(nodoArbol, info);
+//                b.addChild(p, info);
                 ((Bloque) p.getInfo()).setTransaccionesAct();
                 
                 
                 System.out.println("model.system.Bloque.insertTrans transacciones actuales en el bloque: " + ((Bloque) p.getInfo()).getTransaccionesAct());
                 System.out.println("model.system.Bloque.insertTrans Se agregó en el bloque " + ((Bloque) p.getInfo()).getInfoBloque());
 
-            } else if (p.getNext() == null && p.getChildren().getSize() < 3) {
+            } else if (p.getNext() == null && p.getChildren().getSize() < p.getChildren().getMAX_SIZE()) {
                 // Hay un bloque disponible
+                
                 p.addChild(p, info);
                 
                 ((Bloque) p.getInfo()).setTransaccionesAct();
                 System.out.println("model.system.Bloque.insertTrans transacciones actuales en el bloque: " + ((Bloque) p.getInfo()).getTransaccionesAct());
                 System.out.println("model.system.Bloque.insertTrans Se agregó en el bloque " + ((Bloque) p.getInfo()).getInfoBloque());
                 
-                for (int z = 0; z <= p.getChildren().getSize(); z++) {
+                for (int z = 0; z < p.getChildren().getSize(); z++) {
                     System.out.println(p.getChildren().search(z));
                 }
                 

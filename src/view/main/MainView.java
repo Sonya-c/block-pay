@@ -50,7 +50,6 @@ public class MainView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         inicioPanel = new javax.swing.JPanel();
         fistPanel = new javax.swing.JPanel();
@@ -182,37 +181,38 @@ public class MainView extends javax.swing.JFrame {
         sendFormPanelLayout.setHorizontalGroup(
             sendFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sendFormPanelLayout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(sendFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(sendTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(sendFormPanelLayout.createSequentialGroup()
-                        .addComponent(sendUserNameLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(sendUserNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(sendFormPanelLayout.createSequentialGroup()
-                        .addComponent(sendMoneyLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(sendFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, sendFormPanelLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(sendTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, sendFormPanelLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
                         .addGroup(sendFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sendMoneyLabel)
+                            .addComponent(sendUserNameLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(sendFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sendUserNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(sendBtn)
                             .addComponent(sendMoneyTxt))))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addGap(68, 68, 68))
         );
         sendFormPanelLayout.setVerticalGroup(
             sendFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sendFormPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(sendTitleLabel)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addGroup(sendFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sendUserNameLabel)
                     .addComponent(sendUserNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addGroup(sendFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sendMoneyLabel)
-                    .addComponent(sendMoneyTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(sendMoneyTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sendMoneyLabel))
+                .addGap(50, 50, 50)
                 .addComponent(sendBtn)
-                .addGap(155, 155, 155))
+                .addGap(60, 60, 60))
         );
 
         sendCenterPanel.add(sendFormPanel);
