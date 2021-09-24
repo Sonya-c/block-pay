@@ -36,7 +36,8 @@ public class BloqueNodo extends javax.swing.JPanel {
     private void initComponents() {
 
         setBackground(new java.awt.Color(236, 0, 140));
-        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
     }// </editor-fold>//GEN-END:initComponents
 
 

@@ -134,12 +134,12 @@ public class ArbolGrafico extends javax.swing.JPanel {
      * @param y 
      */
     public void drawBlocks(NodoArbol rootBlock, int x, int y) {
-        int with = 2 * 190;
-        int height = 130;
+        int with = 250;
+        int height = 3 * (60 + 10);
         int padding = 50;
         NodoArbol p = rootBlock;
         
-        x = x - 190;
+        x = x - with / 2;
         
         if (rootBlock != null) {
             System.out.println("view.arbolGrafico.ArbolGrafico.drawBlocks No es nulo");
