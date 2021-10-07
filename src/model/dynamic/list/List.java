@@ -19,11 +19,14 @@ public class List <T> implements  Iterable<T> {
     
     public void add(T info) {
         ListNode<T> node = new ListNode<>(info);
-        if (this.head == null)
-            this.head = this.tail = node;
-        else {
-            tail.setNext(node);
-            tail = node;
+        if (size < MAX_SIZE) {
+            if (this.head == null)
+                this.head = this.tail = node;
+            else {
+                tail.setNext(node);
+                tail = node;
+            }
+            size++;
         }
     }
     
@@ -37,5 +40,18 @@ public class List <T> implements  Iterable<T> {
     public ListNode<T> getHead() {
         return this.head;
     }
+    
+    public ListNode<T> getTail() {
+        return this.tail;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+    
     
 }

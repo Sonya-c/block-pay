@@ -6,6 +6,7 @@ import view.LoginView;
  */
 public class App {
     
+    
     /**
      * 
      * @param args 
