@@ -8,8 +8,9 @@ package model.dynamic.list;
 /**
  *
  * @author sonya
+ * @param <T>
  */
-public class ListNode<T> {
+public class ListNode<T> extends List<T>{
     private ListNode<T> next;
     private ListNode<T> prev;
     private T info;

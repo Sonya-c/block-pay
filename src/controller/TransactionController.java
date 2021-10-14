@@ -11,7 +11,7 @@ import model.system.Transaction;
  * @author sonya
  */
 public class TransactionController {
-    List<Block> blockList;
+    private List<Block> blockList;
     
     public TransactionController() {
         this.blockList = new List<Block>(3);
@@ -95,5 +95,11 @@ public class TransactionController {
         
         return 1;
     }
+
+    public List<Block> getBlockList() {
+        return blockList;
+    }
+    
+    
     
 }
