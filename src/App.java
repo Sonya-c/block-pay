@@ -1,5 +1,6 @@
+import model.dynamic.list.ListNode;
 import model.system.Account;
-import model.system.Graph;
+import model.structure.graph.Graph;
 import view.LoginView;
 
 /**
@@ -20,8 +21,12 @@ public class App {
         for (Object object : g.getMainNode()) {
             System.out.println(object.toString());
         }
-g.getMainNode();
-        
+        ListNode l = g.getMainNode().getNode("Usuarios");
+        while(l != null){
+            System.out.println(l.getInfo());
+            l = l.getDown();
+            System.out.println(l);
+        }
         LoginView loginView = new LoginView();
         loginView.setVisible(true);
     }

@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.system;
+package model.structure.graph;
 
 import controller.TransactionController;
 import model.dynamic.list.List;
 import model.dynamic.list.ListNode;
+import model.system.Account;
+import model.system.Block;
+import model.system.Transaction;
 
 /**
  *
@@ -32,21 +35,21 @@ public class Graph {
 
     public void addNodeUser(Account account) {
         listUsers = mainNode.getNode("Usuarios");
-
+        listUsers.add(account);
         while (listUsers != null) {
-            listUsers = listUsers.getNext();
+            listUsers = listUsers.getDown();
         }
 
         if (listUsers == null) {
+            mainNode.getNode("Usuarios").add(account);
             listUsers = new ListNode(account);
-            listUsers.setPrev(listUsers.getPrev());
-            listUsers.setNext(null);
-            System.out.println("model.system.Graph.addNodoUser(Account) MENSAJE: inserción realizada");
+            listUsers.setDown(null);
+            System.out.println("model.structure.Graph.addNodoUser(Account) MENSAJE: inserción realizada");
         } else {
-            System.out.println("model.system.Graph.addNodoUser(Account) ERROR: no hubo inserción");
+            System.out.println("model.structure.Graph.addNodoUser(Account) ERROR: no hubo inserción");
         }
 
-        mainNode.getNode("Usuarios").add(listUsers);
+       // mainNode.getNode("Usuarios").add(listUsers);
     }
 
     public void addNodeTrans(Transaction transaction) {
