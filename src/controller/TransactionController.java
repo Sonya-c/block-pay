@@ -14,7 +14,7 @@ public class TransactionController {
     List<Block> blockList;
     
     public TransactionController() {
-        this.blockList = new List<Block>();
+        this.blockList = new List<Block>(3);
     }
     
     /**
@@ -32,11 +32,11 @@ public class TransactionController {
      * @return 
      */
     public boolean verifyTransaction(Transaction transaction) {
-        double money = 0; // IMPORTANT: ¿Qué dinero inicial vamos a dar?
+        double money = 50000; // IMPORTANT: ¿Qué dinero inicial vamos a dar? - 50k, para mantener la idea del pasado.
         
         /*
          * Verify that the money of the remitent makes sense
-         * move fromm all block and all transacctions
+         * move from all block and all transacctions
          * seach the transacction that has as remitent or as destinatary the trasaction remitent wallet
          * add or rest money
          * if the calculateed money is the same, do the transaction. Else, kill the wallet [insert evil laugh]

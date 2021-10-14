@@ -9,7 +9,7 @@ package model.system;
  * A account can have multiples wallets
  */
 public class Account {
-    private final int ID;
+    private final String ID;
     private String userName;
     private String password;
     
@@ -20,7 +20,7 @@ public class Account {
      * @param userName
      * @param password 
      */
-    public Account(int ID, String userName, String password) {
+    public Account(String ID, String userName, String password) {
         this.ID = ID;
         this.userName = userName;
         this.password = password;
@@ -28,7 +28,7 @@ public class Account {
 
     /* ======= GETTERS AND SETTERS =======*/
     
-    public int getID() {
+    public String getID() {
         return ID;
     }
 

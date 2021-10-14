@@ -106,7 +106,7 @@ public class MainView extends javax.swing.JFrame {
 
         walletsBtn.setBackground(new java.awt.Color(255, 255, 255));
         walletsBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        walletsBtn.setText("Cateras");
+        walletsBtn.setText("Carteras");
         walletsBtn.setToolTipText("Wallets");
         walletsBtn.setAlignmentY(0.0F);
         walletsBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 5, true));
