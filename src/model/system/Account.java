@@ -12,20 +12,18 @@ public class Account {
     private final String ID;
     private String userName;
     private String password;
-    private final String ID_WALLET;
+    
     /**
      * Create a new account 
      * 
      * @param ID
      * @param userName
      * @param password 
-     * @param ID_WALLET 
      */
-    public Account(String ID, String userName, String password, String ID_WALLET) {
+    public Account(String ID, String userName, String password) {
         this.ID = ID;
         this.userName = userName;
         this.password = password;
-        this.ID_WALLET = ID_WALLET;
     }
 
     /* ======= GETTERS AND SETTERS =======*/
@@ -49,9 +47,4 @@ public class Account {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public String getID_WALLET() {
-        return ID_WALLET;
-    }
-    
 }

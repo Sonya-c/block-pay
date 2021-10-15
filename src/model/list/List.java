@@ -11,7 +11,7 @@ public class List<T> implements Iterable<T> {
     private final int MAX_SIZE;
 
     public List() {
-        this.MAX_SIZE = -1;
+        this.MAX_SIZE = Integer.MAX_VALUE;
     }
 
     public List(int MAX_SIZE) {
@@ -22,14 +22,17 @@ public class List<T> implements Iterable<T> {
         ListNode<T> node = new ListNode<>(info);
         if (size < MAX_SIZE) {
             if (this.head == null) {
-                this.head = this.tail = node;
+                this.head = node;
+                this.tail = node;
             } else {
                 tail.setNext(node);
                 node.setPrev(tail);
-                tail = node;
                 
+                tail = node;   
             }
+            
             size++;
+            System.out.println(List.class.getName() + " MENSAJE size" + size);
         }
     }
 

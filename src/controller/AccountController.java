@@ -8,9 +8,20 @@ public class AccountController {
     private final List<Account> accountList;
     
     public AccountController() {
-        this.accountList = new List<>();
+        this.accountList = FileController.loadAccount();
+        createEva();
     }
     
+    public AccountController(List<Account> accountList) {
+        this.accountList = accountList;
+        createEva();
+    }
+    
+    private void createEva() {
+        if (accountList.getSize() == 0) {
+            accountList.add(new Account("0", "user0", "password0"));
+        }
+    }
     /**
      * 
      * @param username
@@ -19,9 +30,9 @@ public class AccountController {
      */
     public boolean verifyPassword(String username, String password) {
         for (Account account : accountList) {
-            if (account.getUserName() == null ? username == null : account.getUserName().equals(username)) {
+            if ((account.getUserName().trim()).equals(username.trim())) {
                 
-                if (account.getPassword() == null ? password == null : account.getPassword().equals(password)) {
+                if ((account.getPassword().trim()).equals(password.trim())) {
                     return true;
                 } else {
                     System.out.println("controller.AccountController.verifyPassword(username, password) ERROR contraseña incorrecta");
@@ -30,6 +41,7 @@ public class AccountController {
             
             }
         }
+        
         
         System.out.println("controller.AccountController.verifyPassword(username, password) ERROR Usuario no encontrado");
         return false;
@@ -56,5 +68,9 @@ public class AccountController {
      */
     public void addAccount(Account account) {
        this.accountList.add(account);
+    }
+
+    public List<Account> getAccountList() {
+        return accountList;
     }
 }
