@@ -14,7 +14,7 @@ public class TransactionController {
     private List<Block> blockList;
     
     public TransactionController() {
-        this.blockList = new List<Block>(3);
+        this.blockList = FileController.loadBlock(this);
     }
     
     /**
