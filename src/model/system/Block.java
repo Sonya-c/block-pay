@@ -1,7 +1,7 @@
 
 package model.system;
 
-import model.dynamic.list.List;
+import model.list.List;
 
 public class Block {
     private List<Transaction> transactions;

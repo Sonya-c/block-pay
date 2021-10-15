@@ -1,4 +1,4 @@
-package model.dynamic.list;
+package model.list;
 
 import java.util.Iterator;
 

@@ -2,7 +2,7 @@ package view;
 
 import model.system.Account;
 import view.mainViews.*;
-import model.dynamic.list.List;
+import model.list.List;
 
 /**
  *

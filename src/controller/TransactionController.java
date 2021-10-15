@@ -1,7 +1,7 @@
 package controller;
 
-import model.dynamic.list.List;
-import model.dynamic.list.ListNode;
+import model.list.List;
+import model.list.ListNode;
 import model.system.Block;
 import model.system.Transaction;
 
