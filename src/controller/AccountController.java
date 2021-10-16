@@ -1,31 +1,48 @@
 package controller;
 
+import java.util.Date;
 import model.list.List;
-import model.list.ListNode;
 import model.system.Account;
+import model.system.Eva;
+import model.system.Transaction;
 import model.system.Wallet;
 
 public class AccountController {
 
     private final List<Account> accountList;
-
-    public AccountController() {
-        this.accountList = FileController.loadAccount();
-        createEva();
-    }
-
-    public AccountController(List<Account> accountList) {
+    private final TransactionController transactionController;
+    private Eva eva;
+    
+    /**
+     * 
+     * @param accountList 
+     * @param transactionController 
+     */
+    public AccountController(List<Account> accountList, TransactionController transactionController) {
         this.accountList = accountList;
+        this.transactionController = transactionController;
         createEva();
     }
 
+    /** 
+     * CHECK THIS!!!!!
+     */
     private void createEva() {
-        Account eva = new Account(0, "user", "password0");
+        
         if (accountList.getSize() == 0) {
-            accountList.add(new Account(0, "user0", "password0"));
-            eva.addWallet(new Wallet(1, Double.MAX_VALUE, "user0"));
+            eva = new Eva();
+            accountList.add(eva);
+            
+            // CHECK THIS!!!
             FileController.writeFile(FileController.findCreateFile("account.txt"), 0 + "#" + "user0" + "#" + "password0");
             FileController.writeFile(FileController.findCreateFile("wallet.txt"), 1 + "#" + String.valueOf(Double.MAX_VALUE) + "#" + "user0" + "#" + 0);
+        } else {
+            for (Account account : accountList) {
+                if (account.getID() == 0 && account instanceof Eva) {
+                    eva = (Eva) account;
+                    break;
+                }
+            }
         }
     }
 
@@ -77,16 +94,30 @@ public class AccountController {
         FileController.writeFile(FileController.findCreateFile("account.txt"), (account.getID() + "#" + account.getUserName() + "#" + account.getPassword()));
     }
 
-    public void moneyFirstWallet(List<Wallet> wallets, int ID, String userName, String password) {
-        wallets.add(new Wallet(ID - 10 + 282,
-                50000,
-                (userName.substring(0, 3).concat(password.substring(0, 3))).toLowerCase()));
-        ListNode<Account> eva = accountList.getHead();
-        double moneyTemp = eva.getInfo().getWallets().getHead().getInfo().getMoney();
-        eva.getInfo().getWallets().getHead().getInfo().setMoney(moneyTemp - 50000);
+    /**
+     * 
+     * @param account 
+     */
+    public void moneyFistWallet(Account account) {
+              
+        Wallet wallet = new Wallet(
+                account.getUserName() + account.getWallets().getSize(),
+                0,
+                "Wallet de " + account.getUserName()
+        );
+        
+        Transaction transaction = new Transaction(eva.getWallet("0"), wallet, 5000, new Date(), "Hola, bienvenido a block-pay");
+        transactionController.add(transaction);
+        
+        account.addWallet(wallet);
     }
-
-    public Wallet getWallet(int idWallet) {
+    
+    /**
+     * 
+     * @param idWallet
+     * @return 
+     */
+    public Wallet getWallet(String idWallet) {
         for (Account account : accountList) {
             for (Wallet wallet : account.getWallets()) {
                 if (idWallet == wallet.getID()) {
@@ -97,6 +128,11 @@ public class AccountController {
         return null;
     }
 
+    /**
+     * 
+     * @param idAccount
+     * @return 
+     */
     public Account getAccount(int idAccount) {
         for (Account account : accountList) {
             if (idAccount == account.getID()) {
@@ -106,6 +142,10 @@ public class AccountController {
         return null;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<Account> getAccountList() {
         return accountList;
     }

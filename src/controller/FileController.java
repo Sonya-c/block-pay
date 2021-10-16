@@ -152,7 +152,7 @@ public class FileController {
                     String line = read.nextLine();
                     String data[] = line.split("#");
                     if (Integer.parseInt(data[3]) == account.getID()) {
-                        Wallet wallet = new Wallet(Integer.parseInt(data[0]), Double.parseDouble(data[1]), data[2]);
+                        Wallet wallet = new Wallet(data[0], Double.parseDouble(data[1]), data[2]);
                         account.addWallet(wallet);
                     }
                 }
@@ -180,7 +180,8 @@ public class FileController {
                     String line = read.nextLine();
                     String data[] = line.split("#");
                     String idWallet = data[0];
-                    if (Integer.parseInt(idWallet) == wallet.getID()) {
+                    
+                    if (idWallet == wallet.getID()) {
                         String updateWallet = wallet.getID() + "#" + wallet.getMoney() + "#" + wallet.getNickname() + data[3];
                         writeFile(newFile, updateWallet);
                     } else {
@@ -202,12 +203,10 @@ public class FileController {
 
     /**
      *
+     * @param accountController
      * @param transactionController
-     * @return
      */
-    public static List<Block> loadBlock(TransactionController transactionController) {
-        List<Block> blockList = new List<>();
-        AccountController ac = new AccountController(FileController.loadAccount());
+    public static void loadBlock(AccountController accountController, TransactionController transactionController) {
         File blockFile = findCreateFile("transaction.txt");
 
         if (blockFile != null) {
@@ -221,8 +220,8 @@ public class FileController {
                     // remitent, destinatary, money, date, messange
 
                     // BUSCAR WALLETS (Ni puta idea como)
-                    Wallet walletRemitent = ac.getWallet(Integer.parseInt(data[0]));
-                    Wallet walletDestinatary = ac.getWallet(Integer.parseInt(data[1]));
+                    Wallet walletRemitent = accountController.getWallet(data[0]);
+                    Wallet walletDestinatary = accountController.getWallet(data[1]);
                     // IDEA DE BUSCAR WALLETS ||
 
                     double money = Double.parseDouble(data[2]);
@@ -235,13 +234,12 @@ public class FileController {
                             Integer.parseInt(dateString[4]));
 
                     Transaction transaction = new Transaction(walletRemitent, walletDestinatary, money, date, data[4]);
-
                     transactionController.add(transaction);
 
                     System.out.println(
                             FileController.class.getName()
                             + " #"
-                            + blockList.getSize()
+                            + transactionController.getBlockList().getSize()
                             + " MENSAJE nueva account "
                             + Arrays.toString(data));
                 }
@@ -255,7 +253,6 @@ public class FileController {
             System.out.println(FileController.class.getName() + " ERROR account file null");
         }
 
-        return blockList;
     }
 
 }

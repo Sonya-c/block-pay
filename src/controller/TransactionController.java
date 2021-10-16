@@ -3,6 +3,7 @@ package controller;
 import model.list.List;
 import model.list.ListNode;
 import model.system.Block;
+import model.system.Eva;
 import model.system.Transaction;
 
 /**
@@ -11,10 +12,10 @@ import model.system.Transaction;
  * @author sonya
  */
 public class TransactionController {
-    private List<Block> blockList;
+    private final List<Block> blockList;
     
     public TransactionController() {
-        this.blockList = FileController.loadBlock(this);
+        this.blockList = new List<>();
     }
     
     /**
@@ -32,28 +33,35 @@ public class TransactionController {
      * @return 
      */
     public boolean verifyTransaction(Transaction transaction) {
-        double money = 50000; // IMPORTANT: ¿Qué dinero inicial vamos a dar? - 50k, para mantener la idea del pasado.
-        
-        /*
-         * Verify that the money of the remitent makes sense
-         * move from all block and all transacctions
-         * seach the transacction that has as remitent or as destinatary the trasaction remitent wallet
-         * add or rest money
-         * if the calculateed money is the same, do the transaction. Else, kill the wallet [insert evil laugh]
-         */
-        for (Block block : blockList) {
-            for (Transaction t : block.getTransactions()) {
-                
-                if (t.getRemitent() == transaction.getRemitent()) {
-                    money -= t.getMoney();
-                
-                } else if (t.getDestinatary() == transaction.getRemitent()) {
-                    money += t.getMoney();
+        if (transaction.getRemitent().getID() == "eva0") {
+            if (transaction.getRemitent().getMoney() - transaction.getMoney() <= 0) {
+                transaction.getRemitent().setMoney(Double.MAX_VALUE); // Recargarle a eva
+            }
+            return true;
+        } else {
+            double money = 50000; // IMPORTANT: ¿Qué dinero inicial vamos a dar? - 50k, para mantener la idea del pasado.
+
+            /*
+             * Verify that the money of the remitent makes sense
+             * move from all block and all transacctions
+             * seach the transacction that has as remitent or as destinatary the trasaction remitent wallet
+             * add or rest money
+             * if the calculateed money is the same, do the transaction. Else, kill the wallet [insert evil laugh]
+             */
+            for (Block block : blockList) {
+                for (Transaction t : block.getTransactions()) {
+
+                    if (t.getRemitent() == transaction.getRemitent()) {
+                        money -= t.getMoney();
+
+                    } else if (t.getDestinatary() == transaction.getRemitent()) {
+                        money += t.getMoney();
+                    }
                 }
             }
+
+            return (money == transaction.getRemitent().getMoney() && money >= transaction.getMoney());
         }
-        
-        return (money == transaction.getRemitent().getMoney() && money >= transaction.getMoney());
     }
    
     /**

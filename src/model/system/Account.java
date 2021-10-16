@@ -30,15 +30,18 @@ public class Account {
         this.userName = userName;
         this.password = password;
         wallets = new List<>();
-        
-        
     }
 
     public void addWallet(Wallet wallet){
         this.wallets.add(wallet);
     }
     
-    public Wallet getWallet(int idWallet){
+    /**
+     * 
+     * @param idWallet
+     * @return 
+     */
+    public Wallet getWallet(String idWallet){
         for (Wallet wallet : wallets) {
             if (wallet.getID() == idWallet){
                 return wallet;
