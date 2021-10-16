@@ -85,6 +85,10 @@ public class TransactionController {
                     blockList.add(block);   
                 }
                 
+                FileController.writeFile(FileController.findCreateFile("transaction.txt"), 
+                        (block.toString() + "#" + transaction.getRemitent().getID() + "#" + transaction.getDestinatary().getID()
+                                + "#" + transaction.getMoney() + "#" + transaction.getDate() + "#" + transaction.getMessange()) );
+                
                 return 0;
             } else {
                 System.out.println("controller.TransactionController.add(Transaction) ERROR: Estructura de datos incorrecta");

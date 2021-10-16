@@ -5,11 +5,11 @@
 package model.system;
 
 public class Wallet {
-    private final String ID;
+    private final int ID;
     private double money;
     private String nickname;
     
-    public Wallet(String ID, double money, String nickname) {
+    public Wallet(int ID, double money, String nickname) {
         this.ID = ID;
         this.money = money;
         this.nickname = nickname;
@@ -17,7 +17,7 @@ public class Wallet {
     
     /* ======= GETTERS AND SETTERS =======*/
     
-    public String getID() {
+    public int getID() {
         return this.ID;
     }
     
