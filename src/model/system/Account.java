@@ -31,21 +31,9 @@ public class Account {
         this.password = password;
         wallets = new List<>();
         
-//        firstMoney();
         
     }
 
-    /**
-     * Método para poder agregarle los primero 50k al usuario y descontarselos al usuario principal,
-     * pero se hace desde la clase AccountController.
-     */
-    public final void firstMoney(){
-        if (!userName.equals("user0")){
-            AccountController ac = new AccountController(FileController.loadAccount());
-            ac.moneyFirstWallet(wallets, ID, userName, password);
-        }
-    }
-    
     public void addWallet(Wallet wallet){
         this.wallets.add(wallet);
     }

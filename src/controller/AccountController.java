@@ -23,7 +23,9 @@ public class AccountController {
         Account eva = new Account(0, "user", "password0");
         if (accountList.getSize() == 0) {
             accountList.add(new Account(0, "user0", "password0"));
-            eva.addWallet(new Wallet(00000, Double.MAX_VALUE, "user0"));
+            eva.addWallet(new Wallet(1, Double.MAX_VALUE, "user0"));
+            FileController.writeFile(FileController.findCreateFile("account.txt"), 0 + "#" + "user0" + "#" + "password0");
+            FileController.writeFile(FileController.findCreateFile("wallet.txt"), 1 + "#" + String.valueOf(Double.MAX_VALUE) + "#" + "user0" + "#" + 0);
         }
     }
 
@@ -81,13 +83,13 @@ public class AccountController {
                 (userName.substring(0, 3).concat(password.substring(0, 3))).toLowerCase()));
         ListNode<Account> eva = accountList.getHead();
         double moneyTemp = eva.getInfo().getWallets().getHead().getInfo().getMoney();
-        eva.getInfo().getWallets().getHead().getInfo().setMoney(moneyTemp-50000);
+        eva.getInfo().getWallets().getHead().getInfo().setMoney(moneyTemp - 50000);
     }
-    
-    public Wallet getWallet(int idWallet){
+
+    public Wallet getWallet(int idWallet) {
         for (Account account : accountList) {
             for (Wallet wallet : account.getWallets()) {
-                if (idWallet == wallet.getID()){
+                if (idWallet == wallet.getID()) {
                     return wallet;
                 }
             }
@@ -95,15 +97,15 @@ public class AccountController {
         return null;
     }
 
-    public Account getAccount(int idAccount){
+    public Account getAccount(int idAccount) {
         for (Account account : accountList) {
-            if (idAccount == account.getID()){
+            if (idAccount == account.getID()) {
                 return account;
             }
         }
         return null;
     }
-    
+
     public List<Account> getAccountList() {
         return accountList;
     }

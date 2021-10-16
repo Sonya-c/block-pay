@@ -167,8 +167,8 @@ public class FileController {
 
     }
 
-    public static void updateWallet(Wallet wallet){
-         File walletFile = findCreateFile("wallet.txt");
+    public static void updateWallet(Wallet wallet) {
+        File walletFile = findCreateFile("wallet.txt");
 
         if (walletFile != null) {
 
@@ -199,7 +199,7 @@ public class FileController {
 
         }
     }
-    
+
     /**
      *
      * @param transactionController
@@ -207,7 +207,7 @@ public class FileController {
      */
     public static List<Block> loadBlock(TransactionController transactionController) {
         List<Block> blockList = new List<>();
-
+        AccountController ac = new AccountController(FileController.loadAccount());
         File blockFile = findCreateFile("transaction.txt");
 
         if (blockFile != null) {
@@ -221,11 +221,10 @@ public class FileController {
                     // remitent, destinatary, money, date, messange
 
                     // BUSCAR WALLETS (Ni puta idea como)
-                    AccountController ac = new AccountController(FileController.loadAccount());
                     Wallet walletRemitent = ac.getWallet(Integer.parseInt(data[0]));
                     Wallet walletDestinatary = ac.getWallet(Integer.parseInt(data[1]));
                     // IDEA DE BUSCAR WALLETS ||
-                    
+
                     double money = Double.parseDouble(data[2]);
 
                     String dateString[] = data[3].split("/");

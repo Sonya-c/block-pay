@@ -22,7 +22,7 @@ public class Test {
         String usuario = null, password = null;
         int i = 0;
         do {
-            if (usuario != null & password != null) {
+            if (usuario != null & password != null && !accountCtrl.verifyUsername(usuario)) {
                 accountCtrl.addAccount(new Account(i++,usuario,password));
             }
 
