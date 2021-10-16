@@ -38,11 +38,11 @@ public class LoginView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bock Pay | Login");
         setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        setMinimumSize(new java.awt.Dimension(880, 505));
+        setMinimumSize(new java.awt.Dimension(880, 525));
         setName("Login"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(880, 505));
+        setPreferredSize(new java.awt.Dimension(880, 525));
         setResizable(false);
-        setSize(new java.awt.Dimension(880, 505));
+        setSize(new java.awt.Dimension(880, 525));
 
         formZonePanel.setBackground(new java.awt.Color(27, 20, 100));
         formZonePanel.setMaximumSize(new java.awt.Dimension(500, 32767));
@@ -118,10 +118,13 @@ public class LoginView extends javax.swing.JFrame {
         loginEnterBtn.setForeground(new java.awt.Color(255, 255, 255));
         loginEnterBtn.setText("Ingresar");
         loginEnterBtn.setToolTipText("Ingresar");
-        loginEnterBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(236, 0, 140), 5, true));
-        loginEnterBtn.setBorderPainted(false);
+        loginEnterBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
         loginEnterBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginEnterBtn.setFocusPainted(false);
         loginEnterBtn.setMargin(new java.awt.Insets(4, 14, 4, 14));
+        loginEnterBtn.setMaximumSize(new java.awt.Dimension(70, 35));
+        loginEnterBtn.setMinimumSize(new java.awt.Dimension(70, 35));
+        loginEnterBtn.setPreferredSize(new java.awt.Dimension(70, 35));
         loginEnterBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginEnterBtnActionPerformed(evt);
@@ -202,7 +205,7 @@ public class LoginView extends javax.swing.JFrame {
             MainView mainView = new MainView(account);
             mainView.setVisible(true);
         } else {
-
+            
         }
     }//GEN-LAST:event_loginCreateAccountBtnActionPerformed
 

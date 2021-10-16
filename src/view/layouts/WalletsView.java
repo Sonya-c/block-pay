@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.mainViews;
+package view.layouts;
 
 import model.system.Account;
 
@@ -11,14 +11,13 @@ import model.system.Account;
  *
  * @author sonya
  */
-public class DataView extends javax.swing.JPanel {
-    
+public class WalletsView extends javax.swing.JPanel {
     private Account account;
     
     /**
-     * Creates new form DataView
+     * Creates new form WalletsView
      */
-    public DataView(Account account) {
+    public WalletsView(Account account) {
         this.account = account;
         initComponents();
     }
