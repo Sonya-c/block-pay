@@ -34,8 +34,8 @@ public class AccountController {
             accountList.add(eva);
             
             // CHECK THIS!!!
-            FileController.writeFile(FileController.findCreateFile("account.txt"), 0 + "#" + "user0" + "#" + "password0");
-            FileController.writeFile(FileController.findCreateFile("wallet.txt"), 1 + "#" + String.valueOf(Double.MAX_VALUE) + "#" + "user0" + "#" + 0);
+//            FileController.writeFile(FileController.findCreateFile("account.txt"), 0 + "#" + "user0" + "#" + "password0");
+//            FileController.writeFile(FileController.findCreateFile("wallet.txt"), 1 + "#" + String.valueOf(Double.MAX_VALUE) + "#" + eva.getPassword() + "#" + 0);
         } else {
             for (Account account : accountList) {
                 if (account.getID() == 0 && account instanceof Eva) {
@@ -106,9 +106,10 @@ public class AccountController {
                 "Wallet de " + account.getUserName()
         );
         
-        Transaction transaction = new Transaction(eva.getWallet("0"), wallet, 5000, new Date(), "Hola, bienvenido a block-pay");
+        Transaction transaction = new Transaction(eva.getWallet("eva0"), wallet, 50000, new Date(), "Hola, bienvenido a block-pay");
         transactionController.add(transaction);
-        
+//        eva.getWallets().getHead().getInfo().setMoney(eva.getWallets().getHead().getInfo().getMoney() - transaction.getMoney());
+//        wallet.setMoney(wallet.getMoney() + transaction.getMoney());
         account.addWallet(wallet);
     }
     
@@ -120,7 +121,7 @@ public class AccountController {
     public Wallet getWallet(String idWallet) {
         for (Account account : accountList) {
             for (Wallet wallet : account.getWallets()) {
-                if (idWallet == wallet.getID()) {
+                if (idWallet == null ? wallet.getID() == null : idWallet.equals(wallet.getID())) {
                     return wallet;
                 }
             }

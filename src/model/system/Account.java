@@ -43,7 +43,7 @@ public class Account {
      */
     public Wallet getWallet(String idWallet){
         for (Wallet wallet : wallets) {
-            if (wallet.getID() == idWallet){
+            if (wallet.getID().equals(idWallet)){
                 return wallet;
             }
         }

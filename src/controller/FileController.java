@@ -220,13 +220,13 @@ public class FileController {
                     // remitent, destinatary, money, date, messange
 
                     // BUSCAR WALLETS (Ni puta idea como)
-                    Wallet walletRemitent = accountController.getWallet(data[0]);
-                    Wallet walletDestinatary = accountController.getWallet(data[1]);
+                    Wallet walletRemitent = accountController.getWallet(data[1]);
+                    Wallet walletDestinatary = accountController.getWallet(data[2]);
                     // IDEA DE BUSCAR WALLETS ||
 
-                    double money = Double.parseDouble(data[2]);
+                   double money = Double.parseDouble(data[3]);
 
-                    String dateString[] = data[3].split("/");
+                    String dateString[] = data[4].split(" ");
                     Date date = new Date(Integer.parseInt(dateString[0]),
                             Integer.parseInt(dateString[1]),
                             Integer.parseInt(dateString[2]),
