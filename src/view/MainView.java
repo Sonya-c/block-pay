@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import view.layouts.IndexView;
 import view.layouts.ProfileView;
 import view.layouts.WalletsView;
@@ -85,6 +86,7 @@ public class MainView extends javax.swing.JFrame {
         profileBtn.setMargin(new java.awt.Insets(0, 0, 0, 0));
         profileBtn.setMaximumSize(new java.awt.Dimension(60, 60));
         profileBtn.setMinimumSize(new java.awt.Dimension(60, 60));
+        profileBtn.setOpaque(true);
         profileBtn.setPreferredSize(new java.awt.Dimension(60, 60));
         profileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,6 +107,7 @@ public class MainView extends javax.swing.JFrame {
         indexBtn.setFocusable(false);
         indexBtn.setMaximumSize(new java.awt.Dimension(60, 60));
         indexBtn.setMinimumSize(new java.awt.Dimension(60, 60));
+        indexBtn.setOpaque(true);
         indexBtn.setPreferredSize(new java.awt.Dimension(60, 60));
         indexBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,6 +128,7 @@ public class MainView extends javax.swing.JFrame {
         walletsBtn.setFocusable(false);
         walletsBtn.setMaximumSize(new java.awt.Dimension(60, 60));
         walletsBtn.setMinimumSize(new java.awt.Dimension(60, 60));
+        walletsBtn.setOpaque(true);
         walletsBtn.setPreferredSize(new java.awt.Dimension(60, 60));
         walletsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,6 +149,7 @@ public class MainView extends javax.swing.JFrame {
         dataBtn.setFocusable(false);
         dataBtn.setMaximumSize(new java.awt.Dimension(60, 60));
         dataBtn.setMinimumSize(new java.awt.Dimension(60, 60));
+        dataBtn.setOpaque(true);
         dataBtn.setPreferredSize(new java.awt.Dimension(60, 60));
         dataBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,6 +193,7 @@ public class MainView extends javax.swing.JFrame {
     private void defaultButtonBorder() {
         for (javax.swing.JButton button : buttons) {
             button.setBorder(whiteBorder);
+            button.setBackground(Color.white);
         }
     }
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
@@ -196,7 +202,9 @@ public class MainView extends javax.swing.JFrame {
         
         bodyPanel.add(profileView);
         setTitle("Block Pay | Perfil");
+        
         profileBtn.setBorder(pinkBorder);
+        profileBtn.setBackground(new java.awt.Color(241,185,219));
         
         bodyPanel.validate();
         bodyPanel.repaint();
@@ -208,7 +216,9 @@ public class MainView extends javax.swing.JFrame {
         
         bodyPanel.add(indexView);
         setTitle("Block Pay | Home");
+        
         indexBtn.setBorder(pinkBorder);
+        indexBtn.setBackground(new java.awt.Color(241,185,219));
         
         bodyPanel.validate();
         bodyPanel.repaint();
@@ -220,7 +230,9 @@ public class MainView extends javax.swing.JFrame {
         
         bodyPanel.add(walletsView);
         setTitle("Block Pay | Wallets");
+        
         walletsBtn.setBorder(pinkBorder);
+        walletsBtn.setBackground(new java.awt.Color(241,185,219));
         
         bodyPanel.validate();
         bodyPanel.repaint();
@@ -232,7 +244,9 @@ public class MainView extends javax.swing.JFrame {
         
         bodyPanel.add(dataView);
         setTitle("Block Pay | Datos");
+        
         dataBtn.setBorder(pinkBorder);
+        dataBtn.setBackground(new java.awt.Color(241,185,219));
         
         bodyPanel.validate();
         bodyPanel.repaint();

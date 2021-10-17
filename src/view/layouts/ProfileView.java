@@ -29,20 +29,170 @@ public class ProfileView extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        bodyPanel = new javax.swing.JPanel();
+        accountDataPanel = new javax.swing.JPanel();
+        accountNameLabel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        userLabel = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
+        userTxt = new javax.swing.JTextField();
+        passwordTxt = new javax.swing.JPasswordField();
+        saveBtn = new javax.swing.JButton();
+        nameLabel = new javax.swing.JLabel();
+        nameTxt = new javax.swing.JTextField();
+
+        setLayout(new java.awt.BorderLayout());
+
+        bodyPanel.setBackground(new java.awt.Color(27, 20, 100));
+        bodyPanel.setLayout(new java.awt.GridBagLayout());
+
+        accountDataPanel.setBackground(new java.awt.Color(102, 204, 255));
+        accountDataPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
+        accountDataPanel.setLayout(new java.awt.GridBagLayout());
+
+        accountNameLabel.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        accountNameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        accountNameLabel.setText("Tu cuenta");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        accountDataPanel.add(accountNameLabel, gridBagConstraints);
+
+        jLabel3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("id del usuario");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        accountDataPanel.add(jLabel3, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        bodyPanel.add(accountDataPanel, gridBagConstraints);
+
+        userLabel.setBackground(new java.awt.Color(255, 255, 255));
+        userLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        userLabel.setForeground(new java.awt.Color(255, 255, 255));
+        userLabel.setText("Usuario");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        bodyPanel.add(userLabel, gridBagConstraints);
+
+        passwordLabel.setBackground(new java.awt.Color(255, 255, 255));
+        passwordLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
+        passwordLabel.setText("Contraseña");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        bodyPanel.add(passwordLabel, gridBagConstraints);
+
+        userTxt.setBackground(new java.awt.Color(53, 42, 157));
+        userTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        userTxt.setForeground(new java.awt.Color(255, 255, 255));
+        userTxt.setToolTipText("Nombre de usuario");
+        userTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(53, 42, 157), 5, true));
+        userTxt.setCaretColor(new java.awt.Color(236, 0, 140));
+        userTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        userTxt.setName(""); // NOI18N
+        userTxt.setPreferredSize(new java.awt.Dimension(170, 33));
+        userTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        bodyPanel.add(userTxt, gridBagConstraints);
+
+        passwordTxt.setBackground(new java.awt.Color(53, 42, 157));
+        passwordTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        passwordTxt.setForeground(new java.awt.Color(255, 255, 255));
+        passwordTxt.setToolTipText("Contreña");
+        passwordTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(53, 42, 157), 5, true));
+        passwordTxt.setCaretColor(new java.awt.Color(236, 0, 140));
+        passwordTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        passwordTxt.setMinimumSize(new java.awt.Dimension(170, 33));
+        passwordTxt.setPreferredSize(new java.awt.Dimension(170, 33));
+        passwordTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        bodyPanel.add(passwordTxt, gridBagConstraints);
+
+        saveBtn.setBackground(new java.awt.Color(236, 0, 140));
+        saveBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        saveBtn.setForeground(new java.awt.Color(255, 255, 255));
+        saveBtn.setText("Guardar Cambios");
+        saveBtn.setToolTipText("Ingresar");
+        saveBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
+        saveBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        saveBtn.setFocusPainted(false);
+        saveBtn.setMargin(new java.awt.Insets(4, 14, 4, 14));
+        saveBtn.setMaximumSize(new java.awt.Dimension(150, 35));
+        saveBtn.setMinimumSize(new java.awt.Dimension(150, 35));
+        saveBtn.setPreferredSize(new java.awt.Dimension(150, 35));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        bodyPanel.add(saveBtn, gridBagConstraints);
+
+        nameLabel.setBackground(new java.awt.Color(255, 255, 255));
+        nameLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        nameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        nameLabel.setText("Nombre");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        bodyPanel.add(nameLabel, gridBagConstraints);
+
+        nameTxt.setBackground(new java.awt.Color(53, 42, 157));
+        nameTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        nameTxt.setForeground(new java.awt.Color(255, 255, 255));
+        nameTxt.setToolTipText("Nombre de usuario");
+        nameTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(53, 42, 157), 5, true));
+        nameTxt.setCaretColor(new java.awt.Color(236, 0, 140));
+        nameTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        nameTxt.setName(""); // NOI18N
+        nameTxt.setPreferredSize(new java.awt.Dimension(170, 33));
+        nameTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        bodyPanel.add(nameTxt, gridBagConstraints);
+
+        add(bodyPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel accountDataPanel;
+    private javax.swing.JLabel accountNameLabel;
+    private javax.swing.JPanel bodyPanel;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JTextField nameTxt;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JPasswordField passwordTxt;
+    private javax.swing.JButton saveBtn;
+    private javax.swing.JLabel userLabel;
+    private javax.swing.JTextField userTxt;
     // End of variables declaration//GEN-END:variables
 }

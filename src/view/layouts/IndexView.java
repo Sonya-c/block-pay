@@ -36,6 +36,7 @@ public class IndexView extends javax.swing.JPanel {
 
         horrizontalScrollBar = new javax.swing.JScrollBar();
         verticalScrollBar = new javax.swing.JScrollBar();
+        jTextField1 = new javax.swing.JTextField();
         Header = new javax.swing.JPanel();
         titlePanel = new javax.swing.JPanel();
         dineroDisponiblePanel = new javax.swing.JPanel();
@@ -52,8 +53,8 @@ public class IndexView extends javax.swing.JPanel {
         bodyPanel = new javax.swing.JPanel();
         bodyScrollPanel = new javax.swing.JScrollPane();
         containerPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        graphPanel = new javax.swing.JPanel();
+        activityPanel = new javax.swing.JPanel();
 
         horrizontalScrollBar.setBackground(new java.awt.Color(53, 42, 157));
         horrizontalScrollBar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -69,6 +70,8 @@ public class IndexView extends javax.swing.JPanel {
         verticalScrollBar.setAutoscrolls(true);
         verticalScrollBar.setFocusable(false);
         verticalScrollBar.setOpaque(false);
+
+        jTextField1.setText("jTextField1");
 
         setLayout(new java.awt.BorderLayout());
 
@@ -95,14 +98,14 @@ public class IndexView extends javax.swing.JPanel {
         titlePanel.add(dineroDisponiblePanel, java.awt.BorderLayout.CENTER);
 
         sendMoneyPanel.setBackground(new java.awt.Color(236, 0, 140));
-        sendMoneyPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(236, 0, 140), 1, true));
+        sendMoneyPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
         sendMoneyPanel.setMinimumSize(new java.awt.Dimension(300, 100));
         sendMoneyPanel.setPreferredSize(new java.awt.Dimension(300, 100));
         sendMoneyPanel.setLayout(new java.awt.GridBagLayout());
 
         loginUserLabel.setBackground(new java.awt.Color(255, 255, 255));
         loginUserLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        loginUserLabel.setForeground(new java.awt.Color(27, 20, 100));
+        loginUserLabel.setForeground(new java.awt.Color(255, 255, 255));
         loginUserLabel.setText("Wallet id");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -127,12 +130,12 @@ public class IndexView extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         sendMoneyPanel.add(loginUserTxt, gridBagConstraints);
 
-        loginEnterBtn.setBackground(new java.awt.Color(27, 20, 100));
+        loginEnterBtn.setBackground(new java.awt.Color(102, 204, 255));
         loginEnterBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        loginEnterBtn.setForeground(new java.awt.Color(255, 255, 255));
+        loginEnterBtn.setForeground(new java.awt.Color(27, 20, 100));
         loginEnterBtn.setText("buscar");
         loginEnterBtn.setToolTipText("Ingresar");
-        loginEnterBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
+        loginEnterBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(236, 0, 140), 1, true));
         loginEnterBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loginEnterBtn.setFocusPainted(false);
         loginEnterBtn.setMargin(new java.awt.Insets(4, 14, 4, 14));
@@ -188,41 +191,41 @@ public class IndexView extends javax.swing.JPanel {
         containerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         containerPanel.setLayout(new java.awt.GridLayout(1, 2, 20, 20));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Grafo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Calibri", 0, 18), new java.awt.Color(27, 20, 100))); // NOI18N
-        jPanel1.setMinimumSize(new java.awt.Dimension(200, 288));
-        jPanel1.setPreferredSize(new java.awt.Dimension(200, 288));
+        graphPanel.setBackground(new java.awt.Color(255, 255, 255));
+        graphPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(177, 175, 200), 1, true));
+        graphPanel.setMinimumSize(new java.awt.Dimension(200, 288));
+        graphPanel.setPreferredSize(new java.awt.Dimension(200, 288));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 331, Short.MAX_VALUE)
+        javax.swing.GroupLayout graphPanelLayout = new javax.swing.GroupLayout(graphPanel);
+        graphPanel.setLayout(graphPanelLayout);
+        graphPanelLayout.setHorizontalGroup(
+            graphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 341, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 254, Short.MAX_VALUE)
-        );
-
-        containerPanel.add(jPanel1);
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Historial", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Calibri", 0, 18), new java.awt.Color(27, 20, 100))); // NOI18N
-        jPanel2.setMinimumSize(new java.awt.Dimension(200, 288));
-        jPanel2.setPreferredSize(new java.awt.Dimension(200, 288));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 331, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
+        graphPanelLayout.setVerticalGroup(
+            graphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 286, Short.MAX_VALUE)
         );
 
-        containerPanel.add(jPanel2);
+        containerPanel.add(graphPanel);
+
+        activityPanel.setBackground(new java.awt.Color(255, 255, 255));
+        activityPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(177, 175, 200), 1, true));
+        activityPanel.setMinimumSize(new java.awt.Dimension(200, 288));
+        activityPanel.setPreferredSize(new java.awt.Dimension(200, 288));
+
+        javax.swing.GroupLayout activityPanelLayout = new javax.swing.GroupLayout(activityPanel);
+        activityPanel.setLayout(activityPanelLayout);
+        activityPanelLayout.setHorizontalGroup(
+            activityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 341, Short.MAX_VALUE)
+        );
+        activityPanelLayout.setVerticalGroup(
+            activityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 286, Short.MAX_VALUE)
+        );
+
+        containerPanel.add(activityPanel);
 
         bodyScrollPanel.setViewportView(containerPanel);
 
@@ -234,14 +237,15 @@ public class IndexView extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Header;
+    private javax.swing.JPanel activityPanel;
     private javax.swing.JPanel bodyPanel;
     private javax.swing.JScrollPane bodyScrollPanel;
     private javax.swing.JPanel containerPanel;
     private javax.swing.JPanel dineroDisponiblePanel;
     private javax.swing.JLabel disponibleLabel;
+    private javax.swing.JPanel graphPanel;
     private javax.swing.JScrollBar horrizontalScrollBar;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton loginEnterBtn;
     private javax.swing.JLabel loginUserLabel;
     private javax.swing.JTextField loginUserTxt;
