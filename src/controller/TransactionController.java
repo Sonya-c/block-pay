@@ -105,9 +105,9 @@ public class TransactionController {
                     transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
                     transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
                     
-                    FileController.writeFile(FileController.findCreateFile("transaction.txt"),
-                            (block.toString() + "#" + transaction.getRemitent().getID() + "#" + transaction.getDestinatary().getID()
-                            + "#" + transaction.getMoney() + "#" + transaction.getDate() + "#" + transaction.getMessange()));
+//                    FileController.writeFile(FileController.findCreateFile("transaction.txt"),
+//                            (block.toString() + "#" + transaction.getRemitent().getID() + "#" + transaction.getDestinatary().getID()
+//                            + "#" + transaction.getMoney() + "#" + transaction.getDate() + "#" + transaction.getMessange()));
 
                     return 0;
                 } else {

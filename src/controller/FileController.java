@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
@@ -226,12 +227,9 @@ public class FileController {
 
                    double money = Double.parseDouble(data[3]);
 
-                    String dateString[] = data[4].split(" ");
-                    Date date = new Date(Integer.parseInt(dateString[0]),
-                            Integer.parseInt(dateString[1]),
-                            Integer.parseInt(dateString[2]),
-                            Integer.parseInt(dateString[3]),
-                            Integer.parseInt(dateString[4]));
+                    String dateString[] = data[4].split("-");
+                    LocalDate date = LocalDate.of(Integer.parseInt(dateString[0]),
+                    Integer.parseInt(dateString[1]), Integer.parseInt(dateString[2]));
 
                     Transaction transaction = new Transaction(walletRemitent, walletDestinatary, money, date, data[4]);
                     transactionController.add(transaction);

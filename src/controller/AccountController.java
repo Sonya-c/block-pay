@@ -1,6 +1,6 @@
 package controller;
 
-import java.util.Date;
+import java.time.LocalDate;
 import model.list.List;
 import model.system.Account;
 import model.system.Eva;
@@ -106,10 +106,8 @@ public class AccountController {
                 "Wallet de " + account.getUserName()
         );
         
-        Transaction transaction = new Transaction(eva.getWallet("eva0"), wallet, 50000, new Date(), "Hola, bienvenido a block-pay");
+        Transaction transaction = new Transaction(eva.getWallet("eva0"), wallet, 50000, LocalDate.now() , "Hola, bienvenido a block-pay");
         transactionController.add(transaction);
-//        eva.getWallets().getHead().getInfo().setMoney(eva.getWallets().getHead().getInfo().getMoney() - transaction.getMoney());
-//        wallet.setMoney(wallet.getMoney() + transaction.getMoney());
         account.addWallet(wallet);
     }
     

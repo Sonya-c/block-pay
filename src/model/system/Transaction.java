@@ -1,6 +1,6 @@
 package model.system;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 /**
@@ -11,7 +11,7 @@ public class Transaction {
     private final Wallet remitent;
     private final Wallet destinatary;
     private final double money;
-    private final Date date;
+    private final LocalDate date;
     private final String messange;
     
     /**
@@ -24,7 +24,7 @@ public class Transaction {
         this.remitent = remitent;
         this.destinatary = destinatary;
         this.money = money;
-        this.date = new Date();
+        this.date = LocalDate.now();
         this.messange = "";
     }
 
@@ -35,7 +35,7 @@ public class Transaction {
      * @param money
      * @param date 
      */
-    public Transaction(Wallet remitent, Wallet destinatary, double money, Date date) {
+    public Transaction(Wallet remitent, Wallet destinatary, double money, LocalDate date) {
         this.remitent = remitent;
         this.destinatary = destinatary;
         this.money = money;
@@ -54,7 +54,7 @@ public class Transaction {
         this.remitent = remitent;
         this.destinatary = destinatary;
         this.money = money;
-        this.date = new Date();
+        this.date = LocalDate.now();
         this.messange = messange;
     }
     
@@ -66,7 +66,7 @@ public class Transaction {
      * @param date
      * @param messange 
      */
-    public Transaction(Wallet remitent, Wallet destinatary, double money, Date date, String messange) {
+    public Transaction(Wallet remitent, Wallet destinatary, double money, LocalDate date, String messange) {
         this.remitent = remitent;
         this.destinatary = destinatary;
         this.money = money;
@@ -99,7 +99,7 @@ public class Transaction {
         return money;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
