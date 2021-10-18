@@ -1,6 +1,8 @@
 package view;
 
+import controller.AccountController;
 import model.system.Account;
+import view.includes.Modal;
 
 /**
  *
@@ -8,8 +10,13 @@ import model.system.Account;
  */
 public class LoginView extends javax.swing.JFrame {
 
-    /** Creates new form t */
-    public LoginView() {
+    private final AccountController accountController;
+    
+    /**
+     * @param accountController
+     */
+    public LoginView(AccountController accountController) {
+        this.accountController = accountController;
         initComponents();
     }
 
@@ -23,6 +30,12 @@ public class LoginView extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        loginErrorPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        usernameErrorPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        passwordErrorPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         formZonePanel = new javax.swing.JPanel();
         formPanel = new javax.swing.JPanel();
         loginFormPanel = new javax.swing.JPanel();
@@ -34,6 +47,42 @@ public class LoginView extends javax.swing.JFrame {
         loginCreateAccountBtn = new javax.swing.JButton();
         imageZonePanel = new javax.swing.JPanel();
         imageLabel = new javax.swing.JLabel();
+
+        loginErrorPanel.setBackground(new java.awt.Color(27, 20, 100));
+        loginErrorPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(236, 0, 140), 2, true));
+        loginErrorPanel.setMaximumSize(new java.awt.Dimension(300, 100));
+        loginErrorPanel.setMinimumSize(new java.awt.Dimension(300, 100));
+        loginErrorPanel.setPreferredSize(new java.awt.Dimension(300, 100));
+        loginErrorPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Contraseña o usuario incorrectos");
+        loginErrorPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 20));
+
+        usernameErrorPanel.setBackground(new java.awt.Color(27, 20, 100));
+        usernameErrorPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(236, 0, 140), 2, true));
+        usernameErrorPanel.setMaximumSize(new java.awt.Dimension(300, 100));
+        usernameErrorPanel.setMinimumSize(new java.awt.Dimension(300, 100));
+        usernameErrorPanel.setPreferredSize(new java.awt.Dimension(300, 100));
+        usernameErrorPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Este nombre de usuario ya existe");
+        usernameErrorPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 20));
+
+        passwordErrorPanel.setBackground(new java.awt.Color(27, 20, 100));
+        passwordErrorPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(236, 0, 140), 2, true));
+        passwordErrorPanel.setMaximumSize(new java.awt.Dimension(300, 100));
+        passwordErrorPanel.setMinimumSize(new java.awt.Dimension(300, 100));
+        passwordErrorPanel.setPreferredSize(new java.awt.Dimension(300, 100));
+        passwordErrorPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("<html>La contraseña debe tener minimo 5 carácteres</html>");
+        passwordErrorPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 240, 40));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bock Pay | Login");
@@ -184,79 +233,57 @@ public class LoginView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginEnterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginEnterBtnActionPerformed
-        // LOGIN
-        Account account = null; // DO-TO CODE HERE
-
-        if (account == null) {
-
-        } else {
+        String username = loginUserTxt.getText();
+        String password = loginPasswordTxt.getText();
+        
+        if (accountController.verifyPassword(username, password)) {
             this.setVisible(false);
-            MainView mainView = new MainView(account);
+            MainView mainView = new MainView(accountController.getAccount(username), accountController);
             mainView.setVisible(true);
+        } else {
+            Modal modal = new Modal(this, "Error login", true, loginErrorPanel);
         }
     }//GEN-LAST:event_loginEnterBtnActionPerformed
 
     private void loginCreateAccountBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginCreateAccountBtnActionPerformed
-        // CREATE AND ACCOUNT
-        Account account = null; // DO-TO CODE HERE
-
-        if (account == null) {
-            this.setVisible(false);
-            MainView mainView = new MainView(account);
-            mainView.setVisible(true);
-        } else {
+        String username = loginUserTxt.getText();
+        String password = loginPasswordTxt.getText().trim();
+        
+        if (password.length() < 5) {
+            Modal modal = new Modal(this, "Error contraseña", true, passwordErrorPanel);
             
+        } else {
+            if (accountController.verifyUsername(username)) {
+                Account account = new Account(10, username, password);
+                accountController.addAccount(account);
+                
+                this.setVisible(false);
+                MainView mainView = new MainView(accountController.getAccount(username), accountController);
+                mainView.setVisible(true);
+            } else {
+                Modal modal = new Modal(this, "Error nombre de usuario", true, usernameErrorPanel);
+            }
         }
     }//GEN-LAST:event_loginCreateAccountBtnActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginView().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel formPanel;
     private javax.swing.JPanel formZonePanel;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JPanel imageZonePanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton loginCreateAccountBtn;
     private javax.swing.JButton loginEnterBtn;
+    private javax.swing.JPanel loginErrorPanel;
     private javax.swing.JPanel loginFormPanel;
     private javax.swing.JLabel loginPasswordLabel;
     private javax.swing.JPasswordField loginPasswordTxt;
     private javax.swing.JLabel loginUserLabel;
     private javax.swing.JTextField loginUserTxt;
+    private javax.swing.JPanel passwordErrorPanel;
+    private javax.swing.JPanel usernameErrorPanel;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -1,3 +1,6 @@
+import controller.AccountController;
+import controller.FileController;
+import controller.TransactionController;
 import view.LoginView;
 
 /**
@@ -11,8 +14,12 @@ public class App {
      * 
      * @param args 
      */
-    public static void main(String[] args) {        
-        LoginView loginView = new LoginView();
+    public static void main(String[] args) {
+        TransactionController transactionController = new TransactionController();
+        AccountController accountController = new AccountController(FileController.loadAccount(), transactionController);
+        FileController.loadBlock(accountController, transactionController);
+        
+        LoginView loginView = new LoginView(accountController);
         loginView.setVisible(true);
     }
 }

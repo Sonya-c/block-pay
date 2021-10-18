@@ -1,5 +1,6 @@
 package view;
 
+import controller.AccountController;
 import java.awt.Color;
 import view.layouts.IndexView;
 import view.layouts.ProfileView;
@@ -13,21 +14,25 @@ import model.list.List;
  * @author sonya
  */
 public class MainView extends javax.swing.JFrame {
-    private Account account;
-    private List<javax.swing.JButton> buttons;
-    // VIEW
-    private IndexView indexView;
-    private ProfileView profileView;
-    private WalletsView walletsView;
-    private DataView dataView;
+    private final Account account;
+    private final AccountController accountController;
     
-    public MainView(Account account) {
-        this.indexView = new IndexView(account);
+    private final List<javax.swing.JButton> buttons;
+    // VIEW
+    private final IndexView indexView;
+    private final ProfileView profileView;
+    private final WalletsView walletsView;
+    private final DataView dataView;
+    
+    public MainView(Account account, AccountController accountController) {
+        this.indexView = new IndexView(this, account, accountController);
         this.profileView = new ProfileView(account);
         this.walletsView = new WalletsView(account);
         this.dataView = new DataView(account);
         
         this.account = account;
+        this.accountController = accountController;
+        
         initComponents();
         
         bodyPanel.add(indexView);

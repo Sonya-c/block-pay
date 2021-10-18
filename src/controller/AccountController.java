@@ -143,6 +143,20 @@ public class AccountController {
 
     /**
      * 
+     * @param username
+     * @return 
+     */
+    public Account getAccount(String username) {
+        for (Account account : accountList) {
+            if (username == account.getUserName()) {
+                return account;
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * 
      * @return 
      */
     public List<Account> getAccountList() {
