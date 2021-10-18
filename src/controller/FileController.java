@@ -181,7 +181,7 @@ public class FileController {
                     String line = read.nextLine();
                     String data[] = line.split("#");
                     String idWallet = data[0];
-                    
+
                     if (idWallet == wallet.getID()) {
                         String updateWallet = wallet.getID() + "#" + wallet.getMoney() + "#" + wallet.getNickname() + data[3];
                         writeFile(newFile, updateWallet);
@@ -225,11 +225,11 @@ public class FileController {
                     Wallet walletDestinatary = accountController.getWallet(data[2]);
                     // IDEA DE BUSCAR WALLETS ||
 
-                   double money = Double.parseDouble(data[3]);
+                    double money = Double.parseDouble(data[3]);
 
                     String dateString[] = data[4].split("-");
                     LocalDate date = LocalDate.of(Integer.parseInt(dateString[0]),
-                    Integer.parseInt(dateString[1]), Integer.parseInt(dateString[2]));
+                            Integer.parseInt(dateString[1]), Integer.parseInt(dateString[2]));
 
                     Transaction transaction = new Transaction(walletRemitent, walletDestinatary, money, date, data[4]);
                     transactionController.add(transaction);

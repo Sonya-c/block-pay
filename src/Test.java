@@ -14,9 +14,6 @@ public class Test {
 
     public static void main(String args[]) {
         Scanner read = new Scanner(System.in);
-
-        LocalDate ld = LocalDate.now();
-        System.out.println(ld);
         
         TransactionController transactionController = new TransactionController();
         AccountController accountController = new AccountController(FileController.loadAccount(), transactionController);
@@ -37,18 +34,18 @@ public class Test {
                 System.out.println(wallet.getNickname() + " " + wallet.getMoney());
             }
         }
-        
+
         Transaction t1 = new Transaction(a3.getWallet("Yuli0"),
-        a2.getWallet("Sonya0"), 25000, LocalDate.now(), "De a3 para a2"); //EXITOSA
+                a2.getWallet("Sonya0"), 25000, LocalDate.now(), "De a3 para a2"); //EXITOSA
         transactionController.add(t1);
         Transaction t2 = new Transaction(a1.getWallet("Natalia0"),
-        a2.getWallet("Sonya0"), 50000, LocalDate.now(), "De a1 para a2"); //EXITOSA
+                a2.getWallet("Sonya0"), 50000, LocalDate.now(), "De a1 para a2"); //EXITOSA
         transactionController.add(t2);
         Transaction t3 = new Transaction(a1.getWallet("Natalia0"),
-        a3.getWallet("Yuli0"), 25000, LocalDate.now(), "De a1 para a3"); //PROBLEMA
+                a3.getWallet("Yuli0"), 25000, LocalDate.now(), "De a1 para a3"); //PROBLEMA
         transactionController.add(t3);
         Transaction t4 = new Transaction(a3.getWallet("Yuli0"),
-        a1.getWallet("Natalia0"), 5000, LocalDate.now(), "De a3 para a1"); //EXITOSA
+                a1.getWallet("Natalia0"), 5000, LocalDate.now(), "De a3 para a1"); //EXITOSA
         transactionController.add(t4);
 
         for (Block block : transactionController.getBlockList()) {
@@ -56,7 +53,7 @@ public class Test {
                 System.out.println(block.toString() + " - " + transaction.toString());
             }
         }
-        
+
     }
 //  String usuario = null, password = null;
 //        int i = 0;
