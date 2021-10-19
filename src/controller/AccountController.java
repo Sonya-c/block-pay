@@ -34,8 +34,8 @@ public class AccountController {
             accountList.add(eva);
             
             // CHECK THIS!!!
-//            FileController.writeFile(FileController.findCreateFile("account.txt"), 0 + "#" + "user0" + "#" + "password0");
-//            FileController.writeFile(FileController.findCreateFile("wallet.txt"), 1 + "#" + String.valueOf(Double.MAX_VALUE) + "#" + eva.getPassword() + "#" + 0);
+            FileController.writeFile(FileController.findCreateFile("account.txt"), 0 + "#" + eva.getUserName() + "#" + eva.getPassword());
+            FileController.writeFile(FileController.findCreateFile("wallet.txt"), 1 + "#" + String.valueOf(Double.MAX_VALUE) + "#" + "Eva's wallet" + "#" + String.valueOf(eva.getID()));
         } else {
             for (Account account : accountList) {
                 if (account.getID() == 0 && account instanceof Eva) {
@@ -148,7 +148,7 @@ public class AccountController {
      */
     public Account getAccount(String username) {
         for (Account account : accountList) {
-            if (username == account.getUserName()) {
+            if (username.equals(account.getUserName())) {
                 return account;
             }
         }

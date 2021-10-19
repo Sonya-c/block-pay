@@ -182,7 +182,7 @@ public class FileController {
                     String data[] = line.split("#");
                     String idWallet = data[0];
 
-                    if (idWallet == wallet.getID()) {
+                    if (idWallet.equals(wallet.getID())) {
                         String updateWallet = wallet.getID() + "#" + wallet.getMoney() + "#" + wallet.getNickname() + data[3];
                         writeFile(newFile, updateWallet);
                     } else {

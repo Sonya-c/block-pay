@@ -29,7 +29,7 @@ public class MainView extends javax.swing.JFrame {
         this.profileView = new ProfileView(account);
         this.walletsView = new WalletsView(account);
         this.dataView = new DataView(account);
-        
+        System.out.println(account);
         this.account = account;
         this.accountController = accountController;
         
@@ -205,6 +205,8 @@ public class MainView extends javax.swing.JFrame {
         bodyPanel.removeAll();
         defaultButtonBorder();
         
+        System.out.println(account);
+        
         bodyPanel.add(profileView);
         setTitle("Block Pay | Perfil");
         
@@ -213,6 +215,8 @@ public class MainView extends javax.swing.JFrame {
         
         bodyPanel.validate();
         bodyPanel.repaint();
+        
+        
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void indexBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indexBtnActionPerformed
@@ -255,6 +259,8 @@ public class MainView extends javax.swing.JFrame {
         
         bodyPanel.validate();
         bodyPanel.repaint();
+        
+        
     }//GEN-LAST:event_dataBtnActionPerformed
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed

@@ -1,6 +1,7 @@
 import controller.AccountController;
 import controller.FileController;
 import controller.TransactionController;
+import model.system.Account;
 import view.LoginView;
 
 /**
@@ -18,6 +19,10 @@ public class App {
         TransactionController transactionController = new TransactionController();
         AccountController accountController = new AccountController(FileController.loadAccount(), transactionController);
         FileController.loadBlock(accountController, transactionController);
+        for (Account account : accountController.getAccountList()) {
+            FileController.loadWallets(account);
+        }
+
         
         LoginView loginView = new LoginView(accountController);
         loginView.setVisible(true);

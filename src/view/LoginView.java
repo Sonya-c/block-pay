@@ -1,8 +1,8 @@
 package view;
 
+import view.includes.Modal;
 import controller.AccountController;
 import model.system.Account;
-import view.includes.Modal;
 
 /**
  *
@@ -36,6 +36,14 @@ public class LoginView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         passwordErrorPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        signUpPanel = new javax.swing.JPanel();
+        nameTxt = new javax.swing.JTextField();
+        userTxt = new javax.swing.JTextField();
+        loginUserTxt3 = new javax.swing.JTextField();
+        loginUserLabel1 = new javax.swing.JLabel();
+        loginUserLabel2 = new javax.swing.JLabel();
+        loginUserLabel3 = new javax.swing.JLabel();
+        confirmationBtn = new javax.swing.JButton();
         formZonePanel = new javax.swing.JPanel();
         formPanel = new javax.swing.JPanel();
         loginFormPanel = new javax.swing.JPanel();
@@ -84,12 +92,91 @@ public class LoginView extends javax.swing.JFrame {
         jLabel3.setText("<html>La contraseña debe tener minimo 5 carácteres</html>");
         passwordErrorPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 240, 40));
 
+        signUpPanel.setBackground(new java.awt.Color(27, 20, 100));
+        signUpPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(236, 0, 140), 2, true));
+        signUpPanel.setMaximumSize(new java.awt.Dimension(300, 100));
+        signUpPanel.setMinimumSize(new java.awt.Dimension(300, 100));
+        signUpPanel.setPreferredSize(new java.awt.Dimension(300, 100));
+        signUpPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        nameTxt.setBackground(new java.awt.Color(53, 42, 157));
+        nameTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        nameTxt.setForeground(new java.awt.Color(255, 255, 255));
+        nameTxt.setToolTipText("Nombre de usuario");
+        nameTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(53, 42, 157), 5, true));
+        nameTxt.setCaretColor(new java.awt.Color(236, 0, 140));
+        nameTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        nameTxt.setName(""); // NOI18N
+        nameTxt.setPreferredSize(new java.awt.Dimension(170, 33));
+        nameTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
+        signUpPanel.add(nameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 116, -1, -1));
+
+        userTxt.setBackground(new java.awt.Color(53, 42, 157));
+        userTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        userTxt.setForeground(new java.awt.Color(255, 255, 255));
+        userTxt.setToolTipText("Nombre de usuario");
+        userTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(53, 42, 157), 5, true));
+        userTxt.setCaretColor(new java.awt.Color(236, 0, 140));
+        userTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        userTxt.setName(""); // NOI18N
+        userTxt.setPreferredSize(new java.awt.Dimension(170, 33));
+        userTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
+        signUpPanel.add(userTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 65, -1, -1));
+
+        loginUserTxt3.setBackground(new java.awt.Color(53, 42, 157));
+        loginUserTxt3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        loginUserTxt3.setForeground(new java.awt.Color(255, 255, 255));
+        loginUserTxt3.setToolTipText("Nombre de usuario");
+        loginUserTxt3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(53, 42, 157), 5, true));
+        loginUserTxt3.setCaretColor(new java.awt.Color(236, 0, 140));
+        loginUserTxt3.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        loginUserTxt3.setName(""); // NOI18N
+        loginUserTxt3.setPreferredSize(new java.awt.Dimension(170, 33));
+        loginUserTxt3.setSelectionColor(new java.awt.Color(236, 0, 140));
+        signUpPanel.add(loginUserTxt3, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 167, -1, -1));
+
+        loginUserLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        loginUserLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        loginUserLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        loginUserLabel1.setText("Usuario");
+        signUpPanel.add(loginUserLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 121, -1, -1));
+
+        loginUserLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        loginUserLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        loginUserLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        loginUserLabel2.setText("Nombre");
+        signUpPanel.add(loginUserLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 70, -1, -1));
+
+        loginUserLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        loginUserLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        loginUserLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        loginUserLabel3.setText("Contraseña");
+        signUpPanel.add(loginUserLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 167, -1, -1));
+
+        confirmationBtn.setBackground(new java.awt.Color(236, 0, 140));
+        confirmationBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        confirmationBtn.setForeground(new java.awt.Color(255, 255, 255));
+        confirmationBtn.setText("Confirmar");
+        confirmationBtn.setToolTipText("Ingresar");
+        confirmationBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
+        confirmationBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        confirmationBtn.setFocusPainted(false);
+        confirmationBtn.setMargin(new java.awt.Insets(4, 14, 4, 14));
+        confirmationBtn.setMaximumSize(new java.awt.Dimension(70, 35));
+        confirmationBtn.setMinimumSize(new java.awt.Dimension(70, 35));
+        confirmationBtn.setPreferredSize(new java.awt.Dimension(70, 35));
+        confirmationBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmationBtnActionPerformed(evt);
+            }
+        });
+        signUpPanel.add(confirmationBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 218, 89, -1));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bock Pay | Login");
         setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         setMinimumSize(new java.awt.Dimension(880, 525));
         setName("Login"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(880, 525));
         setResizable(false);
         setSize(new java.awt.Dimension(880, 525));
 
@@ -254,7 +341,7 @@ public class LoginView extends javax.swing.JFrame {
             
         } else {
             if (accountController.verifyUsername(username)) {
-                Account account = new Account(10, username, password);
+                Account account = new Account(0, username, password);
                 accountController.addAccount(account);
                 
                 this.setVisible(false);
@@ -266,7 +353,12 @@ public class LoginView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_loginCreateAccountBtnActionPerformed
 
+    private void confirmationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmationBtnActionPerformed
+    
+    }//GEN-LAST:event_confirmationBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton confirmationBtn;
     private javax.swing.JPanel formPanel;
     private javax.swing.JPanel formZonePanel;
     private javax.swing.JLabel imageLabel;
@@ -281,8 +373,15 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JLabel loginPasswordLabel;
     private javax.swing.JPasswordField loginPasswordTxt;
     private javax.swing.JLabel loginUserLabel;
+    private javax.swing.JLabel loginUserLabel1;
+    private javax.swing.JLabel loginUserLabel2;
+    private javax.swing.JLabel loginUserLabel3;
     private javax.swing.JTextField loginUserTxt;
+    private javax.swing.JTextField loginUserTxt3;
+    private javax.swing.JTextField nameTxt;
     private javax.swing.JPanel passwordErrorPanel;
+    private javax.swing.JPanel signUpPanel;
+    private javax.swing.JTextField userTxt;
     private javax.swing.JPanel usernameErrorPanel;
     // End of variables declaration//GEN-END:variables
 
