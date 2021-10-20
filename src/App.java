@@ -1,20 +1,29 @@
 
-import model.structure.Arbol;
+import controller.AccountController;
 import controller.FileController;
-import controller.JoinController;
+import controller.TransactionController;
+import model.system.Account;
+import view.LoginView;
 
+/**
+ *
+ * @author sonya
+ */
 public class App {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
-        Arbol arbol = new Arbol(2);
-        
-        System.out.println("App llamar al file controller");
-        FileController fileCtrl = new FileController(arbol, "C:\\Block-Pay\\", "registrosUsuarios.txt", "registrosTransacciones.txt");
-        fileCtrl.init();
-        
-        System.out.println("App llamar al Join controller");
-        JoinController joinCtrl = new JoinController(arbol);
-        joinCtrl.join();
-        
+        TransactionController transactionController = new TransactionController();
+        AccountController accountController = new AccountController(FileController.loadAccount(), transactionController);
+        for (Account account : accountController.getAccountList()) {
+            FileController.loadWallets(account);
+        }
+        FileController.loadBlock(accountController, transactionController);
+
+        LoginView loginView = new LoginView(accountController);
+        loginView.setVisible(true);
     }
 }

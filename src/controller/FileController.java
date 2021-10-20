@@ -1,460 +1,325 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Scanner;
-import model.structure.Arbol;
-import model.structure.nodo.NodoArbol;
-import model.system.Persona;
-import model.system.Transaccion;
-import view.WelcomeView;
+import model.list.List;
+import model.system.Account;
+import model.system.Block;
+import model.system.Transaction;
+import model.system.Wallet;
 
+/**
+ *
+ * @author 57301
+ */
 public class FileController {
 
-    private final Arbol arbol;
-    private static String dir;
-    private static String userFileName;
-    private static String blockFileName;
-
-    private File userFile;
-    private File blockFile;
+    private static final String DIR = "C:\\Block-Pay\\";
 
     /**
      *
-     * @param arbol
+     * @param fileName
+     * @return
      */
-    public FileController(Arbol arbol) {
-        this.arbol = arbol;
-    }
-
-    /**
-     *
-     * @param arbol
-     * @param dir
-     * @param userFileName
-     * @param blockFileName
-     */
-    public FileController(Arbol arbol, String dir, String userFileName, String blockFileName) {
-        this.arbol = arbol;
-        FileController.dir = dir;
-        FileController.userFileName = userFileName;
-        FileController.blockFileName = blockFileName;
-    }
-
-    /**
-     * Carga los archivos y con ello crea el arbol
-     */
-    public void init() {
-        WelcomeView welcomeView = new WelcomeView();
-        welcomeView.setMaxValue(6);
-        welcomeView.setVisible(true);
-
-        // Crea los archivos
-        this.userFile = new File(FileController.dir + FileController.userFileName);
-        this.blockFile = new File(FileController.dir + FileController.blockFileName);
-        welcomeView.progress();
-
-        // Confirmar que los archivos existan
-        searchOrCreateFile(this.userFile, FileController.userFileName);
-        searchOrCreateFile(this.blockFile, FileController.blockFileName);
-        welcomeView.progress();
-
-        if (!this.searchInFile(userFile, "userFijo")) {
-            this.writeFile(userFile, new Persona("userFijo", "First", "User", 0, 1000000000, "***"));
-        }
-
-        // Carga los usuarios al arbol
-        NodoArbol root = this.arbol.getRoot();
-        root = uploadUsers(root);
-        root = uploadBlock(root);
-        this.arbol.setRoot(root);
-        welcomeView.progress();
-
-        // Confirmar que el usuario 0 exista
-        welcomeView.setVisible(false);
-    }
-
-    /**
-     * Dado un archivo y el nombre del mismo, si no lo encunetre lo crea
-     *
-     * @param file archivo
-     * @param fileName nombre del archivo
-     */
-    public void searchOrCreateFile(File file, String fileName) {
-        File f = new File(dir);
-        file = new File(FileController.dir, fileName);
+    public static File findCreateFile(String fileName) {
+        File file = new File(DIR + fileName);
 
         if (!file.exists()) {
-            //No existe el archivo
-            f.mkdir();
+            file.getParentFile().mkdirs();
 
             try {
                 file.createNewFile();
+                System.out.println(FileController.class.getName() + " MENSAJE  acceso a " + fileName);
+
             } catch (IOException e) {
-                System.out.println("Controller.FileControoler.searchOrCreteFile Error: " + e.toString());
+                System.out.println(FileController.class.getName() + " ERROR " + e.toString());
             }
         }
+
+        return file;
     }
 
-    /**
-     * Carga en el arbol la información de los usuarios
-     *
-     * @param root raíz del arbol
-     * @return
-     */
-    public NodoArbol uploadUsers(NodoArbol root) {
-        try (Scanner sc = new Scanner(userFile)) {
-
-            while (sc.hasNextLine()) {
-                String linea = sc.nextLine();
-                String data[] = linea.split("#");
-
-                Persona p = new Persona(data[0], data[1], data[2], Integer.parseInt(data[4]), Float.parseFloat(data[5]), data[3]);
-
-                System.out.println(Arrays.toString(data));
-
-                if (data[0].equals("userFijo")) {
-                    root = arbol.insertRoot(root, p);
-                    System.out.println("controller.FileController.uploadUser Raíz dentro");
-                } else {
-                    root = arbol.insertPersona(root, p);
-                    System.out.println("controller.FileController.uploadUser logrado");
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("controller.FileController.uploadUser El archivo de Usuarios no se encontró");
-        }
-        return root;
-    }
-
-    /**
-     * Carga en el arbol la información de las transacciones
-     *
-     * @param root
-     * @return
-     */
-    public NodoArbol uploadBlock(NodoArbol root) {
-        try (Scanner sc = new Scanner(blockFile)) {
-
-            while (sc.hasNextLine()) {
-                String linea = sc.nextLine();
-                String data[] = linea.split("#");
-
-                Transaccion t = new Transaccion(
-                        Integer.parseInt(data[0]),
-                        Integer.parseInt(data[1]),
-                        Integer.parseInt(data[2]),
-                        Float.parseFloat(data[3]),
-                        Float.parseFloat(data[4]),
-                        Float.parseFloat(data[5]),
-                        Float.parseFloat(data[6]),
-                        Float.parseFloat(data[7])
-                );
-                       
-                    System.out.println("root.getChildren().search(1) = " + root.getChildren().search(1));
-                    root = arbol.insertTrans(root, t,0);
-                    System.out.println(root);
-                    System.out.println("controller.FileController.uploadBlock transacción en el arbol");
-                
-            }
-
-        } catch (FileNotFoundException e) {
-            System.out.println("controller.FileController.uploadBlock El archivo de Transacciones no se encontró");
-        }
-
-        return root;
-    }
-
-    /**
-     * Dado un archivo y un identificador, busca en el archivo si esa linea
-     * existe
-     *
-     * @param file
-     * @param id
-     * @return
-     */
-    public boolean searchInFile(File file, int id) {
-        try (Scanner sc = new Scanner(file)) {
-
-            while (sc.hasNextLine()) {
-
-                String linea = sc.nextLine();
-                String data[] = linea.split("#");
-                String iD = data[3];
-
-                if (iD.equals(id)) {
-                    return true;
-                }
-            }
-        } catch (FileNotFoundException e) {
-
-            System.out.println("controller.FileController.searchInFile(File, int) El archivo no se encontró");
-        }
-
-        return false;
-    }
-
-    /**
-     * Dado un archivo y un usuario, busca el usuario en el arvhivo
-     * @param file
-     * @param user
-     * @return 
-     */
-    public boolean searchInFile(File file, String user) {
-        try (Scanner sc = new Scanner(file)) {
-            
-            while (sc.hasNextLine()) {
-                String linea = sc.nextLine();
-                String data[] = linea.split("#");
-                String userDataB = data[0];
-            
-                if (userDataB.equals(user)) {
-                    return true;
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("controller.FileController.searchInFile(File, String) El archivo no se encontró");
-        }
-        return false;
-    }
-
-    /**
-     * 
-     * @param file
-     * @param password
-     * @return 
-     */
-    public boolean searchInFilePassword(File file, String password) {
-        try (Scanner sc = new Scanner(file)) {
-            while (sc.hasNextLine()) {
-                
-                String linea = sc.nextLine();
-                String data[] = linea.split("#");
-                String pw = data[3];
-                
-                if (pw.equals(password)) {
-                    return true;
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("controller.FileController.searchInFilePassword El archivo no se encontró");
-        }
-        return false;
-    }
-
-    /**
-     * 
-     * @param file 
-     */
-    public void deleteFile(File file) {
-        try {
-            if (file.exists()) {
-                file.delete();
-            }
-        } catch (Exception ex) {
-            System.out.println("controller.FileController.deleteFile Archivo no encontrado");
-        }
-    }
-
-    /**
-     * 
-     * @param file
-     * @param line 
-     */
-    public void writeFile(File file, String line) {
+    public static void writeFile(File file, String line) {
         try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
             //casting
             try (BufferedWriter bw = new BufferedWriter(fw)) {
                 //casting
                 bw.write(line);
-                System.out.println(line);
                 bw.newLine();
 
                 bw.flush();
             }
             fw.close();
         } catch (IOException e) {
-            System.out.println("controller.FileController.writeFile Error al cargar archivo");
-        }
-    }
-    
-    /**
-     * 
-     * @param file
-     * @param user 
-     */
-    public void updateDataUser(File file, Persona user){
-        File newFile = new File(file.getAbsolutePath() + ".tmp");
-        
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String linea;
-        
-            while ((linea = br.readLine()) != null) {
-                String data[] = linea.split("#");
-                String idUser = data[4];
-            
-                if (user.getId() == Integer.parseInt(idUser)) {
-                    String userName = user.getUserName();
-                    String name = user.getNames();
-                    String lastName = user.getLastNames();
-                    String pw = user.getPassword();
-                    String iD = idUser;
-                    String cash_ = String.valueOf(user.getDinero());
-                    String line = userName + "#" + name + "#" + lastName + "#" + pw + "#" + iD + "#" + cash_;
-                    this.writeFile(newFile, line);
-                } else {
-                    this.writeFile(newFile, linea);
-                }
-            }
-            br.close();
-            
-            if (!file.delete()) {
-                System.out.println("controller.FileController.updateDataUser No se pudo borrar el archivo antiguo");
-            }
-            if (!newFile.renameTo(file)) {
-                System.out.println("controller.FileController.updateDataUser No se pudo renombrar el archivo");
-            }
-        } catch (IOException ex) {
-            System.out.println("controller.FileController.updateDataUser Archivo no encontrado");
+            System.out.println("Error al cargar archivo");
         }
     }
 
     /**
-     * 
-     * @param file
-     * @param cash
-     * @param user 
-     */
-    public void updateCash(File file, float cash, String user) {
-        File newFile = new File(file.getAbsolutePath() + ".tmp");
-        
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-        
-            System.out.println("controller.FileController.updateChash entró");
-            String linea;
-            
-            while ((linea = br.readLine()) != null) {
-                String data[] = linea.split("#");
-                String dataUser = data[0];
-                if (dataUser.equals(user)) {
-                    String userName = user;
-                    String name = data[1];
-                    String lastName = data[2];
-                    String pw = data[3];
-                    String iD = data[4];
-                    String cash_ = String.valueOf(cash);
-                    String line = userName + "#" + name + "#" + lastName + "#" + pw + "#" + iD + "#" + cash_;
-                    this.writeFile(newFile, line);
-                } else {
-                    this.writeFile(newFile, linea);
-                }
-            }
-            br.close();
-            if (!file.delete()) {
-                System.out.println("controller.FileController.updateChash No se pudo borrar el archivo antiguo");
-            }
-            if (!newFile.renameTo(file)) {
-                System.out.println("controller.FileController.updateChash No se pudo renombrar el archivo");
-            }
-        } catch (IOException ex) {
-            System.out.println("controller.FileController.updateChash Archivo no encontrado");
-        }
-    }
-
-    /**
-     * Escribelas trasacciones
      *
-     * @param file
-     * @param t
+     * @return
      */
-    public void writeFile(File file, Transaccion t) {
-        Persona remitente = arbol.searchUser(arbol.getRoot().getChildren().search(0), t.getRemitenteId(), 0);
-        Persona destinatario = arbol.searchUser(arbol.getRoot().getChildren().search(0), t.getDestinatarioId(), 0);
+    public static List<Account> loadAccount() {
+        List<Account> accountList = new List<>();
 
-        if (remitente != null && destinatario != null) {
-            try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
-                try (BufferedWriter bw = new BufferedWriter(fw)) {
+        File accountFile = findCreateFile("account.txt");
 
-                    String line = t.getId()
-                            + "#" + t.getRemitenteId()
-                            + "#" + t.getDestinatarioId()
-                            + "#" + t.getMonto()
-                            + "#" + t.getRemitenteAntes()
-                            + "#" + t.getRemitenteDespues()
-                            + "#" + t.getDestinatarioAntes()
-                            + "#" + t.getDestinatarioDespues();
+        if (accountFile != null) {
 
-                    System.out.println("controller.FileController.writeFile: " + line);
-                    bw.write(line);
+            try {
+                Scanner read = new Scanner(accountFile);
 
-                    bw.newLine();
-                    bw.flush();
+                while (read.hasNextLine()) {
+                    String line = read.nextLine();
+                    String data[] = line.split("#");
+
+                    Account account = new Account(Integer.parseInt(data[0]), data[1], data[2]);
+                    accountList.add(account);
+
+                    System.out.println(
+                            FileController.class.getName()
+                            + " #"
+                            + accountList.getSize()
+                            + " MENSAJE nueva account "
+                            + Arrays.toString(data));
                 }
 
-                fw.close();
+                System.out.println(FileController.class.getName() + " MENSAJE " + "Se ha terminado de leer");
 
-            } catch (IOException e) {
-                System.out.println("controller.FilleController.writeFile Error al cargar archivo: " + e.toString());
+            } catch (FileNotFoundException e) {
+                System.out.println(FileController.class.getName() + " ERROR " + e.toString());
+            }
+        } else {
+            System.out.println(FileController.class.getName() + " ERROR account file null");
+        }
+
+        return accountList;
+    }
+
+    public static void updateAccount(Account account) {
+        File accountFile = findCreateFile("account.txt");
+
+        if (accountFile != null) {
+
+            File newFile = new File(accountFile.getAbsolutePath() + ".tmp");
+
+            try {
+                Scanner read = new Scanner(accountFile);
+                while (read.hasNextLine()) {
+                    String line = read.nextLine();
+                    String data[] = line.split("#");
+                    String user = data[1];
+                    if (user.equals(account.getUserName())) {
+                        String updateAccount = account.getID() + "#" + account.getUserName() + "#" + account.getPassword();
+                        writeFile(newFile, updateAccount);
+                    } else {
+                        writeFile(newFile, line);
+                    }
+                }
+                if (!accountFile.delete()) {
+                    System.out.println(FileController.class.getName() + " MENSAJE " + "No se pudo borrar el archivo antiguo");
+                }
+                if (!newFile.renameTo(accountFile)) {
+                    System.out.println(FileController.class.getName() + " MENSAJE " + "No se pudo renombrar el archivo");
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println(FileController.class.getName() + " ERROR " + e.toString());
+            }
+
+        }
+
+    }
+
+    public static boolean searchAccount(Account account) {
+        File accountFile = findCreateFile("account.txt");
+        if (accountFile != null) {
+            try {
+                Scanner read = new Scanner(accountFile);
+                while (read.hasNextLine()) {
+                    String line = read.nextLine();
+                    String data[] = line.split("#");
+                    String user = data[1];
+                    if (user.equals(account.getUserName())) {
+                        return true;
+                    }
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println(FileController.class.getName() + " ERROR " + e.toString());
             }
         }
+        return false;
+    }
+
+    public static void loadWallets(Account account) {
+        File walletFile = findCreateFile("wallet.txt");
+
+        if (walletFile != null) {
+
+            try {
+                Scanner read = new Scanner(walletFile);
+                while (read.hasNextLine()) {
+                    String line = read.nextLine();
+                    String data[] = line.split("#");
+                    if (Integer.parseInt(data[3]) == account.getID()) {
+                        Wallet wallet = new Wallet(data[0], Double.parseDouble(data[1]), data[2]);
+                        account.addWallet(wallet);
+                        System.out.println(FileController.class.getName() + " MENSAJE nueva wallet " + Arrays.toString(data) + " + " + account.getID());
+                    }
+                }
+
+                System.out.println(FileController.class.getName() + " MENSAJE " + "Se ha terminado de leer");
+
+            } catch (FileNotFoundException e) {
+                System.out.println(FileController.class.getName() + " ERROR " + e.toString());
+            }
+
+        }
+
+    }
+
+    public static void updateWallet(Wallet wallet) {
+        File walletFile = findCreateFile("wallet.txt");
+
+        if (walletFile != null) {
+
+            File newFile = new File(walletFile.getAbsolutePath() + ".tmp");
+
+            try {
+                Scanner read = new Scanner(walletFile);
+                while (read.hasNextLine()) {
+                    String line = read.nextLine();
+                    String data[] = line.split("#");
+                    String idWallet = data[0];
+
+                    if (idWallet.equals(wallet.getID())) {
+                        String updateWallet = wallet.getID() + "#" + wallet.getMoney() + "#" + wallet.getNickname() + data[3];
+                        writeFile(newFile, updateWallet);
+                    } else {
+                        writeFile(newFile, line);
+                    }
+                }
+                if (!walletFile.delete()) {
+                    System.out.println(FileController.class.getName() + " MENSAJE " + "No se pudo borrar el archivo antiguo");
+                }
+                if (!newFile.renameTo(walletFile)) {
+                    System.out.println(FileController.class.getName() + " MENSAJE " + "No se pudo renombrar el archivo");
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println(FileController.class.getName() + " ERROR " + e.toString());
+            }
+
+        }
+    }
+
+    public static int searchWallet(Wallet wallet) {
+        File accountFile = findCreateFile("wallet.txt");
+        if (accountFile != null) {
+            try {
+                Scanner read = new Scanner(accountFile);
+                while (read.hasNextLine()) {
+                    String line = read.nextLine();
+                    String data[] = line.split("#");
+                    String walletId = data[0];
+                   if (walletId.equals(wallet.getID()) && wallet.getMoney() != Double.parseDouble(data[1])){
+                        return -1;
+                    } else if (walletId.equals(wallet.getID())){
+                        return 1;
+                    }
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println(FileController.class.getName() + " ERROR " + e.toString());
+            }
+        }
+        return 0;
+    }
+
+    public static boolean findTransaction(Transaction transaction) {
+        File accountFile = findCreateFile("transaction.txt");
+        if (accountFile != null) {
+            try {
+                Scanner read = new Scanner(accountFile);
+                while (read.hasNextLine()) {
+                    String line = read.nextLine();
+                    String data[] = line.split("#");
+                    String walletRemitentId = data[0];
+                    String walletDestinataryId = data[1];
+                    String money = data[2];
+                    if (walletRemitentId.equals(transaction.getRemitent().getID())
+                            && walletDestinataryId.equals(transaction.getDestinatary().getID())
+                            && Double.parseDouble(money) == transaction.getMoney()) {
+                        return true;
+                    }
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println(FileController.class.getName() + " ERROR " + e.toString());
+            }
+        }
+        return false;
     }
 
     /**
-     * 
-     * @param file
-     * @param p 
+     *
+     * @param accountController
+     * @param transactionController
      */
-    public void writeFile(File file, Persona p) {
-        try (FileWriter fw = new FileWriter(file.getAbsoluteFile(), true)) {
-            //casting
-            try (BufferedWriter bw = new BufferedWriter(fw)) {
-                //casting
-                String user = p.getUserName();
-                String name = p.getNames();
-                String lastName = p.getLastNames();
-                String pw = p.getPassword();
-                String iD = String.valueOf(p.getId());
-                String cash_ = String.valueOf(p.getDinero());
+    public static void loadBlock(AccountController accountController, TransactionController transactionController) {
+        File blockFile = findCreateFile("transaction.txt");
 
-                bw.write(user + "#" + name + "#" + lastName + "#" + pw + "#" + iD + "#" + cash_);
-                System.out.println("controller.FileController.writeFile " + user + "#" + name + "#" + lastName + "#" + pw + "#" + iD + "#" + cash_);
-                bw.newLine();
+        if (blockFile != null) {
 
-                bw.flush();
-            }
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("controller.FileController.writeFile Error al cargar archivo");
-        }
-    }
+            try {
+                Scanner read = new Scanner(blockFile);
 
-    /**
-     * 
-     * @param file
-     * @param userName
-     * @return 
-     */
-    public Persona searchInFilePersona(File file, String userName) {
-        Persona p;
-        try (Scanner sc = new Scanner(file)) {
-            while (sc.hasNextLine()) {
-                String linea = sc.nextLine();
-                String data[] = linea.split("#");
-                String userDataB = data[0];
-                if (userDataB.equals(userName)) {
-                    p = new Persona(userName, data[1], data[2], Integer.parseInt(data[4]), Float.parseFloat(data[5]), data[3]);
-                    return p;
+                while (read.hasNextLine()) {
+                    String line = read.nextLine();
+                    String data[] = line.split("#");
+                    // bloque, remitent, destinatary, money, date, messange
+
+                    // BUSCAR WALLETS (Ni puta idea como)
+                    Wallet walletRemitent = accountController.getWallet(data[0]);
+                    Wallet walletDestinatary = accountController.getWallet(data[1]);
+                    // IDEA DE BUSCAR WALLETS ||
+
+                    double money = Double.parseDouble(data[2]);
+
+                    String dateString[] = data[3].split("-");
+                    LocalDate date = LocalDate.of(Integer.parseInt(dateString[0]),
+                            Integer.parseInt(dateString[1]), Integer.parseInt(dateString[2]));
+
+                    Transaction transaction = new Transaction(walletRemitent, walletDestinatary, money, date, data[4]);
+
+                    if (transactionController.add(transaction) <= 0) {
+                        System.out.println(
+                                FileController.class.getName()
+                                + " MENSAJE transacción " + " #"
+                                + transactionController.getBlockList().getSize()
+                                + Arrays.toString(data));
+                    } else {
+                        System.out.println(FileController.class.getName() + " - ADVENTENCIA - " + " NO SE REGISTRÓ TRANSACCIÓN");
+                    }
                 }
+
+                System.out.println(FileController.class.getName() + " MENSAJE " + "Se ha terminado de leer");
+
+            } catch (FileNotFoundException e) {
+                System.out.println(FileController.class.getName() + " ERROR " + e.toString());
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("controller.FileController.searcchInFilePersona El archivo no se encontró");
+        } else {
+            System.out.println(FileController.class.getName() + " ERROR account file null");
         }
-        return null;
+
     }
+
 }
