@@ -13,9 +13,10 @@ public class Eva extends Account {
     
     public Eva() {
         super(0, "eva", "eva_mitocondrial");
-    
+
         Wallet wallet = new Wallet("eva0", 10000000, "Eva's wallet");
         addWallet(wallet);
     }
-    
+
+
 }

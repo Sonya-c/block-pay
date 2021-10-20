@@ -5,7 +5,10 @@
  */
 package view.layouts;
 
+import javax.swing.JFrame;
 import model.system.Account;
+import model.system.Wallet;
+import view.includes.Modal;
 
 /**
  *
@@ -13,12 +16,15 @@ import model.system.Account;
  */
 public class WalletsView extends javax.swing.JPanel {
     private Account account;
-    
+    private final JFrame parent;
     /**
      * Creates new form WalletsView
+     * @param parent
+     * @param account
      */
-    public WalletsView(Account account) {
+    public WalletsView(JFrame parent, Account account) {
         this.account = account;
+        this.parent = parent;
         initComponents();
     }
 
@@ -28,20 +34,113 @@ public class WalletsView extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        newWalletPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        sendMoneyPanel1 = new javax.swing.JPanel();
+        walletIdLabel1 = new javax.swing.JLabel();
+        nickNameWallet = new javax.swing.JTextField();
+        newWallet = new javax.swing.JButton();
+        walletIdLabel2 = new javax.swing.JLabel();
+
+        newWalletPanel.setBackground(new java.awt.Color(27, 20, 100));
+        newWalletPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(236, 0, 140), 2, true));
+        newWalletPanel.setMaximumSize(new java.awt.Dimension(300, 100));
+        newWalletPanel.setMinimumSize(new java.awt.Dimension(300, 100));
+        newWalletPanel.setPreferredSize(new java.awt.Dimension(300, 100));
+        newWalletPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Creación exitosa de su wallet");
+        newWalletPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 240, 40));
+
+        setLayout(new java.awt.GridBagLayout());
+
+        sendMoneyPanel1.setBackground(new java.awt.Color(236, 0, 140));
+        sendMoneyPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
+        sendMoneyPanel1.setMinimumSize(new java.awt.Dimension(300, 100));
+        sendMoneyPanel1.setPreferredSize(new java.awt.Dimension(300, 100));
+        sendMoneyPanel1.setLayout(null);
+
+        walletIdLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        walletIdLabel1.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        walletIdLabel1.setText("Nueva wallet");
+        sendMoneyPanel1.add(walletIdLabel1);
+        walletIdLabel1.setBounds(100, 20, 130, 23);
+
+        nickNameWallet.setBackground(new java.awt.Color(255, 45, 169));
+        nickNameWallet.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        nickNameWallet.setForeground(new java.awt.Color(255, 255, 255));
+        nickNameWallet.setToolTipText("Nombre de usuario");
+        nickNameWallet.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 45, 169), 5, true));
+        nickNameWallet.setCaretColor(new java.awt.Color(27, 20, 100));
+        nickNameWallet.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        nickNameWallet.setName(""); // NOI18N
+        nickNameWallet.setPreferredSize(new java.awt.Dimension(170, 33));
+        nickNameWallet.setSelectionColor(new java.awt.Color(236, 0, 140));
+        sendMoneyPanel1.add(nickNameWallet);
+        nickNameWallet.setBounds(170, 73, 130, 40);
+
+        newWallet.setBackground(new java.awt.Color(102, 204, 255));
+        newWallet.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        newWallet.setForeground(new java.awt.Color(27, 20, 100));
+        newWallet.setText("Agregar");
+        newWallet.setToolTipText("Ingresar");
+        newWallet.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(236, 0, 140), 1, true));
+        newWallet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        newWallet.setFocusPainted(false);
+        newWallet.setMargin(new java.awt.Insets(4, 14, 4, 14));
+        newWallet.setMaximumSize(new java.awt.Dimension(70, 35));
+        newWallet.setMinimumSize(new java.awt.Dimension(70, 35));
+        newWallet.setPreferredSize(new java.awt.Dimension(70, 35));
+        newWallet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newWalletActionPerformed(evt);
+            }
+        });
+        sendMoneyPanel1.add(newWallet);
+        newWallet.setBounds(200, 130, 70, 35);
+
+        walletIdLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        walletIdLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        walletIdLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        walletIdLabel2.setText("Nombre de la wallet");
+        walletIdLabel2.setAutoscrolls(true);
+        walletIdLabel2.setName(""); // NOI18N
+        walletIdLabel2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        sendMoneyPanel1.add(walletIdLabel2);
+        walletIdLabel2.setBounds(10, 50, 160, 80);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.ipady = 80;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(11, 192, 0, 184);
+        add(sendMoneyPanel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void newWalletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newWalletActionPerformed
+      String nickName = nickNameWallet.getText();
+      Wallet wallet = new Wallet(account.getUserName() + account.getWallets().getSize(),
+                0,
+                nickName);
+      account.addWallet(wallet);
+      nickNameWallet.setText("");
+      Modal modal = new Modal(parent, "Error nombre de usuario", true, newWalletPanel);
+    }//GEN-LAST:event_newWalletActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton newWallet;
+    private javax.swing.JPanel newWalletPanel;
+    private javax.swing.JTextField nickNameWallet;
+    private javax.swing.JPanel sendMoneyPanel1;
+    private javax.swing.JLabel walletIdLabel1;
+    private javax.swing.JLabel walletIdLabel2;
     // End of variables declaration//GEN-END:variables
 }

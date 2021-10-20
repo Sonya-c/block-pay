@@ -12,11 +12,11 @@ public class AccountController {
     private final List<Account> accountList;
     private final TransactionController transactionController;
     private Eva eva;
-    
+
     /**
-     * 
-     * @param accountList 
-     * @param transactionController 
+     *
+     * @param accountList
+     * @param transactionController
      */
     public AccountController(List<Account> accountList, TransactionController transactionController) {
         this.accountList = accountList;
@@ -24,18 +24,18 @@ public class AccountController {
         createEva();
     }
 
-    /** 
+    /**
      * CHECK THIS!!!!!
      */
     private void createEva() {
-        
+
         if (accountList.getSize() == 0) {
             eva = new Eva();
             accountList.add(eva);
-            
+
             // CHECK THIS!!!
-            FileController.writeFile(FileController.findCreateFile("account.txt"), 0 + "#" + eva.getUserName() + "#" + eva.getPassword());
-            FileController.writeFile(FileController.findCreateFile("wallet.txt"), 1 + "#" + String.valueOf(Double.MAX_VALUE) + "#" + "Eva's wallet" + "#" + String.valueOf(eva.getID()));
+//            FileController.writeFile(FileController.findCreateFile("account.txt"), 0 + "#" + eva.getUserName() + "#" + eva.getPassword());
+//            FileController.writeFile(FileController.findCreateFile("wallet.txt"), "eva0" + "#" + String.valueOf(Double.MAX_VALUE) + "#" + "Eva's wallet" + "#" + String.valueOf(eva.getID()));
         } else {
             for (Account account : accountList) {
                 if (account.getID() == 0 && account instanceof Eva) {
@@ -91,46 +91,77 @@ public class AccountController {
      */
     public void addAccount(Account account) {
         this.accountList.add(account);
-        FileController.writeFile(FileController.findCreateFile("account.txt"), (account.getID() + "#" + account.getUserName() + "#" + account.getPassword()));
+    }
+    
+    public double getSaldo(Account account){
+        return transactionController.getSaldo(account);
+    }
+    
+    public void writeAccountInFile() {
+        for (Account a : accountList) {
+            if (!FileController.searchAccount(a)) {
+                FileController.writeFile(FileController.findCreateFile("account.txt"),
+                        a.getID() + "#" + a.getUserName() + "#" + a.getPassword());
+            }
+
+            for (Wallet wallet : a.getWallets()) {
+                if (FileController.searchWallet(wallet) == 0) {
+                    FileController.writeFile(FileController.findCreateFile("wallet.txt"),
+                            wallet.getID() + "#" + wallet.getMoney() + "#" + wallet.getNickname() + "#" + a.getID());
+                } else if (FileController.searchWallet(wallet) == -1) {
+                    FileController.updateWallet(wallet);
+                }
+            }
+        }
+        transactionController.writeTransactionInFile();
+    }
+
+    public String getHistorial(Wallet wallet) {
+        return transactionController.getHistorial(wallet);
     }
 
     /**
-     * 
-     * @param account 
+     *
+     * @param account
      */
     public void moneyFistWallet(Account account) {
-              
+
         Wallet wallet = new Wallet(
                 account.getUserName() + account.getWallets().getSize(),
                 0,
                 "Wallet de " + account.getUserName()
         );
-        
-        Transaction transaction = new Transaction(eva.getWallet("eva0"), wallet, 50000, LocalDate.now() , "Hola, bienvenido a block-pay");
-        transactionController.add(transaction);
+        Transaction transaction = new Transaction(this.getWallet("eva0"), wallet, 50000, LocalDate.now(), "Hola, bienvenido a block-pay");
+        if (transactionController.add(transaction) <= 0) {
+            transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
+            transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
+      
+        }
         account.addWallet(wallet);
     }
-    
+
     /**
-     * 
+     *
      * @param idWallet
-     * @return 
+     * @return
      */
     public Wallet getWallet(String idWallet) {
+
         for (Account account : accountList) {
             for (Wallet wallet : account.getWallets()) {
-                if (idWallet == null ? wallet.getID() == null : idWallet.equals(wallet.getID())) {
+                if (idWallet.equals(wallet.getID())) {
                     return wallet;
                 }
             }
         }
         return null;
+
     }
 
     /**
-     * 
+     *
      * @param idAccount
-     * @return 
+     * @return
      */
     public Account getAccount(int idAccount) {
         for (Account account : accountList) {
@@ -142,9 +173,9 @@ public class AccountController {
     }
 
     /**
-     * 
+     *
      * @param username
-     * @return 
+     * @return
      */
     public Account getAccount(String username) {
         for (Account account : accountList) {
@@ -154,12 +185,17 @@ public class AccountController {
         }
         return null;
     }
-    
+
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public List<Account> getAccountList() {
         return accountList;
     }
+
+    public TransactionController getTransactionController() {
+        return transactionController;
+    }
+
 }

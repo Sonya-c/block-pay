@@ -320,7 +320,7 @@ public class LoginView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginEnterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginEnterBtnActionPerformed
-        String username = loginUserTxt.getText();
+        String username = loginUserTxt.getText().trim();
         String password = loginPasswordTxt.getText();
         
         if (accountController.verifyPassword(username, password)) {
@@ -333,7 +333,7 @@ public class LoginView extends javax.swing.JFrame {
     }//GEN-LAST:event_loginEnterBtnActionPerformed
 
     private void loginCreateAccountBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginCreateAccountBtnActionPerformed
-        String username = loginUserTxt.getText();
+        String username = loginUserTxt.getText().trim();
         String password = loginPasswordTxt.getText().trim();
         
         if (password.length() < 5) {
@@ -341,9 +341,10 @@ public class LoginView extends javax.swing.JFrame {
             
         } else {
             if (accountController.verifyUsername(username)) {
-                Account account = new Account(0, username, password);
+                Account account = new Account(accountController.getAccountList().getTail().getInfo().getID() + 1,
+                        username, password);
                 accountController.addAccount(account);
-                
+                accountController.moneyFistWallet(account);
                 this.setVisible(false);
                 MainView mainView = new MainView(accountController.getAccount(username), accountController);
                 mainView.setVisible(true);

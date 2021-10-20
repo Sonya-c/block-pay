@@ -2,9 +2,11 @@ package controller;
 
 import model.list.List;
 import model.list.ListNode;
+import model.system.Account;
 import model.system.Block;
 import model.system.Eva;
 import model.system.Transaction;
+import model.system.Wallet;
 
 /**
  * It manages the logical process of doing a transaction
@@ -34,6 +36,7 @@ public class TransactionController {
      * @return
      */
     public boolean verifyTransaction(Transaction transaction) {
+        System.out.println(transaction.getRemitent().getID().equals("eva0"));
         if (transaction.getRemitent().getID().equals("eva0")) {
             if (transaction.getRemitent().getMoney() - transaction.getMoney() <= 0) {
                 transaction.getRemitent().setMoney(Double.MAX_VALUE); // Recargarle a eva
@@ -61,6 +64,7 @@ public class TransactionController {
                 }
             }
             System.out.println("controller.TransactionController.verifyTransaction(Transaction) MENSAJE: valor money = " + money);
+            System.out.println(TransactionController.class.toString() + " MENSAJE: " + transaction.getRemitent().getMoney());
             return (money == transaction.getRemitent().getMoney() && money >= transaction.getMoney());
         }
     }
@@ -82,10 +86,8 @@ public class TransactionController {
                 Block block = new Block();
                 block.getTransactions().add(transaction);
                 blockList.add(block);
-
-                transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
-                transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
-
+                
+                return -1;
             } else {
 
                 if (tail.getInfo() instanceof Block) {
@@ -102,13 +104,12 @@ public class TransactionController {
                         blockList.add(block);
                     }
 
-                    transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
-                    transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
-                    
+//                    transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
+//                    transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
+
 //                    FileController.writeFile(FileController.findCreateFile("transaction.txt"),
 //                            (block.toString() + "#" + transaction.getRemitent().getID() + "#" + transaction.getDestinatary().getID()
 //                            + "#" + transaction.getMoney() + "#" + transaction.getDate() + "#" + transaction.getMessange()));
-
                     return 0;
                 } else {
                     System.out.println("controller.TransactionController.add(Transaction) ERROR: Estructura de datos incorrecta");
@@ -116,9 +117,55 @@ public class TransactionController {
             }
 
             // Q: ¿Qué le hacemos a las transacciones que resulten malas?
+        } else {
+            System.out.println("controller.TransactionController.add(Transaction) ERROR: Verificación fallida");
         }
-        System.out.println("controller.TransactionController.add(Transaction) ERROR: Verificación fallida");
         return 1;
+    }
+
+    public double getSaldo(Account account){
+        double saldo = 0;
+        for (Block block : blockList) {
+            for (Transaction transaction : block.getTransactions()) {
+                if (account.getWallet(transaction.getRemitent().getID())!= null){
+                    saldo -= transaction.getMoney();
+                } else if (account.getWallet(transaction.getDestinatary().getID()) != null){
+                    saldo += transaction.getMoney();
+                }
+            }
+        }
+        return saldo;
+    }
+    
+    public String getHistorial(Wallet wallet) {
+        String historial = "";
+
+        for (Block block : blockList) {
+            for (Transaction transaction : block.getTransactions()) {
+                if (transaction.getRemitent().getID().equals(wallet.getID())) {
+                    historial += "\n Transacción de remitente \n";
+                    historial += transaction.toString();
+                } else if (transaction.getDestinatary().getID().equals(wallet.getID())) {
+                    historial += "\n Transacción de destinatario \n";
+                    historial += transaction.toString();
+                }
+            }
+        }
+
+        return historial;
+    }
+
+    public void writeTransactionInFile() {
+        for (Block block : blockList) {
+            for (Transaction transaction : block.getTransactions()) {
+                if (!FileController.findTransaction(transaction)) {
+                    FileController.writeFile(FileController.findCreateFile("transaction.txt"),
+                            transaction.getRemitent().getID() + "#"
+                            + transaction.getDestinatary().getID() + "#" + transaction.getMoney() + "#" + transaction.getDate()
+                            + "#" + transaction.getMessange());
+                }
+            }
+        }
     }
 
     public List<Block> getBlockList() {
