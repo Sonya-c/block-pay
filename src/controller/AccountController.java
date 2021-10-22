@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.time.LocalDate;
 import model.list.List;
 import model.system.Account;
@@ -35,7 +36,7 @@ public class AccountController {
 
             // CHECK THIS!!!
 //            FileController.writeFile(FileController.findCreateFile("account.txt"), 0 + "#" + eva.getUserName() + "#" + eva.getPassword());
-//            FileController.writeFile(FileController.findCreateFile("wallet.txt"), "eva0" + "#" + String.valueOf(Double.MAX_VALUE) + "#" + "Eva's wallet" + "#" + String.valueOf(eva.getID()));
+//            FileController.writeFile(FileController.findCreateFile("wallet.txt"), "eva0" + "#" + eva.getWallet("eva0").getMoney() + "#" + "Eva's wallet" + "#" + eva.getID());
         } else {
             for (Account account : accountList) {
                 if (account.getID() == 0 && account instanceof Eva) {
@@ -92,11 +93,11 @@ public class AccountController {
     public void addAccount(Account account) {
         this.accountList.add(account);
     }
-    
-    public double getSaldo(Account account){
+
+    public double getSaldo(Account account) {
         return transactionController.getSaldo(account);
     }
-    
+
     public void writeAccountInFile() {
         for (Account a : accountList) {
             if (!FileController.searchAccount(a)) {
@@ -105,12 +106,9 @@ public class AccountController {
             }
 
             for (Wallet wallet : a.getWallets()) {
-                if (FileController.searchWallet(wallet) == 0) {
-                    FileController.writeFile(FileController.findCreateFile("wallet.txt"),
-                            wallet.getID() + "#" + wallet.getMoney() + "#" + wallet.getNickname() + "#" + a.getID());
-                } else if (FileController.searchWallet(wallet) == -1) {
-                    FileController.updateWallet(wallet);
-                }
+                FileController.writeFile(FileController.findCreateFile("wallet.txt"),
+                        wallet.getID() + "#" + wallet.getMoney() + "#" + wallet.getNickname() + "#"
+                        + a.getID());
             }
         }
         transactionController.writeTransactionInFile();
@@ -135,7 +133,6 @@ public class AccountController {
         if (transactionController.add(transaction) <= 0) {
             transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
             transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
-      
         }
         account.addWallet(wallet);
     }
@@ -172,6 +169,17 @@ public class AccountController {
         return null;
     }
 
+    public Account getAccountByWallet(String idWallet) {
+        for (Account account : accountList) {
+            for (Wallet wallet : account.getWallets()) {
+                if (idWallet.equals(wallet.getID())) {
+                    return account;
+                }
+            }
+        }
+        return null;
+    }
+
     /**
      *
      * @param username
@@ -199,3 +207,11 @@ public class AccountController {
     }
 
 }
+
+/**
+ *
+ * if (FileController.searchWallet(wallet) == 0) {
+ * FileController.writeFile(FileController.findCreateFile("wallet.txt"),
+ * wallet.getID() + "#" + wallet.getMoney() + "#" + wallet.getNickname() + "#" +
+ * a.getID()); } else if (FileController.searchWallet(wallet) == -1)
+ */

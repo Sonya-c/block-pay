@@ -5,9 +5,11 @@
  */
 package controller;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -172,7 +174,11 @@ public class FileController {
                 while (read.hasNextLine()) {
                     String line = read.nextLine();
                     String data[] = line.split("#");
-                    if (Integer.parseInt(data[3]) == account.getID()) {
+                    if (Integer.parseInt(data[3]) == account.getID() && account.getWallet(data[0]) != null) {
+                        Wallet wallet = account.getWallet(data[0]);
+                        wallet.setMoney(Double.parseDouble(data[1]));
+                        System.out.println(FileController.class.getName() + "MENSAJE dinero de wallet actualizado : " + wallet.getMoney());
+                    } else if (Integer.parseInt(data[3]) == account.getID()) {
                         Wallet wallet = new Wallet(data[0], Double.parseDouble(data[1]), data[2]);
                         account.addWallet(wallet);
                         System.out.println(FileController.class.getName() + " MENSAJE nueva wallet " + Arrays.toString(data) + " + " + account.getID());
@@ -189,37 +195,29 @@ public class FileController {
 
     }
 
-    public static void updateWallet(Wallet wallet) {
-        File walletFile = findCreateFile("wallet.txt");
+    public static void updateWallet(File walletFile, Wallet wallet) {
+        File newFile = new File(walletFile.getAbsolutePath() + ".tmp");
+        try (BufferedReader br = new BufferedReader(new FileReader(walletFile))) {
 
-        if (walletFile != null) {
-
-            File newFile = new File(walletFile.getAbsolutePath() + ".tmp");
-
-            try {
-                Scanner read = new Scanner(walletFile);
-                while (read.hasNextLine()) {
-                    String line = read.nextLine();
-                    String data[] = line.split("#");
-                    String idWallet = data[0];
-
-                    if (idWallet.equals(wallet.getID())) {
-                        String updateWallet = wallet.getID() + "#" + wallet.getMoney() + "#" + wallet.getNickname() + data[3];
-                        writeFile(newFile, updateWallet);
-                    } else {
-                        writeFile(newFile, line);
-                    }
+            String line;
+            while ((line = br.readLine()) != null) {
+                String data[] = line.split("#");
+                String walletIdTxt = data[0];
+                if (walletIdTxt.equals(wallet.getID())) {
+                    String newLine = wallet.getID() + "#" + String.valueOf(wallet.getMoney()) + "#" + wallet.getNickname() + data[3];
+                    FileController.writeFile(newFile, newLine);
                 }
-                if (!walletFile.delete()) {
-                    System.out.println(FileController.class.getName() + " MENSAJE " + "No se pudo borrar el archivo antiguo");
-                }
-                if (!newFile.renameTo(walletFile)) {
-                    System.out.println(FileController.class.getName() + " MENSAJE " + "No se pudo renombrar el archivo");
-                }
-            } catch (FileNotFoundException e) {
-                System.out.println(FileController.class.getName() + " ERROR " + e.toString());
+            }
+            br.close();
+            if (!walletFile.delete()) {
+                System.out.println("No se pudo borrar el archivo antiguo");
+            }
+            if (!newFile.renameTo(walletFile)) {
+                System.out.println("No se pudo renombrar el archivo");
             }
 
+        } catch (IOException e) {
+            System.out.println(FileController.class.getName() + " ERROR " + e.toString());
         }
     }
 
@@ -232,9 +230,9 @@ public class FileController {
                     String line = read.nextLine();
                     String data[] = line.split("#");
                     String walletId = data[0];
-                   if (walletId.equals(wallet.getID()) && wallet.getMoney() != Double.parseDouble(data[1])){
+                    if (walletId.equals(wallet.getID()) && wallet.getMoney() != Double.parseDouble(data[1])) {
                         return -1;
-                    } else if (walletId.equals(wallet.getID())){
+                    } else if (walletId.equals(wallet.getID())) {
                         return 1;
                     }
                 }
@@ -246,10 +244,10 @@ public class FileController {
     }
 
     public static boolean findTransaction(Transaction transaction) {
-        File accountFile = findCreateFile("transaction.txt");
-        if (accountFile != null) {
+        File transactionFile = findCreateFile("transaction.txt");
+        if (transactionFile != null) {
             try {
-                Scanner read = new Scanner(accountFile);
+                Scanner read = new Scanner(transactionFile);
                 while (read.hasNextLine()) {
                     String line = read.nextLine();
                     String data[] = line.split("#");
@@ -258,7 +256,9 @@ public class FileController {
                     String money = data[2];
                     if (walletRemitentId.equals(transaction.getRemitent().getID())
                             && walletDestinataryId.equals(transaction.getDestinatary().getID())
-                            && Double.parseDouble(money) == transaction.getMoney()) {
+                            && Double.parseDouble(money) == transaction.getMoney() 
+                            && transaction.getDate().toString().equals(data[3])
+                            && transaction.getMessange().equals(data[4])) {
                         return true;
                     }
                 }
@@ -299,16 +299,13 @@ public class FileController {
                             Integer.parseInt(dateString[1]), Integer.parseInt(dateString[2]));
 
                     Transaction transaction = new Transaction(walletRemitent, walletDestinatary, money, date, data[4]);
+                    transactionController.uploadTransaction(transaction);
+                    System.out.println(
+                            FileController.class.getName()
+                            + " MENSAJE transacción " + " #"
+                            + transactionController.getBlockList().getSize()
+                            + Arrays.toString(data));
 
-                    if (transactionController.add(transaction) <= 0) {
-                        System.out.println(
-                                FileController.class.getName()
-                                + " MENSAJE transacción " + " #"
-                                + transactionController.getBlockList().getSize()
-                                + Arrays.toString(data));
-                    } else {
-                        System.out.println(FileController.class.getName() + " - ADVENTENCIA - " + " NO SE REGISTRÓ TRANSACCIÓN");
-                    }
                 }
 
                 System.out.println(FileController.class.getName() + " MENSAJE " + "Se ha terminado de leer");

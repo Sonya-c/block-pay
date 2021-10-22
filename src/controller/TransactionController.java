@@ -28,6 +28,40 @@ public class TransactionController {
     public TransactionController(List<Block> blockList) {
         this.blockList = blockList;
     }
+    
+    public void uploadTransaction(Transaction transaction){
+         ListNode tail = blockList.getTail();
+
+            if (tail == null) {
+
+                Block block = new Block();
+                block.getTransactions().add(transaction);
+                blockList.add(block);
+                
+            } else {
+
+                if (tail.getInfo() instanceof Block) {
+                    // Confirm that the info is a listNode
+                    Block block = (Block) tail.getInfo();
+
+                    if (block.getTransactions().getSize() < 3) {
+                        // As this block is not full size, we can add the new transaction here
+                        block.getTransactions().add(transaction);
+                    } else {
+                        // As this block is full size, we must create a new block
+                        block = new Block();
+                        block.getTransactions().add(transaction);
+                        blockList.add(block);
+                    }
+                    
+                    System.out.println(TransactionController.class.toString() + " MENSAJE: Transacción cargada");
+                   
+                } else {
+                    System.out.println("controller.TransactionController.add(Transaction) ERROR: Estructura de datos incorrecta");
+                }
+            }
+
+    }
 
     /**
      * Verifica la transacción
@@ -86,7 +120,6 @@ public class TransactionController {
                 Block block = new Block();
                 block.getTransactions().add(transaction);
                 blockList.add(block);
-                
                 return -1;
             } else {
 
@@ -103,13 +136,7 @@ public class TransactionController {
                         block.getTransactions().add(transaction);
                         blockList.add(block);
                     }
-
-//                    transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
-//                    transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
-
-//                    FileController.writeFile(FileController.findCreateFile("transaction.txt"),
-//                            (block.toString() + "#" + transaction.getRemitent().getID() + "#" + transaction.getDestinatary().getID()
-//                            + "#" + transaction.getMoney() + "#" + transaction.getDate() + "#" + transaction.getMessange()));
+                    System.out.println(TransactionController.class.toString() + " MENSAJE: Transaccióne éxitosa");
                     return 0;
                 } else {
                     System.out.println("controller.TransactionController.add(Transaction) ERROR: Estructura de datos incorrecta");
@@ -122,6 +149,7 @@ public class TransactionController {
         }
         return 1;
     }
+    
 
     public double getSaldo(Account account){
         double saldo = 0;
