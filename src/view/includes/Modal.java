@@ -14,14 +14,24 @@ import javax.swing.JFrame;
  */
 public class Modal extends javax.swing.JDialog {
 
-    
     public Modal(JFrame frame, String title, boolean bool, Component contentPane) {
         super(frame, title, bool);
+        
+        // Añadir el panel
         getContentPane().add(contentPane);
+        
+        // Eliminar los botones
+        // setUndecorated(true);
+        
+        // No se que hace esot
         pack();
+        
         setLocationRelativeTo(null);
         setVisible(true);
-        setResizable(false);   
+        setMaximumSize(contentPane.getSize());
+        setSize(contentPane.getSize());
+        setResizable(false);
+        
     }
     
 }

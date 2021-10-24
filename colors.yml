@@ -1,0 +1,18 @@
+- PINK:
+    - HEX: #EF476F
+    - RGB: [216, 49, 91]
+- YELLOW:
+    - HEX: #FFD166
+    - RGB: [255, 209, 102]
+- LIGHT_BLUE:
+    - HEX: #118AB2
+    - RGB: [62, 146, 204]
+- DARK_BLUE:
+    - HEX: #073B4C
+    - RGB: [10, 36, 99]
+- DARK:
+    - HEX: #1E1B18
+    - RGB: [30, 27, 24]
+- WHITE:
+    - HEX: #FFFAFF
+    - RGB: [255, 250,255]

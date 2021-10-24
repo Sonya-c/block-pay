@@ -37,13 +37,13 @@ public class LoginView extends javax.swing.JFrame {
         passwordErrorPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         signUpPanel = new javax.swing.JPanel();
-        nameTxt = new javax.swing.JTextField();
-        userTxt = new javax.swing.JTextField();
-        loginUserTxt3 = new javax.swing.JTextField();
+        SignUpUsernameTxt = new javax.swing.JTextField();
+        signUpUserTxt = new javax.swing.JTextField();
+        signUpPasswordTxt = new javax.swing.JTextField();
         loginUserLabel1 = new javax.swing.JLabel();
         loginUserLabel2 = new javax.swing.JLabel();
         loginUserLabel3 = new javax.swing.JLabel();
-        confirmationBtn = new javax.swing.JButton();
+        signUpBtn = new javax.swing.JButton();
         formZonePanel = new javax.swing.JPanel();
         formPanel = new javax.swing.JPanel();
         loginFormPanel = new javax.swing.JPanel();
@@ -56,131 +56,126 @@ public class LoginView extends javax.swing.JFrame {
         imageZonePanel = new javax.swing.JPanel();
         imageLabel = new javax.swing.JLabel();
 
-        loginErrorPanel.setBackground(new java.awt.Color(27, 20, 100));
-        loginErrorPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(236, 0, 140), 2, true));
-        loginErrorPanel.setMaximumSize(new java.awt.Dimension(300, 100));
-        loginErrorPanel.setMinimumSize(new java.awt.Dimension(300, 100));
-        loginErrorPanel.setPreferredSize(new java.awt.Dimension(300, 100));
+        loginErrorPanel.setBackground(new java.awt.Color(255, 255, 255));
+        loginErrorPanel.setMaximumSize(new java.awt.Dimension(320, 95));
+        loginErrorPanel.setMinimumSize(new java.awt.Dimension(320, 95));
+        loginErrorPanel.setPreferredSize(new java.awt.Dimension(320, 95));
         loginErrorPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Contraseña o usuario incorrectos");
+        jLabel1.setText("Contraseña o usuario incorrectos :(");
         loginErrorPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 20));
 
-        usernameErrorPanel.setBackground(new java.awt.Color(27, 20, 100));
-        usernameErrorPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(236, 0, 140), 2, true));
-        usernameErrorPanel.setMaximumSize(new java.awt.Dimension(300, 100));
-        usernameErrorPanel.setMinimumSize(new java.awt.Dimension(300, 100));
-        usernameErrorPanel.setPreferredSize(new java.awt.Dimension(300, 100));
+        usernameErrorPanel.setBackground(new java.awt.Color(255, 255, 255));
+        usernameErrorPanel.setMaximumSize(new java.awt.Dimension(320, 95));
+        usernameErrorPanel.setMinimumSize(new java.awt.Dimension(320, 95));
+        usernameErrorPanel.setPreferredSize(new java.awt.Dimension(320, 95));
         usernameErrorPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Este nombre de usuario ya existe");
+        jLabel2.setText("Este nombre de usuario ya existe :(");
         usernameErrorPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 20));
 
-        passwordErrorPanel.setBackground(new java.awt.Color(27, 20, 100));
-        passwordErrorPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(236, 0, 140), 2, true));
-        passwordErrorPanel.setMaximumSize(new java.awt.Dimension(300, 100));
-        passwordErrorPanel.setMinimumSize(new java.awt.Dimension(300, 100));
-        passwordErrorPanel.setPreferredSize(new java.awt.Dimension(300, 100));
+        passwordErrorPanel.setBackground(new java.awt.Color(255, 255, 255));
+        passwordErrorPanel.setMaximumSize(new java.awt.Dimension(252, 94));
+        passwordErrorPanel.setMinimumSize(new java.awt.Dimension(252, 94));
+        passwordErrorPanel.setPreferredSize(new java.awt.Dimension(252, 94));
         passwordErrorPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("<html>La contraseña debe tener minimo 5 carácteres</html>");
         passwordErrorPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 240, 40));
 
-        signUpPanel.setBackground(new java.awt.Color(27, 20, 100));
-        signUpPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(236, 0, 140), 2, true));
-        signUpPanel.setMaximumSize(new java.awt.Dimension(300, 100));
-        signUpPanel.setMinimumSize(new java.awt.Dimension(300, 100));
-        signUpPanel.setPreferredSize(new java.awt.Dimension(300, 100));
+        signUpPanel.setBackground(new java.awt.Color(151, 58, 168));
+        signUpPanel.setMaximumSize(new java.awt.Dimension(400, 300));
+        signUpPanel.setMinimumSize(new java.awt.Dimension(400, 300));
+        signUpPanel.setPreferredSize(new java.awt.Dimension(400, 300));
         signUpPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        nameTxt.setBackground(new java.awt.Color(53, 42, 157));
-        nameTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        nameTxt.setForeground(new java.awt.Color(255, 255, 255));
-        nameTxt.setToolTipText("Nombre de usuario");
-        nameTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(53, 42, 157), 5, true));
-        nameTxt.setCaretColor(new java.awt.Color(236, 0, 140));
-        nameTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
-        nameTxt.setName(""); // NOI18N
-        nameTxt.setPreferredSize(new java.awt.Dimension(170, 33));
-        nameTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
-        signUpPanel.add(nameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 116, -1, -1));
+        SignUpUsernameTxt.setBackground(new java.awt.Color(87, 16, 137));
+        SignUpUsernameTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        SignUpUsernameTxt.setForeground(new java.awt.Color(255, 194, 226));
+        SignUpUsernameTxt.setToolTipText("Nombre de usuario");
+        SignUpUsernameTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(151, 58, 168), 2, true));
+        SignUpUsernameTxt.setCaretColor(new java.awt.Color(236, 0, 140));
+        SignUpUsernameTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        SignUpUsernameTxt.setName(""); // NOI18N
+        SignUpUsernameTxt.setPreferredSize(new java.awt.Dimension(170, 33));
+        SignUpUsernameTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
+        signUpPanel.add(SignUpUsernameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 116, -1, -1));
 
-        userTxt.setBackground(new java.awt.Color(53, 42, 157));
-        userTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        userTxt.setForeground(new java.awt.Color(255, 255, 255));
-        userTxt.setToolTipText("Nombre de usuario");
-        userTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(53, 42, 157), 5, true));
-        userTxt.setCaretColor(new java.awt.Color(236, 0, 140));
-        userTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
-        userTxt.setName(""); // NOI18N
-        userTxt.setPreferredSize(new java.awt.Dimension(170, 33));
-        userTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
-        signUpPanel.add(userTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 65, -1, -1));
+        signUpUserTxt.setBackground(new java.awt.Color(87, 16, 137));
+        signUpUserTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        signUpUserTxt.setForeground(new java.awt.Color(255, 194, 226));
+        signUpUserTxt.setToolTipText("Nombre de usuario");
+        signUpUserTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(151, 58, 168), 2, true));
+        signUpUserTxt.setCaretColor(new java.awt.Color(236, 0, 140));
+        signUpUserTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        signUpUserTxt.setName(""); // NOI18N
+        signUpUserTxt.setPreferredSize(new java.awt.Dimension(170, 33));
+        signUpUserTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
+        signUpPanel.add(signUpUserTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 65, -1, -1));
 
-        loginUserTxt3.setBackground(new java.awt.Color(53, 42, 157));
-        loginUserTxt3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        loginUserTxt3.setForeground(new java.awt.Color(255, 255, 255));
-        loginUserTxt3.setToolTipText("Nombre de usuario");
-        loginUserTxt3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(53, 42, 157), 5, true));
-        loginUserTxt3.setCaretColor(new java.awt.Color(236, 0, 140));
-        loginUserTxt3.setMargin(new java.awt.Insets(5, 5, 5, 5));
-        loginUserTxt3.setName(""); // NOI18N
-        loginUserTxt3.setPreferredSize(new java.awt.Dimension(170, 33));
-        loginUserTxt3.setSelectionColor(new java.awt.Color(236, 0, 140));
-        signUpPanel.add(loginUserTxt3, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 167, -1, -1));
+        signUpPasswordTxt.setBackground(new java.awt.Color(87, 16, 137));
+        signUpPasswordTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        signUpPasswordTxt.setForeground(new java.awt.Color(255, 194, 226));
+        signUpPasswordTxt.setToolTipText("Nombre de usuario");
+        signUpPasswordTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(151, 58, 168), 2, true));
+        signUpPasswordTxt.setCaretColor(new java.awt.Color(236, 0, 140));
+        signUpPasswordTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        signUpPasswordTxt.setName(""); // NOI18N
+        signUpPasswordTxt.setPreferredSize(new java.awt.Dimension(170, 33));
+        signUpPasswordTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
+        signUpPanel.add(signUpPasswordTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 167, -1, -1));
 
-        loginUserLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        loginUserLabel1.setBackground(new java.awt.Color(30, 27, 24));
         loginUserLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         loginUserLabel1.setForeground(new java.awt.Color(255, 255, 255));
         loginUserLabel1.setText("Usuario");
         signUpPanel.add(loginUserLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 121, -1, -1));
 
-        loginUserLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        loginUserLabel2.setBackground(new java.awt.Color(30, 27, 24));
         loginUserLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         loginUserLabel2.setForeground(new java.awt.Color(255, 255, 255));
         loginUserLabel2.setText("Nombre");
         signUpPanel.add(loginUserLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 70, -1, -1));
 
-        loginUserLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        loginUserLabel3.setBackground(new java.awt.Color(30, 27, 24));
         loginUserLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         loginUserLabel3.setForeground(new java.awt.Color(255, 255, 255));
         loginUserLabel3.setText("Contraseña");
         signUpPanel.add(loginUserLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 167, -1, -1));
 
-        confirmationBtn.setBackground(new java.awt.Color(236, 0, 140));
-        confirmationBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        confirmationBtn.setForeground(new java.awt.Color(255, 255, 255));
-        confirmationBtn.setText("Confirmar");
-        confirmationBtn.setToolTipText("Ingresar");
-        confirmationBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
-        confirmationBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        confirmationBtn.setFocusPainted(false);
-        confirmationBtn.setMargin(new java.awt.Insets(4, 14, 4, 14));
-        confirmationBtn.setMaximumSize(new java.awt.Dimension(70, 35));
-        confirmationBtn.setMinimumSize(new java.awt.Dimension(70, 35));
-        confirmationBtn.setPreferredSize(new java.awt.Dimension(70, 35));
-        confirmationBtn.addActionListener(new java.awt.event.ActionListener() {
+        signUpBtn.setBackground(new java.awt.Color(234, 105, 139));
+        signUpBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        signUpBtn.setForeground(new java.awt.Color(255, 255, 255));
+        signUpBtn.setText("Confirmar");
+        signUpBtn.setToolTipText("Ingresar");
+        signUpBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 250, 255), 1, true));
+        signUpBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        signUpBtn.setFocusPainted(false);
+        signUpBtn.setMargin(new java.awt.Insets(4, 14, 4, 14));
+        signUpBtn.setMaximumSize(new java.awt.Dimension(70, 35));
+        signUpBtn.setMinimumSize(new java.awt.Dimension(70, 35));
+        signUpBtn.setPreferredSize(new java.awt.Dimension(70, 35));
+        signUpBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmationBtnActionPerformed(evt);
+                signUpBtnActionPerformed(evt);
             }
         });
-        signUpPanel.add(confirmationBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 218, 89, -1));
+        signUpPanel.add(signUpBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 89, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bock Pay | Login");
         setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         setMinimumSize(new java.awt.Dimension(880, 525));
         setName("Login"); // NOI18N
-        setResizable(false);
         setSize(new java.awt.Dimension(880, 525));
 
-        formZonePanel.setBackground(new java.awt.Color(27, 20, 100));
+        formZonePanel.setBackground(new java.awt.Color(71, 18, 107));
         formZonePanel.setMaximumSize(new java.awt.Dimension(500, 32767));
         formZonePanel.setMinimumSize(new java.awt.Dimension(400, 0));
         formZonePanel.setPreferredSize(new java.awt.Dimension(400, 500));
@@ -188,10 +183,12 @@ public class LoginView extends javax.swing.JFrame {
 
         formPanel.setBackground(new java.awt.Color(27, 20, 100));
         formPanel.setMinimumSize(new java.awt.Dimension(300, 300));
+        formPanel.setOpaque(false);
         formPanel.setPreferredSize(new java.awt.Dimension(300, 300));
         formPanel.setLayout(new java.awt.BorderLayout());
 
-        loginFormPanel.setBackground(new java.awt.Color(27, 20, 100));
+        loginFormPanel.setBackground(new java.awt.Color(71, 18, 107));
+        loginFormPanel.setOpaque(false);
         loginFormPanel.setLayout(new java.awt.GridBagLayout());
 
         loginUserLabel.setBackground(new java.awt.Color(255, 255, 255));
@@ -216,11 +213,11 @@ public class LoginView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         loginFormPanel.add(loginPasswordLabel, gridBagConstraints);
 
-        loginUserTxt.setBackground(new java.awt.Color(53, 42, 157));
+        loginUserTxt.setBackground(new java.awt.Color(151, 58, 168));
         loginUserTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         loginUserTxt.setForeground(new java.awt.Color(255, 255, 255));
         loginUserTxt.setToolTipText("Nombre de usuario");
-        loginUserTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(53, 42, 157), 5, true));
+        loginUserTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(71, 18, 107), 2, true));
         loginUserTxt.setCaretColor(new java.awt.Color(236, 0, 140));
         loginUserTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
         loginUserTxt.setName(""); // NOI18N
@@ -233,11 +230,11 @@ public class LoginView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         loginFormPanel.add(loginUserTxt, gridBagConstraints);
 
-        loginPasswordTxt.setBackground(new java.awt.Color(53, 42, 157));
+        loginPasswordTxt.setBackground(new java.awt.Color(151, 58, 168));
         loginPasswordTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         loginPasswordTxt.setForeground(new java.awt.Color(255, 255, 255));
         loginPasswordTxt.setToolTipText("Contreña");
-        loginPasswordTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(53, 42, 157), 5, true));
+        loginPasswordTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(71, 18, 107), 2, true));
         loginPasswordTxt.setCaretColor(new java.awt.Color(236, 0, 140));
         loginPasswordTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
         loginPasswordTxt.setMinimumSize(new java.awt.Dimension(170, 33));
@@ -249,12 +246,12 @@ public class LoginView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         loginFormPanel.add(loginPasswordTxt, gridBagConstraints);
 
-        loginEnterBtn.setBackground(new java.awt.Color(236, 0, 140));
+        loginEnterBtn.setBackground(new java.awt.Color(234, 105, 139));
         loginEnterBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         loginEnterBtn.setForeground(new java.awt.Color(255, 255, 255));
         loginEnterBtn.setText("Ingresar");
         loginEnterBtn.setToolTipText("Ingresar");
-        loginEnterBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
+        loginEnterBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(17, 138, 178), 1, true));
         loginEnterBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loginEnterBtn.setFocusPainted(false);
         loginEnterBtn.setMargin(new java.awt.Insets(4, 14, 4, 14));
@@ -274,8 +271,8 @@ public class LoginView extends javax.swing.JFrame {
         loginFormPanel.add(loginEnterBtn, gridBagConstraints);
 
         loginCreateAccountBtn.setBackground(new java.awt.Color(27, 20, 100));
-        loginCreateAccountBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        loginCreateAccountBtn.setForeground(new java.awt.Color(236, 0, 140));
+        loginCreateAccountBtn.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        loginCreateAccountBtn.setForeground(new java.awt.Color(255, 209, 102));
         loginCreateAccountBtn.setText("Crear cuenta");
         loginCreateAccountBtn.setToolTipText("Crear una cuenta");
         loginCreateAccountBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 16, 4, 16));
@@ -336,30 +333,37 @@ public class LoginView extends javax.swing.JFrame {
         String username = loginUserTxt.getText().trim();
         String password = loginPasswordTxt.getText().trim();
         
-        if (password.length() < 5) {
-            Modal modal = new Modal(this, "Error contraseña", true, passwordErrorPanel);
-            
-        } else {
-            if (accountController.verifyUsername(username)) {
-                Account account = new Account(accountController.getAccountList().getTail().getInfo().getID() + 1,
-                        username, password);
-                accountController.addAccount(account);
-                accountController.moneyFistWallet(account);
-                this.setVisible(false);
-                MainView mainView = new MainView(accountController.getAccount(username), accountController);
-                mainView.setVisible(true);
-            } else {
-                Modal modal = new Modal(this, "Error nombre de usuario", true, usernameErrorPanel);
-            }
-        }
+        SignUpUsernameTxt.setText(username);
+        signUpPasswordTxt.setText(password);
+        
+        Modal modal = new Modal(this, "Registrarse", true, signUpPanel);
+        
     }//GEN-LAST:event_loginCreateAccountBtnActionPerformed
 
-    private void confirmationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmationBtnActionPerformed
-    
-    }//GEN-LAST:event_confirmationBtnActionPerformed
+    private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
+        String username = SignUpUsernameTxt.getText().trim();
+        String password = signUpPasswordTxt.getText().trim();
+        String name = signUpUserTxt.getText().trim();
+        
+        if (password.length() < 5) {
+            Modal modal = new Modal(this, "Error contraseña", true, passwordErrorPanel);
+        } else {
+            if (accountController.verifyUsername(username)) {
+                Account account = new Account(10, username, password);
+                
+                accountController.addAccount(account);
+                
+                this.setVisible(false);
+                MainView mainView = new MainView(account, accountController);
+                mainView.setVisible(true);
+            } else {
+                Modal modal = new Modal(this, "Nombre ya existe", true, usernameErrorPanel);
+            }
+        }
+    }//GEN-LAST:event_signUpBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton confirmationBtn;
+    private javax.swing.JTextField SignUpUsernameTxt;
     private javax.swing.JPanel formPanel;
     private javax.swing.JPanel formZonePanel;
     private javax.swing.JLabel imageLabel;
@@ -378,11 +382,11 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JLabel loginUserLabel2;
     private javax.swing.JLabel loginUserLabel3;
     private javax.swing.JTextField loginUserTxt;
-    private javax.swing.JTextField loginUserTxt3;
-    private javax.swing.JTextField nameTxt;
     private javax.swing.JPanel passwordErrorPanel;
+    private javax.swing.JButton signUpBtn;
     private javax.swing.JPanel signUpPanel;
-    private javax.swing.JTextField userTxt;
+    private javax.swing.JTextField signUpPasswordTxt;
+    private javax.swing.JTextField signUpUserTxt;
     private javax.swing.JPanel usernameErrorPanel;
     // End of variables declaration//GEN-END:variables
 

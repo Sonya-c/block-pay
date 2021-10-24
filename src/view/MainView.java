@@ -1,7 +1,6 @@
 package view;
 
 import controller.AccountController;
-import controller.TransactionController;
 import java.awt.Color;
 import view.layouts.IndexView;
 import view.layouts.ProfileView;
@@ -27,8 +26,6 @@ public class MainView extends javax.swing.JFrame {
     private final DataView dataView;
 
     public MainView(Account account, AccountController accountController) {
-        this.setResizable(false);
-
         this.indexView = new IndexView(this, account, accountController);
         this.profileView = new ProfileView(account);
         this.walletsView = new WalletsView(this, account);
@@ -79,7 +76,8 @@ public class MainView extends javax.swing.JFrame {
         menuBarPanel.setPreferredSize(new java.awt.Dimension(60, 500));
         menuBarPanel.setLayout(new java.awt.BorderLayout());
 
-        mainMenuOptionsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        mainMenuOptionsPanel.setBackground(new java.awt.Color(151, 58, 168));
+        mainMenuOptionsPanel.setOpaque(false);
         mainMenuOptionsPanel.setLayout(new javax.swing.BoxLayout(mainMenuOptionsPanel, javax.swing.BoxLayout.Y_AXIS));
 
         profileBtn.setBackground(new java.awt.Color(255, 255, 255));
@@ -105,12 +103,12 @@ public class MainView extends javax.swing.JFrame {
         });
         mainMenuOptionsPanel.add(profileBtn);
 
-        indexBtn.setBackground(new java.awt.Color(255, 255, 255));
+        indexBtn.setBackground(new java.awt.Color(255, 209, 102));
         indexBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         indexBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home-icon.png"))); // NOI18N
         indexBtn.setToolTipText("Inicio");
         indexBtn.setAlignmentY(0.0F);
-        indexBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(236, 0, 140), 2));
+        indexBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 209, 102), 2));
         indexBtn.setContentAreaFilled(false);
         indexBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         indexBtn.setFocusPainted(false);
@@ -196,13 +194,13 @@ public class MainView extends javax.swing.JFrame {
         bodyPanel.setLayout(new java.awt.BorderLayout());
         getContentPane().add(bodyPanel, java.awt.BorderLayout.CENTER);
 
-        pack();
+        setSize(new java.awt.Dimension(826, 539));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void defaultButtonBorder() {
         for (javax.swing.JButton button : buttons) {
-            button.setBorder(whiteBorder);
+            button.setBorder(defaultBorder);
             button.setBackground(Color.white);
         }
     }
@@ -213,8 +211,8 @@ public class MainView extends javax.swing.JFrame {
         bodyPanel.add(profileView);
         setTitle("Block Pay | Perfil");
 
-        profileBtn.setBorder(pinkBorder);
-        profileBtn.setBackground(new java.awt.Color(241, 185, 219));
+        profileBtn.setBorder(hightlightborder);
+        profileBtn.setBackground(hightlightcolor);
 
         bodyPanel.validate();
         bodyPanel.repaint();
@@ -229,8 +227,8 @@ public class MainView extends javax.swing.JFrame {
         bodyPanel.add(indexView);
         setTitle("Block Pay | Home");
 
-        indexBtn.setBorder(pinkBorder);
-        indexBtn.setBackground(new java.awt.Color(241, 185, 219));
+        indexBtn.setBorder(hightlightborder);
+        indexBtn.setBackground(hightlightcolor);
 
         bodyPanel.validate();
         bodyPanel.repaint();
@@ -243,8 +241,8 @@ public class MainView extends javax.swing.JFrame {
         bodyPanel.add(walletsView);
         setTitle("Block Pay | Wallets");
 
-        walletsBtn.setBorder(pinkBorder);
-        walletsBtn.setBackground(new java.awt.Color(241, 185, 219));
+        walletsBtn.setBorder(hightlightborder);
+        walletsBtn.setBackground(hightlightcolor);
 
         bodyPanel.validate();
         bodyPanel.repaint();
@@ -257,8 +255,8 @@ public class MainView extends javax.swing.JFrame {
         bodyPanel.add(dataView);
         setTitle("Block Pay | Datos");
 
-        dataBtn.setBorder(pinkBorder);
-        dataBtn.setBackground(new java.awt.Color(241, 185, 219));
+        dataBtn.setBorder(hightlightborder);
+        dataBtn.setBackground(hightlightcolor);
 
         bodyPanel.validate();
         bodyPanel.repaint();
@@ -267,13 +265,14 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_dataBtnActionPerformed
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
-        accountController.writeAccountInFile();
-       
+        //accountController.writeAccountInFile();
+        System.out.println("El usuario va a salir");
     }//GEN-LAST:event_exitBtnActionPerformed
 
-    private javax.swing.border.LineBorder whiteBorder = new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true);
-    private javax.swing.border.LineBorder pinkBorder = new javax.swing.border.LineBorder(new java.awt.Color(236, 0, 140), 3, true);
-
+    private final java.awt.Color hightlightcolor = new java.awt.Color(255,209,102);
+    private final javax.swing.border.LineBorder defaultBorder = new javax.swing.border.LineBorder(Color.white, 2, true);
+    private final javax.swing.border.LineBorder hightlightborder = new javax.swing.border.LineBorder(hightlightcolor, 2, true);
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyPanel;
     private javax.swing.JButton dataBtn;
