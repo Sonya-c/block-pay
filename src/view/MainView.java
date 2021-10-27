@@ -28,7 +28,7 @@ public class MainView extends javax.swing.JFrame {
     public MainView(Account account, AccountController accountController) {
         this.indexView = new IndexView(this, account, accountController);
         this.profileView = new ProfileView(account);
-        this.walletsView = new WalletsView(this, account);
+        this.walletsView = new WalletsView(this, account, accountController);
         this.dataView = new DataView(account);
         this.account = account;
         this.accountController = accountController;
@@ -248,6 +248,11 @@ public class MainView extends javax.swing.JFrame {
         bodyPanel.repaint();
     }//GEN-LAST:event_walletsBtnActionPerformed
 
+    private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
+        accountController.writeAccountInFile();
+        System.out.println("El usuario va a salir");
+    }//GEN-LAST:event_exitBtnActionPerformed
+
     private void dataBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataBtnActionPerformed
         bodyPanel.removeAll();
         defaultButtonBorder();
@@ -261,13 +266,7 @@ public class MainView extends javax.swing.JFrame {
         bodyPanel.validate();
         bodyPanel.repaint();
 
-
     }//GEN-LAST:event_dataBtnActionPerformed
-
-    private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
-        //accountController.writeAccountInFile();
-        System.out.println("El usuario va a salir");
-    }//GEN-LAST:event_exitBtnActionPerformed
 
     private final java.awt.Color hightlightcolor = new java.awt.Color(255,209,102);
     private final javax.swing.border.LineBorder defaultBorder = new javax.swing.border.LineBorder(Color.white, 2, true);
