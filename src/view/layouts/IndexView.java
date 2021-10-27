@@ -6,7 +6,6 @@
 package view.layouts;
 
 import controller.AccountController;
-import java.awt.Component;
 import javax.swing.JFrame;
 import model.system.Account;
 import model.system.Transaction;
@@ -412,9 +411,6 @@ public class IndexView extends javax.swing.JPanel {
         Modal modal = new Modal(parent, "Nueva transacción", true, sendMoneyModal);
     }//GEN-LAST:event_sendMoneyBtnActionPerformed
 
-    public Component getSendMoneyModal(){
-        return this.sendMoneyModal;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Header;
