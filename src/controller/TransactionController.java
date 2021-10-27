@@ -122,7 +122,43 @@ public class TransactionController {
         }
         return 1;
     }
+    
+    public void soutTransaction(){
+        for (Block block : blockList) {
+            for (Transaction transaction : block.getTransactions()) {
+                System.out.println(transaction.getMoney() + transaction.getRemitent().getID() + transaction.getDestinatary().getID());
+            }
+        }
+    }
 
+    public void addTransaction(Transaction t){
+        ListNode tail = blockList.getTail();
+        if (tail == null) {
+
+                Block block = new Block();
+                block.getTransactions().add(t);
+                blockList.add(block);
+                
+            } else {
+
+                if (tail.getInfo() instanceof Block) {
+                    // Confirm that the info is a listNode
+                    Block block = (Block) tail.getInfo();
+
+                    if (block.getTransactions().getSize() < 3) {
+                        // As this block is not full size, we can add the new transaction here
+                        block.getTransactions().add(t);
+                    } else {
+                        // As this block is full size, we must create a new block
+                        block = new Block();
+                        block.getTransactions().add(t);
+                        blockList.add(block);
+                    }
+                }
+    }
+        System.out.println(TransactionController.class.toString() + " MENSAJE Transaccipon por lista ingresada");
+    }
+    
     public double getSaldo(Account account){
         double saldo = 0;
         for (Block block : blockList) {
