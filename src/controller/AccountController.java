@@ -116,7 +116,7 @@ public class AccountController {
         transactionController.writeTransactionInFile();
     }
 
-    public String getHistorial(Wallet wallet) {
+    public List<Transaction> getHistorial(Wallet wallet) {
         return transactionController.getHistorial(wallet);
     }
 

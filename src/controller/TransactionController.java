@@ -173,22 +173,18 @@ public class TransactionController {
         return saldo;
     }
     
-    public String getHistorial(Wallet wallet) {
-        String historial = "";
+    public List<Transaction> getHistorial(Wallet wallet) {
+        List<Transaction> transactions = new List();
 
         for (Block block : blockList) {
             for (Transaction transaction : block.getTransactions()) {
-                if (transaction.getRemitent().getID().equals(wallet.getID())) {
-                    historial += "\n Transacción de remitente \n";
-                    historial += transaction.toString();
-                } else if (transaction.getDestinatary().getID().equals(wallet.getID())) {
-                    historial += "\n Transacción de destinatario \n";
-                    historial += transaction.toString();
+                if (transaction.getRemitent().getID().equals(wallet.getID()) || transaction.getDestinatary().getID().equals(wallet.getID())) {
+                    transactions.add(transaction);
                 }
             }
         }
 
-        return historial;
+        return transactions;
     }
 
     public void writeTransactionInFile() {

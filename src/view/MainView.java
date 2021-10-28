@@ -5,7 +5,7 @@ import java.awt.Color;
 import view.layouts.IndexView;
 import view.layouts.ProfileView;
 import view.layouts.WalletsView;
-import view.layouts.DataView;
+import view.layouts.TransactionInformationView;
 import model.system.Account;
 import model.list.List;
 
@@ -23,13 +23,13 @@ public class MainView extends javax.swing.JFrame {
     private final IndexView indexView;
     private final ProfileView profileView;
     private final WalletsView walletsView;
-    private final DataView dataView;
+    private final TransactionInformationView dataView;
 
     public MainView(Account account, AccountController accountController) {
         this.indexView = new IndexView(this, account, accountController);
         this.profileView = new ProfileView(account);
         this.walletsView = new WalletsView(this, account, accountController);
-        this.dataView = new DataView(account);
+        this.dataView = new TransactionInformationView(account, accountController, this);
         this.account = account;
         this.accountController = accountController;
 
@@ -42,7 +42,7 @@ public class MainView extends javax.swing.JFrame {
         buttons.add(profileBtn);
         buttons.add(indexBtn);
         buttons.add(walletsBtn);
-        buttons.add(dataBtn);
+        buttons.add(transactionsBtn);
     }
 
     /**
@@ -59,7 +59,7 @@ public class MainView extends javax.swing.JFrame {
         profileBtn = new javax.swing.JButton();
         indexBtn = new javax.swing.JButton();
         walletsBtn = new javax.swing.JButton();
-        dataBtn = new javax.swing.JButton();
+        transactionsBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
         bodyPanel = new javax.swing.JPanel();
 
@@ -145,26 +145,26 @@ public class MainView extends javax.swing.JFrame {
         });
         mainMenuOptionsPanel.add(walletsBtn);
 
-        dataBtn.setBackground(new java.awt.Color(255, 255, 255));
-        dataBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        dataBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/graph-icon.png"))); // NOI18N
-        dataBtn.setToolTipText("Datos");
-        dataBtn.setAlignmentY(0.0F);
-        dataBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        dataBtn.setContentAreaFilled(false);
-        dataBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        dataBtn.setFocusPainted(false);
-        dataBtn.setFocusable(false);
-        dataBtn.setMaximumSize(new java.awt.Dimension(60, 60));
-        dataBtn.setMinimumSize(new java.awt.Dimension(60, 60));
-        dataBtn.setOpaque(true);
-        dataBtn.setPreferredSize(new java.awt.Dimension(60, 60));
-        dataBtn.addActionListener(new java.awt.event.ActionListener() {
+        transactionsBtn.setBackground(new java.awt.Color(255, 255, 255));
+        transactionsBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        transactionsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/graph-icon.png"))); // NOI18N
+        transactionsBtn.setToolTipText("Datos");
+        transactionsBtn.setAlignmentY(0.0F);
+        transactionsBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        transactionsBtn.setContentAreaFilled(false);
+        transactionsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        transactionsBtn.setFocusPainted(false);
+        transactionsBtn.setFocusable(false);
+        transactionsBtn.setMaximumSize(new java.awt.Dimension(60, 60));
+        transactionsBtn.setMinimumSize(new java.awt.Dimension(60, 60));
+        transactionsBtn.setOpaque(true);
+        transactionsBtn.setPreferredSize(new java.awt.Dimension(60, 60));
+        transactionsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataBtnActionPerformed(evt);
+                transactionsBtnActionPerformed(evt);
             }
         });
-        mainMenuOptionsPanel.add(dataBtn);
+        mainMenuOptionsPanel.add(transactionsBtn);
 
         menuBarPanel.add(mainMenuOptionsPanel, java.awt.BorderLayout.CENTER);
 
@@ -253,20 +253,20 @@ public class MainView extends javax.swing.JFrame {
         System.out.println("El usuario va a salir");
     }//GEN-LAST:event_exitBtnActionPerformed
 
-    private void dataBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataBtnActionPerformed
+    private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         bodyPanel.removeAll();
         defaultButtonBorder();
 
         bodyPanel.add(dataView);
-        setTitle("Block Pay | Datos");
+        setTitle("Block Pay | Transacciones");
 
-        dataBtn.setBorder(hightlightborder);
-        dataBtn.setBackground(hightlightcolor);
+        transactionsBtn.setBorder(hightlightborder);
+        transactionsBtn.setBackground(hightlightcolor);
 
         bodyPanel.validate();
         bodyPanel.repaint();
 
-    }//GEN-LAST:event_dataBtnActionPerformed
+    }//GEN-LAST:event_transactionsBtnActionPerformed
 
     private final java.awt.Color hightlightcolor = new java.awt.Color(255,209,102);
     private final javax.swing.border.LineBorder defaultBorder = new javax.swing.border.LineBorder(Color.white, 2, true);
@@ -274,12 +274,12 @@ public class MainView extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyPanel;
-    private javax.swing.JButton dataBtn;
     private javax.swing.JButton exitBtn;
     private javax.swing.JButton indexBtn;
     private javax.swing.JPanel mainMenuOptionsPanel;
     private javax.swing.JPanel menuBarPanel;
     private javax.swing.JButton profileBtn;
+    private javax.swing.JButton transactionsBtn;
     private javax.swing.JButton walletsBtn;
     // End of variables declaration//GEN-END:variables
 }
