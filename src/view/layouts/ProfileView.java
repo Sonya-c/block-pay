@@ -5,7 +5,11 @@
  */
 package view.layouts;
 
+import controller.AccountController;
+import javax.swing.JFrame;
 import model.system.Account;
+import view.MainView;
+import view.includes.Modal;
 /**
  *
  * @author sonya
@@ -13,13 +17,16 @@ import model.system.Account;
 public class ProfileView extends javax.swing.JPanel {
     
     private Account account;
-    
+    private AccountController accountController;
+    private JFrame parent;
     /**
      * Creates new form profileView
      * @param account
      */
-    public ProfileView(Account account) {
+    public ProfileView(Account account, AccountController accountController, JFrame parent) {
         this.account = account;
+        this.accountController = accountController;
+        this.parent = parent;
         
         initComponents();
         
@@ -34,6 +41,12 @@ public class ProfileView extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        passwordErrorPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        usernameErrorPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        changedSavedPanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         bodyPanel = new javax.swing.JPanel();
         accountDataPanel = new javax.swing.JPanel();
         accountNameLabel = new javax.swing.JLabel();
@@ -42,13 +55,49 @@ public class ProfileView extends javax.swing.JPanel {
         passwordLabel = new javax.swing.JLabel();
         userTxt = new javax.swing.JTextField();
         passwordTxt = new javax.swing.JPasswordField();
+        saveChangeBtn = new javax.swing.JButton();
+
+        passwordErrorPanel.setBackground(new java.awt.Color(255, 255, 255));
+        passwordErrorPanel.setMaximumSize(new java.awt.Dimension(252, 94));
+        passwordErrorPanel.setMinimumSize(new java.awt.Dimension(252, 94));
+        passwordErrorPanel.setPreferredSize(new java.awt.Dimension(252, 94));
+        passwordErrorPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel3.setText("<html>La contraseña debe tener minimo 5 carácteres</html>");
+        passwordErrorPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 240, 40));
+
+        usernameErrorPanel.setBackground(new java.awt.Color(255, 255, 255));
+        usernameErrorPanel.setMaximumSize(new java.awt.Dimension(320, 95));
+        usernameErrorPanel.setMinimumSize(new java.awt.Dimension(320, 95));
+        usernameErrorPanel.setPreferredSize(new java.awt.Dimension(320, 95));
+        usernameErrorPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel2.setText("Este nombre de usuario ya existe :(");
+        usernameErrorPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 20));
+
+        changedSavedPanel.setBackground(new java.awt.Color(255, 255, 255));
+        changedSavedPanel.setMaximumSize(new java.awt.Dimension(320, 95));
+        changedSavedPanel.setMinimumSize(new java.awt.Dimension(320, 95));
+        changedSavedPanel.setPreferredSize(new java.awt.Dimension(320, 95));
+        changedSavedPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel4.setText("Cambios guardados");
+        changedSavedPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 20));
 
         setLayout(new java.awt.BorderLayout());
 
-        bodyPanel.setBackground(new java.awt.Color(27, 20, 100));
+        bodyPanel.setBackground(new java.awt.Color(71, 18, 107));
+        bodyPanel.setMinimumSize(new java.awt.Dimension(530, 350));
+        bodyPanel.setPreferredSize(new java.awt.Dimension(530, 350));
         bodyPanel.setLayout(new java.awt.GridBagLayout());
 
-        accountDataPanel.setBackground(new java.awt.Color(102, 204, 255));
+        accountDataPanel.setBackground(new java.awt.Color(234, 105, 139));
         accountDataPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
         accountDataPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -59,7 +108,7 @@ public class ProfileView extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         accountDataPanel.add(accountNameLabel, gridBagConstraints);
 
-        idUser.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        idUser.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         idUser.setForeground(new java.awt.Color(255, 255, 255));
         idUser.setText("id del usuario");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -98,11 +147,11 @@ public class ProfileView extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         bodyPanel.add(passwordLabel, gridBagConstraints);
 
-        userTxt.setBackground(new java.awt.Color(53, 42, 157));
+        userTxt.setBackground(new java.awt.Color(151, 58, 168));
         userTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         userTxt.setForeground(new java.awt.Color(255, 255, 255));
         userTxt.setToolTipText("Nombre de usuario");
-        userTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(53, 42, 157), 5, true));
+        userTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(71, 18, 107), 1, true));
         userTxt.setCaretColor(new java.awt.Color(236, 0, 140));
         userTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
         userTxt.setName(""); // NOI18N
@@ -116,11 +165,11 @@ public class ProfileView extends javax.swing.JPanel {
         bodyPanel.add(userTxt, gridBagConstraints);
 
         passwordTxt.setEditable(false);
-        passwordTxt.setBackground(new java.awt.Color(53, 42, 157));
+        passwordTxt.setBackground(new java.awt.Color(151, 58, 168));
         passwordTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         passwordTxt.setForeground(new java.awt.Color(255, 255, 255));
         passwordTxt.setToolTipText("Contreña");
-        passwordTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(53, 42, 157), 5, true));
+        passwordTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(71, 18, 107), 1, true));
         passwordTxt.setCaretColor(new java.awt.Color(236, 0, 140));
         passwordTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
         passwordTxt.setMinimumSize(new java.awt.Dimension(170, 33));
@@ -132,8 +181,49 @@ public class ProfileView extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         bodyPanel.add(passwordTxt, gridBagConstraints);
 
+        saveChangeBtn.setBackground(new java.awt.Color(255, 209, 102));
+        saveChangeBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        saveChangeBtn.setForeground(new java.awt.Color(71, 18, 107));
+        saveChangeBtn.setText("Guardar cambios");
+        saveChangeBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(71, 18, 107), 1, true));
+        saveChangeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        saveChangeBtn.setFocusPainted(false);
+        saveChangeBtn.setMaximumSize(new java.awt.Dimension(140, 30));
+        saveChangeBtn.setMinimumSize(new java.awt.Dimension(140, 30));
+        saveChangeBtn.setOpaque(false);
+        saveChangeBtn.setPreferredSize(new java.awt.Dimension(140, 30));
+        saveChangeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveChangeBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        bodyPanel.add(saveChangeBtn, gridBagConstraints);
+
         add(bodyPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void saveChangeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveChangeBtnActionPerformed
+        String username = userTxt.getText().trim();
+        String password = passwordTxt.getText().trim();
+        
+        if (password.length() < 5) {
+            Modal modal = new Modal(parent, "Error contraseña", true, passwordErrorPanel);
+        } else {
+            if (accountController.verifyUsername(username)) {
+                Account account = new Account(10, username, password);
+                
+                accountController.addAccount(account);
+                
+                Modal modal = new Modal(parent, "Cambios guardados", true, changedSavedPanel);
+            } else {
+                Modal modal = new Modal(parent, "Nombre ya existe", true, usernameErrorPanel);
+            }
+        }
+    }//GEN-LAST:event_saveChangeBtnActionPerformed
 
     private void loadData(){
         this.idUser.setText("Id: " + account.getID());
@@ -145,10 +235,17 @@ public class ProfileView extends javax.swing.JPanel {
     private javax.swing.JPanel accountDataPanel;
     private javax.swing.JLabel accountNameLabel;
     private javax.swing.JPanel bodyPanel;
+    private javax.swing.JPanel changedSavedPanel;
     private javax.swing.JLabel idUser;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel passwordErrorPanel;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JPasswordField passwordTxt;
+    private javax.swing.JButton saveChangeBtn;
     private javax.swing.JLabel userLabel;
     private javax.swing.JTextField userTxt;
+    private javax.swing.JPanel usernameErrorPanel;
     // End of variables declaration//GEN-END:variables
 }

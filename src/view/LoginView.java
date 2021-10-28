@@ -38,12 +38,12 @@ public class LoginView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         signUpPanel = new javax.swing.JPanel();
         SignUpUsernameTxt = new javax.swing.JTextField();
-        signUpUserTxt = new javax.swing.JTextField();
         signUpPasswordTxt = new javax.swing.JTextField();
         loginUserLabel1 = new javax.swing.JLabel();
-        loginUserLabel2 = new javax.swing.JLabel();
         loginUserLabel3 = new javax.swing.JLabel();
         signUpBtn = new javax.swing.JButton();
+        changeSaved = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         formZonePanel = new javax.swing.JPanel();
         formPanel = new javax.swing.JPanel();
         loginFormPanel = new javax.swing.JPanel();
@@ -105,19 +105,7 @@ public class LoginView extends javax.swing.JFrame {
         SignUpUsernameTxt.setName(""); // NOI18N
         SignUpUsernameTxt.setPreferredSize(new java.awt.Dimension(170, 33));
         SignUpUsernameTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
-        signUpPanel.add(SignUpUsernameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 116, -1, -1));
-
-        signUpUserTxt.setBackground(new java.awt.Color(87, 16, 137));
-        signUpUserTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        signUpUserTxt.setForeground(new java.awt.Color(255, 194, 226));
-        signUpUserTxt.setToolTipText("Nombre de usuario");
-        signUpUserTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(151, 58, 168), 2, true));
-        signUpUserTxt.setCaretColor(new java.awt.Color(236, 0, 140));
-        signUpUserTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
-        signUpUserTxt.setName(""); // NOI18N
-        signUpUserTxt.setPreferredSize(new java.awt.Dimension(170, 33));
-        signUpUserTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
-        signUpPanel.add(signUpUserTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 65, -1, -1));
+        signUpPanel.add(SignUpUsernameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, -1));
 
         signUpPasswordTxt.setBackground(new java.awt.Color(87, 16, 137));
         signUpPasswordTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -129,25 +117,19 @@ public class LoginView extends javax.swing.JFrame {
         signUpPasswordTxt.setName(""); // NOI18N
         signUpPasswordTxt.setPreferredSize(new java.awt.Dimension(170, 33));
         signUpPasswordTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
-        signUpPanel.add(signUpPasswordTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 167, -1, -1));
+        signUpPanel.add(signUpPasswordTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
 
         loginUserLabel1.setBackground(new java.awt.Color(30, 27, 24));
         loginUserLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         loginUserLabel1.setForeground(new java.awt.Color(255, 255, 255));
         loginUserLabel1.setText("Usuario");
-        signUpPanel.add(loginUserLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 121, -1, -1));
-
-        loginUserLabel2.setBackground(new java.awt.Color(30, 27, 24));
-        loginUserLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        loginUserLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        loginUserLabel2.setText("Nombre");
-        signUpPanel.add(loginUserLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 70, -1, -1));
+        signUpPanel.add(loginUserLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
         loginUserLabel3.setBackground(new java.awt.Color(30, 27, 24));
         loginUserLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         loginUserLabel3.setForeground(new java.awt.Color(255, 255, 255));
         loginUserLabel3.setText("Contraseña");
-        signUpPanel.add(loginUserLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 167, -1, -1));
+        signUpPanel.add(loginUserLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
         signUpBtn.setBackground(new java.awt.Color(234, 105, 139));
         signUpBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -166,7 +148,18 @@ public class LoginView extends javax.swing.JFrame {
                 signUpBtnActionPerformed(evt);
             }
         });
-        signUpPanel.add(signUpBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 89, -1));
+        signUpPanel.add(signUpBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 89, -1));
+
+        changeSaved.setBackground(new java.awt.Color(255, 255, 255));
+        changeSaved.setMaximumSize(new java.awt.Dimension(320, 95));
+        changeSaved.setMinimumSize(new java.awt.Dimension(320, 95));
+        changeSaved.setPreferredSize(new java.awt.Dimension(320, 95));
+        changeSaved.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel4.setText("Contraseña o usuario incorrectos :(");
+        changeSaved.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 20));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bock Pay | Login");
@@ -213,6 +206,7 @@ public class LoginView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         loginFormPanel.add(loginPasswordLabel, gridBagConstraints);
 
+        loginUserTxt.setEditable(false);
         loginUserTxt.setBackground(new java.awt.Color(151, 58, 168));
         loginUserTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         loginUserTxt.setForeground(new java.awt.Color(255, 255, 255));
@@ -343,7 +337,6 @@ public class LoginView extends javax.swing.JFrame {
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
         String username = SignUpUsernameTxt.getText().trim();
         String password = signUpPasswordTxt.getText().trim();
-        String name = signUpUserTxt.getText().trim();
         
         if (password.length() < 5) {
             Modal modal = new Modal(this, "Error contraseña", true, passwordErrorPanel);
@@ -352,10 +345,10 @@ public class LoginView extends javax.swing.JFrame {
                 Account account = new Account(10, username, password);
                 
                 accountController.addAccount(account);
-                
                 this.setVisible(false);
                 MainView mainView = new MainView(account, accountController);
                 mainView.setVisible(true);
+                
             } else {
                 Modal modal = new Modal(this, "Nombre ya existe", true, usernameErrorPanel);
             }
@@ -364,6 +357,7 @@ public class LoginView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField SignUpUsernameTxt;
+    private javax.swing.JPanel changeSaved;
     private javax.swing.JPanel formPanel;
     private javax.swing.JPanel formZonePanel;
     private javax.swing.JLabel imageLabel;
@@ -371,6 +365,7 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton loginCreateAccountBtn;
     private javax.swing.JButton loginEnterBtn;
     private javax.swing.JPanel loginErrorPanel;
@@ -379,14 +374,12 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JPasswordField loginPasswordTxt;
     private javax.swing.JLabel loginUserLabel;
     private javax.swing.JLabel loginUserLabel1;
-    private javax.swing.JLabel loginUserLabel2;
     private javax.swing.JLabel loginUserLabel3;
     private javax.swing.JTextField loginUserTxt;
     private javax.swing.JPanel passwordErrorPanel;
     private javax.swing.JButton signUpBtn;
     private javax.swing.JPanel signUpPanel;
     private javax.swing.JTextField signUpPasswordTxt;
-    private javax.swing.JTextField signUpUserTxt;
     private javax.swing.JPanel usernameErrorPanel;
     // End of variables declaration//GEN-END:variables
 

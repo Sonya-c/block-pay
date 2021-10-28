@@ -5,7 +5,6 @@ import java.awt.Color;
 import view.layouts.IndexView;
 import view.layouts.ProfileView;
 import view.layouts.WalletsView;
-import view.layouts.DataView;
 import model.system.Account;
 import model.list.List;
 
@@ -23,13 +22,11 @@ public class MainView extends javax.swing.JFrame {
     private final IndexView indexView;
     private final ProfileView profileView;
     private final WalletsView walletsView;
-    private final DataView dataView;
 
     public MainView(Account account, AccountController accountController) {
         this.indexView = new IndexView(this, account, accountController);
-        this.profileView = new ProfileView(account);
+        this.profileView = new ProfileView(account, accountController, this);
         this.walletsView = new WalletsView(this, account, accountController);
-        this.dataView = new DataView(account);
         this.account = account;
         this.accountController = accountController;
 
@@ -42,7 +39,6 @@ public class MainView extends javax.swing.JFrame {
         buttons.add(profileBtn);
         buttons.add(indexBtn);
         buttons.add(walletsBtn);
-        buttons.add(dataBtn);
     }
 
     /**
@@ -59,7 +55,6 @@ public class MainView extends javax.swing.JFrame {
         profileBtn = new javax.swing.JButton();
         indexBtn = new javax.swing.JButton();
         walletsBtn = new javax.swing.JButton();
-        dataBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
         bodyPanel = new javax.swing.JPanel();
 
@@ -144,27 +139,6 @@ public class MainView extends javax.swing.JFrame {
             }
         });
         mainMenuOptionsPanel.add(walletsBtn);
-
-        dataBtn.setBackground(new java.awt.Color(255, 255, 255));
-        dataBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        dataBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/graph-icon.png"))); // NOI18N
-        dataBtn.setToolTipText("Datos");
-        dataBtn.setAlignmentY(0.0F);
-        dataBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        dataBtn.setContentAreaFilled(false);
-        dataBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        dataBtn.setFocusPainted(false);
-        dataBtn.setFocusable(false);
-        dataBtn.setMaximumSize(new java.awt.Dimension(60, 60));
-        dataBtn.setMinimumSize(new java.awt.Dimension(60, 60));
-        dataBtn.setOpaque(true);
-        dataBtn.setPreferredSize(new java.awt.Dimension(60, 60));
-        dataBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataBtnActionPerformed(evt);
-            }
-        });
-        mainMenuOptionsPanel.add(dataBtn);
 
         menuBarPanel.add(mainMenuOptionsPanel, java.awt.BorderLayout.CENTER);
 
@@ -253,28 +227,12 @@ public class MainView extends javax.swing.JFrame {
         System.out.println("El usuario va a salir");
     }//GEN-LAST:event_exitBtnActionPerformed
 
-    private void dataBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataBtnActionPerformed
-        bodyPanel.removeAll();
-        defaultButtonBorder();
-
-        bodyPanel.add(dataView);
-        setTitle("Block Pay | Datos");
-
-        dataBtn.setBorder(hightlightborder);
-        dataBtn.setBackground(hightlightcolor);
-
-        bodyPanel.validate();
-        bodyPanel.repaint();
-
-    }//GEN-LAST:event_dataBtnActionPerformed
-
     private final java.awt.Color hightlightcolor = new java.awt.Color(255,209,102);
     private final javax.swing.border.LineBorder defaultBorder = new javax.swing.border.LineBorder(Color.white, 2, true);
     private final javax.swing.border.LineBorder hightlightborder = new javax.swing.border.LineBorder(hightlightcolor, 2, true);
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyPanel;
-    private javax.swing.JButton dataBtn;
     private javax.swing.JButton exitBtn;
     private javax.swing.JButton indexBtn;
     private javax.swing.JPanel mainMenuOptionsPanel;

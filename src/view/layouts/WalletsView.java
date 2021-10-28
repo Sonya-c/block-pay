@@ -20,7 +20,7 @@ import view.includes.WalletCard;
  */
 public class WalletsView extends javax.swing.JPanel {
 
-    private Account account;
+    private final Account account;
     private final JFrame parent;
     private final AccountController accountController;
 
@@ -76,11 +76,15 @@ public class WalletsView extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         walletCreationSuccesfull = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        nicknameWalletNotFound = new javax.swing.JPanel();
+        createWalletPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        createWalletNicknameTxt = new javax.swing.JTextField();
+        createWalletBtn = new javax.swing.JButton();
         nicknameExist = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        headerPanel = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        activityBarPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         searchIdTxt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -91,67 +95,90 @@ public class WalletsView extends javax.swing.JPanel {
         walletsPanel = new javax.swing.JPanel();
 
         walletNotFoundPanel.setBackground(new java.awt.Color(255, 255, 255));
-        walletNotFoundPanel.setMaximumSize(new java.awt.Dimension(281, 92));
-        walletNotFoundPanel.setMinimumSize(new java.awt.Dimension(281, 92));
-        walletNotFoundPanel.setPreferredSize(new java.awt.Dimension(281, 92));
+        walletNotFoundPanel.setMaximumSize(new java.awt.Dimension(350, 95));
+        walletNotFoundPanel.setMinimumSize(new java.awt.Dimension(350, 95));
+        walletNotFoundPanel.setName(""); // NOI18N
+        walletNotFoundPanel.setPreferredSize(new java.awt.Dimension(350, 95));
+        walletNotFoundPanel.setRequestFocusEnabled(false);
         walletNotFoundPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel4.setText("No se encontraron billeteras :(");
         walletNotFoundPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
 
-        walletCreationSuccesfull.setBackground(new java.awt.Color(192, 82, 153));
-        walletCreationSuccesfull.setMaximumSize(new java.awt.Dimension(300, 100));
-        walletCreationSuccesfull.setMinimumSize(new java.awt.Dimension(300, 100));
-        walletCreationSuccesfull.setPreferredSize(new java.awt.Dimension(300, 100));
+        walletCreationSuccesfull.setBackground(new java.awt.Color(255, 255, 255));
+        walletCreationSuccesfull.setMaximumSize(new java.awt.Dimension(350, 95));
+        walletCreationSuccesfull.setMinimumSize(new java.awt.Dimension(350, 95));
+        walletCreationSuccesfull.setPreferredSize(new java.awt.Dimension(350, 95));
         walletCreationSuccesfull.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("¡¡Nueva billetera creada exitosamente!!");
-        walletCreationSuccesfull.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 330, 20));
+        jLabel3.setText("¡Nueva billetera creada exitosamente!");
+        walletCreationSuccesfull.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 300, 20));
 
-        nicknameWalletNotFound.setBackground(new java.awt.Color(192, 82, 153));
-        nicknameWalletNotFound.setMaximumSize(new java.awt.Dimension(300, 100));
-        nicknameWalletNotFound.setMinimumSize(new java.awt.Dimension(300, 100));
-        nicknameWalletNotFound.setPreferredSize(new java.awt.Dimension(300, 100));
-        nicknameWalletNotFound.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        createWalletPanel.setBackground(new java.awt.Color(255, 255, 255));
+        createWalletPanel.setMaximumSize(new java.awt.Dimension(400, 150));
+        createWalletPanel.setMinimumSize(new java.awt.Dimension(400, 150));
+        createWalletPanel.setPreferredSize(new java.awt.Dimension(400, 150));
+        createWalletPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("¡¡Ingresa el nickname de tu billetera!!");
-        nicknameWalletNotFound.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 320, 20));
+        jLabel5.setText("Nickname:");
+        createWalletPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 90, 20));
 
-        nicknameExist.setBackground(new java.awt.Color(192, 82, 153));
-        nicknameExist.setMaximumSize(new java.awt.Dimension(300, 100));
-        nicknameExist.setMinimumSize(new java.awt.Dimension(300, 100));
-        nicknameExist.setPreferredSize(new java.awt.Dimension(300, 100));
+        createWalletNicknameTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        createWalletPanel.add(createWalletNicknameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 230, -1));
+
+        createWalletBtn.setBackground(new java.awt.Color(151, 58, 168));
+        createWalletBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        createWalletBtn.setForeground(new java.awt.Color(255, 255, 255));
+        createWalletBtn.setText("Crear");
+        createWalletBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createWalletBtnActionPerformed(evt);
+            }
+        });
+        createWalletPanel.add(createWalletBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
+
+        nicknameExist.setBackground(new java.awt.Color(255, 255, 255));
+        nicknameExist.setMaximumSize(new java.awt.Dimension(380, 95));
+        nicknameExist.setMinimumSize(new java.awt.Dimension(380, 95));
+        nicknameExist.setPreferredSize(new java.awt.Dimension(380, 95));
         nicknameExist.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("¡¡Ya posee una billetera con ese nickname!!");
-        nicknameExist.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 330, 20));
+        jLabel7.setText("¡Ya posee una billetera con ese nickname!");
+        nicknameExist.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 310, 20));
 
         setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setBackground(new java.awt.Color(10, 36, 99));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        headerPanel.setBackground(new java.awt.Color(71, 18, 107));
+        headerPanel.setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 209, 102));
-        jLabel2.setText("Id de la billetera");
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 209, 102));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Mis Wallets");
+        headerPanel.add(jLabel6, java.awt.BorderLayout.PAGE_START);
+
+        activityBarPanel.setBackground(new java.awt.Color(71, 18, 107));
+        activityBarPanel.setLayout(new java.awt.GridBagLayout());
+
+        jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Buscar por ID");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(8, 9, 0, 0);
-        jPanel1.add(jLabel2, gridBagConstraints);
+        activityBarPanel.add(jLabel2, gridBagConstraints);
 
-        searchIdTxt.setBackground(new java.awt.Color(62, 146, 204));
+        searchIdTxt.setBackground(new java.awt.Color(151, 58, 168));
         searchIdTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         searchIdTxt.setForeground(new java.awt.Color(255, 255, 255));
         searchIdTxt.setToolTipText("");
+        searchIdTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(71, 18, 107), 1, true));
         searchIdTxt.setMinimumSize(new java.awt.Dimension(100, 23));
         searchIdTxt.setPreferredSize(new java.awt.Dimension(100, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -159,17 +186,17 @@ public class WalletsView extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(8, 4, 0, 0);
-        jPanel1.add(searchIdTxt, gridBagConstraints);
+        activityBarPanel.add(searchIdTxt, gridBagConstraints);
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 209, 102));
-        jLabel1.setText("Apodo de la billetera");
+        jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Buscar por Nickname");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(8, 10, 0, 0);
-        jPanel1.add(jLabel1, gridBagConstraints);
+        activityBarPanel.add(jLabel1, gridBagConstraints);
 
         searchBtn.setBackground(new java.awt.Color(216, 49, 91));
         searchBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -178,23 +205,18 @@ public class WalletsView extends javax.swing.JPanel {
         searchBtn.setBorderPainted(false);
         searchBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         searchBtn.setFocusPainted(false);
-        searchBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                searchBtnMouseClicked(evt);
-            }
-        });
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(4, 6, 3, 0);
-        jPanel1.add(searchBtn, gridBagConstraints);
+        activityBarPanel.add(searchBtn, gridBagConstraints);
 
         addBtn.setBackground(new java.awt.Color(216, 49, 91));
         addBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -203,43 +225,41 @@ public class WalletsView extends javax.swing.JPanel {
         addBtn.setBorderPainted(false);
         addBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addBtn.setFocusPainted(false);
-        addBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addBtnMouseClicked(evt);
-            }
-        });
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(4, 6, 3, 14);
-        jPanel1.add(addBtn, gridBagConstraints);
+        activityBarPanel.add(addBtn, gridBagConstraints);
 
-        searchNicknameTxt.setBackground(new java.awt.Color(62, 146, 204));
+        searchNicknameTxt.setBackground(new java.awt.Color(151, 58, 168));
         searchNicknameTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         searchNicknameTxt.setForeground(new java.awt.Color(255, 255, 255));
         searchNicknameTxt.setToolTipText("");
+        searchNicknameTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(71, 18, 107), 1, true));
         searchNicknameTxt.setMinimumSize(new java.awt.Dimension(100, 23));
         searchNicknameTxt.setPreferredSize(new java.awt.Dimension(100, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(8, 5, 0, 0);
-        jPanel1.add(searchNicknameTxt, gridBagConstraints);
+        activityBarPanel.add(searchNicknameTxt, gridBagConstraints);
 
-        add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        headerPanel.add(activityBarPanel, java.awt.BorderLayout.CENTER);
+
+        add(headerPanel, java.awt.BorderLayout.PAGE_START);
 
         jScrollPane1.setBorder(null);
 
         walletsPanel.setBackground(new java.awt.Color(255, 255, 255));
-        walletsPanel.setLayout(new javax.swing.BoxLayout(walletsPanel, javax.swing.BoxLayout.Y_AXIS));
+        walletsPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 10));
         jScrollPane1.setViewportView(walletsPanel);
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -272,57 +292,49 @@ public class WalletsView extends javax.swing.JPanel {
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-
+        Modal modal = new Modal(parent, " creada", true, createWalletPanel);
     }//GEN-LAST:event_addBtnActionPerformed
 
-    private boolean searchNickname(String nickname){
-          List<Wallet> foundWallets = new List<>();
-          boolean sw = false;
-        for (Wallet wallet : account.getWallets()) {
-            if (wallet.getNickname().equals(nickname)){
-                foundWallets.add(wallet);
-                sw = true;
+    private void createWalletBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createWalletBtnActionPerformed
+        String nickname = createWalletNicknameTxt.getText().trim();
+        String id = "" + account.getID() + account.getWallets().getSize();
+        
+        boolean sw = true;
+        for (Wallet w : account.getWallets()) {
+            if (w.getNickname() == null ? nickname == null : w.getNickname().equals(nickname)) {
+                Modal modal = new Modal(parent, " creada", true, nicknameExist);
+                sw = false;
+                
+                break;
             }
         }
-        if (sw == true){
-            loadWallets(foundWallets);
-        }
-        return sw;
-    }
-    
-    private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
-        if (!searchNicknameTxt.getText().isEmpty()) {
-            String nickname = searchNicknameTxt.getText();
-            if (!searchNickname(nickname)){
-            Wallet wallet = new Wallet(account.getUserName() + account.getWallets().getSize(),
-                    0d, nickname);
+        
+        if (sw) {
+            Wallet wallet = new Wallet(id, 0, nickname);
             account.addWallet(wallet);
-            Modal modal = new Modal(parent, "Billetera creada", true, walletCreationSuccesfull);
-            } else {
-                Modal modal = new Modal(parent, "Nickname existente", true, nicknameExist);
-            }
-        } else {
-            Modal modal = new Modal(parent, "Billetera no creada", true, nicknameWalletNotFound);
+            Modal modal = new Modal(parent, " creada", true, walletCreationSuccesfull);
+            loadWallets();
         }
-    }//GEN-LAST:event_addBtnMouseClicked
-
-    private void searchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchBtnMouseClicked
+        
+    }//GEN-LAST:event_createWalletBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel activityBarPanel;
     private javax.swing.JButton addBtn;
+    private javax.swing.JButton createWalletBtn;
+    private javax.swing.JTextField createWalletNicknameTxt;
+    private javax.swing.JPanel createWalletPanel;
+    private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel nicknameExist;
-    private javax.swing.JPanel nicknameWalletNotFound;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchIdTxt;
     private javax.swing.JTextField searchNicknameTxt;
