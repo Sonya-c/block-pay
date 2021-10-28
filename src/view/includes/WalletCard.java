@@ -239,92 +239,102 @@ public class WalletCard extends javax.swing.JPanel {
         jLabel4.setText("Saldo insuficiente");
         transactionFailPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 20));
 
-        setBackground(new java.awt.Color(27, 20, 100));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        setMinimumSize(new java.awt.Dimension(430, 300));
+        setPreferredSize(new java.awt.Dimension(430, 300));
         setLayout(new java.awt.GridBagLayout());
 
         nicknameTxt.setEditable(false);
-        nicknameTxt.setBackground(new java.awt.Color(53, 42, 157));
+        nicknameTxt.setBackground(new java.awt.Color(255, 255, 255));
         nicknameTxt.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        nicknameTxt.setForeground(new java.awt.Color(255, 255, 255));
+        nicknameTxt.setForeground(new java.awt.Color(27, 20, 100));
         nicknameTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
         nicknameTxt.setMinimumSize(new java.awt.Dimension(60, 32));
         nicknameTxt.setPreferredSize(new java.awt.Dimension(60, 32));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 59;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 16, 0, 97);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(nicknameTxt, gridBagConstraints);
 
-        idLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        idLabel.setForeground(new java.awt.Color(102, 204, 255));
+        idLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        idLabel.setForeground(new java.awt.Color(71, 18, 107));
         idLabel.setText("#ID");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 133, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 30);
         add(idLabel, gridBagConstraints);
 
-        moneyLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        moneyLabel.setForeground(new java.awt.Color(102, 204, 255));
+        moneyLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        moneyLabel.setForeground(new java.awt.Color(71, 18, 107));
         moneyLabel.setText("Dinero");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 133, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 30);
         add(moneyLabel, gridBagConstraints);
 
-        nicknameLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        nicknameLabel.setForeground(new java.awt.Color(102, 204, 255));
+        nicknameLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        nicknameLabel.setForeground(new java.awt.Color(71, 18, 107));
         nicknameLabel.setText("Apodo");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 133, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 30);
         add(nicknameLabel, gridBagConstraints);
 
+        moneyTxt.setBackground(new java.awt.Color(255, 255, 255));
         moneyTxt.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        moneyTxt.setForeground(new java.awt.Color(255, 255, 255));
+        moneyTxt.setForeground(new java.awt.Color(27, 20, 100));
         moneyTxt.setText("00,0");
+        moneyTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
+        moneyTxt.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 53, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(moneyTxt, gridBagConstraints);
 
+        idTxt.setBackground(new java.awt.Color(255, 255, 255));
         idTxt.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        idTxt.setForeground(new java.awt.Color(255, 255, 255));
+        idTxt.setForeground(new java.awt.Color(27, 20, 100));
         idTxt.setText("id");
+        idTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
+        idTxt.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 3, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(idTxt, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 10;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 182;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(4, 123, 0, 97);
         add(jSeparator2, gridBagConstraints);
 
-        sendMoneyBtn.setBackground(new java.awt.Color(236, 0, 140));
-        sendMoneyBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        sendMoneyBtn.setBackground(new java.awt.Color(216, 49, 91));
+        sendMoneyBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         sendMoneyBtn.setForeground(new java.awt.Color(255, 255, 255));
         sendMoneyBtn.setText("Enviar");
         sendMoneyBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -333,16 +343,15 @@ public class WalletCard extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 12, 26, 0);
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(sendMoneyBtn, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 10;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 182;
         gridBagConstraints.ipady = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;

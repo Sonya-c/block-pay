@@ -28,14 +28,9 @@ public class AccountController {
      * CHECK THIS!!!!!
      */
     private void createEva() {
-
         if (accountList.getSize() == 0) {
             eva = new Eva();
             accountList.add(eva);
-
-            // CHECK THIS!!!
-//            FileController.writeFile(FileController.findCreateFile("account.txt"), 0 + "#" + eva.getUserName() + "#" + eva.getPassword());
-//            FileController.writeFile(FileController.findCreateFile("wallet.txt"), "eva0" + "#" + String.valueOf(Double.MAX_VALUE) + "#" + "Eva's wallet" + "#" + String.valueOf(eva.getID()));
         } else {
             for (Account account : accountList) {
                 if (account.getID() == 0 && account instanceof Eva) {
@@ -93,6 +88,11 @@ public class AccountController {
         this.accountList.add(account);
     }
     
+    /**
+     * 
+     * @param account
+     * @return 
+     */
     public double getSaldo(Account account){
         return transactionController.getSaldo(account);
     }
@@ -116,6 +116,11 @@ public class AccountController {
         transactionController.writeTransactionInFile();
     }
 
+    /**
+     * 
+     * @param wallet
+     * @return 
+     */
     public List<Transaction> getHistorial(Wallet wallet) {
         return transactionController.getHistorial(wallet);
     }
@@ -142,20 +147,40 @@ public class AccountController {
 
     /**
      *
-     * @param idWallet
+     * @param id
      * @return
      */
-    public Wallet getWallet(String idWallet) {
+    public Wallet getWallet(String id) {
 
         for (Account account : accountList) {
             for (Wallet wallet : account.getWallets()) {
-                if (idWallet.equals(wallet.getID())) {
+                if (id.equals(wallet.getID())) {
                     return wallet;
                 }
             }
         }
         return null;
 
+    }
+    
+    /**
+     * 
+     * @param nickname
+     * @return 
+     */
+    public Wallet getWalletByNickname(String nickname) {
+        if (nickname != null) {
+            for (Account account : accountList) {
+               for (Wallet wallet : account.getWallets()) {
+                   if (nickname.equals(wallet.getNickname())) {
+                       return wallet;
+                   }
+               }
+           }
+        } else {
+            System.out.println("controller.AccountController.getWalletByNickname(nickname) ERROR null nickname");
+        }
+        return null;
     }
 
     /**
@@ -194,6 +219,10 @@ public class AccountController {
         return accountList;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public TransactionController getTransactionController() {
         return transactionController;
     }
