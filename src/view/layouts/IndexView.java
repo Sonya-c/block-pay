@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import model.system.Account;
 import model.system.Transaction;
 import model.system.Wallet;
+import view.includes.GraphView;
 import view.includes.Modal;
 
 /**
@@ -47,7 +48,8 @@ public class IndexView extends javax.swing.JPanel {
                 remitentWalletCombox.addItem(wallet.getNickname());
             }
         }
-       
+        
+        this.graphPanel.add(new GraphView(accountController.getAccountList(), accountController.getTransactionController().getBlockList()));
     }
 
     /**
@@ -359,18 +361,7 @@ public class IndexView extends javax.swing.JPanel {
         graphPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(177, 175, 200), 1, true));
         graphPanel.setMinimumSize(new java.awt.Dimension(200, 288));
         graphPanel.setPreferredSize(new java.awt.Dimension(200, 288));
-
-        javax.swing.GroupLayout graphPanelLayout = new javax.swing.GroupLayout(graphPanel);
-        graphPanel.setLayout(graphPanelLayout);
-        graphPanelLayout.setHorizontalGroup(
-            graphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 761, Short.MAX_VALUE)
-        );
-        graphPanelLayout.setVerticalGroup(
-            graphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 493, Short.MAX_VALUE)
-        );
-
+        graphPanel.setLayout(new java.awt.BorderLayout());
         containerPanel.add(graphPanel);
 
         bodyScrollPanel.setViewportView(containerPanel);
