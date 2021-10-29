@@ -27,7 +27,7 @@ public class MainView extends javax.swing.JFrame {
 
     public MainView(Account account, AccountController accountController) {
         this.indexView = new IndexView(this, account, accountController);
-        this.profileView = new ProfileView(account, accountController, this);
+        this.profileView = new ProfileView(account);
         this.walletsView = new WalletsView(this, account, accountController);
         this.dataView = new TransactionInformationView(account, accountController, this);
         this.account = account;
@@ -249,6 +249,7 @@ public class MainView extends javax.swing.JFrame {
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
         accountController.writeAccountInFile();
         System.out.println("El usuario va a salir");
+        System.exit(0);
     }//GEN-LAST:event_exitBtnActionPerformed
 
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed

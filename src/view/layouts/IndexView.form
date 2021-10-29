@@ -137,7 +137,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JTextField" name="distinataryWalletTxt">
+        <Component class="javax.swing.JTextField" name="destinataryWalletTxt">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="89" green="10" red="57" type="rgb"/>
@@ -577,7 +577,7 @@
                 <Property name="text" type="java.lang.String" value="Disponible"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="moneyLabel">
+            <Component class="javax.swing.JLabel" name="moneyLabelTxt">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Calibri" size="48" style="0"/>

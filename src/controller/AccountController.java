@@ -93,9 +93,9 @@ public class AccountController {
      * @param account
      * @return
      */
-    public double getSaldo(Account account) {
-        return transactionController.getSaldo(account);
-    }
+//    public double getSaldo(Account account) {
+//        return transactionController.getSaldo(account);
+//    }
 
     public void writeAccountInFile() {
         for (Account a : accountList) {

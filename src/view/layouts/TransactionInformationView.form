@@ -150,9 +150,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Component id="bodyPanel" min="-2" pref="46" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="infoPanel" min="-2" pref="343" max="-2" attributes="0"/>
-              <EmptySpace pref="14" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="infoPanel" min="-2" pref="367" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

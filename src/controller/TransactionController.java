@@ -36,18 +36,19 @@ public class TransactionController {
      */
     public boolean verifyTransaction(Transaction transaction) {
         System.out.println("TransactionController.verifyTransaction(Transaction) is eva? " + transaction.getRemitent().getID().equals("eva0"));
-        
+
         if (transaction.getRemitent().getID().equals("eva0")) {
             // Si es eva no debemos verificar
             if (transaction.getRemitent().getMoney() - transaction.getMoney() <= 0) {
                 transaction.getRemitent().setMoney(Double.MAX_VALUE); // Recargarle a eva
             }
             return true;
-            
+
         } else {
-            
-            double money = this.existsMoneyAtFirst(transaction);
-            
+
+//            double money = this.existsMoneyAtFirst(transaction);
+            double money = 0;
+
             /*
              * Verify that the money of the remitent makes sense
              * move from all block and all transacctions
@@ -55,42 +56,41 @@ public class TransactionController {
              * add or rest money
              * if the calculateed money is the same, do the transaction. Else, kill the wallet [insert evil laugh]
              */
-            
             for (Block block : blockList) {
                 for (Transaction t : block.getTransactions()) {
-                    
+
                     if (t.getRemitent().getID().equals(transaction.getRemitent().getID())) {
                         money -= t.getMoney();
 
-                    } else if (t.getDestinatary().getID().equals(transaction.getRemitent().getID()) && !t.getRemitent().getID().equals("eva0")) {
+                    } else if (t.getDestinatary().getID().equals(transaction.getRemitent().getID())) {
                         money += t.getMoney();
                     }
                 }
             }
-            
+
             System.out.println("controller.TransactionController.verifyTransaction(Transaction) MENSAJE: valor money = " + money);
             System.out.println(TransactionController.class.toString() + " MENSAJE: " + transaction.getRemitent().getMoney());
-            
+
             return (money == transaction.getRemitent().getMoney() && money >= transaction.getMoney());
         }
     }
 
-    private double existsMoneyAtFirst(Transaction transaction){
+    private double existsMoneyAtFirst(Transaction transaction) {
         Wallet remitent = transaction.getRemitent();
         Wallet destinatary = transaction.getDestinatary();
         for (Block block : blockList) {
             for (Transaction transaction1 : block.getTransactions()) {
-                if (remitent.getID().equals(transaction1.getDestinatary().getID()) && 
-                        transaction.getRemitent().getID().equals("eva0")
-                        ||  destinatary.getID().equals(transaction1.getDestinatary().getID())
-                        && transaction.getRemitent().getID().equals("eva0")){
+                if (remitent.getID().equals(transaction1.getDestinatary().getID())
+                        && transaction.getRemitent().getID().equals("eva0")
+                        || destinatary.getID().equals(transaction1.getDestinatary().getID())
+                        && transaction.getRemitent().getID().equals("eva0")) {
                     return 50000d;
                 }
             }
         }
         return 0d;
     }
-    
+
     /**
      * Add a new trasaction
      *
@@ -105,11 +105,11 @@ public class TransactionController {
             // Not corruption!
             if (tail == null) {
                 // No se ha creado ningun bloque
-                
+
                 Block block = new Block();
                 block.getTransactions().add(transaction);
                 blockList.add(block);
-                
+
                 return -1;
             } else {
                 if (tail.getInfo() instanceof Block) {
@@ -125,7 +125,7 @@ public class TransactionController {
                         block.getTransactions().add(transaction);
                         blockList.add(block);
                     }
-                    
+
                     return 0;
                 } else {
                     System.out.println("controller.TransactionController.add(Transaction) ERROR: Estructura de datos incorrecta");
@@ -135,37 +135,37 @@ public class TransactionController {
         } else {
             System.out.println("controller.TransactionController.add(Transaction) ERROR: Verificación fallida");
         }
-        
+
         return 1;
     }
-    
-    public void soutTransaction(){
+
+    public void soutTransaction() {
         for (Block block : blockList) {
             for (Transaction transaction : block.getTransactions()) {
                 System.out.println(transaction.getMoney() + transaction.getRemitent().getID() + transaction.getDestinatary().getID());
             }
         }
     }
-    
+
     /**
-     * 
+     *
      * @param account
-     * @return 
+     * @return
      */
-    public double getSaldo(Account account){
-        double saldo = 0;
-        for (Block block : blockList) {
-            for (Transaction transaction : block.getTransactions()) {
-                if (account.getWallet(transaction.getRemitent().getID())!= null){
-                    saldo -= transaction.getMoney();
-                } else if (account.getWallet(transaction.getDestinatary().getID()) != null){
-                    saldo += transaction.getMoney();
-                }
-            }
-        }
-        return saldo;
-    }
-    
+//    public double getSaldo(Account account) {
+//        double saldo = 0;
+//        for (Block block : blockList) {
+//            for (Transaction transaction : block.getTransactions()) {
+//                if (account.getWallet(transaction.getRemitent().getID()) != null) {
+//                    saldo -= transaction.getMoney();
+//                } else if (account.getWallet(transaction.getDestinatary().getID()) != null) {
+//                    saldo += transaction.getMoney();
+//                }
+//            }
+//        }
+//        return saldo;
+//    }
+
     public List<Transaction> getHistorial(Wallet wallet) {
         List<Transaction> transactions = new List();
 
@@ -192,36 +192,34 @@ public class TransactionController {
             }
         }
     }
-    
 
-    public void addTransaction(Transaction t){
+    public void addTransaction(Transaction t) {
         ListNode tail = blockList.getTail();
         if (tail == null) {
 
-                Block block = new Block();
-                block.getTransactions().add(t);
-                blockList.add(block);
-                
-            } else {
+            Block block = new Block();
+            block.getTransactions().add(t);
+            blockList.add(block);
 
-                if (tail.getInfo() instanceof Block) {
-                    // Confirm that the info is a listNode
-                    Block block = (Block) tail.getInfo();
+        } else {
 
-                    if (block.getTransactions().getSize() < 3) {
-                        // As this block is not full size, we can add the new transaction here
-                        block.getTransactions().add(t);
-                    } else {
-                        // As this block is full size, we must create a new block
-                        block = new Block();
-                        block.getTransactions().add(t);
-                        blockList.add(block);
-                    }
+            if (tail.getInfo() instanceof Block) {
+                // Confirm that the info is a listNode
+                Block block = (Block) tail.getInfo();
+
+                if (block.getTransactions().getSize() < 3) {
+                    // As this block is not full size, we can add the new transaction here
+                    block.getTransactions().add(t);
+                } else {
+                    // As this block is full size, we must create a new block
+                    block = new Block();
+                    block.getTransactions().add(t);
+                    blockList.add(block);
                 }
-    }
+            }
+        }
         System.out.println(TransactionController.class.toString() + " MENSAJE Transaccipon por lista ingresada");
     }
-    
 
     public List<Block> getBlockList() {
         return blockList;

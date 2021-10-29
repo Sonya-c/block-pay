@@ -22,7 +22,6 @@ public class IndexView extends javax.swing.JPanel {
 
     private final Account account;
     private final AccountController accountController;
-    private Wallet wallet;
 
     private final JFrame parent;
 
@@ -40,7 +39,7 @@ public class IndexView extends javax.swing.JPanel {
 
         initComponents();
 
-        moneyLabel.setText(accountController.getSaldo(account) + "");
+        moneyLabelUpdate();
         
         // Añadir los labels
         if (account != null && account.getWallets() != null) {
@@ -50,6 +49,14 @@ public class IndexView extends javax.swing.JPanel {
         }
         
         this.graphPanel.add(new GraphView(accountController.getAccountList(), accountController.getTransactionController().getBlockList()));
+    }
+    
+    private void moneyLabelUpdate(){
+        double money = 0;
+        for (Wallet wallet : account.getWallets()) {
+            money += wallet.getMoney();
+        }
+        moneyLabelTxt.setText((money + ""));
     }
 
     /**
@@ -70,7 +77,7 @@ public class IndexView extends javax.swing.JPanel {
         sendMoneyModalTitle = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         destinataryWalletLabel = new javax.swing.JLabel();
-        distinataryWalletTxt = new javax.swing.JTextField();
+        destinataryWalletTxt = new javax.swing.JTextField();
         remitentWalletLabel = new javax.swing.JLabel();
         remitentWalletCombox = new javax.swing.JComboBox<>();
         sendMoneyModalMoneyLabel = new javax.swing.JLabel();
@@ -89,7 +96,7 @@ public class IndexView extends javax.swing.JPanel {
         sendMoneyBtn = new javax.swing.JButton();
         dineroDisponiblePanel = new javax.swing.JPanel();
         disponibleLabel = new javax.swing.JLabel();
-        moneyLabel = new javax.swing.JLabel();
+        moneyLabelTxt = new javax.swing.JLabel();
         bodyPanel = new javax.swing.JPanel();
         bodyScrollPanel = new javax.swing.JScrollPane();
         containerPanel = new javax.swing.JPanel();
@@ -155,23 +162,23 @@ public class IndexView extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         sendMoneyModal.add(destinataryWalletLabel, gridBagConstraints);
 
-        distinataryWalletTxt.setBackground(new java.awt.Color(87, 16, 137));
-        distinataryWalletTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        distinataryWalletTxt.setForeground(new java.awt.Color(255, 255, 255));
-        distinataryWalletTxt.setToolTipText("Nombre de usuario");
-        distinataryWalletTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(87, 16, 137), 1, true));
-        distinataryWalletTxt.setCaretColor(new java.awt.Color(236, 0, 140));
-        distinataryWalletTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
-        distinataryWalletTxt.setName(""); // NOI18N
-        distinataryWalletTxt.setPreferredSize(new java.awt.Dimension(170, 33));
-        distinataryWalletTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
+        destinataryWalletTxt.setBackground(new java.awt.Color(87, 16, 137));
+        destinataryWalletTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        destinataryWalletTxt.setForeground(new java.awt.Color(255, 255, 255));
+        destinataryWalletTxt.setToolTipText("Nombre de usuario");
+        destinataryWalletTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(87, 16, 137), 1, true));
+        destinataryWalletTxt.setCaretColor(new java.awt.Color(236, 0, 140));
+        destinataryWalletTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        destinataryWalletTxt.setName(""); // NOI18N
+        destinataryWalletTxt.setPreferredSize(new java.awt.Dimension(170, 33));
+        destinataryWalletTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        sendMoneyModal.add(distinataryWalletTxt, gridBagConstraints);
+        sendMoneyModal.add(destinataryWalletTxt, gridBagConstraints);
 
         remitentWalletLabel.setBackground(new java.awt.Color(255, 255, 255));
         remitentWalletLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -338,10 +345,10 @@ public class IndexView extends javax.swing.JPanel {
         disponibleLabel.setText("Disponible");
         dineroDisponiblePanel.add(disponibleLabel);
 
-        moneyLabel.setFont(new java.awt.Font("Calibri", 0, 48)); // NOI18N
-        moneyLabel.setForeground(new java.awt.Color(255, 255, 255));
-        moneyLabel.setText("$ 00,0");
-        dineroDisponiblePanel.add(moneyLabel);
+        moneyLabelTxt.setFont(new java.awt.Font("Calibri", 0, 48)); // NOI18N
+        moneyLabelTxt.setForeground(new java.awt.Color(255, 255, 255));
+        moneyLabelTxt.setText("$ 00,0");
+        dineroDisponiblePanel.add(moneyLabelTxt);
 
         Header.add(dineroDisponiblePanel);
 
@@ -383,11 +390,14 @@ public class IndexView extends javax.swing.JPanel {
     private void sendMoneyModalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendMoneyModalBtnActionPerformed
         String walletNickname = (String) remitentWalletCombox.getSelectedItem();
         Wallet remitent = accountController.getWalletByNickname(walletNickname);
+        Wallet destinatary = accountController.getWallet(destinataryWalletTxt.getText());
+        
         Double money = Double.parseDouble(moneyTxt.getValue().toString());
         
-        System.out.println("view.includes.IndexView.sendMoneyModalBtnActionPerformed" + IndexView.class.getName() + " MENSAJE " + remitent.getID() + " - " + wallet.getID() + " - " + money);
         
-        Transaction transaction = new Transaction(remitent, wallet, money, messageTxt.getText());
+        System.out.println("view.includes.IndexView.sendMoneyModalBtnActionPerformed" + IndexView.class.getName() + " MENSAJE " + remitent.getID() + " - " + destinatary.getID() + " - " + money);
+        
+        Transaction transaction = new Transaction(remitent, destinatary, money, messageTxt.getText());
         
         if (accountController.getTransactionController().add(transaction) == 0) {
             Modal modal = new Modal(parent, "Transacción éxitosa", true, transactionSuccesfull);
@@ -395,8 +405,7 @@ public class IndexView extends javax.swing.JPanel {
             transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
             transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
             
-            double moneyTemp = Double.parseDouble(moneyLabel.getText()) - transaction.getMoney();
-            moneyLabel.setText(moneyTemp + "");
+            moneyLabelUpdate();
             
             this.removeAll();
         } else {
@@ -419,9 +428,9 @@ public class IndexView extends javax.swing.JPanel {
     private javax.swing.JScrollPane bodyScrollPanel;
     private javax.swing.JPanel containerPanel;
     private javax.swing.JLabel destinataryWalletLabel;
+    private javax.swing.JTextField destinataryWalletTxt;
     private javax.swing.JPanel dineroDisponiblePanel;
     private javax.swing.JLabel disponibleLabel;
-    private javax.swing.JTextField distinataryWalletTxt;
     private javax.swing.JPanel graphPanel;
     private javax.swing.JScrollBar horrizontalScrollBar;
     private javax.swing.JLabel jLabel1;
@@ -430,7 +439,7 @@ public class IndexView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea messageTxt;
-    private javax.swing.JLabel moneyLabel;
+    private javax.swing.JLabel moneyLabelTxt;
     private javax.swing.JSpinner moneyTxt;
     private javax.swing.JPanel poorMoneyPanel;
     private javax.swing.JComboBox<String> remitentWalletCombox;
