@@ -5,8 +5,6 @@
  */
 package model.system;
 
-import controller.AccountController;
-import controller.FileController;
 import model.list.List;
 
 /**

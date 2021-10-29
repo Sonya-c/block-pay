@@ -17,16 +17,12 @@ import view.includes.Modal;
 public class ProfileView extends javax.swing.JPanel {
     
     private Account account;
-    private AccountController accountController;
-    private JFrame parent;
     /**
      * Creates new form profileView
      * @param account
      */
-    public ProfileView(Account account, AccountController accountController, JFrame parent) {
+    public ProfileView(Account account) {
         this.account = account;
-        this.accountController = accountController;
-        this.parent = parent;
         
         initComponents();
         
@@ -55,7 +51,6 @@ public class ProfileView extends javax.swing.JPanel {
         passwordLabel = new javax.swing.JLabel();
         userTxt = new javax.swing.JTextField();
         passwordTxt = new javax.swing.JPasswordField();
-        saveChangeBtn = new javax.swing.JButton();
 
         passwordErrorPanel.setBackground(new java.awt.Color(255, 255, 255));
         passwordErrorPanel.setMaximumSize(new java.awt.Dimension(252, 94));
@@ -147,6 +142,7 @@ public class ProfileView extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         bodyPanel.add(passwordLabel, gridBagConstraints);
 
+        userTxt.setEditable(false);
         userTxt.setBackground(new java.awt.Color(151, 58, 168));
         userTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         userTxt.setForeground(new java.awt.Color(255, 255, 255));
@@ -168,7 +164,7 @@ public class ProfileView extends javax.swing.JPanel {
         passwordTxt.setBackground(new java.awt.Color(151, 58, 168));
         passwordTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         passwordTxt.setForeground(new java.awt.Color(255, 255, 255));
-        passwordTxt.setToolTipText("Contreña");
+        passwordTxt.setToolTipText("Contraseña");
         passwordTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(71, 18, 107), 1, true));
         passwordTxt.setCaretColor(new java.awt.Color(236, 0, 140));
         passwordTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
@@ -181,49 +177,8 @@ public class ProfileView extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         bodyPanel.add(passwordTxt, gridBagConstraints);
 
-        saveChangeBtn.setBackground(new java.awt.Color(255, 209, 102));
-        saveChangeBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        saveChangeBtn.setForeground(new java.awt.Color(71, 18, 107));
-        saveChangeBtn.setText("Guardar cambios");
-        saveChangeBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(71, 18, 107), 1, true));
-        saveChangeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        saveChangeBtn.setFocusPainted(false);
-        saveChangeBtn.setMaximumSize(new java.awt.Dimension(140, 30));
-        saveChangeBtn.setMinimumSize(new java.awt.Dimension(140, 30));
-        saveChangeBtn.setOpaque(false);
-        saveChangeBtn.setPreferredSize(new java.awt.Dimension(140, 30));
-        saveChangeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveChangeBtnActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
-        bodyPanel.add(saveChangeBtn, gridBagConstraints);
-
         add(bodyPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void saveChangeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveChangeBtnActionPerformed
-        String username = userTxt.getText().trim();
-        String password = passwordTxt.getText().trim();
-        
-        if (password.length() < 5) {
-            Modal modal = new Modal(parent, "Error contraseña", true, passwordErrorPanel);
-        } else {
-            if (accountController.verifyUsername(username)) {
-                Account account = new Account(10, username, password);
-                
-                accountController.addAccount(account);
-                
-                Modal modal = new Modal(parent, "Cambios guardados", true, changedSavedPanel);
-            } else {
-                Modal modal = new Modal(parent, "Nombre ya existe", true, usernameErrorPanel);
-            }
-        }
-    }//GEN-LAST:event_saveChangeBtnActionPerformed
 
     private void loadData(){
         this.idUser.setText("Id: " + account.getID());
@@ -243,7 +198,6 @@ public class ProfileView extends javax.swing.JPanel {
     private javax.swing.JPanel passwordErrorPanel;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JPasswordField passwordTxt;
-    private javax.swing.JButton saveChangeBtn;
     private javax.swing.JLabel userLabel;
     private javax.swing.JTextField userTxt;
     private javax.swing.JPanel usernameErrorPanel;

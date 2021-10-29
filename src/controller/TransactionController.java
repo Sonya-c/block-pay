@@ -45,7 +45,8 @@ public class TransactionController {
             return true;
             
         } else {
-            double money = 50000;
+            
+            double money = this.existsMoneyAtFirst(transaction);
             
             /*
              * Verify that the money of the remitent makes sense
@@ -57,7 +58,7 @@ public class TransactionController {
             
             for (Block block : blockList) {
                 for (Transaction t : block.getTransactions()) {
-
+                    
                     if (t.getRemitent().getID().equals(transaction.getRemitent().getID())) {
                         money -= t.getMoney();
 
@@ -74,6 +75,22 @@ public class TransactionController {
         }
     }
 
+    private double existsMoneyAtFirst(Transaction transaction){
+        Wallet remitent = transaction.getRemitent();
+        Wallet destinatary = transaction.getDestinatary();
+        for (Block block : blockList) {
+            for (Transaction transaction1 : block.getTransactions()) {
+                if (remitent.getID().equals(transaction1.getDestinatary().getID()) && 
+                        transaction.getRemitent().getID().equals("eva0")
+                        ||  destinatary.getID().equals(transaction1.getDestinatary().getID())
+                        && transaction.getRemitent().getID().equals("eva0")){
+                    return 50000d;
+                }
+            }
+        }
+        return 0d;
+    }
+    
     /**
      * Add a new trasaction
      *
@@ -175,6 +192,36 @@ public class TransactionController {
             }
         }
     }
+    
+
+    public void addTransaction(Transaction t){
+        ListNode tail = blockList.getTail();
+        if (tail == null) {
+
+                Block block = new Block();
+                block.getTransactions().add(t);
+                blockList.add(block);
+                
+            } else {
+
+                if (tail.getInfo() instanceof Block) {
+                    // Confirm that the info is a listNode
+                    Block block = (Block) tail.getInfo();
+
+                    if (block.getTransactions().getSize() < 3) {
+                        // As this block is not full size, we can add the new transaction here
+                        block.getTransactions().add(t);
+                    } else {
+                        // As this block is full size, we must create a new block
+                        block = new Block();
+                        block.getTransactions().add(t);
+                        blockList.add(block);
+                    }
+                }
+    }
+        System.out.println(TransactionController.class.toString() + " MENSAJE Transaccipon por lista ingresada");
+    }
+    
 
     public List<Block> getBlockList() {
         return blockList;

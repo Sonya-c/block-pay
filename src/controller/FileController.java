@@ -86,9 +86,9 @@ public class FileController {
                     String data[] = line.split("#");
 
                     Account account = new Account(Integer.parseInt(data[0]), data[1], data[2]);
-                    loadWallets(account);
                     
                     accountList.add(account);
+//                    loadWallets(account);
 
                     System.out.println(
                             FileController.class.getName()
@@ -308,7 +308,7 @@ public class FileController {
                             Integer.parseInt(dateString[1]), Integer.parseInt(dateString[2]));
 
                     Transaction transaction = new Transaction(walletRemitent, walletDestinatary, money, date, data[4]);
-                    transactionController.add(transaction);
+                    transactionController.addTransaction(transaction);
                 }
 
                 System.out.println(FileController.class.getName() + " MENSAJE " + "Se ha terminado de leer");

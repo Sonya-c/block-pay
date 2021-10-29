@@ -36,6 +36,7 @@ public class TransactionInformationView extends javax.swing.JPanel {
         this.accountController = accountController;
         this.parent = parent;
         initComponents();
+        loadWalletsUser();
     }
 
     private void loadTransactions(List<Transaction> transactions) {
@@ -49,6 +50,11 @@ public class TransactionInformationView extends javax.swing.JPanel {
         infoPanel.repaint();
     }
     
+    private void loadWalletsUser(){
+        for (Wallet wallet : account.getWallets()) {
+            walletsUser.addItem(wallet.getID());
+        }
+    }
     
 
     /**
@@ -69,10 +75,9 @@ public class TransactionInformationView extends javax.swing.JPanel {
         userWalletsNoTransactionsPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         bodyPanel = new javax.swing.JPanel();
-        historyBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        searchIdTxt = new javax.swing.JTextField();
         transactionByIdBtn = new javax.swing.JButton();
+        walletsUser = new javax.swing.JComboBox<>();
         infoPanel = new javax.swing.JPanel();
 
         titlePanel.setBackground(new java.awt.Color(102, 204, 255));
@@ -113,31 +118,6 @@ public class TransactionInformationView extends javax.swing.JPanel {
         bodyPanel.setBackground(new java.awt.Color(27, 20, 100));
         bodyPanel.setLayout(new java.awt.GridBagLayout());
 
-        historyBtn.setBackground(new java.awt.Color(216, 49, 91));
-        historyBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        historyBtn.setForeground(new java.awt.Color(255, 255, 255));
-        historyBtn.setText("Mis transacciones");
-        historyBtn.setBorderPainted(false);
-        historyBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        historyBtn.setFocusPainted(false);
-        historyBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                historyBtnMouseClicked(evt);
-            }
-        });
-        historyBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                historyBtnActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 196, 11, 10);
-        bodyPanel.add(historyBtn, gridBagConstraints);
-
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 209, 102));
         jLabel2.setText("Id de la billetera");
@@ -145,21 +125,8 @@ public class TransactionInformationView extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(15, 151, 0, 0);
         bodyPanel.add(jLabel2, gridBagConstraints);
-
-        searchIdTxt.setBackground(new java.awt.Color(62, 146, 204));
-        searchIdTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        searchIdTxt.setForeground(new java.awt.Color(255, 255, 255));
-        searchIdTxt.setToolTipText("");
-        searchIdTxt.setMinimumSize(new java.awt.Dimension(100, 23));
-        searchIdTxt.setPreferredSize(new java.awt.Dimension(100, 23));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 4, 0, 0);
-        bodyPanel.add(searchIdTxt, gridBagConstraints);
 
         transactionByIdBtn.setBackground(new java.awt.Color(216, 49, 91));
         transactionByIdBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -181,10 +148,28 @@ public class TransactionInformationView extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 6, 11, 0);
+        gridBagConstraints.insets = new java.awt.Insets(11, 6, 4, 242);
         bodyPanel.add(transactionByIdBtn, gridBagConstraints);
+
+        walletsUser.setBackground(new java.awt.Color(151, 58, 168));
+        walletsUser.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        walletsUser.setForeground(new java.awt.Color(255, 255, 255));
+        walletsUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                walletsUserActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 121;
+        gridBagConstraints.ipady = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(11, 4, 0, 0);
+        bodyPanel.add(walletsUser, gridBagConstraints);
 
         infoPanel.setLayout(new javax.swing.BoxLayout(infoPanel, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -192,73 +177,51 @@ public class TransactionInformationView extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE)
+            .addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(bodyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(bodyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void historyBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historyBtnMouseClicked
-       List<Wallet> userWallets = account.getWallets();
-       List<Transaction> transactionsByUserWallets = new List();
-       
-        for (Wallet userWallet : userWallets) {
-            for (Transaction transaction : accountController.getHistorial(userWallet)) {
-                transactionsByUserWallets.add(transaction);
-            }
-        }
-        
-        if (transactionsByUserWallets.getSize() == 0){
-            Modal modal = new Modal(parent, "Sin transacciones", true, userWalletsNoTransactionsPanel);
-        } else {
-            loadTransactions(transactionsByUserWallets);
-        }
-
-    }//GEN-LAST:event_historyBtnMouseClicked
-
-    private void historyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyBtnActionPerformed
-
-    }//GEN-LAST:event_historyBtnActionPerformed
-
     private void transactionByIdBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transactionByIdBtnMouseClicked
-         if (searchIdTxt.getText().isEmpty()) {
-            Modal modal = new Modal(parent, "Información insuficiente", true, idEmptyPanel);
-        } else {
-
-            Wallet wallet = account.getWallet(searchIdTxt.getText());
+        
+            Wallet wallet = accountController.getWallet((String)walletsUser.getSelectedItem());
             List<Transaction> transactionByWallet = accountController.getHistorial(wallet);
             if (transactionByWallet.getSize() != 0) {
                 loadTransactions(transactionByWallet);
             } else {
                 Modal modal = new Modal(parent, "Sin transacciones", true, transactionWalletNotFoundPanel);
             }
-        }
     }//GEN-LAST:event_transactionByIdBtnMouseClicked
 
     private void transactionByIdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionByIdBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_transactionByIdBtnActionPerformed
 
+    private void walletsUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_walletsUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_walletsUserActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyPanel;
-    private javax.swing.JButton historyBtn;
     private javax.swing.JPanel idEmptyPanel;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField searchIdTxt;
     private javax.swing.JPanel titlePanel;
     private javax.swing.JButton transactionByIdBtn;
     private javax.swing.JPanel transactionWalletNotFoundPanel;
     private javax.swing.JPanel userWalletsNoTransactionsPanel;
+    private javax.swing.JComboBox<String> walletsUser;
     // End of variables declaration//GEN-END:variables
 }
