@@ -5,6 +5,7 @@
  */
 package view.includes;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -26,6 +27,7 @@ import javax.swing.JPanel;
 import model.list.List;
 import model.system.Account;
 import model.system.Block;
+import model.system.Transaction;
 import model.system.Wallet;
 
 /**
@@ -36,6 +38,25 @@ public class GraphView extends JPanel implements MouseWheelListener, MouseListen
     private final List<Account> accounts;
     private final List<Block> blocks;
     
+    /* BEGIN Graph variables */
+    private int accountWidth = 300;
+    
+     
+    private class WalletPosition {       
+        Wallet wallet;
+        int x;
+        int y;
+
+        public WalletPosition(Wallet wallet, int x, int y) {
+            this.wallet = wallet;
+            this.x = x;
+            this.y = y;
+        }
+    }
+    
+    private List<WalletPosition> walletPositions;
+    
+    /* END Graph variables*/
     
     /* BEGIN Zoom and transate stuff */
     private double zoomFactor = 1;
@@ -53,6 +74,7 @@ public class GraphView extends JPanel implements MouseWheelListener, MouseListen
     public GraphView(List<Account> accounts, List<Block> blocks) {
         this.accounts = accounts;
         this.blocks = blocks;
+        walletPositions = new List();
         initComponent();
     }
     
@@ -70,6 +92,7 @@ public class GraphView extends JPanel implements MouseWheelListener, MouseListen
         Graphics2D g2 = (Graphics2D) g;
         Font font = new Font("Calibri", Font.PLAIN, 20);
         
+        g2.setStroke(new BasicStroke(3));
         g2.setFont(font);
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setBackground(Color.white);
@@ -110,25 +133,25 @@ public class GraphView extends JPanel implements MouseWheelListener, MouseListen
         /* END ZOOM AND TRANSALATE STRUFF*/
         
         paintAccount(g2);
+        paintBlock(g2);
     }
     
-    public void paintAccount(Graphics g) {
+    private void paintAccount(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        Font font = new Font("Calibri", Font.PLAIN, 20);
-        
-        g2.setFont(font);
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        walletPositions = new List();
         
         int accountsHeight = 50;
         int accountSpacing = 100;
         int accountSize = 100;
         int accountX = 30;
         int accountY = 0;
-        
-        int walletX = accountSize + 90;
+    
+        int walletX = accountSize + 300;
         int walletSize = 100;
         int walletSpacing = 100;
         int walletHeight = 0;
+        
+        accountWidth = accountX + walletX + walletSize;
         
         System.out.println("view.includes.GraphView.paint account size = " + accounts.getSize());
         for (Account account : accounts) {
@@ -154,6 +177,8 @@ public class GraphView extends JPanel implements MouseWheelListener, MouseListen
                 g2.draw(new RoundRectangle2D.Double(walletX, walletHeight, walletSize, walletSize, 50, 50));
                 g2.drawLine(accountX + accountSize, accountY + accountSize / 2, walletX, walletHeight + walletSize / 2);
                 
+                walletPositions.add(new WalletPosition(wallet, walletX + walletSize, walletHeight + walletSize/2));
+                
                 walletHeight += walletSize + walletSpacing;
             }
             
@@ -166,6 +191,65 @@ public class GraphView extends JPanel implements MouseWheelListener, MouseListen
         
     }
     
+    private void paintBlock(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+        
+        int transactionX = accountWidth + 300;
+        int transactionSize = 100;
+        int transactionSpacing = 100;
+        int transactionHeight = 0;
+        
+        int blockHeight = 50;
+        int blockSpacing = 100;
+        int blockSize = 100;
+        int blockX = transactionX + 300;
+        int blockY = 0;
+        
+        for (Block block : blocks) {
+            System.out.println("hola que HACE!!!!");
+            transactionHeight = blockHeight;
+
+            if (block.getTransactions().getSize() < 1) {
+                if (blockY != 0) g2.drawLine(blockX + blockSize / 2, blockY + blockSize, blockX + blockSize / 2, blockHeight);
+                
+                blockY = blockHeight;
+                blockHeight += blockSize + blockSpacing;
+                
+            } else {
+                if (blockY != 0) g2.drawLine(blockX + blockSize / 2, blockY + blockSize, blockX + blockSize / 2,
+                        blockHeight + (int) (blockSize + blockSpacing) * block.getTransactions().getSize() / 2 - blockSize / 2);
+                
+                blockY = blockHeight + (int) (transactionSize + transactionSpacing) * block.getTransactions().getSize() / 2 - blockSize / 2;
+                blockHeight += (blockSize + transactionSpacing) * block.getTransactions().getSize();
+            }
+            
+            
+            for (Transaction transaction: block.getTransactions()) {
+                g2.drawString("" + transaction.getMoney(), transactionX, transactionHeight);
+                g2.draw(new RoundRectangle2D.Double(transactionX, transactionHeight, transactionSize, transactionSize, 50, 50));
+                g2.drawLine(blockX, blockY + blockSize / 2, transactionX + transactionSize, transactionHeight + transactionSize / 2);
+                
+                for (WalletPosition walletPosition : walletPositions) {
+                    if (walletPosition.wallet == transaction.getDestinatary() || walletPosition.wallet == transaction.getRemitent()) {
+                        if (walletPosition.wallet == transaction.getDestinatary()) g2.setColor(Color.GREEN);
+                        else g2.setColor(Color.RED);
+                        
+                        g2.drawLine(transactionX, transactionHeight + transactionSize / 2, walletPosition.x, walletPosition.y);
+                        g2.setColor(Color.BLACK);
+                    }
+                }
+                
+                
+                transactionHeight += transactionSize + transactionSpacing;
+            }
+            
+            g2.draw(new RoundRectangle2D.Double(blockX, blockY, blockSize, blockSize, 50, 50));
+            g2.drawString("Soy un bloque", blockX, blockY);
+            
+            
+        }
+        
+    }
     
     /* Zoom and drag stuff */
     @Override
