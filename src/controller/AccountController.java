@@ -87,16 +87,16 @@ public class AccountController {
     public void addAccount(Account account) {
         this.accountList.add(account);
     }
-    
+
     /**
-     * 
+     *
      * @param account
-     * @return 
+     * @return
      */
-    public double getSaldo(Account account){
+    public double getSaldo(Account account) {
         return transactionController.getSaldo(account);
     }
-    
+
     public void writeAccountInFile() {
         for (Account a : accountList) {
             if (!FileController.searchAccount(a)) {
@@ -105,21 +105,17 @@ public class AccountController {
             }
 
             for (Wallet wallet : a.getWallets()) {
-                if (FileController.searchWallet(wallet) == 0) {
-                    FileController.writeFile(FileController.findCreateFile("wallet.txt"),
-                            wallet.getID() + "#" + wallet.getMoney() + "#" + wallet.getNickname() + "#" + a.getID());
-                } else if (FileController.searchWallet(wallet) == -1) {
-                    FileController.updateWallet(wallet);
-                }
+                FileController.writeFile(FileController.findCreateFile("wallet.txt"),
+                        wallet.getID() + "#" + wallet.getMoney() + "#" + wallet.getNickname() + "#" + a.getID());
             }
         }
         transactionController.writeTransactionInFile();
     }
 
     /**
-     * 
+     *
      * @param wallet
-     * @return 
+     * @return
      */
     public List<Transaction> getHistorial(Wallet wallet) {
         return transactionController.getHistorial(wallet);
@@ -140,7 +136,7 @@ public class AccountController {
         if (transactionController.add(transaction) <= 0) {
             transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
             transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
-      
+
         }
         account.addWallet(wallet);
     }
@@ -162,21 +158,21 @@ public class AccountController {
         return null;
 
     }
-    
+
     /**
-     * 
+     *
      * @param nickname
-     * @return 
+     * @return
      */
     public Wallet getWalletByNickname(String nickname) {
         if (nickname != null) {
             for (Account account : accountList) {
-               for (Wallet wallet : account.getWallets()) {
-                   if (nickname.equals(wallet.getNickname())) {
-                       return wallet;
-                   }
-               }
-           }
+                for (Wallet wallet : account.getWallets()) {
+                    if (nickname.equals(wallet.getNickname())) {
+                        return wallet;
+                    }
+                }
+            }
         } else {
             System.out.println("controller.AccountController.getWalletByNickname(nickname) ERROR null nickname");
         }
@@ -220,8 +216,8 @@ public class AccountController {
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public TransactionController getTransactionController() {
         return transactionController;

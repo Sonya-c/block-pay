@@ -206,7 +206,6 @@ public class LoginView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         loginFormPanel.add(loginPasswordLabel, gridBagConstraints);
 
-        loginUserTxt.setEditable(false);
         loginUserTxt.setBackground(new java.awt.Color(151, 58, 168));
         loginUserTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         loginUserTxt.setForeground(new java.awt.Color(255, 255, 255));
@@ -217,6 +216,11 @@ public class LoginView extends javax.swing.JFrame {
         loginUserTxt.setName(""); // NOI18N
         loginUserTxt.setPreferredSize(new java.awt.Dimension(170, 33));
         loginUserTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
+        loginUserTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginUserTxtActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -354,6 +358,10 @@ public class LoginView extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_signUpBtnActionPerformed
+
+    private void loginUserTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginUserTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loginUserTxtActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField SignUpUsernameTxt;

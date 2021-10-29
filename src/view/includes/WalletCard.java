@@ -372,10 +372,10 @@ public class WalletCard extends javax.swing.JPanel {
     private void sendMoneyModalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendMoneyModalBtnActionPerformed
 
         String walletId = (String) remitentWalletCombox.getSelectedItem();
-        Wallet remitent = accountController.getWallet(wallet.getID());
+        Wallet remitent = accountController.getWallet(walletId);
         Double money = Double.parseDouble(moneyTxt1.getValue().toString());
         System.out.println(WalletCard.class.getName() + " MENSAJE " + remitent.getID() + " - " + wallet.getID() + " - " + money);
-        Transaction transaction = new Transaction(wallet, remitent, money, messageTxt.getText());
+        Transaction transaction = new Transaction(remitent, wallet, money, messageTxt.getText());
 
         if (accountController.getTransactionController().add(transaction) == 0) {
 
@@ -383,7 +383,7 @@ public class WalletCard extends javax.swing.JPanel {
             transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
             transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
             double moneyTemp = Double.parseDouble(moneyLabel.getText()) - transaction.getMoney();
-            moneyLabel.setText(moneyTemp + "");
+            moneyTxt.setText(moneyTemp + "");
 
             this.removeAll();
         } else {
