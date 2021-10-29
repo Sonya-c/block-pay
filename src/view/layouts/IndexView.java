@@ -98,8 +98,8 @@ public class IndexView extends javax.swing.JPanel {
         disponibleLabel = new javax.swing.JLabel();
         moneyLabelTxt = new javax.swing.JLabel();
         bodyPanel = new javax.swing.JPanel();
-        bodyScrollPanel = new javax.swing.JScrollPane();
         containerPanel = new javax.swing.JPanel();
+        bodyScrollPanel = new javax.swing.JScrollPane();
         graphPanel = new javax.swing.JPanel();
 
         horrizontalScrollBar.setBackground(new java.awt.Color(53, 42, 157));
@@ -354,35 +354,28 @@ public class IndexView extends javax.swing.JPanel {
 
         add(Header, java.awt.BorderLayout.PAGE_START);
 
-        bodyScrollPanel.setBackground(new java.awt.Color(27, 20, 100));
-        bodyScrollPanel.setBorder(null);
-        bodyScrollPanel.setAutoscrolls(true);
-        bodyScrollPanel.setHorizontalScrollBar(horrizontalScrollBar);
-        bodyScrollPanel.setVerticalScrollBar(verticalScrollBar);
+        bodyPanel.setLayout(new java.awt.BorderLayout());
 
         containerPanel.setBackground(new java.awt.Color(248, 248, 248));
         containerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         containerPanel.setLayout(new java.awt.GridLayout(1, 2, 20, 20));
+
+        bodyScrollPanel.setBackground(new java.awt.Color(255, 255, 255));
+        bodyScrollPanel.setBorder(null);
+        bodyScrollPanel.setAutoscrolls(true);
+        bodyScrollPanel.setHorizontalScrollBar(horrizontalScrollBar);
+        bodyScrollPanel.setVerticalScrollBar(verticalScrollBar);
 
         graphPanel.setBackground(new java.awt.Color(255, 255, 255));
         graphPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(177, 175, 200), 1, true));
         graphPanel.setMinimumSize(new java.awt.Dimension(200, 288));
         graphPanel.setPreferredSize(new java.awt.Dimension(200, 288));
         graphPanel.setLayout(new java.awt.BorderLayout());
-        containerPanel.add(graphPanel);
+        bodyScrollPanel.setViewportView(graphPanel);
 
-        bodyScrollPanel.setViewportView(containerPanel);
+        containerPanel.add(bodyScrollPanel);
 
-        javax.swing.GroupLayout bodyPanelLayout = new javax.swing.GroupLayout(bodyPanel);
-        bodyPanel.setLayout(bodyPanelLayout);
-        bodyPanelLayout.setHorizontalGroup(
-            bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bodyScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE)
-        );
-        bodyPanelLayout.setVerticalGroup(
-            bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bodyScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
-        );
+        bodyPanel.add(containerPanel, java.awt.BorderLayout.CENTER);
 
         add(bodyPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
