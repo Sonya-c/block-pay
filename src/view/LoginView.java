@@ -346,9 +346,13 @@ public class LoginView extends javax.swing.JFrame {
             Modal modal = new Modal(this, "Error contraseña", true, passwordErrorPanel);
         } else {
             if (accountController.verifyUsername(username)) {
-                Account account = new Account(10, username, password);
                 
-                accountController.addAccount(account);
+                int id = accountController.getAccountList().getSize() + 1;
+                
+                Account account = new Account(id, username, password);
+                
+                accountController.addNewAccount(account);
+                
                 this.setVisible(false);
                 MainView mainView = new MainView(account, accountController);
                 mainView.setVisible(true);

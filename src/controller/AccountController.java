@@ -88,15 +88,11 @@ public class AccountController {
         this.accountList.add(account);
     }
 
-    /**
-     *
-     * @param account
-     * @return
-     */
-//    public double getSaldo(Account account) {
-//        return transactionController.getSaldo(account);
-//    }
-
+    public void addNewAccount(Account account){
+        moneyFistWallet(account);
+        this.accountList.add(account);
+    }
+   
     public void writeAccountInFile() {
         for (Account a : accountList) {
             if (!FileController.searchAccount(a)) {

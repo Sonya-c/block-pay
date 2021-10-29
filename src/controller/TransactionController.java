@@ -147,24 +147,6 @@ public class TransactionController {
         }
     }
 
-    /**
-     *
-     * @param account
-     * @return
-     */
-//    public double getSaldo(Account account) {
-//        double saldo = 0;
-//        for (Block block : blockList) {
-//            for (Transaction transaction : block.getTransactions()) {
-//                if (account.getWallet(transaction.getRemitent().getID()) != null) {
-//                    saldo -= transaction.getMoney();
-//                } else if (account.getWallet(transaction.getDestinatary().getID()) != null) {
-//                    saldo += transaction.getMoney();
-//                }
-//            }
-//        }
-//        return saldo;
-//    }
 
     public List<Transaction> getHistorial(Wallet wallet) {
         List<Transaction> transactions = new List();
