@@ -382,7 +382,7 @@ public class WalletCard extends javax.swing.JPanel {
             Modal modal = new Modal(parent, "Transacción éxitosa", true, transactionSuccesfull);
             transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
             transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
-            double moneyTemp = Double.parseDouble(moneyLabel.getText()) - transaction.getMoney();
+            double moneyTemp = Double.parseDouble(moneyTxt.getText()) - transaction.getMoney();
             moneyTxt.setText(moneyTemp + "");
 
             this.removeAll();

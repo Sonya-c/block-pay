@@ -244,7 +244,7 @@ public class WalletsView extends javax.swing.JPanel {
 
     private void createWalletBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createWalletBtnActionPerformed
         String nickname = createWalletNicknameTxt.getText().trim();
-        String id = "" + account.getID() + account.getWallets().getSize();
+        String id = "" + account.getUserName() + account.getWallets().getSize();
         
         boolean sw = true;
         for (Wallet w : account.getWallets()) {
