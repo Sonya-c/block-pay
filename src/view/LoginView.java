@@ -218,7 +218,7 @@ public class LoginView extends javax.swing.JFrame {
         loginPasswordTxt.setBackground(new java.awt.Color(151, 58, 168));
         loginPasswordTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         loginPasswordTxt.setForeground(new java.awt.Color(255, 255, 255));
-        loginPasswordTxt.setToolTipText("Contreña");
+        loginPasswordTxt.setToolTipText("Contraseña");
         loginPasswordTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(71, 18, 107), 2, true));
         loginPasswordTxt.setCaretColor(new java.awt.Color(236, 0, 140));
         loginPasswordTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));

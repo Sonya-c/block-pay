@@ -106,6 +106,8 @@ public class IndexView extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         transactionFailPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        transactionNotPossiblePanel = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
         Header = new javax.swing.JPanel();
         sendMoneyBtn = new javax.swing.JButton();
         dineroDisponiblePanel = new javax.swing.JPanel();
@@ -138,7 +140,7 @@ public class IndexView extends javax.swing.JPanel {
         walletNotFoundPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel1.setText("Wallet no encontrada");
+        jLabel1.setText("Billetera no encontrada");
         walletNotFoundPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 180, 20));
 
         sendMoneyModal.setBackground(new java.awt.Color(151, 58, 168));
@@ -179,7 +181,7 @@ public class IndexView extends javax.swing.JPanel {
         destinataryWalletTxt.setBackground(new java.awt.Color(87, 16, 137));
         destinataryWalletTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         destinataryWalletTxt.setForeground(new java.awt.Color(255, 255, 255));
-        destinataryWalletTxt.setToolTipText("Nombre de usuario");
+        destinataryWalletTxt.setToolTipText("Id billetera destinatario");
         destinataryWalletTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(87, 16, 137), 1, true));
         destinataryWalletTxt.setCaretColor(new java.awt.Color(236, 0, 140));
         destinataryWalletTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
@@ -208,6 +210,7 @@ public class IndexView extends javax.swing.JPanel {
         remitentWalletCombox.setBackground(new java.awt.Color(87, 16, 137));
         remitentWalletCombox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         remitentWalletCombox.setForeground(new java.awt.Color(255, 255, 255));
+        remitentWalletCombox.setToolTipText("Mis billeteras");
         remitentWalletCombox.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(87, 16, 137), 1, true));
         remitentWalletCombox.setPreferredSize(new java.awt.Dimension(170, 33));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -232,7 +235,7 @@ public class IndexView extends javax.swing.JPanel {
         sendMoneyModalBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         sendMoneyModalBtn.setForeground(new java.awt.Color(255, 255, 255));
         sendMoneyModalBtn.setText("Enviar");
-        sendMoneyModalBtn.setToolTipText("Ingresar");
+        sendMoneyModalBtn.setToolTipText("Enviar");
         sendMoneyModalBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(151, 58, 168), 1, true));
         sendMoneyModalBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         sendMoneyModalBtn.setFocusPainted(false);
@@ -271,6 +274,7 @@ public class IndexView extends javax.swing.JPanel {
         messageTxt.setForeground(new java.awt.Color(27, 20, 100));
         messageTxt.setLineWrap(true);
         messageTxt.setRows(5);
+        messageTxt.setToolTipText("Mensaje");
         messageTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         jScrollPane1.setViewportView(messageTxt);
 
@@ -283,6 +287,7 @@ public class IndexView extends javax.swing.JPanel {
 
         moneyTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         moneyTxt.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
+        moneyTxt.setToolTipText("Dinero a mandar");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -320,6 +325,16 @@ public class IndexView extends javax.swing.JPanel {
         jLabel4.setText("Saldo insuficiente");
         transactionFailPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 20));
 
+        transactionNotPossiblePanel.setBackground(new java.awt.Color(255, 255, 255));
+        transactionNotPossiblePanel.setMaximumSize(new java.awt.Dimension(300, 100));
+        transactionNotPossiblePanel.setMinimumSize(new java.awt.Dimension(300, 100));
+        transactionNotPossiblePanel.setPreferredSize(new java.awt.Dimension(300, 100));
+        transactionNotPossiblePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel6.setText("No es válida la transacción");
+        transactionNotPossiblePanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 20));
+
         setLayout(new java.awt.BorderLayout());
 
         Header.setBackground(new java.awt.Color(71, 18, 107));
@@ -332,6 +347,7 @@ public class IndexView extends javax.swing.JPanel {
         sendMoneyBtn.setBackground(new java.awt.Color(130, 47, 175));
         sendMoneyBtn.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         sendMoneyBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/send.png"))); // NOI18N
+        sendMoneyBtn.setToolTipText("Realizar transacción");
         sendMoneyBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10));
         sendMoneyBtn.setBorderPainted(false);
         sendMoneyBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -399,7 +415,7 @@ public class IndexView extends javax.swing.JPanel {
         Double money = Double.parseDouble(moneyTxt.getValue().toString());
 
         if (destinatary != null) {
-            
+            if (!remitent.getID().equals(destinatary.getID())){
             Transaction transaction = new Transaction(remitent, destinatary, money, LocalDate.now(), messageTxt.getText());
 
             if (accountController.getTransactionController().addNewTransaction(transaction)) {
@@ -417,6 +433,9 @@ public class IndexView extends javax.swing.JPanel {
                 Modal modal = new Modal(parent, "Transacción errada", true, transactionFailPanel);
             }
         } else {
+                Modal modal = new Modal(parent, "Datos de transacción errados", true, transactionNotPossiblePanel);
+            } 
+        }else {
             Modal moda = new Modal(parent, "No existe esa billetera", true, walletNotFoundPanel);
         }
     }//GEN-LAST:event_sendMoneyModalBtnActionPerformed
@@ -449,6 +468,7 @@ public class IndexView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea messageTxt;
     private javax.swing.JLabel moneyLabelTxt;
@@ -464,6 +484,7 @@ public class IndexView extends javax.swing.JPanel {
     private javax.swing.JPanel sendMoneyModalTitle;
     private javax.swing.JLabel title;
     private javax.swing.JPanel transactionFailPanel;
+    private javax.swing.JPanel transactionNotPossiblePanel;
     private javax.swing.JPanel transactionSuccesfull;
     private javax.swing.JScrollBar verticalScrollBar;
     private javax.swing.JPanel walletNotFoundPanel;

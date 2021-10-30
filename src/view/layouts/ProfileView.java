@@ -102,6 +102,7 @@ public class ProfileView extends javax.swing.JPanel {
         idUser.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         idUser.setForeground(new java.awt.Color(255, 255, 255));
         idUser.setText("id del usuario");
+        idUser.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -165,7 +166,7 @@ public class ProfileView extends javax.swing.JPanel {
         passwordTxt.setBackground(new java.awt.Color(151, 58, 168));
         passwordTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         passwordTxt.setForeground(new java.awt.Color(255, 255, 255));
-        passwordTxt.setToolTipText("Nombre de usuario");
+        passwordTxt.setToolTipText("Contraseña actual");
         passwordTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(71, 18, 107), 1, true));
         passwordTxt.setCaretColor(new java.awt.Color(236, 0, 140));
         passwordTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));

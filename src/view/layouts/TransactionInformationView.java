@@ -156,6 +156,7 @@ public class TransactionInformationView extends javax.swing.JPanel {
         transactionByIdBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         transactionByIdBtn.setForeground(new java.awt.Color(255, 255, 255));
         transactionByIdBtn.setText("Buscar");
+        transactionByIdBtn.setToolTipText("Buscar");
         transactionByIdBtn.setBorderPainted(false);
         transactionByIdBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         transactionByIdBtn.setFocusPainted(false);
@@ -180,6 +181,7 @@ public class TransactionInformationView extends javax.swing.JPanel {
         walletsUserCombox.setBackground(new java.awt.Color(151, 58, 168));
         walletsUserCombox.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         walletsUserCombox.setForeground(new java.awt.Color(255, 255, 255));
+        walletsUserCombox.setToolTipText("Mis billeteras");
         walletsUserCombox.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         walletsUserCombox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

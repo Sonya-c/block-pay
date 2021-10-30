@@ -107,25 +107,48 @@ public class WalletsView extends javax.swing.JPanel {
         createWalletPanel.setMaximumSize(new java.awt.Dimension(400, 150));
         createWalletPanel.setMinimumSize(new java.awt.Dimension(400, 150));
         createWalletPanel.setPreferredSize(new java.awt.Dimension(400, 150));
-        createWalletPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        createWalletPanel.setLayout(new java.awt.GridBagLayout());
 
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel5.setText("Nickname:");
-        createWalletPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 90, 20));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Apodo:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 37;
+        gridBagConstraints.ipady = -3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(93, 36, 0, 0);
+        createWalletPanel.add(jLabel5, gridBagConstraints);
 
         createWalletNicknameTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        createWalletPanel.add(createWalletNicknameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 230, -1));
+        createWalletNicknameTxt.setToolTipText("Apodo de la nueva billetera");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 224;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(89, 10, 0, 34);
+        createWalletPanel.add(createWalletNicknameTxt, gridBagConstraints);
 
         createWalletBtn.setBackground(new java.awt.Color(151, 58, 168));
         createWalletBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         createWalletBtn.setForeground(new java.awt.Color(255, 255, 255));
         createWalletBtn.setText("Crear");
+        createWalletBtn.setToolTipText("Crear");
         createWalletBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createWalletBtnActionPerformed(evt);
             }
         });
-        createWalletPanel.add(createWalletBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 10, 133, 0);
+        createWalletPanel.add(createWalletBtn, gridBagConstraints);
 
         nicknameExist.setBackground(new java.awt.Color(255, 255, 255));
         nicknameExist.setMaximumSize(new java.awt.Dimension(380, 95));
@@ -155,6 +178,7 @@ public class WalletsView extends javax.swing.JPanel {
         addBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         addBtn.setForeground(new java.awt.Color(255, 255, 255));
         addBtn.setText("Añadir");
+        addBtn.setToolTipText("Añadir billetera");
         addBtn.setBorderPainted(false);
         addBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addBtn.setFocusPainted(false);
@@ -170,15 +194,16 @@ public class WalletsView extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 139, 3, 0);
+        gridBagConstraints.insets = new java.awt.Insets(6, 172, 0, 72);
         activityBarPanel.add(addBtn, gridBagConstraints);
 
         walletsUser.setBackground(new java.awt.Color(216, 49, 91));
         walletsUser.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         walletsUser.setForeground(new java.awt.Color(255, 255, 255));
         walletsUser.setText("Mostrar mis billeteras");
+        walletsUser.setToolTipText("Mostrar");
         walletsUser.setBorderPainted(false);
         walletsUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         walletsUser.setFocusPainted(false);
@@ -189,10 +214,10 @@ public class WalletsView extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 328, 3, 0);
+        gridBagConstraints.insets = new java.awt.Insets(6, 325, 0, 0);
         activityBarPanel.add(walletsUser, gridBagConstraints);
 
         headerPanel.add(activityBarPanel, java.awt.BorderLayout.CENTER);
