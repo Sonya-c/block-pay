@@ -6,6 +6,7 @@
 package view.layouts;
 
 import controller.AccountController;
+import java.awt.Dimension;
 import javax.swing.JFrame;
 import model.list.List;
 import model.system.Account;
@@ -13,6 +14,8 @@ import model.system.Transaction;
 import model.system.Wallet;
 import view.includes.Modal;
 import view.includes.TransactionCard;
+import view.includes.WrapLayout;
+
 
 /**
  *
@@ -44,14 +47,14 @@ public class TransactionInformationView extends javax.swing.JPanel {
      * @param transactions
      */
     private void loadTransactions(List<Transaction> transactions) {
-        infoPanel.removeAll();
-
+        transactionsPanel.removeAll();
+        
         for (Transaction transaction : transactions) {
-            infoPanel.add(new TransactionCard(transaction));
+            transactionsPanel.add(new TransactionCard(transaction));
         }
 
-        infoPanel.validate();
-        infoPanel.repaint();
+        transactionsPanel.validate();
+        transactionsPanel.repaint();
     }
 
     public void updateWalletsUser() {
@@ -91,12 +94,14 @@ public class TransactionInformationView extends javax.swing.JPanel {
         transactionWalletNotFoundPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        bodyPanel = new javax.swing.JPanel();
+        headerPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         transactionByIdBtn = new javax.swing.JButton();
         walletsUserCombox = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        infoPanel = new javax.swing.JPanel();
+        bodyPanel = new javax.swing.JPanel();
+        transactionScroll = new javax.swing.JScrollPane();
+        transactionsPanel = new javax.swing.JPanel();
 
         transactionWalletNotFoundPanel.setBackground(new java.awt.Color(255, 255, 255));
         transactionWalletNotFoundPanel.setMaximumSize(new java.awt.Dimension(281, 92));
@@ -132,18 +137,20 @@ public class TransactionInformationView extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        bodyPanel.setBackground(new java.awt.Color(71, 18, 107));
-        bodyPanel.setLayout(new java.awt.GridBagLayout());
+        setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 209, 102));
+        headerPanel.setBackground(new java.awt.Color(71, 18, 107));
+        headerPanel.setLayout(new java.awt.GridBagLayout());
+
+        jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Id de la billetera");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 242, 0, 0);
-        bodyPanel.add(jLabel2, gridBagConstraints);
+        headerPanel.add(jLabel2, gridBagConstraints);
 
         transactionByIdBtn.setBackground(new java.awt.Color(216, 49, 91));
         transactionByIdBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -168,11 +175,12 @@ public class TransactionInformationView extends javax.swing.JPanel {
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 18, 6, 0);
-        bodyPanel.add(transactionByIdBtn, gridBagConstraints);
+        headerPanel.add(transactionByIdBtn, gridBagConstraints);
 
         walletsUserCombox.setBackground(new java.awt.Color(151, 58, 168));
         walletsUserCombox.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         walletsUserCombox.setForeground(new java.awt.Color(255, 255, 255));
+        walletsUserCombox.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         walletsUserCombox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 walletsUserComboxActionPerformed(evt);
@@ -185,7 +193,7 @@ public class TransactionInformationView extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 114;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(7, 10, 0, 0);
-        bodyPanel.add(walletsUserCombox, gridBagConstraints);
+        headerPanel.add(walletsUserCombox, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 209, 102));
@@ -198,24 +206,27 @@ public class TransactionInformationView extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 693;
         gridBagConstraints.ipady = 13;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        bodyPanel.add(jLabel6, gridBagConstraints);
+        headerPanel.add(jLabel6, gridBagConstraints);
 
-        infoPanel.setLayout(new javax.swing.BoxLayout(infoPanel, javax.swing.BoxLayout.LINE_AXIS));
+        add(headerPanel, java.awt.BorderLayout.NORTH);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(bodyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        bodyPanel.setBackground(new java.awt.Color(255, 255, 255));
+        bodyPanel.setLayout(new java.awt.BorderLayout());
+
+        transactionScroll.setBackground(new java.awt.Color(255, 255, 255));
+        transactionScroll.setBorder(null);
+
+        transactionsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        transactionsPanel.setAutoscrolls(true);
+        transactionsPanel.setMaximumSize(new java.awt.Dimension(50, 50));
+        transactionsPanel.setMinimumSize(new java.awt.Dimension(0, 0));
+        transactionsPanel.setPreferredSize(new java.awt.Dimension(0, 0));
+        transactionsPanel.setLayout(new javax.swing.OverlayLayout(transactionsPanel));
+        transactionScroll.setViewportView(transactionsPanel);
+
+        bodyPanel.add(transactionScroll, java.awt.BorderLayout.CENTER);
+
+        add(bodyPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void transactionByIdBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transactionByIdBtnMouseClicked
@@ -241,13 +252,15 @@ public class TransactionInformationView extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyPanel;
-    private javax.swing.JPanel infoPanel;
+    private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JButton transactionByIdBtn;
+    private javax.swing.JScrollPane transactionScroll;
     private javax.swing.JPanel transactionWalletNotFoundPanel;
+    private javax.swing.JPanel transactionsPanel;
     private javax.swing.JComboBox<String> walletsUserCombox;
     // End of variables declaration//GEN-END:variables
 }

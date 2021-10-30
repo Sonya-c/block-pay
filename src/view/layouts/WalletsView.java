@@ -75,12 +75,11 @@ public class WalletsView extends javax.swing.JPanel {
         nicknameExist = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         headerPanel = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
         activityBarPanel = new javax.swing.JPanel();
         addBtn = new javax.swing.JButton();
         walletsUser = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         walletsPanel = new javax.swing.JPanel();
-        walletsPanel1 = new javax.swing.JPanel();
 
         walletNotFoundPanel.setBackground(new java.awt.Color(255, 255, 255));
         walletNotFoundPanel.setMaximumSize(new java.awt.Dimension(350, 95));
@@ -143,6 +142,12 @@ public class WalletsView extends javax.swing.JPanel {
         headerPanel.setBackground(new java.awt.Color(71, 18, 107));
         headerPanel.setLayout(new java.awt.BorderLayout());
 
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 209, 102));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Mis Billeteras");
+        headerPanel.add(jLabel6, java.awt.BorderLayout.PAGE_START);
+
         activityBarPanel.setBackground(new java.awt.Color(71, 18, 107));
         activityBarPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -190,27 +195,11 @@ public class WalletsView extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 328, 3, 0);
         activityBarPanel.add(walletsUser, gridBagConstraints);
 
-        jLabel6.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 209, 102));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Mis Billeteras");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 721;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
-        activityBarPanel.add(jLabel6, gridBagConstraints);
-
         headerPanel.add(activityBarPanel, java.awt.BorderLayout.CENTER);
 
         add(headerPanel, java.awt.BorderLayout.PAGE_START);
 
-        walletsPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        walletsPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 10));
-        walletsPanel.add(walletsPanel1);
-
+        walletsPanel.setBackground(new java.awt.Color(255, 255, 255));
         add(walletsPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -276,7 +265,6 @@ public class WalletsView extends javax.swing.JPanel {
     private javax.swing.JPanel walletCreationSuccesfull;
     private javax.swing.JPanel walletNotFoundPanel;
     private javax.swing.JPanel walletsPanel;
-    private javax.swing.JPanel walletsPanel1;
     private javax.swing.JButton walletsUser;
     // End of variables declaration//GEN-END:variables
 }
