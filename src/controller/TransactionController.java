@@ -83,7 +83,6 @@ public class TransactionController {
              * add or rest money
              * if the calculateed money is the same, do the transaction. Else, kill the wallet [insert evil laugh]
              */
-            
             for (Block block : blockList) {
 
                 for (Transaction t : block.getTransactions()) {
@@ -153,8 +152,10 @@ public class TransactionController {
     }
 
     /**
-     * Agrega las transacciones que ya existían, es decir, las que vienen del archivo guardadas previamente.
-     * @param transaction 
+     * Agrega las transacciones que ya existían, es decir, las que vienen del
+     * archivo guardadas previamente.
+     *
+     * @param transaction
      */
     public void addTransaction(Transaction transaction) {
         ListNode tail = blockList.getTail();
@@ -184,13 +185,20 @@ public class TransactionController {
         for (Block block : blockList) {
             for (Transaction transaction : block.getTransactions()) {
                 if (!FileController.isTransactionInFile(transaction)) {
-                    FileController.writeFile(FileController.findCreateFile("transaction.txt"),
-                            transaction.getRemitent().getID() + "#"
-                            + transaction.getDestinatary().getID() + "#" + transaction.getMoney() + "#" + transaction.getDate()
-                            + "#" + transaction.getMessange());
+                    if (!transaction.getMessange().trim().isEmpty()) {
+                        FileController.writeFile(FileController.findCreateFile("transaction.txt"),
+                                transaction.getRemitent().getID() + "#"
+                                + transaction.getDestinatary().getID() + "#" + transaction.getMoney() + "#" + transaction.getDate()
+                                + "#" + transaction.getMessange());
+                    } else {
+                        FileController.writeFile(FileController.findCreateFile("transaction.txt"),
+                                transaction.getRemitent().getID() + "#"
+                                + transaction.getDestinatary().getID() + "#" + transaction.getMoney() + "#" + transaction.getDate()
+                                + "#" + "No hubo mensaje.");
+                    }
                 }
             }
         }
-    }
 
+    }
 }

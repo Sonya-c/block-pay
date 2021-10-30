@@ -36,7 +36,7 @@ public class WalletsView extends javax.swing.JPanel {
      * @param transactionInformationView
      */
     public WalletsView(JFrame parent, Account account, AccountController accountController,
-            TransactionInformationView transactionInformationView) {
+        TransactionInformationView transactionInformationView) {
         this.account = account;
         this.parent = parent;
         this.accountController = accountController;
@@ -277,6 +277,7 @@ public class WalletsView extends javax.swing.JPanel {
 
     private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
 
+        createWalletNicknameTxt.setText("");
         Modal modal = new Modal(parent, "Nueva wallet", true, createWalletPanel);
 
     }//GEN-LAST:event_addBtnMouseClicked

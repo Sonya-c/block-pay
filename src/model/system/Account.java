@@ -85,7 +85,7 @@ public class Account {
      */
     public Wallet getWalletByNickname(String nickname) {
         if (nickname != null) {
-            for (Wallet wallet : wallets) {
+            for (Wallet wallet : this.wallets) {
                 if (nickname.equals(wallet.getNickname())) {
                     return wallet;
                 }

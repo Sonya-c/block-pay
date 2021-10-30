@@ -10,7 +10,7 @@ import model.system.Wallet;
 
 public class WalletCard extends javax.swing.JPanel {
 
-    private final Wallet wallet;
+    private Wallet wallet;
     private final JFrame parent;
     private final AccountController accountController;
     private final Account account;
@@ -303,7 +303,6 @@ public class WalletCard extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(20, 56, 0, 0);
         sendMoneyModalPanel.add(destinataryWalletLabel1, gridBagConstraints);
 
-        destinataryWalletTxt.setEditable(false);
         destinataryWalletTxt.setBackground(new java.awt.Color(87, 16, 137));
         destinataryWalletTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         destinataryWalletTxt.setForeground(new java.awt.Color(255, 255, 255));

@@ -227,7 +227,6 @@ public class FileController {
                     String dateString[] = data[3].split("-");
                     LocalDate date = LocalDate.of(Integer.parseInt(dateString[0]),
                             Integer.parseInt(dateString[1]), Integer.parseInt(dateString[2]));
-
                     Transaction transaction = new Transaction(walletRemitent, walletDestinatary, money, date, data[4]);
                     transactionController.addTransaction(transaction);
                 }
