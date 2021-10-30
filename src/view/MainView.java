@@ -2,6 +2,7 @@ package view;
 
 import controller.AccountController;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 import view.layouts.IndexView;
 import view.layouts.ProfileView;
 import view.layouts.WalletsView;
@@ -43,6 +44,8 @@ public class MainView extends javax.swing.JFrame {
         buttons.add(indexBtn);
         buttons.add(walletsBtn);
         buttons.add(transactionsBtn);
+        
+        setIconImage((new ImageIcon(getClass().getResource("/images/logo.png"))).getImage());
     }
 
      /*

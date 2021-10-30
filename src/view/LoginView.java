@@ -2,7 +2,12 @@ package view;
 
 import view.includes.Modal;
 import controller.AccountController;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import model.system.Account;
+import view.includes.BackgroundImage;
 
 /**
  *
@@ -11,13 +16,22 @@ import model.system.Account;
 public class LoginView extends javax.swing.JFrame {
 
     private final AccountController accountController;
-    
+
     /**
      * @param accountController
      */
     public LoginView(AccountController accountController) {
         this.accountController = accountController;
         initComponents();
+        
+        /* Image image = (new ImageIcon(getClass().getResource("/resources/img/logo.png"))).getImage();
+        Image newImage = image.getScaledInstance(200, 200,  java.awt.Image.SCALE_SMOOTH); 
+        iconLabel.setIcon(new ImageIcon(newImage))*/
+        setIconImage((new ImageIcon(getClass().getResource("/images/logo.png"))).getImage());
+        
+        // Add the animated gif
+        imageZonePanel.add(new BackgroundImage("/images/login.png"));
+        this.pack();
     }
 
     /** This method is called from within the constructor to
@@ -52,7 +66,6 @@ public class LoginView extends javax.swing.JFrame {
         loginEnterBtn = new javax.swing.JButton();
         loginCreateAccountBtn = new javax.swing.JButton();
         imageZonePanel = new javax.swing.JPanel();
-        imageLabel = new javax.swing.JLabel();
 
         loginErrorPanel.setBackground(new java.awt.Color(255, 255, 255));
         loginErrorPanel.setMaximumSize(new java.awt.Dimension(320, 95));
@@ -198,7 +211,7 @@ public class LoginView extends javax.swing.JFrame {
         loginUserTxt.setForeground(new java.awt.Color(255, 255, 255));
         loginUserTxt.setToolTipText("Nombre de usuario");
         loginUserTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(71, 18, 107), 2, true));
-        loginUserTxt.setCaretColor(new java.awt.Color(236, 0, 140));
+        loginUserTxt.setCaretColor(new java.awt.Color(234, 105, 139));
         loginUserTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
         loginUserTxt.setName(""); // NOI18N
         loginUserTxt.setPreferredSize(new java.awt.Dimension(170, 33));
@@ -220,7 +233,7 @@ public class LoginView extends javax.swing.JFrame {
         loginPasswordTxt.setForeground(new java.awt.Color(255, 255, 255));
         loginPasswordTxt.setToolTipText("Contraseña");
         loginPasswordTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(71, 18, 107), 2, true));
-        loginPasswordTxt.setCaretColor(new java.awt.Color(236, 0, 140));
+        loginPasswordTxt.setCaretColor(new java.awt.Color(234, 105, 139));
         loginPasswordTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
         loginPasswordTxt.setMinimumSize(new java.awt.Dimension(170, 33));
         loginPasswordTxt.setPreferredSize(new java.awt.Dimension(170, 33));
@@ -290,11 +303,7 @@ public class LoginView extends javax.swing.JFrame {
         imageZonePanel.setBackground(new java.awt.Color(255, 255, 255));
         imageZonePanel.setMinimumSize(new java.awt.Dimension(400, 0));
         imageZonePanel.setPreferredSize(new java.awt.Dimension(400, 400));
-        imageZonePanel.setLayout(new java.awt.GridBagLayout());
-
-        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
-        imageZonePanel.add(imageLabel, new java.awt.GridBagConstraints());
-
+        imageZonePanel.setLayout(new java.awt.BorderLayout());
         getContentPane().add(imageZonePanel, java.awt.BorderLayout.CENTER);
 
         pack();
@@ -354,11 +363,11 @@ public class LoginView extends javax.swing.JFrame {
     
     }//GEN-LAST:event_loginUserTxtActionPerformed
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField SignUpUsernameTxt;
     private javax.swing.JPanel formPanel;
     private javax.swing.JPanel formZonePanel;
-    private javax.swing.JLabel imageLabel;
     private javax.swing.JPanel imageZonePanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -6,6 +6,7 @@
 package view.includes;
 
 import java.awt.Component;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -31,7 +32,7 @@ public class Modal extends javax.swing.JDialog {
         setMaximumSize(contentPane.getSize());
         setSize(contentPane.getSize());
         setResizable(false);
-        
+        setIconImage((new ImageIcon(getClass().getResource("/images/logo.png"))).getImage());
     }
     
 }
