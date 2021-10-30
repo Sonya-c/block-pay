@@ -23,8 +23,9 @@ public class MainView extends javax.swing.JFrame {
     private final AccountController accountController;
 
     private final List<javax.swing.JButton> buttons;
-    // VIEW
-    private final IndexView indexView;
+    
+    // VIEWs
+    private IndexView indexView;
     private final ProfileView profileView;
     private final WalletsView walletsView;
     private final TransactionInformationView transactionInformationView;
@@ -327,6 +328,7 @@ public class MainView extends javax.swing.JFrame {
         bodyPanel.removeAll();
         defaultButtonBorder();
 
+        indexView = new IndexView(this, account, accountController);
         bodyPanel.add(indexView);
         setTitle("Block Pay | Home");
         titleLabel.setText("Block Pay | Home");

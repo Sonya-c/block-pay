@@ -39,8 +39,9 @@ public class TransactionInformationView extends javax.swing.JPanel {
         this.accountController = accountController;
         this.parent = parent;
         initComponents();
+        
+        transactionsPanel.setLayout(new WrapLayout(FlowLayout.CENTER, 30, 30));
         updateWalletsUser();
-        transactionsPanel.setLayout(new WrapLayout(FlowLayout.CENTER, 20, 20));
     }
 
     /**
@@ -95,7 +96,6 @@ public class TransactionInformationView extends javax.swing.JPanel {
 
         transactionWalletNotFoundPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         headerPanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
         activityPanel = new javax.swing.JPanel();
@@ -107,37 +107,29 @@ public class TransactionInformationView extends javax.swing.JPanel {
         transactionsPanel = new javax.swing.JPanel();
 
         transactionWalletNotFoundPanel.setBackground(new java.awt.Color(255, 255, 255));
-        transactionWalletNotFoundPanel.setMaximumSize(new java.awt.Dimension(281, 92));
-        transactionWalletNotFoundPanel.setMinimumSize(new java.awt.Dimension(281, 92));
-        transactionWalletNotFoundPanel.setPreferredSize(new java.awt.Dimension(281, 92));
+        transactionWalletNotFoundPanel.setMaximumSize(new java.awt.Dimension(305, 95));
+        transactionWalletNotFoundPanel.setMinimumSize(new java.awt.Dimension(305, 95));
+        transactionWalletNotFoundPanel.setPreferredSize(new java.awt.Dimension(305, 95));
 
-        jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel4.setText("¡¡No se encontraron transacctiones en las que");
-
-        jLabel7.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel7.setText(" participe esta billetera!!");
+        jLabel4.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sad-icon.png"))); // NOI18N
+        jLabel4.setText("<html>¡No se encontraron transacctiones en las que  participe esta billetera!</html>");
 
         javax.swing.GroupLayout transactionWalletNotFoundPanelLayout = new javax.swing.GroupLayout(transactionWalletNotFoundPanel);
         transactionWalletNotFoundPanel.setLayout(transactionWalletNotFoundPanelLayout);
         transactionWalletNotFoundPanelLayout.setHorizontalGroup(
             transactionWalletNotFoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transactionWalletNotFoundPanelLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transactionWalletNotFoundPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         transactionWalletNotFoundPanelLayout.setVerticalGroup(
             transactionWalletNotFoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transactionWalletNotFoundPanelLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(19, 19, 19)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                .addGap(22, 22, 22))
         );
 
         setLayout(new java.awt.BorderLayout());
@@ -199,16 +191,19 @@ public class TransactionInformationView extends javax.swing.JPanel {
         bodyPanel.setBackground(new java.awt.Color(255, 255, 255));
         bodyPanel.setLayout(new java.awt.BorderLayout());
 
-        transactionScroll.setBackground(new java.awt.Color(255, 255, 255));
-        transactionScroll.setBorder(null);
-        transactionScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
         transactionsPanel.setBackground(new java.awt.Color(255, 255, 255));
-        transactionsPanel.setAutoscrolls(true);
-        transactionsPanel.setMaximumSize(new java.awt.Dimension(50, 50));
-        transactionsPanel.setMinimumSize(new java.awt.Dimension(0, 0));
-        transactionsPanel.setPreferredSize(new java.awt.Dimension(0, 0));
-        transactionsPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 10));
+
+        javax.swing.GroupLayout transactionsPanelLayout = new javax.swing.GroupLayout(transactionsPanel);
+        transactionsPanel.setLayout(transactionsPanelLayout);
+        transactionsPanelLayout.setHorizontalGroup(
+            transactionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 698, Short.MAX_VALUE)
+        );
+        transactionsPanelLayout.setVerticalGroup(
+            transactionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 401, Short.MAX_VALUE)
+        );
+
         transactionScroll.setViewportView(transactionsPanel);
 
         bodyPanel.add(transactionScroll, java.awt.BorderLayout.CENTER);
@@ -243,7 +238,6 @@ public class TransactionInformationView extends javax.swing.JPanel {
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JButton transactionByIdBtn;
     private javax.swing.JScrollPane transactionScroll;

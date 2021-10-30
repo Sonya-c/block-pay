@@ -44,15 +44,16 @@ public class WalletsView extends javax.swing.JPanel {
         
         initComponents();
         walletsPanel.setLayout(new WrapLayout(FlowLayout.CENTER, 20, 20));
+        loadWallets();
     }
 
-    private void loadWallets() {
+    public void loadWallets() {
         walletsPanel.removeAll();
 
         List<Wallet> wallets = account.getWallets();
 
         for (Wallet wallet : wallets) {
-            walletsPanel.add(new WalletCard(wallet, parent, accountController, account));
+            walletsPanel.add(new WalletCard(this, wallet, parent, accountController, account));
         }
 
         walletsScrollPanel.validate();
@@ -86,6 +87,7 @@ public class WalletsView extends javax.swing.JPanel {
         activityBarPanel = new javax.swing.JPanel();
         addBtn = new javax.swing.JButton();
         walletsUser = new javax.swing.JButton();
+        bodyPanel = new javax.swing.JPanel();
         walletsScrollPanel = new javax.swing.JScrollPane();
         walletsPanel = new javax.swing.JPanel();
 
@@ -125,22 +127,21 @@ public class WalletsView extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 37;
-        gridBagConstraints.ipady = -3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(93, 36, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         createWalletPanel.add(jLabel5, gridBagConstraints);
 
         createWalletNicknameTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         createWalletNicknameTxt.setToolTipText("Apodo de la nueva billetera");
+        createWalletNicknameTxt.setPreferredSize(new java.awt.Dimension(150, 29));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 224;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(89, 10, 0, 34);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         createWalletPanel.add(createWalletNicknameTxt, gridBagConstraints);
 
         createWalletBtn.setBackground(new java.awt.Color(151, 58, 168));
@@ -154,10 +155,10 @@ public class WalletsView extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 10, 133, 0);
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         createWalletPanel.add(createWalletBtn, gridBagConstraints);
 
         nicknameExist.setBackground(new java.awt.Color(255, 255, 255));
@@ -225,15 +226,20 @@ public class WalletsView extends javax.swing.JPanel {
 
         add(headerPanel, java.awt.BorderLayout.PAGE_START);
 
+        bodyPanel.setLayout(new java.awt.BorderLayout());
+
         walletsScrollPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         walletsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        walletsPanel.setAutoscrolls(true);
         java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING, 10, 10);
         flowLayout1.setAlignOnBaseline(true);
         walletsPanel.setLayout(flowLayout1);
         walletsScrollPanel.setViewportView(walletsPanel);
 
-        add(walletsScrollPanel, java.awt.BorderLayout.CENTER);
+        bodyPanel.add(walletsScrollPanel, java.awt.BorderLayout.CENTER);
+
+        add(bodyPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -244,6 +250,19 @@ public class WalletsView extends javax.swing.JPanel {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
 
     }//GEN-LAST:event_addBtnActionPerformed
+
+    private void walletsUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_walletsUserActionPerformed
+
+        loadWallets();
+
+    }//GEN-LAST:event_walletsUserActionPerformed
+
+    private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
+
+        createWalletNicknameTxt.setText("");
+        Modal modal = new Modal(parent, "Nueva wallet", true, createWalletPanel);
+
+    }//GEN-LAST:event_addBtnMouseClicked
 
     private void createWalletBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createWalletBtnActionPerformed
         String nickname = createWalletNicknameTxt.getText().trim();
@@ -266,26 +285,13 @@ public class WalletsView extends javax.swing.JPanel {
             loadWallets();
             transactionInformationView.updateWalletsUser();
         }
-
     }//GEN-LAST:event_createWalletBtnActionPerformed
-
-    private void walletsUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_walletsUserActionPerformed
-
-        loadWallets();
-
-    }//GEN-LAST:event_walletsUserActionPerformed
-
-    private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
-
-        createWalletNicknameTxt.setText("");
-        Modal modal = new Modal(parent, "Nueva wallet", true, createWalletPanel);
-
-    }//GEN-LAST:event_addBtnMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel activityBarPanel;
     private javax.swing.JButton addBtn;
+    private javax.swing.JPanel bodyPanel;
     private javax.swing.JButton createWalletBtn;
     private javax.swing.JTextField createWalletNicknameTxt;
     private javax.swing.JPanel createWalletPanel;

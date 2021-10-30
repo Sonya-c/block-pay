@@ -40,8 +40,8 @@ private final Transaction transaction;
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         remitentIdTxt = new javax.swing.JTextField();
@@ -56,11 +56,28 @@ private final Transaction transaction;
         jScrollPane1 = new javax.swing.JScrollPane();
         messageTxt = new javax.swing.JTextArea();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setMaximumSize(new java.awt.Dimension(430, 530));
-        jPanel1.setMinimumSize(new java.awt.Dimension(430, 530));
-        jPanel1.setPreferredSize(new java.awt.Dimension(430, 530));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        setMinimumSize(new java.awt.Dimension(430, 535));
+        setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        add(jSeparator3, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        add(jSeparator4, gridBagConstraints);
 
         remitentIdTxt.setEditable(false);
         remitentIdTxt.setBackground(new java.awt.Color(255, 255, 255));
@@ -68,17 +85,39 @@ private final Transaction transaction;
         remitentIdTxt.setForeground(new java.awt.Color(27, 20, 100));
         remitentIdTxt.setToolTipText("Id billetera remitente");
         remitentIdTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
-        remitentIdTxt.setMinimumSize(new java.awt.Dimension(60, 32));
-        remitentIdTxt.setPreferredSize(new java.awt.Dimension(60, 32));
+        remitentIdTxt.setMaximumSize(new java.awt.Dimension(150, 30));
+        remitentIdTxt.setMinimumSize(new java.awt.Dimension(150, 30));
+        remitentIdTxt.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(remitentIdTxt, gridBagConstraints);
 
         nicknameLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         nicknameLabel.setForeground(new java.awt.Color(71, 18, 107));
         nicknameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nicknameLabel.setText("Remitente ID");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(nicknameLabel, gridBagConstraints);
 
         nicknameLabel4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         nicknameLabel4.setForeground(new java.awt.Color(71, 18, 107));
         nicknameLabel4.setText("Destinatario ID");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(nicknameLabel4, gridBagConstraints);
 
         destinataryIdTxt.setEditable(false);
         destinataryIdTxt.setBackground(new java.awt.Color(255, 255, 255));
@@ -86,13 +125,28 @@ private final Transaction transaction;
         destinataryIdTxt.setForeground(new java.awt.Color(27, 20, 100));
         destinataryIdTxt.setToolTipText("Id billetera destinatario");
         destinataryIdTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
-        destinataryIdTxt.setMinimumSize(new java.awt.Dimension(60, 32));
-        destinataryIdTxt.setPreferredSize(new java.awt.Dimension(60, 32));
+        destinataryIdTxt.setMaximumSize(new java.awt.Dimension(150, 30));
+        destinataryIdTxt.setMinimumSize(new java.awt.Dimension(150, 30));
+        destinataryIdTxt.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(destinataryIdTxt, gridBagConstraints);
 
         nicknameLabel5.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         nicknameLabel5.setForeground(new java.awt.Color(71, 18, 107));
         nicknameLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nicknameLabel5.setText("Dinero");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(nicknameLabel5, gridBagConstraints);
 
         moneyTxt.setEditable(false);
         moneyTxt.setBackground(new java.awt.Color(255, 255, 255));
@@ -100,13 +154,28 @@ private final Transaction transaction;
         moneyTxt.setForeground(new java.awt.Color(27, 20, 100));
         moneyTxt.setToolTipText("Dinero enviado");
         moneyTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
-        moneyTxt.setMinimumSize(new java.awt.Dimension(60, 32));
-        moneyTxt.setPreferredSize(new java.awt.Dimension(60, 32));
+        moneyTxt.setMaximumSize(new java.awt.Dimension(150, 30));
+        moneyTxt.setMinimumSize(new java.awt.Dimension(150, 30));
+        moneyTxt.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(moneyTxt, gridBagConstraints);
 
         nicknameLabel6.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         nicknameLabel6.setForeground(new java.awt.Color(71, 18, 107));
         nicknameLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nicknameLabel6.setText("Fecha");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(nicknameLabel6, gridBagConstraints);
 
         dateTxt.setEditable(false);
         dateTxt.setBackground(new java.awt.Color(255, 255, 255));
@@ -114,13 +183,28 @@ private final Transaction transaction;
         dateTxt.setForeground(new java.awt.Color(27, 20, 100));
         dateTxt.setToolTipText("Fecha");
         dateTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
-        dateTxt.setMinimumSize(new java.awt.Dimension(60, 32));
-        dateTxt.setPreferredSize(new java.awt.Dimension(60, 32));
+        dateTxt.setMaximumSize(new java.awt.Dimension(150, 30));
+        dateTxt.setMinimumSize(new java.awt.Dimension(150, 30));
+        dateTxt.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(dateTxt, gridBagConstraints);
 
         nicknameLabel7.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         nicknameLabel7.setForeground(new java.awt.Color(71, 18, 107));
         nicknameLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nicknameLabel7.setText("Mensaje");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(nicknameLabel7, gridBagConstraints);
 
         messageTxt.setEditable(false);
         messageTxt.setColumns(20);
@@ -130,95 +214,24 @@ private final Transaction transaction;
         messageTxt.setToolTipText("Mensaje");
         messageTxt.setWrapStyleWord(true);
         messageTxt.setMinimumSize(new java.awt.Dimension(164, 94));
+        messageTxt.setPreferredSize(new java.awt.Dimension(240, 105));
+        messageTxt.setRequestFocusEnabled(false);
         jScrollPane1.setViewportView(messageTxt);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(nicknameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(remitentIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(nicknameLabel4)
-                        .addGap(20, 20, 20)
-                        .addComponent(destinataryIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(nicknameLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(moneyTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(nicknameLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(nicknameLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(dateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(40, 40, 40))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nicknameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(remitentIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nicknameLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(destinataryIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nicknameLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(moneyTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nicknameLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(nicknameLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(jScrollPane1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField dateTxt;
     private javax.swing.JTextField destinataryIdTxt;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;

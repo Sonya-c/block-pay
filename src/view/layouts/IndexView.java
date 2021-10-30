@@ -145,8 +145,9 @@ public class IndexView extends javax.swing.JPanel {
         walletNotFoundPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 210, 20));
 
         sendMoneyModal.setBackground(new java.awt.Color(71, 18, 107));
-        sendMoneyModal.setMinimumSize(new java.awt.Dimension(350, 400));
-        sendMoneyModal.setPreferredSize(new java.awt.Dimension(350, 400));
+        sendMoneyModal.setMaximumSize(new java.awt.Dimension(340, 440));
+        sendMoneyModal.setMinimumSize(new java.awt.Dimension(340, 440));
+        sendMoneyModal.setPreferredSize(new java.awt.Dimension(340, 440));
         sendMoneyModal.setLayout(new java.awt.GridBagLayout());
 
         sendMoneyModalTitle.setBackground(new java.awt.Color(102, 204, 255));
@@ -187,6 +188,7 @@ public class IndexView extends javax.swing.JPanel {
         destinataryWalletTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(87, 16, 137), 1, true));
         destinataryWalletTxt.setCaretColor(new java.awt.Color(236, 0, 140));
         destinataryWalletTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        destinataryWalletTxt.setMinimumSize(new java.awt.Dimension(170, 33));
         destinataryWalletTxt.setName(""); // NOI18N
         destinataryWalletTxt.setPreferredSize(new java.awt.Dimension(170, 33));
         destinataryWalletTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
@@ -216,6 +218,7 @@ public class IndexView extends javax.swing.JPanel {
         remitentWalletCombox.setToolTipText("Mis billeteras");
         remitentWalletCombox.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(87, 16, 137), 1, true));
         remitentWalletCombox.setFocusable(false);
+        remitentWalletCombox.setMinimumSize(new java.awt.Dimension(170, 33));
         remitentWalletCombox.setPreferredSize(new java.awt.Dimension(170, 33));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -283,6 +286,7 @@ public class IndexView extends javax.swing.JPanel {
         messageTxt.setToolTipText("Mensaje");
         messageTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         messageTxt.setCaretColor(new java.awt.Color(234, 105, 139));
+        messageTxt.setPreferredSize(new java.awt.Dimension(120, 37));
         jScrollPane1.setViewportView(messageTxt);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -296,6 +300,8 @@ public class IndexView extends javax.swing.JPanel {
         moneyTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         moneyTxt.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
         moneyTxt.setToolTipText("Dinero a mandar");
+        moneyTxt.setMinimumSize(new java.awt.Dimension(170, 33));
+        moneyTxt.setPreferredSize(new java.awt.Dimension(170, 33));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;

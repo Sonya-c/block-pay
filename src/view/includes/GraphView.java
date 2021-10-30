@@ -171,7 +171,7 @@ public class GraphView extends JPanel implements MouseWheelListener, MouseListen
             }
             
             for (Wallet wallet : account.getWallets()) {
-                g2.drawString("" + wallet.getID(), walletX, walletHeight);
+                g2.drawString("" + wallet.getID(), walletX, walletHeight - 5);
                 g2.draw(new RoundRectangle2D.Double(walletX, walletHeight, walletSize, walletSize, 50, 50));
                 g2.drawLine(accountX + accountSize, accountY + accountSize / 2, walletX, walletHeight + walletSize / 2);
                 
@@ -184,7 +184,7 @@ public class GraphView extends JPanel implements MouseWheelListener, MouseListen
             System.out.println("view.includes.GraphView.paint account y  = " + accountY);
             
             g2.draw(new RoundRectangle2D.Double(accountX, accountY, accountSize, accountSize, 50, 50));
-            g2.drawString("" + account.getID(), accountX, accountY);
+            g2.drawString("" + account.getID(), accountX, accountY - 5);
         }
         
     }
@@ -223,7 +223,7 @@ public class GraphView extends JPanel implements MouseWheelListener, MouseListen
             
             
             for (Transaction transaction: block.getTransactions()) {
-                g2.drawString("" + transaction.getMoney(), transactionX, transactionHeight);
+                g2.drawString("" + transaction.getMoney(), transactionX, transactionHeight - 5);
                 g2.draw(new RoundRectangle2D.Double(transactionX, transactionHeight, transactionSize, transactionSize, 50, 50));
                 g2.drawLine(blockX, blockY + blockSize / 2, transactionX + transactionSize, transactionHeight + transactionSize / 2);
                 
@@ -242,7 +242,7 @@ public class GraphView extends JPanel implements MouseWheelListener, MouseListen
             }
             
             g2.draw(new RoundRectangle2D.Double(blockX, blockY, blockSize, blockSize, 50, 50));
-            g2.drawString("Soy un bloque", blockX, blockY);
+            g2.drawString("Soy un bloque", blockX, blockY - 5);
             
             
         }
