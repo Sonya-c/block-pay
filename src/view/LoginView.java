@@ -2,10 +2,8 @@ package view;
 
 import view.includes.Modal;
 import controller.AccountController;
-import java.awt.Image;
+import java.awt.Frame;
 import javax.swing.ImageIcon;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import model.system.Account;
 import view.includes.BackgroundImage;
 
@@ -17,11 +15,15 @@ public class LoginView extends javax.swing.JFrame {
 
     private final AccountController accountController;
 
+    private int xx;
+    private int xy;
+    
     /**
      * @param accountController
      */
     public LoginView(AccountController accountController) {
         this.accountController = accountController;
+        setUndecorated(true);
         initComponents();
         
         /* Image image = (new ImageIcon(getClass().getResource("/resources/img/logo.png"))).getImage();
@@ -31,7 +33,7 @@ public class LoginView extends javax.swing.JFrame {
         
         // Add the animated gif
         imageZonePanel.add(new BackgroundImage("/images/login.png"));
-        this.pack();
+        
     }
 
     /** This method is called from within the constructor to
@@ -56,6 +58,13 @@ public class LoginView extends javax.swing.JFrame {
         loginUserLabel1 = new javax.swing.JLabel();
         loginUserLabel3 = new javax.swing.JLabel();
         signUpBtn = new javax.swing.JButton();
+        parentPanel = new javax.swing.JPanel();
+        titleBar = new javax.swing.JPanel();
+        gap_panel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        action_panel = new javax.swing.JPanel();
+        minimizateBtn = new javax.swing.JButton();
+        closeBtn = new javax.swing.JButton();
         formZonePanel = new javax.swing.JPanel();
         formPanel = new javax.swing.JPanel();
         loginFormPanel = new javax.swing.JPanel();
@@ -68,37 +77,43 @@ public class LoginView extends javax.swing.JFrame {
         imageZonePanel = new javax.swing.JPanel();
 
         loginErrorPanel.setBackground(new java.awt.Color(255, 255, 255));
-        loginErrorPanel.setMaximumSize(new java.awt.Dimension(320, 95));
-        loginErrorPanel.setMinimumSize(new java.awt.Dimension(320, 95));
-        loginErrorPanel.setPreferredSize(new java.awt.Dimension(320, 95));
+        loginErrorPanel.setMaximumSize(new java.awt.Dimension(340, 95));
+        loginErrorPanel.setMinimumSize(new java.awt.Dimension(340, 95));
+        loginErrorPanel.setPreferredSize(new java.awt.Dimension(340, 95));
         loginErrorPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel1.setText("Contraseña o usuario incorrectos :(");
-        loginErrorPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 20));
+        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sad-icon.png"))); // NOI18N
+        jLabel1.setText("Contraseña o usuario incorrectos");
+        loginErrorPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 40));
 
         usernameErrorPanel.setBackground(new java.awt.Color(255, 255, 255));
-        usernameErrorPanel.setMaximumSize(new java.awt.Dimension(320, 95));
-        usernameErrorPanel.setMinimumSize(new java.awt.Dimension(320, 95));
-        usernameErrorPanel.setPreferredSize(new java.awt.Dimension(320, 95));
+        usernameErrorPanel.setMaximumSize(new java.awt.Dimension(330, 80));
+        usernameErrorPanel.setMinimumSize(new java.awt.Dimension(330, 80));
+        usernameErrorPanel.setPreferredSize(new java.awt.Dimension(330, 80));
         usernameErrorPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel2.setText("Este nombre de usuario ya existe :(");
-        usernameErrorPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 20));
+        jLabel2.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sad-icon.png"))); // NOI18N
+        jLabel2.setText("Este nombre de usuario ya existe");
+        usernameErrorPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 40));
 
         passwordErrorPanel.setBackground(new java.awt.Color(255, 255, 255));
-        passwordErrorPanel.setMaximumSize(new java.awt.Dimension(252, 94));
-        passwordErrorPanel.setMinimumSize(new java.awt.Dimension(252, 94));
-        passwordErrorPanel.setPreferredSize(new java.awt.Dimension(252, 94));
+        passwordErrorPanel.setMaximumSize(new java.awt.Dimension(285, 100));
+        passwordErrorPanel.setMinimumSize(new java.awt.Dimension(285, 100));
+        passwordErrorPanel.setPreferredSize(new java.awt.Dimension(285, 100));
         passwordErrorPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sad-icon.png"))); // NOI18N
         jLabel3.setText("<html>La contraseña debe tener minimo 5 carácteres</html>");
-        passwordErrorPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 240, 40));
+        passwordErrorPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 240, 60));
 
         signUpPanel.setBackground(new java.awt.Color(151, 58, 168));
         signUpPanel.setMaximumSize(new java.awt.Dimension(400, 300));
@@ -167,6 +182,67 @@ public class LoginView extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(880, 525));
         setName("Login"); // NOI18N
         setSize(new java.awt.Dimension(880, 525));
+
+        parentPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 10, 84)));
+        parentPanel.setLayout(new java.awt.BorderLayout());
+
+        titleBar.setBackground(new java.awt.Color(54, 10, 84));
+        titleBar.setPreferredSize(new java.awt.Dimension(30, 30));
+        titleBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                titleBarMouseDragged(evt);
+            }
+        });
+        titleBar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                titleBarMousePressed(evt);
+            }
+        });
+        titleBar.setLayout(new java.awt.BorderLayout());
+
+        gap_panel.setMinimumSize(new java.awt.Dimension(55, 30));
+        gap_panel.setOpaque(false);
+        gap_panel.setPreferredSize(new java.awt.Dimension(55, 30));
+        titleBar.add(gap_panel, java.awt.BorderLayout.LINE_START);
+
+        jLabel4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Block Pay | Login");
+        titleBar.add(jLabel4, java.awt.BorderLayout.CENTER);
+
+        action_panel.setOpaque(false);
+
+        minimizateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizate-icon.png"))); // NOI18N
+        minimizateBtn.setBorder(null);
+        minimizateBtn.setBorderPainted(false);
+        minimizateBtn.setContentAreaFilled(false);
+        minimizateBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        minimizateBtn.setPreferredSize(new java.awt.Dimension(20, 20));
+        minimizateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                minimizateBtnActionPerformed(evt);
+            }
+        });
+        action_panel.add(minimizateBtn);
+
+        closeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close-icon.png"))); // NOI18N
+        closeBtn.setAlignmentY(0.0F);
+        closeBtn.setBorder(null);
+        closeBtn.setBorderPainted(false);
+        closeBtn.setContentAreaFilled(false);
+        closeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        closeBtn.setPreferredSize(new java.awt.Dimension(20, 20));
+        closeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtnActionPerformed(evt);
+            }
+        });
+        action_panel.add(closeBtn);
+
+        titleBar.add(action_panel, java.awt.BorderLayout.LINE_END);
+
+        parentPanel.add(titleBar, java.awt.BorderLayout.PAGE_START);
 
         formZonePanel.setBackground(new java.awt.Color(71, 18, 107));
         formZonePanel.setMaximumSize(new java.awt.Dimension(500, 32767));
@@ -298,13 +374,15 @@ public class LoginView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 30);
         formZonePanel.add(formPanel, gridBagConstraints);
 
-        getContentPane().add(formZonePanel, java.awt.BorderLayout.WEST);
+        parentPanel.add(formZonePanel, java.awt.BorderLayout.WEST);
 
         imageZonePanel.setBackground(new java.awt.Color(255, 255, 255));
         imageZonePanel.setMinimumSize(new java.awt.Dimension(400, 0));
         imageZonePanel.setPreferredSize(new java.awt.Dimension(400, 400));
         imageZonePanel.setLayout(new java.awt.BorderLayout());
-        getContentPane().add(imageZonePanel, java.awt.BorderLayout.CENTER);
+        parentPanel.add(imageZonePanel, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(parentPanel, java.awt.BorderLayout.CENTER);
 
         pack();
         setLocationRelativeTo(null);
@@ -363,15 +441,38 @@ public class LoginView extends javax.swing.JFrame {
     
     }//GEN-LAST:event_loginUserTxtActionPerformed
 
+    private void minimizateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizateBtnActionPerformed
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_minimizateBtnActionPerformed
+
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_closeBtnActionPerformed
+
+    private void titleBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleBarMouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - xy);
+    }//GEN-LAST:event_titleBarMouseDragged
+
+    private void titleBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleBarMousePressed
+        xx = evt.getX();
+        xy = evt.getY();
+    }//GEN-LAST:event_titleBarMousePressed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField SignUpUsernameTxt;
+    private javax.swing.JPanel action_panel;
+    private javax.swing.JButton closeBtn;
     private javax.swing.JPanel formPanel;
     private javax.swing.JPanel formZonePanel;
+    private javax.swing.JPanel gap_panel;
     private javax.swing.JPanel imageZonePanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton loginCreateAccountBtn;
     private javax.swing.JButton loginEnterBtn;
     private javax.swing.JPanel loginErrorPanel;
@@ -382,10 +483,13 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JLabel loginUserLabel1;
     private javax.swing.JLabel loginUserLabel3;
     private javax.swing.JTextField loginUserTxt;
+    private javax.swing.JButton minimizateBtn;
+    private javax.swing.JPanel parentPanel;
     private javax.swing.JPanel passwordErrorPanel;
     private javax.swing.JButton signUpBtn;
     private javax.swing.JPanel signUpPanel;
     private javax.swing.JTextField signUpPasswordTxt;
+    private javax.swing.JPanel titleBar;
     private javax.swing.JPanel usernameErrorPanel;
     // End of variables declaration//GEN-END:variables
 

@@ -2,7 +2,9 @@ package view;
 
 import controller.AccountController;
 import java.awt.Color;
+import java.awt.Frame;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import view.layouts.IndexView;
 import view.layouts.ProfileView;
 import view.layouts.WalletsView;
@@ -26,6 +28,9 @@ public class MainView extends javax.swing.JFrame {
     private final WalletsView walletsView;
     private final TransactionInformationView transactionInformationView;
 
+    private int xx;
+    private int xy;
+    
     public MainView(Account account, AccountController accountController) {
         this.indexView = new IndexView(this, account, accountController);
         this.profileView = new ProfileView(account);
@@ -44,7 +49,7 @@ public class MainView extends javax.swing.JFrame {
         buttons.add(indexBtn);
         buttons.add(walletsBtn);
         buttons.add(transactionsBtn);
-        
+        setUndecorated(true);
         setIconImage((new ImageIcon(getClass().getResource("/images/logo.png"))).getImage());
     }
 
@@ -55,6 +60,14 @@ public class MainView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        parentPanel = new javax.swing.JPanel();
+        titleBar = new javax.swing.JPanel();
+        gapPanel = new javax.swing.JPanel();
+        titleLabel = new javax.swing.JLabel();
+        actionPanel = new javax.swing.JPanel();
+        minimizateBtn = new javax.swing.JButton();
+        maximixateBtn = new javax.swing.JButton();
+        closeBtn = new javax.swing.JButton();
         menuBarPanel = new javax.swing.JPanel();
         mainMenuOptionsPanel = new javax.swing.JPanel();
         profileBtn = new javax.swing.JButton();
@@ -70,6 +83,86 @@ public class MainView extends javax.swing.JFrame {
         setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         setMinimumSize(new java.awt.Dimension(800, 500));
         setName("Block Pay main Panel"); // NOI18N
+
+        parentPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 10, 84)));
+        parentPanel.setLayout(new java.awt.BorderLayout());
+
+        titleBar.setBackground(new java.awt.Color(54, 10, 84));
+        titleBar.setPreferredSize(new java.awt.Dimension(30, 30));
+        titleBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                titleBarMouseDragged(evt);
+            }
+        });
+        titleBar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                titleBarMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                titleBarMousePressed(evt);
+            }
+        });
+        titleBar.setLayout(new java.awt.BorderLayout());
+
+        gapPanel.setMinimumSize(new java.awt.Dimension(80, 30));
+        gapPanel.setOpaque(false);
+        gapPanel.setPreferredSize(new java.awt.Dimension(80, 30));
+        titleBar.add(gapPanel, java.awt.BorderLayout.LINE_START);
+
+        titleLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(255, 255, 255));
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setText("Block Pay | Home");
+        titleBar.add(titleLabel, java.awt.BorderLayout.CENTER);
+
+        actionPanel.setOpaque(false);
+
+        minimizateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizate-icon.png"))); // NOI18N
+        minimizateBtn.setBorder(null);
+        minimizateBtn.setBorderPainted(false);
+        minimizateBtn.setContentAreaFilled(false);
+        minimizateBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        minimizateBtn.setOpaque(false);
+        minimizateBtn.setPreferredSize(new java.awt.Dimension(20, 20));
+        minimizateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                minimizateBtnActionPerformed(evt);
+            }
+        });
+        actionPanel.add(minimizateBtn);
+
+        maximixateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/maximizate-icon.png"))); // NOI18N
+        maximixateBtn.setBorder(null);
+        maximixateBtn.setBorderPainted(false);
+        maximixateBtn.setContentAreaFilled(false);
+        maximixateBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        maximixateBtn.setOpaque(false);
+        maximixateBtn.setPreferredSize(new java.awt.Dimension(20, 20));
+        maximixateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maximixateBtnActionPerformed(evt);
+            }
+        });
+        actionPanel.add(maximixateBtn);
+
+        closeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close-icon.png"))); // NOI18N
+        closeBtn.setAlignmentY(0.0F);
+        closeBtn.setBorder(null);
+        closeBtn.setBorderPainted(false);
+        closeBtn.setContentAreaFilled(false);
+        closeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        closeBtn.setOpaque(false);
+        closeBtn.setPreferredSize(new java.awt.Dimension(20, 20));
+        closeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtnActionPerformed(evt);
+            }
+        });
+        actionPanel.add(closeBtn);
+
+        titleBar.add(actionPanel, java.awt.BorderLayout.LINE_END);
+
+        parentPanel.add(titleBar, java.awt.BorderLayout.PAGE_START);
 
         menuBarPanel.setBackground(new java.awt.Color(255, 255, 255));
         menuBarPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(229, 226, 244), 1, true));
@@ -187,13 +280,15 @@ public class MainView extends javax.swing.JFrame {
         });
         menuBarPanel.add(exitBtn, java.awt.BorderLayout.PAGE_END);
 
-        getContentPane().add(menuBarPanel, java.awt.BorderLayout.WEST);
+        parentPanel.add(menuBarPanel, java.awt.BorderLayout.WEST);
 
         bodyPanel.setBackground(new java.awt.Color(245, 244, 251));
         bodyPanel.setMinimumSize(new java.awt.Dimension(740, 500));
         bodyPanel.setPreferredSize(new java.awt.Dimension(740, 500));
         bodyPanel.setLayout(new java.awt.BorderLayout());
-        getContentPane().add(bodyPanel, java.awt.BorderLayout.CENTER);
+        parentPanel.add(bodyPanel, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(parentPanel, java.awt.BorderLayout.CENTER);
 
         setSize(new java.awt.Dimension(826, 539));
         setLocationRelativeTo(null);
@@ -212,6 +307,7 @@ public class MainView extends javax.swing.JFrame {
 
         bodyPanel.add(profileView);
         setTitle("Block Pay | Perfil");
+        titleLabel.setText("Block Pay | Perfil");
 
         profileBtn.setBorder(hightlightborder);
         profileBtn.setBackground(hightlightcolor);
@@ -228,7 +324,8 @@ public class MainView extends javax.swing.JFrame {
 
         bodyPanel.add(indexView);
         setTitle("Block Pay | Home");
-
+        titleLabel.setText("Block Pay | Home");
+        
         indexBtn.setBorder(hightlightborder);
         indexBtn.setBackground(hightlightcolor);
 
@@ -242,7 +339,8 @@ public class MainView extends javax.swing.JFrame {
 
         bodyPanel.add(walletsView);
         setTitle("Block Pay | Billeteras");
-
+        titleLabel.setText("Block Pay | Home");
+        
         walletsBtn.setBorder(hightlightborder);
         walletsBtn.setBackground(hightlightcolor);
 
@@ -262,7 +360,8 @@ public class MainView extends javax.swing.JFrame {
 
         bodyPanel.add(transactionInformationView);
         setTitle("Block Pay | Transacciones");
-
+        titleLabel.setText("Block Pay | Transacciones");
+        
         transactionsBtn.setBorder(hightlightborder);
         transactionsBtn.setBackground(hightlightcolor);
 
@@ -271,17 +370,64 @@ public class MainView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+        accountController.writeAccountInFile();
+        System.out.println("El usuario va a salir");
+        System.exit(0);
+    }//GEN-LAST:event_closeBtnActionPerformed
+
+    private void maximixateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maximixateBtnActionPerformed
+        if (this.getExtendedState() == MAXIMIZED_BOTH) {
+            this.setExtendedState(JFrame.NORMAL);
+        } else {
+            this.setExtendedState(MAXIMIZED_BOTH);
+        }
+    }//GEN-LAST:event_maximixateBtnActionPerformed
+
+    private void minimizateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizateBtnActionPerformed
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_minimizateBtnActionPerformed
+
+    private void titleBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleBarMousePressed
+        xx = evt.getX();
+        xy = evt.getY();
+    }//GEN-LAST:event_titleBarMousePressed
+
+    private void titleBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleBarMouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - xy);
+    }//GEN-LAST:event_titleBarMouseDragged
+
+    private void titleBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleBarMouseClicked
+        if (evt.getClickCount() == 2 && !evt.isConsumed()) {
+            if (this.getExtendedState() == MAXIMIZED_BOTH) {
+                this.setExtendedState(JFrame.NORMAL);
+            } else {
+                this.setExtendedState(MAXIMIZED_BOTH);
+            }
+        }
+    }//GEN-LAST:event_titleBarMouseClicked
+
     private final java.awt.Color hightlightcolor = new java.awt.Color(255,209,102);
     private final javax.swing.border.LineBorder defaultBorder = new javax.swing.border.LineBorder(Color.white, 2, true);
     private final javax.swing.border.LineBorder hightlightborder = new javax.swing.border.LineBorder(hightlightcolor, 2, true);
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel actionPanel;
     private javax.swing.JPanel bodyPanel;
+    private javax.swing.JButton closeBtn;
     private javax.swing.JButton exitBtn;
+    private javax.swing.JPanel gapPanel;
     private javax.swing.JButton indexBtn;
     private javax.swing.JPanel mainMenuOptionsPanel;
+    private javax.swing.JButton maximixateBtn;
     private javax.swing.JPanel menuBarPanel;
+    private javax.swing.JButton minimizateBtn;
+    private javax.swing.JPanel parentPanel;
     private javax.swing.JButton profileBtn;
+    private javax.swing.JPanel titleBar;
+    private javax.swing.JLabel titleLabel;
     private javax.swing.JButton transactionsBtn;
     private javax.swing.JButton walletsBtn;
     // End of variables declaration//GEN-END:variables
