@@ -12,23 +12,22 @@ import model.system.Transaction;
  * @author 57301
  */
 public class TransactionCard extends javax.swing.JPanel {
+    
 private final Transaction transaction;
     /**
      * Creates new form TransactionCard
      * @param transaction
      */
     public TransactionCard(Transaction transaction) {
-//        this.transactionController = transactionController;
         this.transaction = transaction;
-//        this.accountController = accountController;       
         initComponents();
         
         loadData();
     }
     
      private void loadData(){
-        remitentWalletIdTxt.setText(transaction.getRemitent().getID());
-        destinataryWalletIdTxt.setText(transaction.getDestinatary().getID());
+        remitentIdTxt.setText(transaction.getRemitent().getID());
+        destinataryIdTxt.setText(transaction.getDestinatary().getID());
         moneyTxt.setText(transaction.getMoney()+"");
         dateTxt.setText(transaction.getDate()+"");
         messageTxt.setText(transaction.getMessange());
@@ -44,183 +43,177 @@ private final Transaction transaction;
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
-        moneyLabel = new javax.swing.JLabel();
-        nicknameLabel = new javax.swing.JLabel();
-        moneyTxt = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        nicknameLabel1 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        nicknameLabel2 = new javax.swing.JLabel();
-        dateTxt = new javax.swing.JLabel();
-        jSeparator5 = new javax.swing.JSeparator();
-        nicknameLabel3 = new javax.swing.JLabel();
-        messageTxt = new javax.swing.JTextField();
-        remitentWalletIdTxt = new javax.swing.JLabel();
-        destinataryWalletIdTxt = new javax.swing.JLabel();
+        remitentIdTxt = new javax.swing.JTextField();
+        nicknameLabel = new javax.swing.JLabel();
+        nicknameLabel4 = new javax.swing.JLabel();
+        destinataryIdTxt = new javax.swing.JTextField();
+        nicknameLabel5 = new javax.swing.JLabel();
+        moneyTxt = new javax.swing.JTextField();
+        nicknameLabel6 = new javax.swing.JLabel();
+        dateTxt = new javax.swing.JTextField();
+        nicknameLabel7 = new javax.swing.JLabel();
+        messageTxt = new java.awt.TextArea();
 
-        jPanel1.setBackground(new java.awt.Color(27, 20, 100));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());
-
-        moneyLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        moneyLabel.setForeground(new java.awt.Color(102, 204, 255));
-        moneyLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        moneyLabel.setText("Dinero");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 54;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 194;
+        gridBagConstraints.ipady = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 73, 0, 0);
-        jPanel1.add(moneyLabel, gridBagConstraints);
-
-        nicknameLabel.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        nicknameLabel.setForeground(new java.awt.Color(102, 204, 255));
-        nicknameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nicknameLabel.setText("Remitente");
+        gridBagConstraints.insets = new java.awt.Insets(18, 29, 0, 0);
+        jPanel1.add(jSeparator3, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipadx = 194;
+        gridBagConstraints.ipady = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(20, 73, 0, 0);
-        jPanel1.add(nicknameLabel, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(15, 29, 0, 0);
+        jPanel1.add(jSeparator4, gridBagConstraints);
 
-        moneyTxt.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        moneyTxt.setForeground(new java.awt.Color(255, 255, 255));
-        moneyTxt.setText("00,0");
+        remitentIdTxt.setEditable(false);
+        remitentIdTxt.setBackground(new java.awt.Color(255, 255, 255));
+        remitentIdTxt.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        remitentIdTxt.setForeground(new java.awt.Color(27, 20, 100));
+        remitentIdTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
+        remitentIdTxt.setMinimumSize(new java.awt.Dimension(60, 32));
+        remitentIdTxt.setPreferredSize(new java.awt.Dimension(60, 32));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 136;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 86, 0, 0);
-        jPanel1.add(moneyTxt, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(23, 29, 0, 48);
+        jPanel1.add(remitentIdTxt, gridBagConstraints);
+
+        nicknameLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        nicknameLabel.setForeground(new java.awt.Color(71, 18, 107));
+        nicknameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nicknameLabel.setText("Remitente ID");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.ipadx = 289;
-        gridBagConstraints.ipady = 7;
+        gridBagConstraints.ipadx = 14;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(17, 73, 0, 0);
-        jPanel1.add(jSeparator2, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(29, 47, 0, 0);
+        jPanel1.add(nicknameLabel, gridBagConstraints);
+
+        nicknameLabel4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        nicknameLabel4.setForeground(new java.awt.Color(71, 18, 107));
+        nicknameLabel4.setText("Destinatario ID");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(26, 47, 0, 0);
+        jPanel1.add(nicknameLabel4, gridBagConstraints);
+
+        destinataryIdTxt.setEditable(false);
+        destinataryIdTxt.setBackground(new java.awt.Color(255, 255, 255));
+        destinataryIdTxt.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        destinataryIdTxt.setForeground(new java.awt.Color(27, 20, 100));
+        destinataryIdTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
+        destinataryIdTxt.setMinimumSize(new java.awt.Dimension(60, 32));
+        destinataryIdTxt.setPreferredSize(new java.awt.Dimension(60, 32));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 136;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 29, 0, 48);
+        jPanel1.add(destinataryIdTxt, gridBagConstraints);
+
+        nicknameLabel5.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        nicknameLabel5.setForeground(new java.awt.Color(71, 18, 107));
+        nicknameLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nicknameLabel5.setText("Dinero");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.ipadx = 289;
-        gridBagConstraints.ipady = 2;
+        gridBagConstraints.ipadx = 61;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(14, 73, 0, 0);
-        jPanel1.add(jSeparator3, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(18, 47, 0, 0);
+        jPanel1.add(nicknameLabel5, gridBagConstraints);
 
-        nicknameLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        nicknameLabel1.setForeground(new java.awt.Color(102, 204, 255));
-        nicknameLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nicknameLabel1.setText("Destinatario");
+        moneyTxt.setEditable(false);
+        moneyTxt.setBackground(new java.awt.Color(255, 255, 255));
+        moneyTxt.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        moneyTxt.setForeground(new java.awt.Color(27, 20, 100));
+        moneyTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
+        moneyTxt.setMinimumSize(new java.awt.Dimension(60, 32));
+        moneyTxt.setPreferredSize(new java.awt.Dimension(60, 32));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 136;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 73, 0, 0);
-        jPanel1.add(nicknameLabel1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(12, 29, 0, 48);
+        jPanel1.add(moneyTxt, gridBagConstraints);
+
+        nicknameLabel6.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        nicknameLabel6.setForeground(new java.awt.Color(71, 18, 107));
+        nicknameLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nicknameLabel6.setText("Fecha");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.ipadx = 289;
-        gridBagConstraints.ipady = 7;
+        gridBagConstraints.ipadx = 67;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 73, 0, 0);
-        jPanel1.add(jSeparator4, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(13, 47, 0, 0);
+        jPanel1.add(nicknameLabel6, gridBagConstraints);
 
-        nicknameLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        nicknameLabel2.setForeground(new java.awt.Color(102, 204, 255));
-        nicknameLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nicknameLabel2.setText("Fecha");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 58;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(20, 73, 0, 0);
-        jPanel1.add(nicknameLabel2, gridBagConstraints);
-
+        dateTxt.setEditable(false);
+        dateTxt.setBackground(new java.awt.Color(255, 255, 255));
         dateTxt.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        dateTxt.setForeground(new java.awt.Color(255, 255, 255));
-        dateTxt.setText("00,0");
+        dateTxt.setForeground(new java.awt.Color(27, 20, 100));
+        dateTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
+        dateTxt.setMinimumSize(new java.awt.Dimension(60, 32));
+        dateTxt.setPreferredSize(new java.awt.Dimension(60, 32));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 86, 0, 0);
-        jPanel1.add(dateTxt, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.ipadx = 289;
-        gridBagConstraints.ipady = 7;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 73, 0, 0);
-        jPanel1.add(jSeparator5, gridBagConstraints);
-
-        nicknameLabel3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        nicknameLabel3.setForeground(new java.awt.Color(102, 204, 255));
-        nicknameLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nicknameLabel3.setText("Mensaje");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 43;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 73, 0, 0);
-        jPanel1.add(nicknameLabel3, gridBagConstraints);
-
-        messageTxt.setEditable(false);
-        messageTxt.setBackground(new java.awt.Color(53, 42, 157));
-        messageTxt.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        messageTxt.setForeground(new java.awt.Color(255, 255, 255));
-        messageTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
-        messageTxt.setMinimumSize(new java.awt.Dimension(60, 32));
-        messageTxt.setPreferredSize(new java.awt.Dimension(60, 32));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 136;
-        gridBagConstraints.ipady = 39;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 3, 16, 57);
+        gridBagConstraints.insets = new java.awt.Insets(7, 29, 0, 48);
+        jPanel1.add(dateTxt, gridBagConstraints);
+
+        nicknameLabel7.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        nicknameLabel7.setForeground(new java.awt.Color(71, 18, 107));
+        nicknameLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nicknameLabel7.setText("Mensaje");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.ipadx = 48;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(31, 47, 0, 0);
+        jPanel1.add(nicknameLabel7, gridBagConstraints);
+
+        messageTxt.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        messageTxt.setEditable(false);
+        messageTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        messageTxt.setForeground(new java.awt.Color(27, 20, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 96;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(31, 29, 17, 48);
         jPanel1.add(messageTxt, gridBagConstraints);
-
-        remitentWalletIdTxt.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        remitentWalletIdTxt.setForeground(new java.awt.Color(255, 255, 255));
-        remitentWalletIdTxt.setText("00,0");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 86, 0, 0);
-        jPanel1.add(remitentWalletIdTxt, gridBagConstraints);
-
-        destinataryWalletIdTxt.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        destinataryWalletIdTxt.setForeground(new java.awt.Color(255, 255, 255));
-        destinataryWalletIdTxt.setText("00,0");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 86, 0, 0);
-        jPanel1.add(destinataryWalletIdTxt, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -230,26 +223,24 @@ private final Transaction transaction;
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel dateTxt;
-    private javax.swing.JLabel destinataryWalletIdTxt;
+    private javax.swing.JTextField dateTxt;
+    private javax.swing.JTextField destinataryIdTxt;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextField messageTxt;
-    private javax.swing.JLabel moneyLabel;
-    private javax.swing.JLabel moneyTxt;
+    private java.awt.TextArea messageTxt;
+    private javax.swing.JTextField moneyTxt;
     private javax.swing.JLabel nicknameLabel;
-    private javax.swing.JLabel nicknameLabel1;
-    private javax.swing.JLabel nicknameLabel2;
-    private javax.swing.JLabel nicknameLabel3;
-    private javax.swing.JLabel remitentWalletIdTxt;
+    private javax.swing.JLabel nicknameLabel4;
+    private javax.swing.JLabel nicknameLabel5;
+    private javax.swing.JLabel nicknameLabel6;
+    private javax.swing.JLabel nicknameLabel7;
+    private javax.swing.JTextField remitentIdTxt;
     // End of variables declaration//GEN-END:variables
 }

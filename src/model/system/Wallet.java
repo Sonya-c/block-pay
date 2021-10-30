@@ -25,6 +25,10 @@ public class Wallet {
         return this.money;
     }
     
+    /**
+     * 
+     * @param money 
+     */
     public void setMoney(double money) {
         this.money = money;
     }
@@ -33,8 +37,12 @@ public class Wallet {
         return nickname;
     }
 
+    /**
+     * 
+     * @param nickname 
+     */
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
-    
+    //---
 }

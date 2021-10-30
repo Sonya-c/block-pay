@@ -18,5 +18,4 @@ public class Eva extends Account {
         addWallet(wallet);
     }
 
-
 }

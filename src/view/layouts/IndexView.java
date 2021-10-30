@@ -7,6 +7,7 @@ package view.layouts;
 
 import controller.AccountController;
 import java.awt.Component;
+import java.time.LocalDate;
 import javax.swing.JFrame;
 import model.system.Account;
 import model.system.Transaction;
@@ -22,7 +23,6 @@ public class IndexView extends javax.swing.JPanel {
 
     private final Account account;
     private final AccountController accountController;
-
     private final JFrame parent;
 
     /**
@@ -40,18 +40,32 @@ public class IndexView extends javax.swing.JPanel {
         initComponents();
 
         moneyLabelUpdate();
-        
-        // Añadir los labels
-        if (account != null && account.getWallets() != null) {
-            for (Wallet wallet : account.getWallets()) {
-                remitentWalletCombox.addItem(wallet.getNickname());
-            }
-        }
-        
         this.graphPanel.add(new GraphView(accountController.getAccountList(), accountController.getTransactionController().getBlockList()));
     }
-    
-    private void moneyLabelUpdate(){
+
+    //GETTERS ---
+    public Component getSendMoneyModal() {
+        return this.sendMoneyModal;
+    }
+    //---
+
+    /**
+     * Método para que no se estén agregando las carteras después de que ya
+     * están en el Combox
+     *
+     * @param wallet
+     * @return
+     */
+    private boolean existOnCombox(Wallet wallet) {
+        for (int i = 0; i < remitentWalletCombox.getItemCount(); i++) {
+            if (wallet.getNickname().equals(remitentWalletCombox.getItemAt(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void moneyLabelUpdate() {
         double money = 0;
         for (Wallet wallet : account.getWallets()) {
             money += wallet.getMoney();
@@ -276,36 +290,33 @@ public class IndexView extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         sendMoneyModal.add(moneyTxt, gridBagConstraints);
 
-        poorMoneyPanel.setBackground(new java.awt.Color(192, 82, 153));
+        poorMoneyPanel.setBackground(new java.awt.Color(255, 255, 255));
         poorMoneyPanel.setMaximumSize(new java.awt.Dimension(300, 100));
         poorMoneyPanel.setMinimumSize(new java.awt.Dimension(300, 100));
         poorMoneyPanel.setPreferredSize(new java.awt.Dimension(300, 100));
         poorMoneyPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Debe mandar más de $50 pesos");
         poorMoneyPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 250, 20));
 
-        transactionSuccesfull.setBackground(new java.awt.Color(192, 82, 153));
+        transactionSuccesfull.setBackground(new java.awt.Color(255, 255, 255));
         transactionSuccesfull.setMaximumSize(new java.awt.Dimension(300, 100));
         transactionSuccesfull.setMinimumSize(new java.awt.Dimension(300, 100));
         transactionSuccesfull.setPreferredSize(new java.awt.Dimension(300, 100));
         transactionSuccesfull.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("¡¡Transacción éxitosa!!");
         transactionSuccesfull.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 20));
 
-        transactionFailPanel.setBackground(new java.awt.Color(192, 82, 153));
+        transactionFailPanel.setBackground(new java.awt.Color(255, 255, 255));
         transactionFailPanel.setMaximumSize(new java.awt.Dimension(300, 100));
         transactionFailPanel.setMinimumSize(new java.awt.Dimension(300, 100));
         transactionFailPanel.setPreferredSize(new java.awt.Dimension(300, 100));
         transactionFailPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Saldo insuficiente");
         transactionFailPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 20));
 
@@ -383,37 +394,45 @@ public class IndexView extends javax.swing.JPanel {
     private void sendMoneyModalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendMoneyModalBtnActionPerformed
         String walletNickname = (String) remitentWalletCombox.getSelectedItem();
         Wallet remitent = accountController.getWalletByNickname(walletNickname);
-        Wallet destinatary = accountController.getWallet(destinataryWalletTxt.getText());
-        
-        Double money = Double.parseDouble(moneyTxt.getValue().toString());
-        
-        
-        System.out.println("view.includes.IndexView.sendMoneyModalBtnActionPerformed" + IndexView.class.getName() + " MENSAJE " + remitent.getID() + " - " + destinatary.getID() + " - " + money);
-        
-        Transaction transaction = new Transaction(remitent, destinatary, money, messageTxt.getText());
-        
-        if (accountController.getTransactionController().add(transaction) == 0) {
-            Modal modal = new Modal(parent, "Transacción éxitosa", true, transactionSuccesfull);
-            
-            transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
-            transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
-            
-            moneyLabelUpdate();
-            
-            this.removeAll();
-        } else {
-            Modal modal = new Modal(parent, "Transacción errada", true, transactionFailPanel);
-        }
+        Wallet destinatary = accountController.getWalletById(destinataryWalletTxt.getText());
 
+        Double money = Double.parseDouble(moneyTxt.getValue().toString());
+
+        if (destinatary != null) {
+            
+            Transaction transaction = new Transaction(remitent, destinatary, money, LocalDate.now(), messageTxt.getText());
+
+            if (accountController.getTransactionController().addNewTransaction(transaction)) {
+
+                Modal modal = new Modal(parent, "Transacción éxitosa", true, transactionSuccesfull);
+
+                transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
+                transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
+
+                moneyLabelUpdate();
+
+                this.removeAll();
+
+            } else {
+                Modal modal = new Modal(parent, "Transacción errada", true, transactionFailPanel);
+            }
+        } else {
+            Modal moda = new Modal(parent, "No existe esa billetera", true, walletNotFoundPanel);
+        }
     }//GEN-LAST:event_sendMoneyModalBtnActionPerformed
 
     private void sendMoneyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendMoneyBtnActionPerformed
+        // Añadir los labels
+        if (account != null && account.getWallets() != null) {
+            for (Wallet wallet : account.getWallets()) {
+                if (!existOnCombox(wallet)) {
+                    remitentWalletCombox.addItem(wallet.getNickname());
+                }
+            }
+        }
+
         Modal modal = new Modal(parent, "Nueva transacción", true, sendMoneyModal);
     }//GEN-LAST:event_sendMoneyBtnActionPerformed
-
-    public Component getSendMoneyModal(){
-        return this.sendMoneyModal;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Header;

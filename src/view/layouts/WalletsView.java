@@ -6,7 +6,6 @@
 package view.layouts;
 
 import controller.AccountController;
-import java.awt.Component;
 import javax.swing.JFrame;
 import model.list.List;
 import model.system.Account;
@@ -23,6 +22,7 @@ public class WalletsView extends javax.swing.JPanel {
     private final Account account;
     private final JFrame parent;
     private final AccountController accountController;
+    private final TransactionInformationView transactionInformationView;
 
     /**
      * Creates new form WalletsView
@@ -30,11 +30,14 @@ public class WalletsView extends javax.swing.JPanel {
      * @param parent
      * @param account
      * @param accountController
+     * @param transactionInformationView
      */
-    public WalletsView(JFrame parent, Account account, AccountController accountController) {
+    public WalletsView(JFrame parent, Account account, AccountController accountController,
+            TransactionInformationView transactionInformationView) {
         this.account = account;
         this.parent = parent;
         this.accountController = accountController;
+        this.transactionInformationView = transactionInformationView;
         initComponents();
     }
 
@@ -42,17 +45,6 @@ public class WalletsView extends javax.swing.JPanel {
         walletsPanel.removeAll();
 
         List<Wallet> wallets = account.getWallets();
-
-        for (Wallet wallet : wallets) {
-            walletsPanel.add(new WalletCard(wallet, parent, accountController, account));
-        }
-
-        walletsPanel.validate();
-        walletsPanel.repaint();
-    }
-
-    private void loadWallets(List<Wallet> wallets) {
-        walletsPanel.removeAll();
 
         for (Wallet wallet : wallets) {
             walletsPanel.add(new WalletCard(wallet, parent, accountController, account));
@@ -82,8 +74,6 @@ public class WalletsView extends javax.swing.JPanel {
         createWalletBtn = new javax.swing.JButton();
         nicknameExist = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        notEnoughtDataPanel = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
         headerPanel = new javax.swing.JPanel();
         activityBarPanel = new javax.swing.JPanel();
         addBtn = new javax.swing.JButton();
@@ -148,16 +138,6 @@ public class WalletsView extends javax.swing.JPanel {
         jLabel7.setText("¡Ya posee una billetera con ese nickname!");
         nicknameExist.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 310, 20));
 
-        notEnoughtDataPanel.setBackground(new java.awt.Color(255, 255, 255));
-        notEnoughtDataPanel.setMaximumSize(new java.awt.Dimension(380, 95));
-        notEnoughtDataPanel.setMinimumSize(new java.awt.Dimension(380, 95));
-        notEnoughtDataPanel.setPreferredSize(new java.awt.Dimension(380, 95));
-        notEnoughtDataPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel8.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        jLabel8.setText("¡No hay suficientes datos para la busqueda!");
-        notEnoughtDataPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 310, 20));
-
         setLayout(new java.awt.BorderLayout());
 
         headerPanel.setBackground(new java.awt.Color(71, 18, 107));
@@ -187,13 +167,13 @@ public class WalletsView extends javax.swing.JPanel {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 234, 11, 0);
+        gridBagConstraints.insets = new java.awt.Insets(6, 139, 3, 0);
         activityBarPanel.add(addBtn, gridBagConstraints);
 
         walletsUser.setBackground(new java.awt.Color(216, 49, 91));
         walletsUser.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         walletsUser.setForeground(new java.awt.Color(255, 255, 255));
-        walletsUser.setText("Mostrar mis wallets");
+        walletsUser.setText("Mostrar mis billeteras");
         walletsUser.setBorderPainted(false);
         walletsUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         walletsUser.setFocusPainted(false);
@@ -205,19 +185,20 @@ public class WalletsView extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 340, 11, 0);
+        gridBagConstraints.insets = new java.awt.Insets(6, 328, 3, 0);
         activityBarPanel.add(walletsUser, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 209, 102));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Mis Wallets");
+        jLabel6.setText("Mis Billeteras");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 736;
+        gridBagConstraints.ipadx = 721;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
         activityBarPanel.add(jLabel6, gridBagConstraints);
@@ -233,9 +214,9 @@ public class WalletsView extends javax.swing.JPanel {
         add(walletsPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-        
+
     private void walletsUserBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_walletsUserBtnMouseClicked
-        
+
     }//GEN-LAST:event_walletsUserBtnMouseClicked
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
@@ -245,36 +226,37 @@ public class WalletsView extends javax.swing.JPanel {
     private void createWalletBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createWalletBtnActionPerformed
         String nickname = createWalletNicknameTxt.getText().trim();
         String id = "" + account.getUserName() + account.getWallets().getSize();
-        
+
         boolean sw = true;
         for (Wallet w : account.getWallets()) {
-            if (w.getNickname() == null ? nickname == null : w.getNickname().equals(nickname)) {
+            if (w.getNickname().trim() == null ? nickname == null : w.getNickname().trim().equals(nickname)) {
                 Modal modal = new Modal(parent, "Wallet no creada", true, nicknameExist);
                 sw = false;
-                
+
                 break;
             }
         }
-        
+
         if (sw) {
             Wallet wallet = new Wallet(id, 0, nickname);
             account.addWallet(wallet);
             Modal modal = new Modal(parent, "Wallet creada", true, walletCreationSuccesfull);
             loadWallets();
+            transactionInformationView.updateWalletsUser();
         }
-        
+
     }//GEN-LAST:event_createWalletBtnActionPerformed
 
     private void walletsUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_walletsUserActionPerformed
-        
+
         loadWallets();
-        
+
     }//GEN-LAST:event_walletsUserActionPerformed
 
     private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
-      
+
         Modal modal = new Modal(parent, "Nueva wallet", true, createWalletPanel);
-        
+
     }//GEN-LAST:event_addBtnMouseClicked
 
 
@@ -290,9 +272,7 @@ public class WalletsView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel nicknameExist;
-    private javax.swing.JPanel notEnoughtDataPanel;
     private javax.swing.JPanel walletCreationSuccesfull;
     private javax.swing.JPanel walletNotFoundPanel;
     private javax.swing.JPanel walletsPanel;

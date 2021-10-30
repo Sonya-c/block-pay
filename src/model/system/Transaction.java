@@ -8,11 +8,14 @@ import java.util.logging.Logger;
  * @author sonya
  */
 public class Transaction {
+    
     private final Wallet remitent;
     private final Wallet destinatary;
     private final double money;
     private final LocalDate date;
     private final String messange;
+    
+    private static final Logger LOG = Logger.getLogger(Transaction.class.getName());
     
     /**
      * 
@@ -74,18 +77,6 @@ public class Transaction {
         this.messange = messange;
     }
     
-    private static final Logger LOG = Logger.getLogger(Transaction.class.getName());
-    
-    @Override
-    public String toString() {
-        return "Transaction{" + 
-                "remitent=" + remitent.getNickname() + 
-                ", destinatary=" + destinatary.getNickname() +
-                ", money=" + money +
-                ", date=" + date.toString() +
-                ", messange=" + messange + '}';
-    }
-    
     /* ======= GETTERS AND SETTERS =======*/
     public Wallet getRemitent() {
         return remitent;
@@ -106,6 +97,16 @@ public class Transaction {
     public String getMessange() {
         return messange;
     }
+    //---
     
+    @Override
+    public String toString() {
+        return "Transaction{" + 
+                "Remitent =" + remitent.getNickname() + 
+                ", Destinatary =" + destinatary.getNickname() +
+                ", Money =" + money +
+                ", Date =" + date.toString() +
+                ", Messange =" + messange + '}';
+    }
     
 }

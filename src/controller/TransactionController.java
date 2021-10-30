@@ -2,7 +2,6 @@ package controller;
 
 import model.list.List;
 import model.list.ListNode;
-import model.system.Account;
 import model.system.Block;
 import model.system.Transaction;
 import model.system.Wallet;
@@ -28,6 +27,34 @@ public class TransactionController {
         this.blockList = blockList;
     }
 
+    // GETTERS---    
+    public List<Block> getBlockList() {
+        return blockList;
+    }
+
+    /**
+     * Retorna todas las transacciones en las que ha estado involucrada una
+     * wallet, sea como remitente o destinataria.
+     *
+     * @param wallet
+     * @return
+     */
+    public List<Transaction> getHistorial(Wallet wallet) {
+        List<Transaction> foundTransactions = new List();
+
+        for (Block block : blockList) {
+            for (Transaction transaction : block.getTransactions()) {
+                if (transaction.getRemitent().getID().equals(wallet.getID())
+                        || transaction.getDestinatary().getID().equals(wallet.getID())) {
+                    foundTransactions.add(transaction);
+                }
+            }
+        }
+
+        return foundTransactions;
+    }
+
+    //---
     /**
      * Verifica la transacción
      *
@@ -35,7 +62,8 @@ public class TransactionController {
      * @return
      */
     public boolean verifyTransaction(Transaction transaction) {
-        System.out.println("TransactionController.verifyTransaction(Transaction) is eva? " + transaction.getRemitent().getID().equals("eva0"));
+
+        System.out.println(TransactionController.class.toString() + " verifyTransaction(Transaction) is eva? " + transaction.getRemitent().getID().equals("eva0"));
 
         if (transaction.getRemitent().getID().equals("eva0")) {
             // Si es eva no debemos verificar
@@ -46,7 +74,6 @@ public class TransactionController {
 
         } else {
 
-//            double money = this.existsMoneyAtFirst(transaction);
             double money = 0;
 
             /*
@@ -56,7 +83,9 @@ public class TransactionController {
              * add or rest money
              * if the calculateed money is the same, do the transaction. Else, kill the wallet [insert evil laugh]
              */
+            
             for (Block block : blockList) {
+
                 for (Transaction t : block.getTransactions()) {
 
                     if (t.getRemitent().getID().equals(transaction.getRemitent().getID())) {
@@ -68,27 +97,11 @@ public class TransactionController {
                 }
             }
 
-            System.out.println("controller.TransactionController.verifyTransaction(Transaction) MENSAJE: valor money = " + money);
-            System.out.println(TransactionController.class.toString() + " MENSAJE: " + transaction.getRemitent().getMoney());
+            System.out.println(TransactionController.class.toString() + " verifyTransaction(Transaction) MENSAJE Dinero calculado : " + money);
+            System.out.println(TransactionController.class.toString() + " verifyTransaction(Transaction) MENSAJE Dinero actual en billetera de remitente : " + transaction.getRemitent().getMoney());
 
             return (money == transaction.getRemitent().getMoney() && money >= transaction.getMoney());
         }
-    }
-
-    private double existsMoneyAtFirst(Transaction transaction) {
-        Wallet remitent = transaction.getRemitent();
-        Wallet destinatary = transaction.getDestinatary();
-        for (Block block : blockList) {
-            for (Transaction transaction1 : block.getTransactions()) {
-                if (remitent.getID().equals(transaction1.getDestinatary().getID())
-                        && transaction.getRemitent().getID().equals("eva0")
-                        || destinatary.getID().equals(transaction1.getDestinatary().getID())
-                        && transaction.getRemitent().getID().equals("eva0")) {
-                    return 50000d;
-                }
-            }
-        }
-        return 0d;
     }
 
     /**
@@ -97,7 +110,7 @@ public class TransactionController {
      * @param transaction
      * @return 0: everything fine 1: we have an impostor amung us
      */
-    public int add(Transaction transaction) {
+    public boolean addNewTransaction(Transaction transaction) {
         ListNode tail = blockList.getTail();
 
         if (verifyTransaction(transaction)) {
@@ -110,7 +123,7 @@ public class TransactionController {
                 block.getTransactions().add(transaction);
                 blockList.add(block);
 
-                return -1;
+                return true;
             } else {
                 if (tail.getInfo() instanceof Block) {
                     // Confirm that the info is a listNode
@@ -126,46 +139,51 @@ public class TransactionController {
                         blockList.add(block);
                     }
 
-                    return 0;
+                    return true;
                 } else {
-                    System.out.println("controller.TransactionController.add(Transaction) ERROR: Estructura de datos incorrecta");
+                    System.out.println(TransactionController.class.toString() + " addNewTransaction(Transaction) ERROR: Estructura de datos incorrecta");
                 }
             }
 
         } else {
-            System.out.println("controller.TransactionController.add(Transaction) ERROR: Verificación fallida");
+            System.out.println(TransactionController.class.toString() + "addNewTransaction(Transaction) ERROR: Verificación fallida");
         }
 
-        return 1;
+        return false;
     }
 
-    public void soutTransaction() {
-        for (Block block : blockList) {
-            for (Transaction transaction : block.getTransactions()) {
-                System.out.println(transaction.getMoney() + transaction.getRemitent().getID() + transaction.getDestinatary().getID());
-            }
-        }
-    }
+    /**
+     * Agrega las transacciones que ya existían, es decir, las que vienen del archivo guardadas previamente.
+     * @param transaction 
+     */
+    public void addTransaction(Transaction transaction) {
+        ListNode tail = blockList.getTail();
+        if (tail == null) {
 
+            Block block = new Block();
+            block.getTransactions().add(transaction);
+            blockList.add(block);
 
-    public List<Transaction> getHistorial(Wallet wallet) {
-        List<Transaction> transactions = new List();
+        } else {
 
-        for (Block block : blockList) {
-            for (Transaction transaction : block.getTransactions()) {
-                if (transaction.getRemitent().getID().equals(wallet.getID()) || transaction.getDestinatary().getID().equals(wallet.getID())) {
-                    transactions.add(transaction);
+            if (tail.getInfo() instanceof Block) {
+                Block block = (Block) tail.getInfo();
+                if (block.getTransactions().getSize() < 3) {
+                    block.getTransactions().add(transaction);
+                } else {
+                    block = new Block();
+                    block.getTransactions().add(transaction);
+                    blockList.add(block);
                 }
             }
         }
-
-        return transactions;
+        System.out.println(TransactionController.class.toString() + " addTransaction(Transaction transaction) MENSAJE Transacción ingresada exitosamente");
     }
 
     public void writeTransactionInFile() {
         for (Block block : blockList) {
             for (Transaction transaction : block.getTransactions()) {
-                if (!FileController.findTransaction(transaction)) {
+                if (!FileController.isTransactionInFile(transaction)) {
                     FileController.writeFile(FileController.findCreateFile("transaction.txt"),
                             transaction.getRemitent().getID() + "#"
                             + transaction.getDestinatary().getID() + "#" + transaction.getMoney() + "#" + transaction.getDate()
@@ -173,38 +191,6 @@ public class TransactionController {
                 }
             }
         }
-    }
-
-    public void addTransaction(Transaction t) {
-        ListNode tail = blockList.getTail();
-        if (tail == null) {
-
-            Block block = new Block();
-            block.getTransactions().add(t);
-            blockList.add(block);
-
-        } else {
-
-            if (tail.getInfo() instanceof Block) {
-                // Confirm that the info is a listNode
-                Block block = (Block) tail.getInfo();
-
-                if (block.getTransactions().getSize() < 3) {
-                    // As this block is not full size, we can add the new transaction here
-                    block.getTransactions().add(t);
-                } else {
-                    // As this block is full size, we must create a new block
-                    block = new Block();
-                    block.getTransactions().add(t);
-                    blockList.add(block);
-                }
-            }
-        }
-        System.out.println(TransactionController.class.toString() + " MENSAJE Transaccipon por lista ingresada");
-    }
-
-    public List<Block> getBlockList() {
-        return blockList;
     }
 
 }

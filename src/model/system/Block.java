@@ -10,6 +10,7 @@ public class Block {
         transactions = new List(3);
     }    
 
+    //GETTERS AND SETTERS ---
     public List<Transaction> getTransactions() {
         return transactions;
     }
@@ -17,5 +18,5 @@ public class Block {
     public void setTransactions(List transactions) {
         this.transactions = transactions;
     }
-    
+    //---
 }

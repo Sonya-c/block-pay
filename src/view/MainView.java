@@ -23,13 +23,13 @@ public class MainView extends javax.swing.JFrame {
     private final IndexView indexView;
     private final ProfileView profileView;
     private final WalletsView walletsView;
-    private final TransactionInformationView dataView;
+    private final TransactionInformationView transactionInformationView;
 
     public MainView(Account account, AccountController accountController) {
         this.indexView = new IndexView(this, account, accountController);
         this.profileView = new ProfileView(account);
-        this.walletsView = new WalletsView(this, account, accountController);
-        this.dataView = new TransactionInformationView(account, accountController, this);
+        this.transactionInformationView = new TransactionInformationView(account, accountController, this);
+        this.walletsView = new WalletsView(this, account, accountController, transactionInformationView);
         this.account = account;
         this.accountController  = accountController;
         
@@ -146,7 +146,7 @@ public class MainView extends javax.swing.JFrame {
         transactionsBtn.setBackground(new java.awt.Color(255, 255, 255));
         transactionsBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         transactionsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/graph-icon.png"))); // NOI18N
-        transactionsBtn.setToolTipText("Datos");
+        transactionsBtn.setToolTipText("Transacciones");
         transactionsBtn.setAlignmentY(0.0F);
         transactionsBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         transactionsBtn.setContentAreaFilled(false);
@@ -202,6 +202,7 @@ public class MainView extends javax.swing.JFrame {
             button.setBackground(Color.white);
         }
     }
+    
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
         bodyPanel.removeAll();
         defaultButtonBorder();
@@ -237,7 +238,7 @@ public class MainView extends javax.swing.JFrame {
         defaultButtonBorder();
 
         bodyPanel.add(walletsView);
-        setTitle("Block Pay | Wallets");
+        setTitle("Block Pay | Billeteras");
 
         walletsBtn.setBorder(hightlightborder);
         walletsBtn.setBackground(hightlightcolor);
@@ -256,7 +257,7 @@ public class MainView extends javax.swing.JFrame {
         bodyPanel.removeAll();
         defaultButtonBorder();
 
-        bodyPanel.add(dataView);
+        bodyPanel.add(transactionInformationView);
         setTitle("Block Pay | Transacciones");
 
         transactionsBtn.setBorder(hightlightborder);

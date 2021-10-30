@@ -31,20 +31,39 @@ public class Account {
         wallets = new List<>();
     }
 
-    public void addWallet(Wallet wallet) {
-        if (!walletExists(wallet)) {
-            this.wallets.add(wallet);
-            System.out.println(Account.class.toString() + "MENSAJE se agregó wallet " + wallet.getID() + " a " + this.userName);
-        }
+    
+    /* ======= GETTERS AND SETTERS =======*/
+    
+    public int getID() {
+        return ID;
     }
 
-    public boolean walletExists(Wallet wallet) {
-        for (Wallet wallet1 : wallets) {
-            if (wallet1.getID().equals(wallet.getID())) {
-                return true;
-            }
-        }
-        return false;
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * 
+     * @param userName 
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    
+    /**
+     * 
+     * @param password 
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Wallet> getWallets() {
+        return wallets;
     }
 
     /**
@@ -60,30 +79,31 @@ public class Account {
         }
         return null;
     }
-
-    /* ======= GETTERS AND SETTERS =======*/
-    public int getID() {
-        return ID;
+    //---
+    
+    /**
+     * 
+     * @param wallet 
+     */
+    public void addWallet(Wallet wallet) {
+        if (!walletExists(wallet)) {
+            this.wallets.add(wallet);
+            System.out.println(Account.class.toString() + " addWallet(wallet) MENSAJE se agregó " + wallet.getID() + " a la cuenta " + this.userName);
+        }
     }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public List<Wallet> getWallets() {
-        return wallets;
+    
+    /**
+     * 
+     * @param wallet
+     * @return 
+     */
+    public boolean walletExists(Wallet wallet) {
+        for (Wallet w : wallets) {
+            if (w.getID().equals(wallet.getID())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

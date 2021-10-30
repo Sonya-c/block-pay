@@ -2,6 +2,7 @@ package view.includes;
 
 import controller.AccountController;
 import java.awt.Component;
+import java.time.LocalDate;
 import javax.swing.JFrame;
 import model.system.Account;
 import model.system.Transaction;
@@ -46,7 +47,7 @@ public class WalletCard extends javax.swing.JPanel {
         sendMoneyModalTitle = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         destinataryWalletLabel = new javax.swing.JLabel();
-        distinataryWalletTxt = new javax.swing.JTextField();
+        destinataryWalletTxt = new javax.swing.JTextField();
         remitentWalletLabel = new javax.swing.JLabel();
         remitentWalletCombox = new javax.swing.JComboBox<>();
         sendMoneyModalMoneyLabel = new javax.swing.JLabel();
@@ -54,7 +55,7 @@ public class WalletCard extends javax.swing.JPanel {
         sendMoneyModalMoneyLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         messageTxt = new javax.swing.JTextArea();
-        moneyTxt1 = new javax.swing.JSpinner();
+        moneyTxtModal = new javax.swing.JSpinner();
         transactionSuccesfull = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         transactionFailPanel = new javax.swing.JPanel();
@@ -64,10 +65,11 @@ public class WalletCard extends javax.swing.JPanel {
         moneyLabel = new javax.swing.JLabel();
         nicknameLabel = new javax.swing.JLabel();
         moneyTxt = new javax.swing.JLabel();
-        idTxt = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         sendMoneyBtn = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        idTxt = new javax.swing.JTextField();
 
         sendMoneyModal.setBackground(new java.awt.Color(151, 58, 168));
         sendMoneyModal.setLayout(new java.awt.GridBagLayout());
@@ -102,24 +104,24 @@ public class WalletCard extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         sendMoneyModal.add(destinataryWalletLabel, gridBagConstraints);
 
-        distinataryWalletTxt.setEditable(false);
-        distinataryWalletTxt.setBackground(new java.awt.Color(87, 16, 137));
-        distinataryWalletTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        distinataryWalletTxt.setForeground(new java.awt.Color(255, 255, 255));
-        distinataryWalletTxt.setToolTipText("Nombre de usuario");
-        distinataryWalletTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(87, 16, 137), 1, true));
-        distinataryWalletTxt.setCaretColor(new java.awt.Color(236, 0, 140));
-        distinataryWalletTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
-        distinataryWalletTxt.setName(""); // NOI18N
-        distinataryWalletTxt.setPreferredSize(new java.awt.Dimension(170, 33));
-        distinataryWalletTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
+        destinataryWalletTxt.setEditable(false);
+        destinataryWalletTxt.setBackground(new java.awt.Color(87, 16, 137));
+        destinataryWalletTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        destinataryWalletTxt.setForeground(new java.awt.Color(255, 255, 255));
+        destinataryWalletTxt.setToolTipText("Nombre de usuario");
+        destinataryWalletTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(87, 16, 137), 1, true));
+        destinataryWalletTxt.setCaretColor(new java.awt.Color(236, 0, 140));
+        destinataryWalletTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        destinataryWalletTxt.setName(""); // NOI18N
+        destinataryWalletTxt.setPreferredSize(new java.awt.Dimension(170, 33));
+        destinataryWalletTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        sendMoneyModal.add(distinataryWalletTxt, gridBagConstraints);
+        sendMoneyModal.add(destinataryWalletTxt, gridBagConstraints);
 
         remitentWalletLabel.setBackground(new java.awt.Color(255, 255, 255));
         remitentWalletLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -208,35 +210,33 @@ public class WalletCard extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         sendMoneyModal.add(jScrollPane1, gridBagConstraints);
 
-        moneyTxt1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        moneyTxt1.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
+        moneyTxtModal.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        moneyTxtModal.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        sendMoneyModal.add(moneyTxt1, gridBagConstraints);
+        sendMoneyModal.add(moneyTxtModal, gridBagConstraints);
 
-        transactionSuccesfull.setBackground(new java.awt.Color(192, 82, 153));
+        transactionSuccesfull.setBackground(new java.awt.Color(255, 255, 255));
         transactionSuccesfull.setMaximumSize(new java.awt.Dimension(300, 100));
         transactionSuccesfull.setMinimumSize(new java.awt.Dimension(300, 100));
         transactionSuccesfull.setPreferredSize(new java.awt.Dimension(300, 100));
         transactionSuccesfull.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("¡¡Transacción éxitosa!!");
         transactionSuccesfull.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 20));
 
-        transactionFailPanel.setBackground(new java.awt.Color(192, 82, 153));
+        transactionFailPanel.setBackground(new java.awt.Color(255, 255, 255));
         transactionFailPanel.setMaximumSize(new java.awt.Dimension(300, 100));
         transactionFailPanel.setMinimumSize(new java.awt.Dimension(300, 100));
         transactionFailPanel.setPreferredSize(new java.awt.Dimension(300, 100));
         transactionFailPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Saldo insuficiente");
+        jLabel4.setText("¡¡Saldo insuficiente!!");
         transactionFailPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 20));
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -249,49 +249,58 @@ public class WalletCard extends javax.swing.JPanel {
         nicknameTxt.setBackground(new java.awt.Color(255, 255, 255));
         nicknameTxt.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         nicknameTxt.setForeground(new java.awt.Color(27, 20, 100));
+        nicknameTxt.setAutoscrolls(false);
         nicknameTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
         nicknameTxt.setMinimumSize(new java.awt.Dimension(60, 32));
         nicknameTxt.setPreferredSize(new java.awt.Dimension(60, 32));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipadx = 178;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(38, 61, 0, 69);
         add(nicknameTxt, gridBagConstraints);
 
         idLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         idLabel.setForeground(new java.awt.Color(71, 18, 107));
+        idLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         idLabel.setText("#ID");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 24;
+        gridBagConstraints.ipady = 12;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 30);
+        gridBagConstraints.insets = new java.awt.Insets(15, 58, 0, 0);
         add(idLabel, gridBagConstraints);
 
         moneyLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         moneyLabel.setForeground(new java.awt.Color(71, 18, 107));
+        moneyLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         moneyLabel.setText("Dinero");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipady = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 30);
+        gridBagConstraints.insets = new java.awt.Insets(7, 58, 0, 0);
         add(moneyLabel, gridBagConstraints);
 
         nicknameLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         nicknameLabel.setForeground(new java.awt.Color(71, 18, 107));
+        nicknameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nicknameLabel.setText("Apodo");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 1;
+        gridBagConstraints.ipady = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 30);
+        gridBagConstraints.insets = new java.awt.Insets(39, 58, 0, 0);
         add(nicknameLabel, gridBagConstraints);
 
         moneyTxt.setBackground(new java.awt.Color(255, 255, 255));
@@ -302,35 +311,20 @@ public class WalletCard extends javax.swing.JPanel {
         moneyTxt.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipadx = 194;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(6, 61, 0, 69);
         add(moneyTxt, gridBagConstraints);
-
-        idTxt.setBackground(new java.awt.Color(255, 255, 255));
-        idTxt.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        idTxt.setForeground(new java.awt.Color(27, 20, 100));
-        idTxt.setText("id");
-        idTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
-        idTxt.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 181;
+        gridBagConstraints.ipady = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(idTxt, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 182;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 123, 0, 97);
+        gridBagConstraints.insets = new java.awt.Insets(18, 65, 0, 0);
         add(jSeparator2, gridBagConstraints);
 
         sendMoneyBtn.setBackground(new java.awt.Color(216, 49, 91));
@@ -343,24 +337,51 @@ public class WalletCard extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 61, 24, 0);
         add(sendMoneyBtn, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 182;
-        gridBagConstraints.ipady = 1;
+        gridBagConstraints.ipadx = 181;
+        gridBagConstraints.ipady = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 123, 0, 97);
+        gridBagConstraints.insets = new java.awt.Insets(11, 61, 0, 0);
         add(jSeparator3, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 181;
+        gridBagConstraints.ipady = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(11, 61, 0, 0);
+        add(jSeparator4, gridBagConstraints);
+
+        idTxt.setEditable(false);
+        idTxt.setBackground(new java.awt.Color(255, 255, 255));
+        idTxt.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        idTxt.setForeground(new java.awt.Color(27, 20, 100));
+        idTxt.setText("id");
+        idTxt.setAutoscrolls(false);
+        idTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
+        idTxt.setMinimumSize(new java.awt.Dimension(60, 32));
+        idTxt.setPreferredSize(new java.awt.Dimension(60, 32));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipadx = 178;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 61, 0, 69);
+        add(idTxt, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void sendMoneyBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendMoneyBtnMouseClicked
-        distinataryWalletTxt.setText(wallet.getID());
+        destinataryWalletTxt.setText(wallet.getID());
         for (Wallet wallet1 : account.getWallets()) {
             if (!wallet1.getID().equals(wallet.getID())) {
                 remitentWalletCombox.addItem(wallet1.getID());
@@ -372,20 +393,22 @@ public class WalletCard extends javax.swing.JPanel {
     private void sendMoneyModalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendMoneyModalBtnActionPerformed
 
         String walletId = (String) remitentWalletCombox.getSelectedItem();
-        Wallet remitent = accountController.getWallet(walletId);
-        Double money = Double.parseDouble(moneyTxt1.getValue().toString());
-        System.out.println(WalletCard.class.getName() + " MENSAJE " + remitent.getID() + " - " + wallet.getID() + " - " + money);
-        Transaction transaction = new Transaction(remitent, wallet, money, messageTxt.getText());
+        Wallet remitent = accountController.getWalletById(walletId);
+        Double money = Double.parseDouble(moneyTxtModal.getValue().toString());
+        
+        Transaction transaction = new Transaction(remitent, wallet, money, LocalDate.now(), messageTxt.getText());
 
-        if (accountController.getTransactionController().add(transaction) == 0) {
+        if (accountController.getTransactionController().addNewTransaction(transaction)) {
 
             Modal modal = new Modal(parent, "Transacción éxitosa", true, transactionSuccesfull);
             transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
             transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
             double moneyTemp = Double.parseDouble(moneyTxt.getText()) - transaction.getMoney();
-            moneyTxt.setText(moneyTemp + "");
-
+            
             this.removeAll();
+            
+            moneyTxt.setText(moneyTemp + "");
+            
         } else {
             Modal modal = new Modal(parent, "Transacción errada", true, transactionFailPanel);
         }
@@ -394,18 +417,19 @@ public class WalletCard extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel destinataryWalletLabel;
-    private javax.swing.JTextField distinataryWalletTxt;
+    private javax.swing.JTextField destinataryWalletTxt;
     private javax.swing.JLabel idLabel;
-    private javax.swing.JLabel idTxt;
+    private javax.swing.JTextField idTxt;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTextArea messageTxt;
     private javax.swing.JLabel moneyLabel;
     private javax.swing.JLabel moneyTxt;
-    private javax.swing.JSpinner moneyTxt1;
+    private javax.swing.JSpinner moneyTxtModal;
     private javax.swing.JLabel nicknameLabel;
     private javax.swing.JTextField nicknameTxt;
     private javax.swing.JComboBox<String> remitentWalletCombox;

@@ -42,8 +42,6 @@ public class LoginView extends javax.swing.JFrame {
         loginUserLabel1 = new javax.swing.JLabel();
         loginUserLabel3 = new javax.swing.JLabel();
         signUpBtn = new javax.swing.JButton();
-        changeSaved = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         formZonePanel = new javax.swing.JPanel();
         formPanel = new javax.swing.JPanel();
         loginFormPanel = new javax.swing.JPanel();
@@ -149,17 +147,6 @@ public class LoginView extends javax.swing.JFrame {
             }
         });
         signUpPanel.add(signUpBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 89, -1));
-
-        changeSaved.setBackground(new java.awt.Color(255, 255, 255));
-        changeSaved.setMaximumSize(new java.awt.Dimension(320, 95));
-        changeSaved.setMinimumSize(new java.awt.Dimension(320, 95));
-        changeSaved.setPreferredSize(new java.awt.Dimension(320, 95));
-        changeSaved.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel4.setText("Contraseña o usuario incorrectos :(");
-        changeSaved.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 20));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bock Pay | Login");
@@ -347,7 +334,7 @@ public class LoginView extends javax.swing.JFrame {
         } else {
             if (accountController.verifyUsername(username)) {
                 
-                int id = accountController.getAccountList().getSize() + 1;
+                int id = accountController.getAccountList().getSize();
                 
                 Account account = new Account(id, username, password);
                 
@@ -358,18 +345,17 @@ public class LoginView extends javax.swing.JFrame {
                 mainView.setVisible(true);
                 
             } else {
-                Modal modal = new Modal(this, "Nombre ya existe", true, usernameErrorPanel);
+                Modal modal = new Modal(this, "Usuario ya registrado", true, usernameErrorPanel);
             }
         }
     }//GEN-LAST:event_signUpBtnActionPerformed
 
     private void loginUserTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginUserTxtActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_loginUserTxtActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField SignUpUsernameTxt;
-    private javax.swing.JPanel changeSaved;
     private javax.swing.JPanel formPanel;
     private javax.swing.JPanel formZonePanel;
     private javax.swing.JLabel imageLabel;
@@ -377,7 +363,6 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton loginCreateAccountBtn;
     private javax.swing.JButton loginEnterBtn;
     private javax.swing.JPanel loginErrorPanel;

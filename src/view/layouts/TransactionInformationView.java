@@ -25,7 +25,7 @@ public class TransactionInformationView extends javax.swing.JPanel {
     private final AccountController accountController;
 
     /**
-     * Creates new form DataView
+     * Creates new form TransactionInformationView
      *
      * @param account
      * @param accountController
@@ -36,9 +36,13 @@ public class TransactionInformationView extends javax.swing.JPanel {
         this.accountController = accountController;
         this.parent = parent;
         initComponents();
-        loadWalletsUser();
+        updateWalletsUser();
     }
 
+    /**
+     *
+     * @param transactions
+     */
     private void loadTransactions(List<Transaction> transactions) {
         infoPanel.removeAll();
 
@@ -49,13 +53,30 @@ public class TransactionInformationView extends javax.swing.JPanel {
         infoPanel.validate();
         infoPanel.repaint();
     }
-    
-    private void loadWalletsUser(){
+
+    public void updateWalletsUser() {
         for (Wallet wallet : account.getWallets()) {
-            walletsUser.addItem(wallet.getID());
+            if (!existOnCombox(wallet)) {
+                walletsUserCombox.addItem(wallet.getID());
+            }
         }
     }
-    
+
+    /**
+     * Método para que no se estén agregando las carteras después de que ya
+     * están en el Combox
+     *
+     * @param wallet
+     * @return
+     */
+    private boolean existOnCombox(Wallet wallet) {
+        for (int i = 0; i < walletsUserCombox.getItemCount(); i++) {
+            if (wallet.getID().equals(walletsUserCombox.getItemAt(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,55 +88,51 @@ public class TransactionInformationView extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        titlePanel = new javax.swing.JPanel();
-        idEmptyPanel = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         transactionWalletNotFoundPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        userWalletsNoTransactionsPanel = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         bodyPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         transactionByIdBtn = new javax.swing.JButton();
-        walletsUser = new javax.swing.JComboBox<>();
+        walletsUserCombox = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
         infoPanel = new javax.swing.JPanel();
-
-        titlePanel.setBackground(new java.awt.Color(102, 204, 255));
-        titlePanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(27, 20, 100), 1, true));
-        titlePanel.setLayout(new java.awt.GridBagLayout());
-
-        idEmptyPanel.setBackground(new java.awt.Color(192, 82, 153));
-        idEmptyPanel.setMaximumSize(new java.awt.Dimension(300, 100));
-        idEmptyPanel.setMinimumSize(new java.awt.Dimension(300, 100));
-        idEmptyPanel.setPreferredSize(new java.awt.Dimension(300, 100));
-        idEmptyPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("¡¡No hay transacciones de billetera que buscar!!");
-        idEmptyPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 330, 20));
 
         transactionWalletNotFoundPanel.setBackground(new java.awt.Color(255, 255, 255));
         transactionWalletNotFoundPanel.setMaximumSize(new java.awt.Dimension(281, 92));
         transactionWalletNotFoundPanel.setMinimumSize(new java.awt.Dimension(281, 92));
         transactionWalletNotFoundPanel.setPreferredSize(new java.awt.Dimension(281, 92));
-        transactionWalletNotFoundPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel4.setText("¡¡No se encontraron transacctiones en las que participe esta billetera!!");
-        transactionWalletNotFoundPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
+        jLabel4.setText("¡¡No se encontraron transacctiones en las que");
 
-        userWalletsNoTransactionsPanel.setBackground(new java.awt.Color(255, 255, 255));
-        userWalletsNoTransactionsPanel.setMaximumSize(new java.awt.Dimension(281, 92));
-        userWalletsNoTransactionsPanel.setMinimumSize(new java.awt.Dimension(281, 92));
-        userWalletsNoTransactionsPanel.setPreferredSize(new java.awt.Dimension(281, 92));
-        userWalletsNoTransactionsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel7.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel7.setText(" participe esta billetera!!");
 
-        jLabel5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel5.setText("¡¡No se encontraron transacctiones en las que participe esta billetera!!");
-        userWalletsNoTransactionsPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
+        javax.swing.GroupLayout transactionWalletNotFoundPanelLayout = new javax.swing.GroupLayout(transactionWalletNotFoundPanel);
+        transactionWalletNotFoundPanel.setLayout(transactionWalletNotFoundPanelLayout);
+        transactionWalletNotFoundPanelLayout.setHorizontalGroup(
+            transactionWalletNotFoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(transactionWalletNotFoundPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(11, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transactionWalletNotFoundPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
+        );
+        transactionWalletNotFoundPanelLayout.setVerticalGroup(
+            transactionWalletNotFoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(transactionWalletNotFoundPanelLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
-        bodyPanel.setBackground(new java.awt.Color(27, 20, 100));
+        bodyPanel.setBackground(new java.awt.Color(71, 18, 107));
         bodyPanel.setLayout(new java.awt.GridBagLayout());
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
@@ -123,9 +140,9 @@ public class TransactionInformationView extends javax.swing.JPanel {
         jLabel2.setText("Id de la billetera");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 151, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 242, 0, 0);
         bodyPanel.add(jLabel2, gridBagConstraints);
 
         transactionByIdBtn.setBackground(new java.awt.Color(216, 49, 91));
@@ -147,29 +164,41 @@ public class TransactionInformationView extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 6, 4, 242);
+        gridBagConstraints.insets = new java.awt.Insets(6, 18, 6, 0);
         bodyPanel.add(transactionByIdBtn, gridBagConstraints);
 
-        walletsUser.setBackground(new java.awt.Color(151, 58, 168));
-        walletsUser.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        walletsUser.setForeground(new java.awt.Color(255, 255, 255));
-        walletsUser.addActionListener(new java.awt.event.ActionListener() {
+        walletsUserCombox.setBackground(new java.awt.Color(151, 58, 168));
+        walletsUserCombox.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        walletsUserCombox.setForeground(new java.awt.Color(255, 255, 255));
+        walletsUserCombox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                walletsUserActionPerformed(evt);
+                walletsUserComboxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 121;
-        gridBagConstraints.ipady = 1;
+        gridBagConstraints.ipadx = 114;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 4, 0, 0);
-        bodyPanel.add(walletsUser, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(7, 10, 0, 0);
+        bodyPanel.add(walletsUserCombox, gridBagConstraints);
+
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 209, 102));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Mis Transacciones");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipadx = 693;
+        gridBagConstraints.ipady = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        bodyPanel.add(jLabel6, gridBagConstraints);
 
         infoPanel.setLayout(new javax.swing.BoxLayout(infoPanel, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -183,44 +212,42 @@ public class TransactionInformationView extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(bodyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bodyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void transactionByIdBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transactionByIdBtnMouseClicked
-        
-            Wallet wallet = accountController.getWallet((String)walletsUser.getSelectedItem());
-            List<Transaction> transactionByWallet = accountController.getHistorial(wallet);
-            if (transactionByWallet.getSize() != 0) {
-                loadTransactions(transactionByWallet);
-            } else {
-                Modal modal = new Modal(parent, "Sin transacciones", true, transactionWalletNotFoundPanel);
-            }
+
+        Wallet wallet = accountController.getWalletById((String) walletsUserCombox.getSelectedItem());
+        List<Transaction> transactionByWallet = accountController.getHistorial(wallet);
+        if (transactionByWallet.getSize() != 0) {
+            loadTransactions(transactionByWallet);
+        } else {
+            Modal modal = new Modal(parent, "Sin transacciones", true, transactionWalletNotFoundPanel);
+        }
+
     }//GEN-LAST:event_transactionByIdBtnMouseClicked
 
     private void transactionByIdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionByIdBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_transactionByIdBtnActionPerformed
 
-    private void walletsUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_walletsUserActionPerformed
+    private void walletsUserComboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_walletsUserComboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_walletsUserActionPerformed
+    }//GEN-LAST:event_walletsUserComboxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyPanel;
-    private javax.swing.JPanel idEmptyPanel;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel titlePanel;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JButton transactionByIdBtn;
     private javax.swing.JPanel transactionWalletNotFoundPanel;
-    private javax.swing.JPanel userWalletsNoTransactionsPanel;
-    private javax.swing.JComboBox<String> walletsUser;
+    private javax.swing.JComboBox<String> walletsUserCombox;
     // End of variables declaration//GEN-END:variables
 }

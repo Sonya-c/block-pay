@@ -27,6 +27,8 @@ public class ListNode<T> extends List<T> {
         this.info = info;
     }
 
+    /* ======= GETTERS AND SETTERS =======*/
+    
     public T getInfo() {
         return this.info;
     }
@@ -38,8 +40,7 @@ public class ListNode<T> extends List<T> {
     public void setInfo(T info) {
         this.info = info;
     }
-
-    /* ======= GETTERS AND SETTERS =======*/
+    
     public ListNode<T> getNext() {
         return this.next;
     }
@@ -76,6 +77,11 @@ public class ListNode<T> extends List<T> {
         this.down = down;
     }
     
+    //---
+    /**
+     * 
+     * @param info 
+     */
     @Override
     public void add(T info){
         ListNode<T> node = new ListNode<>(info);
