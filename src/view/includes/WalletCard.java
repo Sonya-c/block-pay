@@ -633,8 +633,8 @@ public class WalletCard extends javax.swing.JPanel {
 
     private void sendMoneyToWalletModalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendMoneyToWalletModalBtnActionPerformed
 
-        String walletId = (String) remitentWalletCombox.getSelectedItem();
-        Wallet remitent = accountController.getWalletById(walletId);
+        String walletNickname = (String) remitentWalletCombox.getSelectedItem();
+        Wallet remitent = account.getWalletByNickname(walletNickname);
         Double money = Double.parseDouble(moneyTxtModal.getValue().toString());
 
         Transaction transaction = new Transaction(remitent, wallet, money, LocalDate.now(), messageTxt.getText());

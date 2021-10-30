@@ -54,26 +54,6 @@ public class AccountController {
 
     /**
      *
-     * @param nickname
-     * @return
-     */
-    public Wallet getWalletByNickname(String nickname) {
-        if (nickname != null) {
-            for (Account account : accountList) {
-                for (Wallet wallet : account.getWallets()) {
-                    if (nickname.equals(wallet.getNickname())) {
-                        return wallet;
-                    }
-                }
-            }
-        } else {
-            System.out.println(AccountController.class.toString() + " getWalletByNickname(nickname) ERROR null nickname");
-        }
-        return null;
-    }
-
-    /**
-     *
      * @param idAccount
      * @return
      */

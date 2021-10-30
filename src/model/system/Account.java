@@ -31,9 +31,7 @@ public class Account {
         wallets = new List<>();
     }
 
-    
     /* ======= GETTERS AND SETTERS =======*/
-    
     public int getID() {
         return ID;
     }
@@ -43,8 +41,8 @@ public class Account {
     }
 
     /**
-     * 
-     * @param userName 
+     *
+     * @param userName
      */
     public void setUserName(String userName) {
         this.userName = userName;
@@ -53,10 +51,10 @@ public class Account {
     public String getPassword() {
         return password;
     }
-    
+
     /**
-     * 
-     * @param password 
+     *
+     * @param password
      */
     public void setPassword(String password) {
         this.password = password;
@@ -79,11 +77,29 @@ public class Account {
         }
         return null;
     }
-    //---
-    
+
     /**
-     * 
-     * @param wallet 
+     *
+     * @param nickname
+     * @return
+     */
+    public Wallet getWalletByNickname(String nickname) {
+        if (nickname != null) {
+            for (Wallet wallet : wallets) {
+                if (nickname.equals(wallet.getNickname())) {
+                    return wallet;
+                }
+            }
+        } else {
+            System.out.println(Account.class.toString() + " getWalletByNickname(nickname) ERROR null nickname");
+        }
+        return null;
+    }
+
+    //---
+    /**
+     *
+     * @param wallet
      */
     public void addWallet(Wallet wallet) {
         if (!walletExists(wallet)) {
@@ -91,11 +107,11 @@ public class Account {
             System.out.println(Account.class.toString() + " addWallet(wallet) MENSAJE se agregó " + wallet.getID() + " a la cuenta " + this.userName);
         }
     }
-    
+
     /**
-     * 
+     *
      * @param wallet
-     * @return 
+     * @return
      */
     public boolean walletExists(Wallet wallet) {
         for (Wallet w : wallets) {
