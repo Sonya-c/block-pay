@@ -130,7 +130,7 @@ public class LoginView extends javax.swing.JFrame {
         SignUpUsernameTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
         SignUpUsernameTxt.setName(""); // NOI18N
         SignUpUsernameTxt.setPreferredSize(new java.awt.Dimension(170, 33));
-        SignUpUsernameTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
+        SignUpUsernameTxt.setSelectionColor(new java.awt.Color(234, 105, 139));
         signUpPanel.add(SignUpUsernameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, -1));
 
         signUpPasswordTxt.setBackground(new java.awt.Color(87, 16, 137));
@@ -142,7 +142,7 @@ public class LoginView extends javax.swing.JFrame {
         signUpPasswordTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
         signUpPasswordTxt.setName(""); // NOI18N
         signUpPasswordTxt.setPreferredSize(new java.awt.Dimension(170, 33));
-        signUpPasswordTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
+        signUpPasswordTxt.setSelectionColor(new java.awt.Color(234, 105, 139));
         signUpPanel.add(signUpPasswordTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
 
         loginUserLabel1.setBackground(new java.awt.Color(30, 27, 24));
@@ -218,6 +218,8 @@ public class LoginView extends javax.swing.JFrame {
         minimizateBtn.setBorderPainted(false);
         minimizateBtn.setContentAreaFilled(false);
         minimizateBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        minimizateBtn.setFocusPainted(false);
+        minimizateBtn.setFocusable(false);
         minimizateBtn.setPreferredSize(new java.awt.Dimension(20, 20));
         minimizateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,6 +234,8 @@ public class LoginView extends javax.swing.JFrame {
         closeBtn.setBorderPainted(false);
         closeBtn.setContentAreaFilled(false);
         closeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        closeBtn.setFocusPainted(false);
+        closeBtn.setFocusable(false);
         closeBtn.setPreferredSize(new java.awt.Dimension(20, 20));
         closeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -291,7 +295,7 @@ public class LoginView extends javax.swing.JFrame {
         loginUserTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
         loginUserTxt.setName(""); // NOI18N
         loginUserTxt.setPreferredSize(new java.awt.Dimension(170, 33));
-        loginUserTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
+        loginUserTxt.setSelectionColor(new java.awt.Color(234, 105, 139));
         loginUserTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginUserTxtActionPerformed(evt);
@@ -313,7 +317,7 @@ public class LoginView extends javax.swing.JFrame {
         loginPasswordTxt.setMargin(new java.awt.Insets(5, 5, 5, 5));
         loginPasswordTxt.setMinimumSize(new java.awt.Dimension(170, 33));
         loginPasswordTxt.setPreferredSize(new java.awt.Dimension(170, 33));
-        loginPasswordTxt.setSelectionColor(new java.awt.Color(236, 0, 140));
+        loginPasswordTxt.setSelectionColor(new java.awt.Color(234, 105, 139));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -388,14 +392,18 @@ public class LoginView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void goMain(Account account) {
+        this.setVisible(false);
+        MainView mainView = new MainView(account, accountController);
+        mainView.setVisible(true);
+    }
+    
     private void loginEnterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginEnterBtnActionPerformed
         String username = loginUserTxt.getText().trim();
         String password = loginPasswordTxt.getText();
         
         if (accountController.verifyPassword(username, password)) {
-            this.setVisible(false);
-            MainView mainView = new MainView(accountController.getAccount(username), accountController);
-            mainView.setVisible(true);
+            goMain(accountController.getAccount(username));
         } else {
             Modal modal = new Modal(this, "Error login", true, loginErrorPanel);
         }
@@ -427,9 +435,7 @@ public class LoginView extends javax.swing.JFrame {
                 
                 accountController.addNewAccount(account);
                 
-                this.setVisible(false);
-                MainView mainView = new MainView(account, accountController);
-                mainView.setVisible(true);
+                goMain(account);
                 
             } else {
                 Modal modal = new Modal(this, "Usuario ya registrado", true, usernameErrorPanel);

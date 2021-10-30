@@ -2,6 +2,7 @@ package view;
 
 import controller.AccountController;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Frame;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -30,8 +31,12 @@ public class MainView extends javax.swing.JFrame {
 
     private int xx;
     private int xy;
+
+    private final Color hightligthColor = new Color(255,209,102);
+    private final Color defautColor = new Color(71,18,107);
     
     public MainView(Account account, AccountController accountController) {
+                
         this.indexView = new IndexView(this, account, accountController);
         this.profileView = new ProfileView(account);
         this.transactionInformationView = new TransactionInformationView(account, accountController, this);
@@ -49,6 +54,7 @@ public class MainView extends javax.swing.JFrame {
         buttons.add(indexBtn);
         buttons.add(walletsBtn);
         buttons.add(transactionsBtn);
+        
         setUndecorated(true);
         setIconImage((new ImageIcon(getClass().getResource("/images/logo.png"))).getImage());
     }
@@ -81,8 +87,9 @@ public class MainView extends javax.swing.JFrame {
         setTitle("Block Pay | Home");
         setExtendedState(6);
         setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        setMinimumSize(new java.awt.Dimension(800, 500));
+        setMinimumSize(new java.awt.Dimension(810, 540));
         setName("Block Pay main Panel"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(810, 540));
 
         parentPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 10, 84)));
         parentPanel.setLayout(new java.awt.BorderLayout());
@@ -115,6 +122,8 @@ public class MainView extends javax.swing.JFrame {
         titleLabel.setText("Block Pay | Home");
         titleBar.add(titleLabel, java.awt.BorderLayout.CENTER);
 
+        actionPanel.setDoubleBuffered(false);
+        actionPanel.setFocusable(false);
         actionPanel.setOpaque(false);
 
         minimizateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizate-icon.png"))); // NOI18N
@@ -122,7 +131,7 @@ public class MainView extends javax.swing.JFrame {
         minimizateBtn.setBorderPainted(false);
         minimizateBtn.setContentAreaFilled(false);
         minimizateBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        minimizateBtn.setOpaque(false);
+        minimizateBtn.setFocusable(false);
         minimizateBtn.setPreferredSize(new java.awt.Dimension(20, 20));
         minimizateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,7 +145,7 @@ public class MainView extends javax.swing.JFrame {
         maximixateBtn.setBorderPainted(false);
         maximixateBtn.setContentAreaFilled(false);
         maximixateBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        maximixateBtn.setOpaque(false);
+        maximixateBtn.setFocusable(false);
         maximixateBtn.setPreferredSize(new java.awt.Dimension(20, 20));
         maximixateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,7 +160,7 @@ public class MainView extends javax.swing.JFrame {
         closeBtn.setBorderPainted(false);
         closeBtn.setContentAreaFilled(false);
         closeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        closeBtn.setOpaque(false);
+        closeBtn.setFocusable(false);
         closeBtn.setPreferredSize(new java.awt.Dimension(20, 20));
         closeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,8 +173,7 @@ public class MainView extends javax.swing.JFrame {
 
         parentPanel.add(titleBar, java.awt.BorderLayout.PAGE_START);
 
-        menuBarPanel.setBackground(new java.awt.Color(255, 255, 255));
-        menuBarPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(229, 226, 244), 1, true));
+        menuBarPanel.setBackground(new java.awt.Color(71, 18, 107));
         menuBarPanel.setMinimumSize(new java.awt.Dimension(60, 302));
         menuBarPanel.setPreferredSize(new java.awt.Dimension(60, 500));
         menuBarPanel.setLayout(new java.awt.BorderLayout());
@@ -174,12 +182,12 @@ public class MainView extends javax.swing.JFrame {
         mainMenuOptionsPanel.setOpaque(false);
         mainMenuOptionsPanel.setLayout(new javax.swing.BoxLayout(mainMenuOptionsPanel, javax.swing.BoxLayout.Y_AXIS));
 
-        profileBtn.setBackground(new java.awt.Color(255, 255, 255));
+        profileBtn.setBackground(new java.awt.Color(71, 18, 107));
         profileBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         profileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user-icon.png"))); // NOI18N
         profileBtn.setToolTipText("Perfil");
         profileBtn.setAlignmentY(0.0F);
-        profileBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        profileBtn.setBorder(null);
         profileBtn.setContentAreaFilled(false);
         profileBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         profileBtn.setFocusPainted(false);
@@ -202,7 +210,7 @@ public class MainView extends javax.swing.JFrame {
         indexBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home-icon.png"))); // NOI18N
         indexBtn.setToolTipText("Inicio");
         indexBtn.setAlignmentY(0.0F);
-        indexBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 209, 102), 2));
+        indexBtn.setBorder(null);
         indexBtn.setContentAreaFilled(false);
         indexBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         indexBtn.setFocusPainted(false);
@@ -218,12 +226,12 @@ public class MainView extends javax.swing.JFrame {
         });
         mainMenuOptionsPanel.add(indexBtn);
 
-        walletsBtn.setBackground(new java.awt.Color(255, 255, 255));
+        walletsBtn.setBackground(new java.awt.Color(71, 18, 107));
         walletsBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         walletsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/wallet-icon.png"))); // NOI18N
         walletsBtn.setToolTipText("Billeteras");
         walletsBtn.setAlignmentY(0.0F);
-        walletsBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        walletsBtn.setBorder(null);
         walletsBtn.setContentAreaFilled(false);
         walletsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         walletsBtn.setFocusPainted(false);
@@ -239,12 +247,12 @@ public class MainView extends javax.swing.JFrame {
         });
         mainMenuOptionsPanel.add(walletsBtn);
 
-        transactionsBtn.setBackground(new java.awt.Color(255, 255, 255));
+        transactionsBtn.setBackground(new java.awt.Color(71, 18, 107));
         transactionsBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         transactionsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/graph-icon.png"))); // NOI18N
         transactionsBtn.setToolTipText("Transacciones");
         transactionsBtn.setAlignmentY(0.0F);
-        transactionsBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        transactionsBtn.setBorder(null);
         transactionsBtn.setContentAreaFilled(false);
         transactionsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         transactionsBtn.setFocusPainted(false);
@@ -264,14 +272,13 @@ public class MainView extends javax.swing.JFrame {
 
         exitBtn.setBackground(new java.awt.Color(255, 255, 255));
         exitBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close-icon.png"))); // NOI18N
-        exitBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 5, true));
+        exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Close-icon-circle.png"))); // NOI18N
+        exitBtn.setBorder(null);
         exitBtn.setContentAreaFilled(false);
         exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exitBtn.setFocusPainted(false);
         exitBtn.setMaximumSize(new java.awt.Dimension(60, 60));
         exitBtn.setMinimumSize(new java.awt.Dimension(55, 60));
-        exitBtn.setOpaque(true);
         exitBtn.setPreferredSize(new java.awt.Dimension(55, 60));
         exitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,7 +289,7 @@ public class MainView extends javax.swing.JFrame {
 
         parentPanel.add(menuBarPanel, java.awt.BorderLayout.WEST);
 
-        bodyPanel.setBackground(new java.awt.Color(245, 244, 251));
+        bodyPanel.setBackground(new java.awt.Color(255, 255, 255));
         bodyPanel.setMinimumSize(new java.awt.Dimension(740, 500));
         bodyPanel.setPreferredSize(new java.awt.Dimension(740, 500));
         bodyPanel.setLayout(new java.awt.BorderLayout());
@@ -296,8 +303,7 @@ public class MainView extends javax.swing.JFrame {
 
     private void defaultButtonBorder() {
         for (javax.swing.JButton button : buttons) {
-            button.setBorder(defaultBorder);
-            button.setBackground(Color.white);
+            button.setBackground(defautColor);
         }
     }
     
@@ -309,8 +315,7 @@ public class MainView extends javax.swing.JFrame {
         setTitle("Block Pay | Perfil");
         titleLabel.setText("Block Pay | Perfil");
 
-        profileBtn.setBorder(hightlightborder);
-        profileBtn.setBackground(hightlightcolor);
+        profileBtn.setBackground(hightligthColor);
 
         bodyPanel.validate();
         bodyPanel.repaint();
@@ -326,8 +331,7 @@ public class MainView extends javax.swing.JFrame {
         setTitle("Block Pay | Home");
         titleLabel.setText("Block Pay | Home");
         
-        indexBtn.setBorder(hightlightborder);
-        indexBtn.setBackground(hightlightcolor);
+        indexBtn.setBackground(hightligthColor);
 
         bodyPanel.validate();
         bodyPanel.repaint();
@@ -341,8 +345,7 @@ public class MainView extends javax.swing.JFrame {
         setTitle("Block Pay | Billeteras");
         titleLabel.setText("Block Pay | Home");
         
-        walletsBtn.setBorder(hightlightborder);
-        walletsBtn.setBackground(hightlightcolor);
+        walletsBtn.setBackground(hightligthColor);
 
         bodyPanel.validate();
         bodyPanel.repaint();
@@ -362,8 +365,7 @@ public class MainView extends javax.swing.JFrame {
         setTitle("Block Pay | Transacciones");
         titleLabel.setText("Block Pay | Transacciones");
         
-        transactionsBtn.setBorder(hightlightborder);
-        transactionsBtn.setBackground(hightlightcolor);
+        transactionsBtn.setBackground(hightligthColor);
 
         bodyPanel.validate();
         bodyPanel.repaint();
@@ -409,10 +411,6 @@ public class MainView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_titleBarMouseClicked
 
-    private final java.awt.Color hightlightcolor = new java.awt.Color(255,209,102);
-    private final javax.swing.border.LineBorder defaultBorder = new javax.swing.border.LineBorder(Color.white, 2, true);
-    private final javax.swing.border.LineBorder hightlightborder = new javax.swing.border.LineBorder(hightlightcolor, 2, true);
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel actionPanel;
     private javax.swing.JPanel bodyPanel;

@@ -6,7 +6,7 @@
 package view.layouts;
 
 import controller.AccountController;
-import java.awt.Dimension;
+import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import model.list.List;
 import model.system.Account;
@@ -40,6 +40,7 @@ public class TransactionInformationView extends javax.swing.JPanel {
         this.parent = parent;
         initComponents();
         updateWalletsUser();
+        transactionsPanel.setLayout(new WrapLayout(FlowLayout.CENTER, 20, 20));
     }
 
     /**
@@ -53,6 +54,8 @@ public class TransactionInformationView extends javax.swing.JPanel {
             transactionsPanel.add(new TransactionCard(transaction));
         }
 
+        transactionScroll.validate();
+        transactionScroll.repaint();
         transactionsPanel.validate();
         transactionsPanel.repaint();
     }
@@ -89,16 +92,16 @@ public class TransactionInformationView extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         transactionWalletNotFoundPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         headerPanel = new javax.swing.JPanel();
+        titleLabel = new javax.swing.JLabel();
+        activityPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        transactionByIdBtn = new javax.swing.JButton();
         walletsUserCombox = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
+        transactionByIdBtn = new javax.swing.JButton();
         bodyPanel = new javax.swing.JPanel();
         transactionScroll = new javax.swing.JScrollPane();
         transactionsPanel = new javax.swing.JPanel();
@@ -139,18 +142,35 @@ public class TransactionInformationView extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
-        headerPanel.setBackground(new java.awt.Color(71, 18, 107));
-        headerPanel.setLayout(new java.awt.GridBagLayout());
+        headerPanel.setBackground(new java.awt.Color(101, 30, 149));
+        headerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        headerPanel.setLayout(new java.awt.BorderLayout());
+
+        titleLabel.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(255, 209, 102));
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        titleLabel.setText("Mis Transacciones");
+        headerPanel.add(titleLabel, java.awt.BorderLayout.CENTER);
+
+        activityPanel.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Id de la billetera");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 242, 0, 0);
-        headerPanel.add(jLabel2, gridBagConstraints);
+        activityPanel.add(jLabel2);
+
+        walletsUserCombox.setBackground(new java.awt.Color(151, 58, 168));
+        walletsUserCombox.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        walletsUserCombox.setForeground(new java.awt.Color(255, 255, 255));
+        walletsUserCombox.setToolTipText("Mis billeteras");
+        walletsUserCombox.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        walletsUserCombox.setPreferredSize(new java.awt.Dimension(150, 31));
+        walletsUserCombox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                walletsUserComboxActionPerformed(evt);
+            }
+        });
+        activityPanel.add(walletsUserCombox);
 
         transactionByIdBtn.setBackground(new java.awt.Color(216, 49, 91));
         transactionByIdBtn.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -170,45 +190,9 @@ public class TransactionInformationView extends javax.swing.JPanel {
                 transactionByIdBtnActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 18, 6, 0);
-        headerPanel.add(transactionByIdBtn, gridBagConstraints);
+        activityPanel.add(transactionByIdBtn);
 
-        walletsUserCombox.setBackground(new java.awt.Color(151, 58, 168));
-        walletsUserCombox.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        walletsUserCombox.setForeground(new java.awt.Color(255, 255, 255));
-        walletsUserCombox.setToolTipText("Mis billeteras");
-        walletsUserCombox.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        walletsUserCombox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                walletsUserComboxActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 114;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 10, 0, 0);
-        headerPanel.add(walletsUserCombox, gridBagConstraints);
-
-        jLabel6.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 209, 102));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Mis Transacciones");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.ipadx = 693;
-        gridBagConstraints.ipady = 13;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        headerPanel.add(jLabel6, gridBagConstraints);
+        headerPanel.add(activityPanel, java.awt.BorderLayout.LINE_END);
 
         add(headerPanel, java.awt.BorderLayout.NORTH);
 
@@ -217,13 +201,14 @@ public class TransactionInformationView extends javax.swing.JPanel {
 
         transactionScroll.setBackground(new java.awt.Color(255, 255, 255));
         transactionScroll.setBorder(null);
+        transactionScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         transactionsPanel.setBackground(new java.awt.Color(255, 255, 255));
         transactionsPanel.setAutoscrolls(true);
         transactionsPanel.setMaximumSize(new java.awt.Dimension(50, 50));
         transactionsPanel.setMinimumSize(new java.awt.Dimension(0, 0));
         transactionsPanel.setPreferredSize(new java.awt.Dimension(0, 0));
-        transactionsPanel.setLayout(new javax.swing.OverlayLayout(transactionsPanel));
+        transactionsPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 10));
         transactionScroll.setViewportView(transactionsPanel);
 
         bodyPanel.add(transactionScroll, java.awt.BorderLayout.CENTER);
@@ -253,12 +238,13 @@ public class TransactionInformationView extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel activityPanel;
     private javax.swing.JPanel bodyPanel;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel titleLabel;
     private javax.swing.JButton transactionByIdBtn;
     private javax.swing.JScrollPane transactionScroll;
     private javax.swing.JPanel transactionWalletNotFoundPanel;

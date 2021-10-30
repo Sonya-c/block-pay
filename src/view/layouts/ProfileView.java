@@ -39,6 +39,7 @@ public class ProfileView extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         changedSavedPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        parentPanel = new javax.swing.JPanel();
         bodyPanel = new javax.swing.JPanel();
         accountDataPanel = new javax.swing.JPanel();
         accountNameLabel = new javax.swing.JLabel();
@@ -81,9 +82,13 @@ public class ProfileView extends javax.swing.JPanel {
         jLabel4.setText("Cambios guardados");
         changedSavedPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 20));
 
+        setBackground(new java.awt.Color(71, 18, 107));
         setLayout(new java.awt.BorderLayout());
 
-        bodyPanel.setBackground(new java.awt.Color(71, 18, 107));
+        parentPanel.setBackground(new java.awt.Color(71, 18, 107));
+        parentPanel.setLayout(new java.awt.GridBagLayout());
+
+        bodyPanel.setBackground(new java.awt.Color(255, 255, 255));
         bodyPanel.setMinimumSize(new java.awt.Dimension(530, 350));
         bodyPanel.setPreferredSize(new java.awt.Dimension(530, 350));
         bodyPanel.setLayout(new java.awt.GridBagLayout());
@@ -120,7 +125,7 @@ public class ProfileView extends javax.swing.JPanel {
 
         userLabel.setBackground(new java.awt.Color(255, 255, 255));
         userLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        userLabel.setForeground(new java.awt.Color(255, 255, 255));
+        userLabel.setForeground(new java.awt.Color(71, 18, 107));
         userLabel.setText("Usuario");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -131,7 +136,7 @@ public class ProfileView extends javax.swing.JPanel {
 
         passwordLabel.setBackground(new java.awt.Color(255, 255, 255));
         passwordLabel.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
+        passwordLabel.setForeground(new java.awt.Color(71, 18, 107));
         passwordLabel.setText("Contraseña");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -142,9 +147,9 @@ public class ProfileView extends javax.swing.JPanel {
         bodyPanel.add(passwordLabel, gridBagConstraints);
 
         userTxt.setEditable(false);
-        userTxt.setBackground(new java.awt.Color(151, 58, 168));
+        userTxt.setBackground(new java.awt.Color(255, 255, 255));
         userTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        userTxt.setForeground(new java.awt.Color(255, 255, 255));
+        userTxt.setForeground(new java.awt.Color(71, 18, 107));
         userTxt.setToolTipText("Nombre de usuario");
         userTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(71, 18, 107), 1, true));
         userTxt.setCaretColor(new java.awt.Color(236, 0, 140));
@@ -163,9 +168,9 @@ public class ProfileView extends javax.swing.JPanel {
         bodyPanel.add(userTxt, gridBagConstraints);
 
         passwordTxt.setEditable(false);
-        passwordTxt.setBackground(new java.awt.Color(151, 58, 168));
+        passwordTxt.setBackground(new java.awt.Color(255, 255, 255));
         passwordTxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        passwordTxt.setForeground(new java.awt.Color(255, 255, 255));
+        passwordTxt.setForeground(new java.awt.Color(71, 18, 107));
         passwordTxt.setToolTipText("Contraseña actual");
         passwordTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(71, 18, 107), 1, true));
         passwordTxt.setCaretColor(new java.awt.Color(236, 0, 140));
@@ -183,7 +188,9 @@ public class ProfileView extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 73, 100);
         bodyPanel.add(passwordTxt, gridBagConstraints);
 
-        add(bodyPanel, java.awt.BorderLayout.CENTER);
+        parentPanel.add(bodyPanel, new java.awt.GridBagConstraints());
+
+        add(parentPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void loadData(){
@@ -201,6 +208,7 @@ public class ProfileView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel parentPanel;
     private javax.swing.JPanel passwordErrorPanel;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField passwordTxt;
