@@ -15,7 +15,7 @@ public class WalletCard extends javax.swing.JPanel {
     private final AccountController accountController;
     private final Account account;
     private final WalletsView walletsView;
-    
+
     public WalletCard(WalletsView walletsView, Wallet wallet, JFrame parent, AccountController accountController, Account account) {
         this.parent = parent;
         this.wallet = wallet;
@@ -86,6 +86,10 @@ public class WalletCard extends javax.swing.JPanel {
         remitentWalletTxt = new javax.swing.JTextField();
         walletNotFoundPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        transactionNotPossiblePanel = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        poorMoneyPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         nicknameTxt = new javax.swing.JTextField();
         idLabel = new javax.swing.JLabel();
         moneyLabel = new javax.swing.JLabel();
@@ -462,7 +466,29 @@ public class WalletCard extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sad-icon.png"))); // NOI18N
         jLabel1.setText("Wallet no encontrada");
-        walletNotFoundPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 220, 20));
+        walletNotFoundPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 200, 20));
+
+        transactionNotPossiblePanel.setBackground(new java.awt.Color(255, 255, 255));
+        transactionNotPossiblePanel.setMaximumSize(new java.awt.Dimension(300, 100));
+        transactionNotPossiblePanel.setMinimumSize(new java.awt.Dimension(300, 100));
+        transactionNotPossiblePanel.setPreferredSize(new java.awt.Dimension(300, 100));
+        transactionNotPossiblePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sad-icon.png"))); // NOI18N
+        jLabel6.setText("No es válida la transacción");
+        transactionNotPossiblePanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 20));
+
+        poorMoneyPanel.setBackground(new java.awt.Color(255, 255, 255));
+        poorMoneyPanel.setMaximumSize(new java.awt.Dimension(300, 100));
+        poorMoneyPanel.setMinimumSize(new java.awt.Dimension(300, 100));
+        poorMoneyPanel.setPreferredSize(new java.awt.Dimension(300, 100));
+        poorMoneyPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sad-icon.png"))); // NOI18N
+        jLabel2.setText("Debe mandar más de $50 pesos");
+        poorMoneyPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 290, 20));
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -644,21 +670,25 @@ public class WalletCard extends javax.swing.JPanel {
         Wallet remitent = account.getWalletByNickname(walletNickname);
         Double money = Double.parseDouble(moneyTxtModal.getValue().toString());
 
-        Transaction transaction = new Transaction(remitent, wallet, money, LocalDate.now(), messageTxt.getText());
+        if (money > 50) {
+            Transaction transaction = new Transaction(remitent, wallet, money, LocalDate.now(), messageTxt.getText());
 
-        if (accountController.getTransactionController().addNewTransaction(transaction)) {
+            if (accountController.getTransactionController().addNewTransaction(transaction)) {
 
-            Modal modal = new Modal(parent, "Transacción éxitosa", true, transactionSuccesfull);
-            transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
-            transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
-            double moneyTemp = Double.parseDouble(moneyTxt.getText()) - transaction.getMoney();
+                Modal modal = new Modal(parent, "Transacción éxitosa", true, transactionSuccesfull);
+                remitent.setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
+                wallet.setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
+                double moneyTemp = Double.parseDouble(moneyTxt.getText()) - transaction.getMoney();
 
-            this.removeAll();
+                this.removeAll();
 
-            moneyTxt.setText(moneyTemp + "");
+                moneyTxt.setText(moneyTemp + "");
 
+            } else {
+                Modal modal = new Modal(parent, "Transacción errada", true, transactionFailPanel);
+            }
         } else {
-            Modal modal = new Modal(parent, "Transacción errada", true, transactionFailPanel);
+            Modal modal = new Modal(parent, "Envio inválido", true, poorMoneyPanel);
         }
         walletsView.loadWallets();
     }//GEN-LAST:event_sendMoneyToWalletModalBtnActionPerformed
@@ -673,19 +703,28 @@ public class WalletCard extends javax.swing.JPanel {
         Wallet destinataryWallet = accountController.getWalletById(destinataryWalletTxt.getText());
         Double money = Double.parseDouble(moneyTxtModal1.getValue().toString());
         if (destinataryWallet != null) {
-            Transaction transaction = new Transaction(remitentWallet, wallet, money, LocalDate.now(), messageTxt.getText());;
-            if (accountController.getTransactionController().addNewTransaction(transaction)) {
-                Modal modal = new Modal(parent, "Transacción éxitosa", true, transactionSuccesfull);
-                transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
-                transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
-                double moneyTemp = Double.parseDouble(moneyTxt.getText()) - transaction.getMoney();
+            if (!remitentWallet.getID().equals(destinataryWallet.getID())) {
+                if (money > 50) {
+                    Transaction transaction = new Transaction(remitentWallet, wallet, money, LocalDate.now(), messageTxt.getText());;
+                    if (accountController.getTransactionController().addNewTransaction(transaction)) {
+                        Modal modal = new Modal(parent, "Transacción éxitosa", true, transactionSuccesfull);
+                        remitentWallet.setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
+                        destinataryWallet.setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
+                        double moneyTemp = Double.parseDouble(moneyTxt.getText()) - transaction.getMoney();
 
-                this.removeAll();
+                        this.removeAll();
 
-                moneyTxt.setText(moneyTemp + "");
+                        moneyTxt.setText(moneyTemp + "");
+                    } else {
+                        Modal modal = new Modal(parent, "Transacción errada", true, transactionFailPanel);
+                    }
+                } else {
+                    Modal modal = new Modal(parent, "Envio inválido", true, poorMoneyPanel);
+                }
             } else {
-                Modal modal = new Modal(parent, "Transacción errada", true, transactionFailPanel);
+                Modal modal = new Modal(parent, "Datos de transacción errados", true, transactionNotPossiblePanel);
             }
+
         } else {
             Modal modal = new Modal(parent, "Transacción errada", true, walletNotFoundPanel);
         }
@@ -700,8 +739,10 @@ public class WalletCard extends javax.swing.JPanel {
     private javax.swing.JLabel idLabel;
     private javax.swing.JTextField idTxt;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -716,6 +757,7 @@ public class WalletCard extends javax.swing.JPanel {
     private javax.swing.JSpinner moneyTxtModal1;
     private javax.swing.JLabel nicknameLabel;
     private javax.swing.JTextField nicknameTxt;
+    private javax.swing.JPanel poorMoneyPanel;
     private javax.swing.JComboBox<String> remitentWalletCombox;
     private javax.swing.JLabel remitentWalletLabel;
     private javax.swing.JLabel remitentWalletLabel1;
@@ -735,6 +777,7 @@ public class WalletCard extends javax.swing.JPanel {
     private javax.swing.JLabel title;
     private javax.swing.JLabel title1;
     private javax.swing.JPanel transactionFailPanel;
+    private javax.swing.JPanel transactionNotPossiblePanel;
     private javax.swing.JPanel transactionSuccesfull;
     private javax.swing.JPanel walletNotFoundPanel;
     // End of variables declaration//GEN-END:variables

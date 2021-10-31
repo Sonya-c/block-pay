@@ -120,7 +120,7 @@ public class WalletsView extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/happy-icon.png"))); // NOI18N
-        jLabel3.setText("¡Nueva billetera creada exitosamente!");
+        jLabel3.setText("¡Nueva wallet creada exitosamente!");
         walletCreationSuccesfull.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 300, 20));
 
         createWalletPanel.setBackground(new java.awt.Color(255, 255, 255));

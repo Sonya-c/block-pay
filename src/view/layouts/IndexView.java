@@ -141,7 +141,7 @@ public class IndexView extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sad-icon.png"))); // NOI18N
-        jLabel1.setText("Billetera no encontrada");
+        jLabel1.setText("Wallet no encontrada");
         walletNotFoundPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 210, 20));
 
         sendMoneyModal.setBackground(new java.awt.Color(71, 18, 107));
@@ -318,7 +318,7 @@ public class IndexView extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sad-icon.png"))); // NOI18N
         jLabel2.setText("Debe mandar más de $50 pesos");
-        poorMoneyPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 250, 20));
+        poorMoneyPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 290, 20));
 
         transactionSuccesfull.setBackground(new java.awt.Color(255, 255, 255));
         transactionSuccesfull.setMaximumSize(new java.awt.Dimension(300, 100));
@@ -433,27 +433,33 @@ public class IndexView extends javax.swing.JPanel {
         Double money = Double.parseDouble(moneyTxt.getValue().toString());
 
         if (destinatary != null) {
-            if (!remitent.getID().equals(destinatary.getID())){
-            Transaction transaction = new Transaction(remitent, destinatary, money, LocalDate.now(), messageTxt.getText());
+            if (!remitent.getID().equals(destinatary.getID())) {
+                if (money > 50) {
+                    Transaction transaction = new Transaction(remitent, destinatary, money, LocalDate.now(), messageTxt.getText());
 
-            if (accountController.getTransactionController().addNewTransaction(transaction)) {
+                    if (accountController.getTransactionController().addNewTransaction(transaction)) {
 
-                Modal modal = new Modal(parent, "Transacción éxitosa", true, transactionSuccesfull);
+                        Modal modal = new Modal(parent, "Transacción éxitosa", true, transactionSuccesfull);
 
-                transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
-                transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
+                        transaction.getRemitent().setMoney(transaction.getRemitent().getMoney() - transaction.getMoney());
+                        transaction.getDestinatary().setMoney(transaction.getDestinatary().getMoney() + transaction.getMoney());
 
-                moneyLabelUpdate();
+                        moneyLabelUpdate();
 
-                this.removeAll();
+                        this.removeAll();
+
+                    } else {
+                        Modal modal = new Modal(parent, "Transacción errada", true, transactionFailPanel);
+                    }
+                } else {
+                     Modal modal = new Modal(parent, "Envio inválido", true, poorMoneyPanel);
+                }
 
             } else {
-                Modal modal = new Modal(parent, "Transacción errada", true, transactionFailPanel);
-            }
-        } else {
                 Modal modal = new Modal(parent, "Datos de transacción errados", true, transactionNotPossiblePanel);
-            } 
-        }else {
+            }
+            
+        } else {
             Modal moda = new Modal(parent, "No existe esa billetera", true, walletNotFoundPanel);
         }
     }//GEN-LAST:event_sendMoneyModalBtnActionPerformed

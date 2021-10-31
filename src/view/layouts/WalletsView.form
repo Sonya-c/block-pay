@@ -70,7 +70,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/happy-icon.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#xa1;Nueva billetera creada exitosamente!"/>
+            <Property name="text" type="java.lang.String" value="&#xa1;Nueva wallet creada exitosamente!"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
