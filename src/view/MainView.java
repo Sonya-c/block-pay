@@ -90,7 +90,6 @@ public class MainView extends javax.swing.JFrame {
         setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         setMinimumSize(new java.awt.Dimension(810, 540));
         setName("Block Pay main Panel"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(810, 540));
 
         parentPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 10, 84)));
         parentPanel.setLayout(new java.awt.BorderLayout());
@@ -273,7 +272,7 @@ public class MainView extends javax.swing.JFrame {
 
         exitBtn.setBackground(new java.awt.Color(255, 255, 255));
         exitBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Close-icon-circle.png"))); // NOI18N
+        exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/small-logo.png"))); // NOI18N
         exitBtn.setBorder(null);
         exitBtn.setContentAreaFilled(false);
         exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -281,11 +280,6 @@ public class MainView extends javax.swing.JFrame {
         exitBtn.setMaximumSize(new java.awt.Dimension(60, 60));
         exitBtn.setMinimumSize(new java.awt.Dimension(55, 60));
         exitBtn.setPreferredSize(new java.awt.Dimension(55, 60));
-        exitBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitBtnActionPerformed(evt);
-            }
-        });
         menuBarPanel.add(exitBtn, java.awt.BorderLayout.PAGE_END);
 
         parentPanel.add(menuBarPanel, java.awt.BorderLayout.WEST);
@@ -352,12 +346,6 @@ public class MainView extends javax.swing.JFrame {
         bodyPanel.validate();
         bodyPanel.repaint();
     }//GEN-LAST:event_walletsBtnActionPerformed
-
-    private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
-        accountController.writeAccountInFile();
-        System.out.println("El usuario va a salir");
-        System.exit(0);
-    }//GEN-LAST:event_exitBtnActionPerformed
 
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         bodyPanel.removeAll();

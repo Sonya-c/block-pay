@@ -8,10 +8,12 @@ package view.layouts;
 import controller.AccountController;
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 import model.list.List;
 import model.system.Account;
 import model.system.Transaction;
 import model.system.Wallet;
+import view.includes.BeautifulScrollBar;
 import view.includes.Modal;
 import view.includes.TransactionCard;
 import view.includes.WrapLayout;
@@ -41,6 +43,11 @@ public class TransactionInformationView extends javax.swing.JPanel {
         initComponents();
         
         transactionsPanel.setLayout(new WrapLayout(FlowLayout.CENTER, 30, 30));
+        
+        transactionScroll.setComponentZOrder(transactionScroll.getVerticalScrollBar(), 0);
+        transactionScroll.setComponentZOrder(transactionScroll.getViewport(), 1);
+        transactionScroll.getVerticalScrollBar().setOpaque(false);
+        transactionScroll.getVerticalScrollBar().setUI(new BeautifulScrollBar());
         updateWalletsUser();
     }
 
@@ -191,17 +198,19 @@ public class TransactionInformationView extends javax.swing.JPanel {
         bodyPanel.setBackground(new java.awt.Color(255, 255, 255));
         bodyPanel.setLayout(new java.awt.BorderLayout());
 
+        transactionScroll.setBorder(null);
+
         transactionsPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout transactionsPanelLayout = new javax.swing.GroupLayout(transactionsPanel);
         transactionsPanel.setLayout(transactionsPanelLayout);
         transactionsPanelLayout.setHorizontalGroup(
             transactionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 698, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
         transactionsPanelLayout.setVerticalGroup(
             transactionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 401, Short.MAX_VALUE)
+            .addGap(0, 403, Short.MAX_VALUE)
         );
 
         transactionScroll.setViewportView(transactionsPanel);

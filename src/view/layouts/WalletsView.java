@@ -9,9 +9,11 @@ import controller.AccountController;
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 import model.list.List;
 import model.system.Account;
 import model.system.Wallet;
+import view.includes.BeautifulScrollBar;
 import view.includes.Modal;
 import view.includes.WalletCard;
 import view.includes.WrapLayout;
@@ -44,6 +46,12 @@ public class WalletsView extends javax.swing.JPanel {
         
         initComponents();
         walletsPanel.setLayout(new WrapLayout(FlowLayout.CENTER, 20, 20));
+        
+        walletsScrollPanel.setComponentZOrder(walletsScrollPanel.getVerticalScrollBar(), 0);
+        walletsScrollPanel.setComponentZOrder(walletsScrollPanel.getViewport(), 1);
+        walletsScrollPanel.getVerticalScrollBar().setOpaque(false);
+        walletsScrollPanel.getVerticalScrollBar().setUI(new BeautifulScrollBar());
+        
         loadWallets();
     }
 
@@ -228,6 +236,7 @@ public class WalletsView extends javax.swing.JPanel {
 
         bodyPanel.setLayout(new java.awt.BorderLayout());
 
+        walletsScrollPanel.setBorder(null);
         walletsScrollPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         walletsPanel.setBackground(new java.awt.Color(255, 255, 255));
