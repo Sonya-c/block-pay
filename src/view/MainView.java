@@ -345,7 +345,7 @@ public class MainView extends javax.swing.JFrame {
 
         bodyPanel.add(walletsView);
         setTitle("Block Pay | Billeteras");
-        titleLabel.setText("Block Pay | Home");
+        titleLabel.setText("Block Pay | Wallets");
         
         walletsBtn.setBackground(hightligthColor);
 

@@ -101,8 +101,8 @@ public class WalletsView extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sad-icon.png"))); // NOI18N
-        jLabel4.setText("No se encontraron billeteras");
-        walletNotFoundPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
+        jLabel4.setText("No se encontraron wallets");
+        walletNotFoundPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 240, -1));
 
         walletCreationSuccesfull.setBackground(new java.awt.Color(255, 255, 255));
         walletCreationSuccesfull.setMaximumSize(new java.awt.Dimension(350, 95));
@@ -110,7 +110,7 @@ public class WalletsView extends javax.swing.JPanel {
         walletCreationSuccesfull.setPreferredSize(new java.awt.Dimension(350, 95));
         walletCreationSuccesfull.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/happy-icon.png"))); // NOI18N
         jLabel3.setText("¡Nueva billetera creada exitosamente!");
         walletCreationSuccesfull.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 300, 20));
@@ -169,7 +169,7 @@ public class WalletsView extends javax.swing.JPanel {
 
         jLabel7.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sad-icon.png"))); // NOI18N
-        jLabel7.setText("Ya posee una billetera con ese nickname");
+        jLabel7.setText("Ya posee una wallet con ese nickname");
         nicknameExist.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 330, 20));
 
         setLayout(new java.awt.BorderLayout());
@@ -181,7 +181,7 @@ public class WalletsView extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 209, 102));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText("Mis Billeteras");
+        jLabel6.setText("Mis Wallets");
         headerPanel.add(jLabel6, java.awt.BorderLayout.CENTER);
 
         activityBarPanel.setBackground(new java.awt.Color(71, 18, 107));
@@ -210,7 +210,7 @@ public class WalletsView extends javax.swing.JPanel {
         walletsUser.setBackground(new java.awt.Color(216, 49, 91));
         walletsUser.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         walletsUser.setForeground(new java.awt.Color(255, 255, 255));
-        walletsUser.setText("Mostrar mis billeteras");
+        walletsUser.setText("Mostrar mis wallets");
         walletsUser.setToolTipText("Mostrar");
         walletsUser.setBorderPainted(false);
         walletsUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

@@ -461,8 +461,8 @@ public class WalletCard extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sad-icon.png"))); // NOI18N
-        jLabel1.setText("Billetera no encontrada");
-        walletNotFoundPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 180, 20));
+        jLabel1.setText("Wallet no encontrada");
+        walletNotFoundPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 220, 20));
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -472,7 +472,7 @@ public class WalletCard extends javax.swing.JPanel {
 
         nicknameTxt.setEditable(false);
         nicknameTxt.setBackground(new java.awt.Color(255, 255, 255));
-        nicknameTxt.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        nicknameTxt.setFont(new java.awt.Font("Calibri", 0, 22)); // NOI18N
         nicknameTxt.setForeground(new java.awt.Color(27, 20, 100));
         nicknameTxt.setToolTipText("Apodo de la billetera");
         nicknameTxt.setAutoscrolls(false);
