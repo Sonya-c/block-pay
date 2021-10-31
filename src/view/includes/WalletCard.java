@@ -466,7 +466,7 @@ public class WalletCard extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sad-icon.png"))); // NOI18N
         jLabel1.setText("Wallet no encontrada");
-        walletNotFoundPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 200, 20));
+        walletNotFoundPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 220, 20));
 
         transactionNotPossiblePanel.setBackground(new java.awt.Color(255, 255, 255));
         transactionNotPossiblePanel.setMaximumSize(new java.awt.Dimension(300, 100));
